@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <meta name="description" content="Shree Anjani Belt and Bearing Store (formerly Shree Balaji Belt Center) in Siddharthanagar, Nepal. Nepal's trusted wholesale supplier for 100% genuine industrial bearings, V-belts, pulleys, crusher maintenance, and rice mill setups." />
+  <meta name="description" content="Shree Anjani Belt and Bearing Store in Siddharthanagar, Nepal. Nepal's premier wholesale supplier for genuine industrial bearings, V-belts, pulleys, crusher maintenance, and rice mill setups." />
   <meta name="keywords" content="Shree Anjani Belt and Bearing Store, Bearings Nepal, SKF Nepal, NBC Bearings Nepal, V-Belts Nepal, Crusher Spares Bhairahawa, Rice Mill Parts Siddharthanagar, Nepal Industrial Spares" />
-  <meta name="theme-color" content="#0F172A" />
-  <title>Shree Anjani Belt and Bearing Store | Wholesale Industrial Machinery &amp; Spares Nepal</title>
+  <meta name="theme-color" content="#0B1120" />
+  <title>Shree Anjani Belt &amp; Bearing Store | Industrial Wholesale Nepal</title>
   
-  <!-- Preconnect & Google Fonts -->
+  <!-- Preconnect & Typography (Inter, JetBrains Mono & Mukta) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Mukta:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Mukta:wght@500;700&display=swap" rel="stylesheet" />
   
-  <!-- FontAwesome Icons -->
+  <!-- FontAwesome Icons for Industrial Crispness -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
-  <!-- Core Stylesheet & PWA Manifest -->
+  <!-- Core Design System & PWA Manifest -->
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -63,70 +63,70 @@
   }
   </script>
 </head>
-<body>
+<body class="industrial-theme">
 
   <!-- ================= 1. TOP TRUST ANNOUNCEMENT BAR ================= -->
-  <div class="top-announcement-bar" role="banner">
-    <div class="container top-bar-inner">
-      <div class="announcement-text">
-        <span class="badge-flag">🇳🇵 Pan-Nepal Delivery</span>
-        <i class="fa-solid fa-shield-halved text-warning"></i>
-        <span><strong>Nepal's Trusted Wholesale Supplier</strong> for Genuine Bearings &amp; Industrial Spares.</span>
+  <div class="top-trust-bar" role="banner">
+    <div class="container top-bar-flex">
+      <div class="trust-notice">
+        <span class="badge-flag">🇳🇵 NEPAL WHOLESALE</span>
+        <i class="fa-solid fa-shield-halved text-cyan"></i>
+        <span><strong>Nepal's Trusted Wholesale Stockist</strong> for Genuine Bearings &amp; Industrial Spares</span>
       </div>
-      <div class="top-bar-actions">
-        <span class="live-status-badge" id="liveOperatingStatus">
-          <span class="pulse-dot"></span> Open 7 Days a Week (Siddharthanagar)
-        </span>
-        <a href="tel:+9779804462602" class="top-call-link" title="Call Sales Direct">
+      <div class="top-bar-meta">
+        <div class="live-status-pill" id="liveOperatingStatus">
+          <span class="live-dot"></span>
+          <span>Open 7 Days (Siddharthanagar)</span>
+        </div>
+        <a href="tel:+9779804462602" class="top-call-chip">
           <i class="fa-solid fa-phone-volume"></i> Sales: 980-4462602
         </a>
       </div>
     </div>
   </div>
 
-  <!-- ================= 2. SITE HEADER ================= -->
-  <header class="site-header" id="siteHeader">
-    <div class="container header-container">
+  <!-- ================= 2. MAIN HEADER & SEARCH ================= -->
+  <header class="main-header" id="siteHeader">
+    <div class="container header-flex">
       
-      <!-- Brand Logo & Identity -->
-      <div class="brand-wrapper">
-        <a href="#" class="brand-logo-link">
-          <div class="logo-icon-box">
-            <i class="fa-solid fa-gear fa-spin-hover"></i>
+      <!-- Brand Logo -->
+      <div class="brand-box">
+        <a href="#" class="brand-anchor">
+          <div class="brand-icon-sq">
+            <i class="fa-solid fa-gear gear-spin"></i>
           </div>
-          <div class="brand-text">
-            <h1 class="brand-title">SHREE ANJANI <span class="highlight-orange">BELT &amp; BEARING</span></h1>
-            <p class="brand-subtitle">
-              <span class="former-name">Formerly <strong>Shree Balaji Belt Center</strong></span>
-              <span class="location-tag"><i class="fa-solid fa-location-dot"></i> Siddharthanagar, Nepal</span>
-            </p>
+          <div class="brand-headings">
+            <div class="brand-main-title">SHREE ANJANI <span class="text-cyan">BELT &amp; BEARING</span></div>
+            <div class="brand-sub-title">
+              <span>Formerly <strong>Shree Balaji Belt Center</strong></span>
+              <span class="dot-sep">•</span>
+              <span class="text-muted"><i class="fa-solid fa-location-dot"></i> Siddharthanagar, Nepal</span>
+            </div>
           </div>
         </a>
       </div>
 
-      <!-- Quick Search Bar (For Part Numbers) -->
-      <div class="header-search-box">
-        <form class="search-form" onsubmit="event.preventDefault(); window.searchCatalog();">
+      <!-- Part Number Search Bar -->
+      <div class="search-container">
+        <form class="search-form-wrap" onsubmit="event.preventDefault(); window.searchCatalog();">
           <label for="partSearchInput" class="visually-hidden">Search Bearing or Belt Part Number</label>
-          <div class="search-input-wrapper">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="partSearchInput" placeholder="Search Part No. (e.g. 6205, 22212, V-Belt B-65, UCP 208)..." autocomplete="off" />
-            <button type="submit" class="search-btn" aria-label="Search">Search</button>
-          </div>
+          <i class="fa-solid fa-magnifying-glass search-lens"></i>
+          <input type="text" id="partSearchInput" placeholder="Search Part No. (e.g. 6205, 22212, V-Belt B-65, UCP 208)..." autocomplete="off" />
+          <button type="submit" class="search-action-btn">Search</button>
         </form>
       </div>
 
-      <!-- Header Direct Contact CTC -->
-      <div class="header-cta-group">
-        <a href="tel:+9779804462602" class="quick-ctc-btn sales-ctc" title="Tap to Call Sales">
-          <div class="icon-circle"><i class="fa-solid fa-phone"></i></div>
-          <div class="ctc-labels">
-            <span class="ctc-dept">Sales &amp; Inquiry</span>
-            <span class="ctc-number">980-4462602</span>
+      <!-- Quick Action Buttons -->
+      <div class="header-actions-group">
+        <a href="tel:+9779804462602" class="header-call-btn" title="Tap to Call Sales">
+          <div class="call-circle"><i class="fa-solid fa-phone"></i></div>
+          <div class="call-text">
+            <span class="call-lbl">Sales &amp; Inquiry</span>
+            <span class="call-num">980-4462602</span>
           </div>
         </a>
 
-        <button class="rfq-header-btn" onclick="window.openOmniContact('whatsapp')">
+        <button class="header-quote-btn" onclick="window.openOmniContact('whatsapp')">
           <i class="fa-brands fa-whatsapp"></i>
           <span>Instant Quote</span>
         </button>
@@ -134,84 +134,89 @@
 
     </div>
 
-    <!-- Navigation Bar -->
-    <nav class="sub-nav" aria-label="Main Navigation">
-      <div class="container sub-nav-inner">
-        <ul class="nav-links">
+    <!-- Navigation Strip -->
+    <nav class="sub-nav-bar" aria-label="Main Navigation">
+      <div class="container sub-nav-flex">
+        <ul class="nav-menu">
           <li><a href="#hero" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
           <li><a href="#belts-bearings"><i class="fa-solid fa-circle-dot"></i> V-Belts &amp; Bearings</a></li>
-          <li><a href="#crusher-maintenance"><i class="fa-solid fa-mountain"></i> Crusher Maintenance</a></li>
+          <li><a href="#crusher-maintenance"><i class="fa-solid fa-mountain"></i> Crusher Spares</a></li>
           <li><a href="#rice-mill-setups"><i class="fa-solid fa-wheat-awn"></i> Rice &amp; Flour Mills</a></li>
           <li><a href="#workshop-services"><i class="fa-solid fa-wrench"></i> Workshop Services</a></li>
           <li><a href="#trust-signals"><i class="fa-solid fa-star"></i> 5.0★ Google Reviews</a></li>
           <li><a href="#contact-location"><i class="fa-solid fa-map-location-dot"></i> Location &amp; Hours</a></li>
         </ul>
-        <div class="sub-nav-right">
-          <a href="internal/index.html" class="internal-link"><i class="fa-solid fa-lock"></i> Store Internal</a>
+        <div class="nav-extra">
+          <a href="internal/index.html" class="nav-internal-pill"><i class="fa-solid fa-lock"></i> Store Internal</a>
         </div>
       </div>
     </nav>
   </header>
 
   <!-- ================= 3. HERO SECTION ================= -->
-  <section class="hero-section" id="hero">
-    <div class="container hero-grid">
+  <section class="hero-industrial" id="hero">
+    <div class="container hero-grid-2col">
       
-      <!-- Hero Left Text Content -->
-      <div class="hero-content">
-        <div class="hero-badge">
-          <i class="fa-solid fa-certificate text-warning"></i>
+      <!-- Hero Left Content -->
+      <div class="hero-left-pane">
+        <div class="tech-tag-chip">
+          <span class="tag-glow"></span>
+          <i class="fa-solid fa-certificate text-cyan"></i>
           <span>100% Genuine Factory Sealed Stock • 13% Nepal VAT Invoices</span>
         </div>
         
-        <h1 class="hero-headline">
-          Powering Nepal's Industries with <span class="highlight-orange">Premium Machinery &amp; Parts</span>
+        <h1 class="hero-main-title">
+          Powering Nepal's Industries with <span class="text-cyan text-glow">Premium Machinery &amp; Parts</span>
         </h1>
         
-        <p class="hero-subtext">
+        <p class="hero-lead-text">
           Nepal's trusted wholesale supply partner for genuine industrial bearings, high-tensile transmission V-belts, conveyor systems, and agro-mill spares. Serving factory owners, rice/flour mills, crusher plants, and workshop mechanics across Nepal with lightning-fast delivery from Siddharthanagar.
         </p>
 
-        <!-- CTA Button Group -->
-        <div class="hero-cta-row">
-          <button class="btn btn-primary btn-lg pulse-glow" onclick="window.openOmniContact('whatsapp')">
+        <!-- CTA Buttons -->
+        <div class="hero-btn-row">
+          <button class="btn btn-emerald btn-lg pulse-glow" onclick="window.openOmniContact('whatsapp')">
             <i class="fa-brands fa-whatsapp"></i> Get a Quote Now
+            <i class="fa-solid fa-arrow-right arrow-shift"></i>
           </button>
           
-          <a href="tel:+9779804462602" class="btn btn-secondary btn-lg">
-            <i class="fa-solid fa-phone-volume"></i> Direct Call: 980-4462602
+          <a href="tel:+9779804462602" class="btn btn-glass btn-lg">
+            <i class="fa-solid fa-phone-volume text-cyan"></i> Direct Call: 980-4462602
           </a>
         </div>
 
-        <!-- Hero Trust Metric Badges -->
-        <div class="hero-trust-chips">
-          <div class="trust-chip">
-            <i class="fa-solid fa-star text-gold"></i>
-            <span><strong>5.0★ Rated</strong> on Google</span>
+        <!-- Trust Badges Bar -->
+        <div class="hero-metrics-bar">
+          <div class="metric-block">
+            <div class="stars-gold">★★★★★</div>
+            <div class="metric-desc">5.0★ Google Rating</div>
           </div>
-          <div class="trust-chip">
-            <i class="fa-solid fa-truck-fast text-cyan"></i>
-            <span><strong>Same-Day Dispatch</strong> Across Nepal</span>
+          <div class="metric-divider"></div>
+          <div class="metric-block">
+            <div class="metric-val text-cyan">Same-Day</div>
+            <div class="metric-desc">Pan-Nepal Dispatch</div>
           </div>
-          <div class="trust-chip">
-            <i class="fa-solid fa-calendar-check text-emerald"></i>
-            <span><strong>Open 7 Days</strong> a Week</span>
+          <div class="metric-divider"></div>
+          <div class="metric-block">
+            <div class="metric-val text-amber">7 Days</div>
+            <div class="metric-desc">Open Weekly</div>
           </div>
         </div>
       </div>
 
-      <!-- Hero Right Visual Card -->
-      <div class="hero-visual">
-        <div class="visual-card">
-          <img src="assets/bearings-belts.svg" alt="Precision Bearings and V-Belts Nepal" class="hero-img" />
-          <div class="visual-card-footer">
-            <div class="footer-stat">
-              <span class="stat-number">10,000+</span>
-              <span class="stat-label">Bearings &amp; Belts in Stock</span>
+      <!-- Hero Right Visual -->
+      <div class="hero-right-visual">
+        <div class="hero-glass-card">
+          <div class="card-ambient-glow"></div>
+          <img src="assets/bearings-belts.svg" alt="Precision Bearings and V-Belts Nepal" class="hero-vector-img" />
+          <div class="glass-card-footer">
+            <div class="card-foot-item">
+              <span class="foot-num text-cyan">10,000+</span>
+              <span class="foot-lbl">SKUs in Warehouse</span>
             </div>
-            <div class="footer-stat">
-              <span class="stat-number">100%</span>
-              <span class="stat-label">Genuine Guarantee</span>
+            <div class="card-foot-item">
+              <span class="foot-num text-emerald">100%</span>
+              <span class="foot-lbl">Genuine Guaranteed</span>
             </div>
           </div>
         </div>
@@ -221,33 +226,33 @@
   </section>
 
   <!-- ================= 4. BRAND TRUST TICKER ================= -->
-  <section class="brand-ticker-section">
+  <section class="brands-ticker-wrap">
     <div class="container">
-      <p class="ticker-heading">AUTHORIZED WHOLESALE STOCKIST &amp; SOURCING PARTNER FOR WORLD-CLASS BRANDS</p>
-      <div class="brands-ticker-grid">
-        <div class="brand-pill"><strong>SKF</strong> (Sweden)</div>
-        <div class="brand-pill"><strong>NBC</strong> (India)</div>
-        <div class="brand-pill"><strong>URB</strong> (Romania)</div>
-        <div class="brand-pill"><strong>NTN</strong> (Japan)</div>
-        <div class="brand-pill"><strong>FENNER</strong> (Power Transmission)</div>
-        <div class="brand-pill"><strong>GATES</strong> (Industrial Belts)</div>
+      <div class="ticker-header-lbl">AUTHORIZED WHOLESALE STOCKIST &amp; SOURCING PARTNER FOR WORLD-CLASS BRANDS</div>
+      <div class="ticker-badges-grid">
+        <div class="brand-chip"><span class="brand-name">SKF</span> <span class="brand-origin">Sweden</span></div>
+        <div class="brand-chip"><span class="brand-name">NBC</span> <span class="brand-origin">India</span></div>
+        <div class="brand-chip"><span class="brand-name">URB</span> <span class="brand-origin">Romania</span></div>
+        <div class="brand-chip"><span class="brand-name">NTN</span> <span class="brand-origin">Japan</span></div>
+        <div class="brand-chip"><span class="brand-name">FENNER</span> <span class="brand-origin">Power Transmission</span></div>
+        <div class="brand-chip"><span class="brand-name">GATES</span> <span class="brand-origin">Industrial Belts</span></div>
       </div>
-      <p class="disclaimer-text">
-        *Disclaimer: Shree Anjani Belt and Bearing Store is an independent wholesale supplier sourcing 100% genuine factory-sealed products. All manufacturer trademarks belong to their respective owners.
+      <p class="ticker-legal">
+        *Disclaimer: Shree Anjani Belt &amp; Bearing Store is an independent wholesale supplier sourcing 100% genuine factory-sealed stock. All manufacturer logos &amp; trademarks belong to their respective holders.
       </p>
     </div>
   </section>
 
   <!-- ================= 5. BILINGUAL PROMOTION BANNER ================= -->
-  <section class="bilingual-banner-section">
+  <section class="promo-banner-section">
     <div class="container">
-      <div class="bilingual-box">
-        <div class="bilingual-icon"><i class="fa-solid fa-tags"></i></div>
-        <div class="bilingual-text">
-          <h3>Bulk Order Special — आज Order गर्दा Special Wholesale Rate उपलब्ध छ!</h3>
-          <p>Factory owners &amp; mill managers: Send your parts list on WhatsApp for instant pricing with 13% official VAT billing.</p>
+      <div class="promo-glass-box">
+        <div class="promo-icon-circle"><i class="fa-solid fa-tags"></i></div>
+        <div class="promo-text-group">
+          <h3 class="nepali-promo-title">Bulk Order Special — आज Order गर्दा Special Wholesale Rate उपलब्ध छ!</h3>
+          <p class="promo-desc">Factory owners, rice mill operators &amp; mechanics: Send your parts list on WhatsApp for instant proforma quotation with 13% official Nepal VAT invoice.</p>
         </div>
-        <button class="btn btn-warning" onclick="window.openOmniContact('whatsapp')">
+        <button class="btn btn-amber btn-md" onclick="window.openOmniContact('whatsapp')">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp Quote (९८०-४४६२६०२)
         </button>
       </div>
@@ -255,267 +260,272 @@
   </section>
 
   <!-- ================= 6. 4-QUADRANT PRODUCT & SERVICE CATALOG ================= -->
-  <main class="catalog-section" id="catalog">
+  <main class="catalog-main-section" id="catalog">
     <div class="container">
       
-      <div class="section-header text-center">
-        <span class="sub-heading">ENGINEERED FOR HEAVY-DUTY PERFORMANCE</span>
-        <h2 class="main-heading">Wholesale Industrial Product &amp; Service Catalog</h2>
-        <p class="section-desc">Reliable, factory-tested transmission components, machinery parts, and onsite workshop solutions for industrial plants across Nepal.</p>
+      <div class="section-title-wrap text-center">
+        <div class="pill-category-badge">PRECISION INDUSTRIAL CATALOG</div>
+        <h2 class="section-heading">Engineered for Maximum Factory Uptime</h2>
+        <p class="section-lead">Reliable, factory-tested transmission components, machinery parts, and onsite workshop solutions for industrial plants across Nepal.</p>
       </div>
 
-      <!-- ================= QUADRANT 1: V-BELTS, BEARINGS & PULLEYS ================= -->
-      <div class="quadrant-card" id="belts-bearings">
-        <div class="quadrant-grid">
-          <div class="quadrant-visual">
-            <img src="assets/bearings-belts.svg" alt="V-Belts, Bearings and Cast Iron Pulleys" class="quadrant-img" />
-            <span class="quadrant-tag">QUADRANT 01</span>
-          </div>
-          <div class="quadrant-content">
-            <div class="category-badge">CORE TRANSMISSION LINE</div>
-            <h3 class="quadrant-title">V-Belts, Industrial Bearings &amp; Cast Pulleys</h3>
-            <p class="quadrant-desc">
-              Comprehensive stock of precision ball bearings, heavy spherical roller bearings, high-torque industrial V-belts, and cast-iron multi-groove pulleys designed to withstand continuous 24/7 factory operations.
-            </p>
-            
-            <div class="specs-grid">
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Deep Groove Ball Bearings:</strong> 6000, 6200, 6300, 6400 series (2RS &amp; ZZ seals).</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Spherical &amp; Taper Roller Bearings:</strong> 222xx, 223xx, 302xx, 322xx for heavy vibrating loads.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Pillow Block Bearings:</strong> UCP 204 to UCP 218, UCF, UCFL with grease nipples.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Transmission V-Belts:</strong> Classical (A, B, C, D, E) &amp; Wedge (SPA, SPB, SPC) heat-resistant belts.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Cast Iron V-Pulleys:</strong> Single, Double, Triple &amp; 4-Groove A/B/C/D section pulleys.</span>
-              </div>
-            </div>
+      <!-- Bento Grid for 4 Quadrants -->
+      <div class="bento-catalog-grid">
 
-            <div class="quadrant-action-row">
-              <button class="btn btn-primary" onclick="window.sendItemInquiry('V-Belts, Bearings & Pulleys')">
-                <i class="fa-brands fa-whatsapp"></i> Inquire V-Belts &amp; Bearings
-              </button>
-              <a href="tel:+9779804462602" class="btn btn-secondary">
-                <i class="fa-solid fa-phone"></i> Call: 980-4462602
-              </a>
+        <!-- ================= QUADRANT 1: V-BELTS & BEARINGS ================= -->
+        <div class="bento-card" id="belts-bearings">
+          <div class="card-inner-grid">
+            <div class="bento-img-frame">
+              <img src="assets/bearings-belts.svg" alt="V-Belts, Industrial Bearings & Pulleys" class="bento-img" />
+              <div class="quadrant-badge">QUADRANT 01</div>
+            </div>
+            <div class="bento-body">
+              <div class="quad-cat-tag">CORE TRANSMISSION LINE</div>
+              <h3 class="bento-title">V-Belts, Industrial Bearings &amp; Cast Pulleys</h3>
+              <p class="bento-p">
+                Comprehensive stock of precision ball bearings, heavy spherical roller bearings, high-torque industrial V-belts, and cast-iron multi-groove pulleys built for continuous 24/7 industrial duty.
+              </p>
+              
+              <div class="technical-specs-list">
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Deep Groove Ball Bearings:</strong> 6000, 6200, 6300, 6400 series (2RS &amp; ZZ rubber/metal seals).</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Spherical &amp; Taper Roller Bearings:</strong> 222xx, 223xx, 302xx, 322xx for heavy vibrating loads.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Pillow Block Bearings:</strong> UCP 204 to UCP 218, UCF, UCFL with integrated grease nipples.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Transmission V-Belts:</strong> Classical (A, B, C, D, E) &amp; Wedge (SPA, SPB, SPC) heat-resistant belts.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Cast Iron V-Pulleys:</strong> Single, Double, Triple &amp; 4-Groove A/B/C/D section pulleys.</span>
+                </div>
+              </div>
+
+              <div class="bento-actions">
+                <button class="btn btn-emerald" onclick="window.sendItemInquiry('V-Belts, Bearings & Pulleys')">
+                  <i class="fa-brands fa-whatsapp"></i> Inquire V-Belts &amp; Bearings
+                </button>
+                <a href="tel:+9779804462602" class="btn btn-glass">
+                  <i class="fa-solid fa-phone text-cyan"></i> Call: 980-4462602
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- ================= QUADRANT 2: CRUSHER MACHINE MAINTENANCE ================= -->
-      <div class="quadrant-card" id="crusher-maintenance">
-        <div class="quadrant-grid">
-          <div class="quadrant-visual">
-            <img src="assets/crusher-machine.svg" alt="Crusher Machine Maintenance & Heavy Conveyor Belts Nepal" class="quadrant-img" />
-            <span class="quadrant-tag">QUADRANT 02</span>
-          </div>
-          <div class="quadrant-content">
-            <div class="category-badge">HEAVY CRUSHER &amp; QUARRY LINE</div>
-            <h3 class="quadrant-title">Crusher Machine Maintenance &amp; Heavy Conveyors</h3>
-            <p class="quadrant-desc">
-              Heavy-duty spares for stone crushers, sand screening plants, clinker crushers, and cement conveyors across Lumbini, Gandaki, and Bagmati provinces. Minimized downtime with emergency parts availability.
-            </p>
-            
-            <div class="specs-grid">
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Heavy Spherical Roller Bearings:</strong> C3/C4 clearance vibration-proof bearings for jaw &amp; cone crushers.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Heavy-Duty Plummer Blocks:</strong> SNG / SNL series cast steel split pillow blocks.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Multi-Ply Conveyor Belting:</strong> EP-300, EP-400, EP-500 rough-top &amp; Chevron conveyor belts.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Conveyor Rollers &amp; Idlers:</strong> Impact rollers, carry idlers, and rubber return discs.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>High-Temp Industrial Grease:</strong> EP-2 / EP-3 lithium complex extreme pressure grease.</span>
-              </div>
+        <!-- ================= QUADRANT 2: CRUSHER MACHINE MAINTENANCE ================= -->
+        <div class="bento-card" id="crusher-maintenance">
+          <div class="card-inner-grid">
+            <div class="bento-img-frame">
+              <img src="assets/crusher-machine.svg" alt="Crusher Machine Maintenance & Heavy Conveyor Belts" class="bento-img" />
+              <div class="quadrant-badge">QUADRANT 02</div>
             </div>
+            <div class="bento-body">
+              <div class="quad-cat-tag">HEAVY CRUSHER &amp; QUARRY LINE</div>
+              <h3 class="bento-title">Crusher Machine Maintenance &amp; Heavy Conveyors</h3>
+              <p class="bento-p">
+                Heavy-duty spares for stone crushers, sand screening plants, clinker crushers, and cement conveyors across Lumbini, Gandaki, and Bagmati provinces. Minimized downtime with rapid emergency dispatch.
+              </p>
+              
+              <div class="technical-specs-list">
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Heavy Spherical Roller Bearings:</strong> C3/C4 clearance vibration-proof bearings for jaw &amp; cone crushers.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Heavy-Duty Plummer Blocks:</strong> SNG / SNL series cast steel split pillow blocks.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Multi-Ply Conveyor Belting:</strong> EP-300, EP-400, EP-500 rough-top &amp; Chevron conveyor belts.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Conveyor Rollers &amp; Idlers:</strong> Impact rollers, carry idlers, and rubber return discs.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>High-Temp Industrial Grease:</strong> EP-2 / EP-3 lithium complex extreme pressure grease.</span>
+                </div>
+              </div>
 
-            <div class="quadrant-action-row">
-              <button class="btn btn-primary" onclick="window.sendItemInquiry('Crusher Machine Maintenance & Heavy Bearings')">
-                <i class="fa-brands fa-whatsapp"></i> Inquire Crusher Spares
-              </button>
-              <a href="tel:+9779804462602" class="btn btn-secondary">
-                <i class="fa-solid fa-phone"></i> Call: 980-4462602
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= QUADRANT 3: COMPLETE RICE & FLOUR MILL SETUPS ================= -->
-      <div class="quadrant-card" id="rice-mill-setups">
-        <div class="quadrant-grid">
-          <div class="quadrant-visual">
-            <img src="assets/rice-mill.svg" alt="Rice and Flour Mill Spare Parts Nepal" class="quadrant-img" />
-            <span class="quadrant-tag">QUADRANT 03</span>
-          </div>
-          <div class="quadrant-content">
-            <div class="category-badge">AGRO-MILLING &amp; PROCESSING</div>
-            <h3 class="quadrant-title">Complete Rice &amp; Flour Mill Spares &amp; Setups</h3>
-            <p class="quadrant-desc">
-              Specialized transmission components, rubber de-husking rolls, bucket elevator belting, and shaft fittings for modern rice mills, flour chakki plants, oil expellers, and feed mills across the Terai grain belt.
-            </p>
-            
-            <div class="specs-grid">
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Paddy De-husking Rubber Rolls:</strong> 10" &amp; 14" high-durability rubber rollers for clean hulling.</span>
+              <div class="bento-actions">
+                <button class="btn btn-emerald" onclick="window.sendItemInquiry('Crusher Machine Maintenance & Heavy Bearings')">
+                  <i class="fa-brands fa-whatsapp"></i> Inquire Crusher Spares
+                </button>
+                <a href="tel:+9779804462602" class="btn btn-glass">
+                  <i class="fa-solid fa-phone text-cyan"></i> Call: 980-4462602
+                </a>
               </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Bucket Elevator Transmission Belting:</strong> Solid woven cotton &amp; PVC high-speed vertical belts.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Pulleys, Shafts &amp; Couplings:</strong> Solid cast-iron flat pulleys, split pulleys &amp; star couplings.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Screen Sieves &amp; Mill Perforated Sheets:</strong> Precision polish screens, destoner mesh, and grader sieves.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Oil Seals &amp; Circlips:</strong> High-temperature nitrile &amp; Viton mechanical oil seals.</span>
-              </div>
-            </div>
-
-            <div class="quadrant-action-row">
-              <button class="btn btn-primary" onclick="window.sendItemInquiry('Rice & Flour Mill Spares')">
-                <i class="fa-brands fa-whatsapp"></i> Inquire Rice/Flour Mill Spares
-              </button>
-              <a href="tel:+9779804462602" class="btn btn-secondary">
-                <i class="fa-solid fa-phone"></i> Call: 980-4462602
-              </a>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- ================= QUADRANT 4: MACHINE WORKSHOP SERVICES ================= -->
-      <div class="quadrant-card" id="workshop-services">
-        <div class="quadrant-grid">
-          <div class="quadrant-visual">
-            <img src="assets/workshop-lathe.svg" alt="Precision Machine Workshop and Lathe Services Siddharthanagar" class="quadrant-img" />
-            <span class="quadrant-tag">QUADRANT 04</span>
-          </div>
-          <div class="quadrant-content">
-            <div class="category-badge">PRECISION ENGINEERING &amp; REPAIR</div>
-            <h3 class="quadrant-title">Machine Workshop &amp; Precision Lathe Services</h3>
-            <p class="quadrant-desc">
-              On-site precision machining, hydraulic bearing press-fitting, dynamic shaft balancing, and customized pulley boring at our dedicated Siddharthanagar machine workshop.
-            </p>
-            
-            <div class="specs-grid">
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Heavy Lathe Machining:</strong> Precision shaft turning, threading, facing, and customized boring.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Hydraulic Bearing Press-Fitting:</strong> Zero-damage hydraulic mounting and dismounting of heavy bearings.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Keyway Milling &amp; Spline Cutting:</strong> Standard &amp; custom keyway slots for gears, couplings, and pulleys.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>Worn Shaft Rebuilding &amp; Sleeving:</strong> Restoring undersized bearing journals to OEM tolerances.</span>
-              </div>
-              <div class="spec-item">
-                <i class="fa-solid fa-check text-emerald"></i>
-                <span><strong>On-Site Breakdown Support:</strong> Fast emergency turning and part fabrication for local factories.</span>
-              </div>
+        <!-- ================= QUADRANT 3: COMPLETE RICE & FLOUR MILL SETUPS ================= -->
+        <div class="bento-card" id="rice-mill-setups">
+          <div class="card-inner-grid">
+            <div class="bento-img-frame">
+              <img src="assets/rice-mill.svg" alt="Rice & Flour Mill Spares Nepal" class="bento-img" />
+              <div class="quadrant-badge">QUADRANT 03</div>
             </div>
+            <div class="bento-body">
+              <div class="quad-cat-tag">AGRO-MILLING &amp; PROCESSING</div>
+              <h3 class="bento-title">Complete Rice &amp; Flour Mill Spares &amp; Setups</h3>
+              <p class="bento-p">
+                Specialized transmission components, rubber de-husking rolls, bucket elevator belting, and shaft fittings for modern rice mills, flour chakki plants, oil expellers, and feed mills across the Terai grain belt.
+              </p>
+              
+              <div class="technical-specs-list">
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Paddy De-husking Rubber Rolls:</strong> 10" &amp; 14" high-durability rubber rollers for clean hulling.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Bucket Elevator Transmission Belting:</strong> Solid woven cotton &amp; PVC high-speed vertical belts.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Pulleys, Shafts &amp; Couplings:</strong> Solid cast-iron flat pulleys, split pulleys &amp; star couplings.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Screen Sieves &amp; Mill Perforated Sheets:</strong> Precision polish screens, destoner mesh, and grader sieves.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Oil Seals &amp; Circlips:</strong> High-temperature nitrile &amp; Viton mechanical oil seals.</span>
+                </div>
+              </div>
 
-            <div class="quadrant-action-row">
-              <button class="btn btn-primary" onclick="window.sendItemInquiry('Machine Workshop & Lathe Machining Services')">
-                <i class="fa-brands fa-whatsapp"></i> Book Workshop Service
-              </button>
-              <a href="tel:+9779847301185" class="btn btn-secondary">
-                <i class="fa-solid fa-wrench"></i> Workshop: 984-7301185
-              </a>
+              <div class="bento-actions">
+                <button class="btn btn-emerald" onclick="window.sendItemInquiry('Rice & Flour Mill Spares')">
+                  <i class="fa-brands fa-whatsapp"></i> Inquire Rice/Flour Mill Spares
+                </button>
+                <a href="tel:+9779804462602" class="btn btn-glass">
+                  <i class="fa-solid fa-phone text-cyan"></i> Call: 980-4462602
+                </a>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- ================= QUADRANT 4: MACHINE WORKSHOP SERVICES ================= -->
+        <div class="bento-card" id="workshop-services">
+          <div class="card-inner-grid">
+            <div class="bento-img-frame">
+              <img src="assets/workshop-lathe.svg" alt="Machine Workshop & Precision Lathe Services" class="bento-img" />
+              <div class="quadrant-badge">QUADRANT 04</div>
+            </div>
+            <div class="bento-body">
+              <div class="quad-cat-tag">PRECISION ENGINEERING &amp; REPAIR</div>
+              <h3 class="bento-title">Machine Workshop &amp; Precision Lathe Services</h3>
+              <p class="bento-p">
+                On-site precision machining, hydraulic bearing press-fitting, dynamic shaft balancing, and customized pulley boring at our dedicated Siddharthanagar machine workshop.
+              </p>
+              
+              <div class="technical-specs-list">
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Heavy Lathe Machining:</strong> Precision shaft turning, threading, facing, and customized boring.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Hydraulic Bearing Press-Fitting:</strong> Zero-damage hydraulic mounting and dismounting of heavy bearings.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Keyway Milling &amp; Spline Cutting:</strong> Standard &amp; custom keyway slots for gears, couplings, and pulleys.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>Worn Shaft Rebuilding &amp; Sleeving:</strong> Restoring undersized bearing journals to OEM tolerances.</span>
+                </div>
+                <div class="spec-row">
+                  <i class="fa-solid fa-check-circle text-cyan"></i>
+                  <span><strong>On-Site Breakdown Support:</strong> Fast emergency turning and part fabrication for local factories.</span>
+                </div>
+              </div>
+
+              <div class="bento-actions">
+                <button class="btn btn-emerald" onclick="window.sendItemInquiry('Machine Workshop & Lathe Machining Services')">
+                  <i class="fa-brands fa-whatsapp"></i> Book Workshop Service
+                </button>
+                <a href="tel:+9779847301185" class="btn btn-glass">
+                  <i class="fa-solid fa-wrench text-cyan"></i> Workshop: 984-7301185
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </main>
 
-  <!-- ================= 7. TRUST SIGNALS & 5.0-STAR GOOGLE RATING ================= -->
-  <section class="trust-signals-section" id="trust-signals">
+  <!-- ================= 7. TRUST SIGNALS & 5.0-STAR GOOGLE RATINGS ================= -->
+  <section class="trust-section-dark" id="trust-signals">
     <div class="container">
       
-      <div class="trust-header text-center">
-        <div class="google-badge-container">
-          <img src="assets/google-badge.svg" alt="Google 5.0 Star Verified Review Rating" class="google-verified-img" />
+      <div class="trust-head-box text-center">
+        <div class="google-badge-frame">
+          <img src="assets/google-badge.svg" alt="Google 5.0 Star Verified Review Rating" class="google-svg-badge" />
         </div>
-        <h2 class="main-heading">5.0-Star Google Rating &amp; Customer Trust</h2>
-        <p class="section-desc">Rated #1 in Siddharthanagar &amp; Bhairahawa for genuine industrial spare parts and emergency onsite response.</p>
+        <h2 class="section-heading">5.0-Star Google Rating &amp; Customer Trust</h2>
+        <p class="section-lead">Rated #1 in Siddharthanagar &amp; Bhairahawa for genuine industrial spare parts and emergency onsite response.</p>
       </div>
 
-      <!-- Testimonial Cards Grid -->
-      <div class="testimonials-grid">
+      <!-- Testimonial Cards -->
+      <div class="testimonials-3col">
         
-        <div class="testimonial-card">
-          <div class="testi-rating">★★★★★ <span class="rating-tag">Verified Customer</span></div>
-          <p class="testi-text">
+        <div class="glass-testi-card">
+          <div class="testi-stars">★★★★★ <span class="verified-pill">Verified Customer</span></div>
+          <p class="testi-quote">
             "When our cement plant conveyor bearing failed on Saturday night, Shree Anjani delivered a genuine SKF 22220 within 90 minutes. Saved us hours of costly downtime."
           </p>
-          <div class="testi-author">
-            <div class="author-avatar"><i class="fa-solid fa-user-gear"></i></div>
-            <div class="author-info">
-              <strong>Er. Ramesh Sharma</strong>
-              <span>Maintenance Engineer, Cement Plant (Sunwal)</span>
+          <div class="testi-user">
+            <div class="user-avatar-sq"><i class="fa-solid fa-user-gear text-cyan"></i></div>
+            <div class="user-meta">
+              <span class="user-name">Er. Ramesh Sharma</span>
+              <span class="user-title">Maintenance Engineer, Cement Plant (Sunwal)</span>
             </div>
           </div>
         </div>
 
-        <div class="testimonial-card">
-          <div class="testi-rating">★★★★★ <span class="rating-tag">Verified Buyer</span></div>
-          <p class="testi-text">
+        <div class="glass-testi-card">
+          <div class="testi-stars">★★★★★ <span class="verified-pill">Verified Buyer</span></div>
+          <p class="testi-quote">
             "Best wholesale supplier for rice mill rubber rolls and elevator belts in Kapilvastu &amp; Rupandehi. Clean 13% VAT billing and genuine factory quality always."
           </p>
-          <div class="testi-author">
-            <div class="author-avatar"><i class="fa-solid fa-wheat-awn"></i></div>
-            <div class="author-info">
-              <strong>Binod Chaudhary</strong>
-              <span>Rice &amp; Oil Mill Owner (Taulihawa)</span>
+          <div class="testi-user">
+            <div class="user-avatar-sq"><i class="fa-solid fa-wheat-awn text-cyan"></i></div>
+            <div class="user-meta">
+              <span class="user-name">Binod Chaudhary</span>
+              <span class="user-title">Rice &amp; Oil Mill Owner (Taulihawa)</span>
             </div>
           </div>
         </div>
 
-        <div class="testimonial-card">
-          <div class="testi-rating">★★★★★ <span class="rating-tag">Verified Workshop</span></div>
-          <p class="testi-text">
+        <div class="glass-testi-card">
+          <div class="testi-stars">★★★★★ <span class="verified-pill">Verified Workshop</span></div>
+          <p class="testi-quote">
             "Their lathe workshop service is top-notch. They bored our custom cast-iron pulleys with zero runout and fitted NBC bearings perfectly. Highly recommended!"
           </p>
-          <div class="testi-author">
-            <div class="author-avatar"><i class="fa-solid fa-wrench"></i></div>
-            <div class="author-info">
-              <strong>Shyam Thapa</strong>
-              <span>Commercial Fleet Mechanic (Bhairahawa)</span>
+          <div class="testi-user">
+            <div class="user-avatar-sq"><i class="fa-solid fa-wrench text-cyan"></i></div>
+            <div class="user-meta">
+              <span class="user-name">Shyam Thapa</span>
+              <span class="user-title">Commercial Fleet Mechanic (Bhairahawa)</span>
             </div>
           </div>
         </div>
@@ -523,21 +533,21 @@
       </div>
 
       <!-- 3 Pillar Guarantees -->
-      <div class="guarantees-grid">
-        <div class="guarantee-box">
-          <div class="g-icon text-gold"><i class="fa-solid fa-certificate"></i></div>
+      <div class="guarantees-3col">
+        <div class="guarantee-card">
+          <div class="g-icon-circle text-amber"><i class="fa-solid fa-certificate"></i></div>
           <h4>100% Genuine Guaranteed</h4>
           <p>Factory sealed packaging with holographic verification. No duplicates or low-grade imitations.</p>
         </div>
 
-        <div class="guarantee-box">
-          <div class="g-icon text-cyan"><i class="fa-solid fa-truck-ramp-box"></i></div>
+        <div class="guarantee-card">
+          <div class="g-icon-circle text-cyan"><i class="fa-solid fa-truck-ramp-box"></i></div>
           <h4>Fast Nationwide Delivery</h4>
           <p>Same-day dispatch to Butwal, Pokhara, Kathmandu, Birgunj, Nepalgunj, and Biratnagar.</p>
         </div>
 
-        <div class="guarantee-box">
-          <div class="g-icon text-emerald"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+        <div class="guarantee-card">
+          <div class="g-icon-circle text-emerald"><i class="fa-solid fa-file-invoice-dollar"></i></div>
           <h4>13% Official VAT Invoices</h4>
           <p>IRD PAN/VAT tax-compliant invoicing provided with every wholesale order.</p>
         </div>
@@ -547,76 +557,78 @@
   </section>
 
   <!-- ================= 8. LOCATION, HOURS & CONTACT DETAILS ================= -->
-  <section class="contact-location-section" id="contact-location">
+  <section class="contact-section-dark" id="contact-location">
     <div class="container">
-      <div class="contact-grid">
+      <div class="contact-split-grid">
         
-        <!-- Contact Info Column -->
-        <div class="contact-info-col">
-          <span class="sub-heading">VISIT OUR STORE &amp; WAREHOUSE</span>
-          <h2 class="main-heading">Get in Touch Today</h2>
-          <p class="contact-subtext">
+        <!-- Contact Information Pane -->
+        <div class="contact-details-col">
+          <div class="pill-category-badge">VISIT OUR STORE &amp; WAREHOUSE</div>
+          <h2 class="section-heading">Get in Touch Today</h2>
+          <p class="contact-lead-desc">
             Located conveniently in Siddharthanagar (Bhairahawa) to serve industrial hubs across Lumbini Province and all of Nepal.
           </p>
 
-          <div class="info-blocks">
-            <div class="info-block">
-              <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
-              <div>
+          <div class="contact-info-cards">
+            <div class="info-glass-card">
+              <div class="info-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="info-content-wrap">
                 <strong>Physical Address:</strong>
                 <p>GF83+75V, Siddharthanagar (Bhairahawa), Rupandehi District, Lumbini Province, Nepal</p>
-                <a href="https://maps.google.com/?q=GF83%2B75V+Siddharthanagar+Nepal" target="_blank" rel="noopener" class="map-link">
+                <a href="https://maps.google.com/?q=GF83%2B75V+Siddharthanagar+Nepal" target="_blank" rel="noopener" class="gmap-action-link">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in Google Maps
                 </a>
               </div>
             </div>
 
-            <div class="info-block">
-              <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
-              <div>
+            <div class="info-glass-card">
+              <div class="info-icon-box"><i class="fa-solid fa-clock"></i></div>
+              <div class="info-content-wrap">
                 <strong>Operating Hours:</strong>
                 <p><strong>Open 7 Days a Week:</strong> 08:30 AM – 08:00 PM</p>
-                <p class="text-warning"><em>*Extended Saturday Emergency Night Dispatch Available</em></p>
+                <p class="text-amber"><em>*Extended Saturday Emergency Night Dispatch Available</em></p>
               </div>
             </div>
 
-            <div class="info-block">
-              <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
-              <div>
+            <div class="info-glass-card">
+              <div class="info-icon-box"><i class="fa-solid fa-phone"></i></div>
+              <div class="info-content-wrap">
                 <strong>Phone Numbers:</strong>
-                <p>📞 <strong>Sales &amp; Inquiry:</strong> <a href="tel:+9779804462602">+977 980-4462602</a></p>
-                <p>🏭 <strong>Warehouse &amp; Workshop:</strong> <a href="tel:+9779847301185">+977 984-7301185</a></p>
+                <p>📞 <strong>Sales &amp; Inquiry:</strong> <a href="tel:+9779804462602" class="text-cyan font-mono">+977 980-4462602</a></p>
+                <p>🏭 <strong>Warehouse &amp; Workshop:</strong> <a href="tel:+9779847301185" class="text-cyan font-mono">+977 984-7301185</a></p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Quick Map / Inquiry Form Card -->
-        <div class="quick-inquiry-card">
-          <h3><i class="fa-solid fa-paper-plane text-warning"></i> Send Quick Inquiry</h3>
-          <p class="form-sub">Leave a message and our sales engineer will call you back within 15 minutes.</p>
+        <!-- Quick Inquiry / RFQ Card -->
+        <div class="inquiry-form-card">
+          <div class="form-card-head">
+            <h3><i class="fa-solid fa-paper-plane text-cyan"></i> Send Quick Inquiry</h3>
+            <p>Leave a message and our sales engineer will call you back within 15 minutes.</p>
+          </div>
           
           <form id="heroQuickForm" onsubmit="event.preventDefault(); window.handleOnSiteChat(this);">
-            <div class="form-group">
+            <div class="field-wrap">
               <label for="leadName">Your Name / Factory Name</label>
               <input type="text" id="leadName" name="name" required placeholder="e.g. Ramesh Sharma / Everest Rice Mill" />
             </div>
 
-            <div class="form-group">
+            <div class="field-wrap">
               <label for="leadPhone">Mobile / WhatsApp Number</label>
               <input type="tel" id="leadPhone" name="phone" required placeholder="e.g. 9804462602" />
             </div>
 
-            <div class="form-group">
-              <label for="leadMessage">Parts Needed / Inquiries</label>
+            <div class="field-wrap">
+              <label for="leadMessage">Parts Needed / Technical Requirements</label>
               <textarea id="leadMessage" name="message" rows="3" required placeholder="e.g. Need 10 pcs SKF 6205 bearing and 4 pcs V-Belt B-65..."></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block">
+            <button type="submit" class="btn btn-emerald btn-block">
               <i class="fa-solid fa-paper-plane"></i> Submit &amp; Open WhatsApp
             </button>
           </form>
-          <div id="formFeedback" class="form-feedback"></div>
+          <div id="formFeedback" class="form-feedback-box"></div>
         </div>
 
       </div>
@@ -624,23 +636,23 @@
   </section>
 
   <!-- ================= 9. FOOTER ================= -->
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <div class="footer-grid">
+  <footer class="main-footer-dark">
+    <div class="container footer-content-wrap">
+      <div class="footer-3col-grid">
         
         <!-- Col 1: About -->
-        <div class="footer-col">
-          <h4 class="footer-title">SHREE ANJANI STORE</h4>
-          <p class="footer-about">
+        <div class="footer-col-block">
+          <div class="footer-brand-title">SHREE ANJANI STORE</div>
+          <p class="footer-p">
             Formerly <strong>Shree Balaji Belt Center</strong>. Nepal's premier wholesale supplier for genuine transmission belts, precision ball/roller bearings, cast pulleys, and heavy industrial machinery spares.
           </p>
-          <p class="footer-pan"><strong>PAN / VAT:</strong> Tax Compliant Billing</p>
+          <p class="footer-pan-tag"><strong>PAN / VAT:</strong> 13% Tax Compliant Billing</p>
         </div>
 
         <!-- Col 2: Quick Links -->
-        <div class="footer-col">
-          <h4 class="footer-title">QUICK CATALOG</h4>
-          <ul class="footer-links">
+        <div class="footer-col-block">
+          <div class="footer-block-heading">QUICK CATALOG</div>
+          <ul class="footer-menu-list">
             <li><a href="#belts-bearings">V-Belts, Bearings &amp; Pulleys</a></li>
             <li><a href="#crusher-maintenance">Crusher Machine Maintenance</a></li>
             <li><a href="#rice-mill-setups">Rice &amp; Flour Mill Spares</a></li>
@@ -651,102 +663,102 @@
         </div>
 
         <!-- Col 3: Direct Contact -->
-        <div class="footer-col">
-          <h4 class="footer-title">DIRECT CONTACT</h4>
-          <p>📍 GF83+75V Siddharthanagar, Nepal</p>
-          <p>📞 Sales: <a href="tel:+9779804462602">+977 980-4462602</a></p>
-          <p>🏭 Warehouse: <a href="tel:+9779847301185">+977 984-7301185</a></p>
-          <p>⏰ Open 7 Days: 08:30 AM – 08:00 PM</p>
-          <p>🟢 WhatsApp: <a href="https://wa.me/9779804462602?text=Namaste,%20I%20am%20inquiring%20about%20machinery/parts%20from%20your%20website." target="_blank">+977 9804462602</a></p>
+        <div class="footer-col-block">
+          <div class="footer-block-heading">DIRECT CONTACT</div>
+          <p class="footer-contact-item">📍 GF83+75V Siddharthanagar, Nepal</p>
+          <p class="footer-contact-item">📞 Sales: <a href="tel:+9779804462602" class="text-cyan font-mono">+977 980-4462602</a></p>
+          <p class="footer-contact-item">🏭 Warehouse: <a href="tel:+9779847301185" class="text-cyan font-mono">+977 984-7301185</a></p>
+          <p class="footer-contact-item">⏰ Open 7 Days: 08:30 AM – 08:00 PM</p>
+          <p class="footer-contact-item">🟢 WhatsApp: <a href="https://wa.me/9779804462602?text=Namaste,%20I%20am%20inquiring%20about%20machinery/parts%20from%20your%20website." target="_blank" class="text-emerald font-mono">+977 9804462602</a></p>
         </div>
 
       </div>
 
-      <div class="footer-bottom">
+      <div class="footer-bottom-bar">
         <p>&copy; <span id="currentYear"></span> Shree Anjani Belt and Bearing Store. All rights reserved. | Siddharthanagar, Nepal</p>
-        <p class="credit-tag">Fast • Lightweight • Mobile-First PWA for Nepal Industries</p>
+        <p class="footer-badge-text">Precision Steel • High-Speed Mobile PWA for Nepal Industries</p>
       </div>
     </div>
   </footer>
 
-  <!-- ================= 10. OMNICHANNEL STICKY FLOATING CONTACT WIDGET (CRITICAL) ================= -->
+  <!-- ================= 10. OMNICHANNEL STICKY FLOATING CONTACT WIDGET ================= -->
   
   <!-- Floating Pill Trigger Button (Bottom-Right) -->
-  <div class="omni-floating-container" id="omniFloatingContainer">
-    <button class="omni-trigger-btn" id="omniTriggerBtn" aria-label="Open Omnichannel Contact Menu" onclick="window.toggleOmniModal()">
-      <div class="beacon-pulse"></div>
-      <i class="fa-solid fa-headset omni-icon-main"></i>
-      <span class="omni-label">Contact Us</span>
+  <div class="omni-floating-dock" id="omniFloatingContainer">
+    <button class="omni-dock-btn" id="omniTriggerBtn" aria-label="Open Omnichannel Contact Menu" onclick="window.toggleOmniModal()">
+      <span class="beacon-circle"></span>
+      <i class="fa-solid fa-headset omni-icon"></i>
+      <span class="omni-txt">Contact Us</span>
     </button>
   </div>
 
   <!-- Expandable Omnichannel Modal Drawer -->
-  <div class="omni-modal-backdrop" id="omniBackdrop" onclick="window.closeOmniModal()"></div>
-  <div class="omni-modal" id="omniModal" role="dialog" aria-modal="true" aria-labelledby="omniTitle">
-    <div class="omni-modal-header">
-      <div class="omni-header-text">
-        <h3 id="omniTitle"><i class="fa-solid fa-bolt text-warning"></i> Contact Shree Anjani Store</h3>
-        <p>Instant Direct Contact • Siddharthanagar, Nepal</p>
+  <div class="omni-backdrop" id="omniBackdrop" onclick="window.closeOmniModal()"></div>
+  <div class="omni-drawer" id="omniModal" role="dialog" aria-modal="true" aria-labelledby="omniTitle">
+    <div class="drawer-header">
+      <div class="drawer-headings">
+        <h3 id="omniTitle"><i class="fa-solid fa-bolt text-cyan"></i> Contact Shree Anjani Store</h3>
+        <p>Instant Direct Channels • Siddharthanagar, Nepal</p>
       </div>
-      <button class="omni-close-btn" onclick="window.closeOmniModal()" aria-label="Close">&times;</button>
+      <button class="drawer-close-btn" onclick="window.closeOmniModal()" aria-label="Close">&times;</button>
     </div>
 
     <!-- 3 Core Contact Action Tiles -->
-    <div class="omni-actions-list">
+    <div class="drawer-tiles-list">
       
       <!-- Option 1: WhatsApp (Primary) -->
-      <a href="https://wa.me/9779804462602?text=Namaste,%20I%20am%20inquiring%20about%20machinery/parts%20from%20your%20website." target="_blank" rel="noopener" class="omni-tile tile-whatsapp">
-        <div class="tile-icon-box">
+      <a href="https://wa.me/9779804462602?text=Namaste,%20I%20am%20inquiring%20about%20machinery/parts%20from%20your%20website." target="_blank" rel="noopener" class="drawer-action-tile tile-whatsapp-glow">
+        <div class="tile-icon-square icon-emerald">
           <i class="fa-brands fa-whatsapp"></i>
         </div>
-        <div class="tile-content">
-          <div class="tile-title">Chat on WhatsApp <span class="badge-fast">Fastest (1-2 Min)</span></div>
-          <div class="tile-desc">Direct chat with sales engineer • Instant quotation &amp; photos</div>
-          <div class="tile-number">+977 980-4462602</div>
+        <div class="tile-details">
+          <div class="tile-headline">Chat on WhatsApp <span class="speed-pill">Fastest (1-2 Min)</span></div>
+          <div class="tile-sub">Direct chat with sales engineer • Instant quotation &amp; photos</div>
+          <div class="tile-num-mono">+977 980-4462602</div>
         </div>
-        <div class="tile-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="tile-chevron"><i class="fa-solid fa-chevron-right"></i></div>
       </a>
 
       <!-- Option 2: Direct Call -->
-      <a href="tel:+9779804462602" class="omni-tile tile-call">
-        <div class="tile-icon-box">
+      <a href="tel:+9779804462602" class="drawer-action-tile tile-call-glow">
+        <div class="tile-icon-square icon-cyan">
           <i class="fa-solid fa-phone-volume"></i>
         </div>
-        <div class="tile-content">
-          <div class="tile-title">Tap to Call Sales <span class="badge-open">Open 7 Days</span></div>
-          <div class="tile-desc">Speak directly with warehouse manager for emergency stock</div>
-          <div class="tile-number">+977 980-4462602 / 984-7301185</div>
+        <div class="tile-details">
+          <div class="tile-headline">Tap to Call Sales <span class="open-pill">Open 7 Days</span></div>
+          <div class="tile-sub">Speak directly with warehouse manager for emergency stock</div>
+          <div class="tile-num-mono">+977 980-4462602 / 984-7301185</div>
         </div>
-        <div class="tile-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="tile-chevron"><i class="fa-solid fa-chevron-right"></i></div>
       </a>
 
       <!-- Option 3: On-Site Message Form (Fallback) -->
-      <div class="omni-form-toggle-wrapper">
-        <button class="omni-tile tile-form-trigger" onclick="window.toggleOnSiteForm()">
-          <div class="tile-icon-box">
+      <div class="drawer-form-wrapper">
+        <button class="drawer-action-tile tile-form-glow" onclick="window.toggleOnSiteForm()">
+          <div class="tile-icon-square icon-amber">
             <i class="fa-solid fa-comment-dots"></i>
           </div>
-          <div class="tile-content">
-            <div class="tile-title">Leave On-Site Message / RFQ</div>
-            <div class="tile-desc">Submit requirements without leaving this page</div>
+          <div class="tile-details">
+            <div class="tile-headline">Leave On-Site Message / RFQ</div>
+            <div class="tile-sub">Submit requirements directly without leaving page</div>
           </div>
-          <div class="tile-arrow"><i class="fa-solid fa-chevron-down" id="formChevron"></i></div>
+          <div class="tile-chevron"><i class="fa-solid fa-chevron-down" id="formChevron"></i></div>
         </button>
       </div>
 
-      <!-- Collapsible On-Site Form -->
-      <div class="omni-onsite-form-drawer" id="onSiteFormDrawer">
-        <form class="omni-form" onsubmit="event.preventDefault(); window.handleOnSiteChat(this);">
-          <div class="omni-input-group">
+      <!-- Collapsible Form Drawer -->
+      <div class="collapsible-form-box" id="onSiteFormDrawer">
+        <form class="drawer-form-inner" onsubmit="event.preventDefault(); window.handleOnSiteChat(this);">
+          <div class="form-input-field">
             <input type="text" name="name" required placeholder="Your Name / Factory Name" />
           </div>
-          <div class="omni-input-group">
+          <div class="form-input-field">
             <input type="tel" name="phone" required placeholder="Phone / WhatsApp Number" />
           </div>
-          <div class="omni-input-group">
+          <div class="form-input-field">
             <textarea name="message" rows="2" required placeholder="Enter bearing number, belt size, or machinery requirement..."></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">
+          <button type="submit" class="btn btn-emerald btn-block">
             <i class="fa-solid fa-paper-plane"></i> Send &amp; Open WhatsApp
           </button>
         </form>
@@ -754,7 +766,7 @@
 
     </div>
 
-    <div class="omni-modal-footer">
+    <div class="drawer-foot-note">
       <span>📍 GF83+75V Siddharthanagar • Pan-Nepal Delivery</span>
     </div>
   </div>
