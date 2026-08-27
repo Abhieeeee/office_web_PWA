@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="crusherBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="darkMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#64748B"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#crusherBg)"/>
+  
+  <!-- Industrial Structure of Heavy Jaw Crusher / Screen -->
+  <g transform="translate(100, 40)">
+    <!-- Base Frame -->
+    <rect x="20" y="240" width="360" height="30" rx="4" fill="url(#darkMetal)" stroke="#94A3B8" stroke-width="2"/>
+    <rect x="50" y="80" width="40" height="160" fill="#334155"/>
+    <rect x="310" y="80" width="40" height="160" fill="#334155"/>
+    
+    <!-- Crusher Hopper / Jaw Body -->
+    <polygon points="70,70 330,70 280,210 120,210" fill="url(#amberGrad)" stroke="#78350F" stroke-width="4"/>
+    <line x1="140" y1="90" x2="160" y2="190" stroke="#78350F" stroke-width="4"/>
+    <line x1="200" y1="90" x2="200" y2="190" stroke="#78350F" stroke-width="4"/>
+    <line x1="260" y1="90" x2="240" y2="190" stroke="#78350F" stroke-width="4"/>
+
+    <!-- Heavy Flywheel with Counterweight -->
+    <circle cx="340" cy="140" r="70" fill="none" stroke="url(#darkMetal)" stroke-width="18"/>
+    <circle cx="340" cy="140" r="25" fill="#F59E0B"/>
+    <!-- Spherical Roller Bearing Housing (Plummer Block) -->
+    <rect x="315" y="115" width="50" height="50" rx="6" fill="#10B981" stroke="#047857" stroke-width="2"/>
+    <text x="340" y="145" font-family="sans-serif" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">22220</text>
+
+    <!-- Conveyor Belting System -->
+    <path d="M-20,270 L420,180" stroke="#F59E0B" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="-20" cy="270" r="22" fill="#475569" stroke="#94A3B8" stroke-width="3"/>
+    <circle cx="420" cy="180" r="28" fill="#475569" stroke="#94A3B8" stroke-width="3"/>
+  </g>
+
+  <!-- Feature Badge -->
+  <rect x="30" y="320" width="540" height="50" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1.5"/>
+  <text x="50" y="352" font-family="sans-serif" font-size="16" fill="#F8FAFC" font-weight="bold">CRUSHER PLANT &amp; CONVEYOR MAINTENANCE</text>
+  <text x="550" y="352" font-family="sans-serif" font-size="13" fill="#F59E0B" font-weight="bold" text-anchor="end">HEAVY SPHERICAL BEARINGS &amp; EP BELTS</text>
+</svg>

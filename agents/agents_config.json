@@ -1,0 +1,86 @@
+{
+  "project": "Shree Anjani Belt & Bearing B2B",
+  "version": "2.0.0",
+  "location": "Siddharthanagar (Bhairahawa), Rupandehi, Nepal",
+  "gating": {
+    "gatekeeper_min_score": 8.0,
+    "ux_evaluator_min_score": 9.5,
+    "max_retry_iterations": 3
+  },
+  "agents": [
+    {
+      "id": "AGT-01",
+      "name": "Quality Gatekeeper & Evaluator",
+      "role": "Scoring, Quality Gating & Auto-Retry Loop Controller",
+      "pass_threshold": 8.0,
+      "skill_path": ".agents/skills/gatekeeper-evaluator/SKILL.md",
+      "output_file": "reports/master_manager_summary.md"
+    },
+    {
+      "id": "AGT-02",
+      "name": "Codebase & Bug Auditor",
+      "role": "HTML/CSS/JS/PWA Diagnostics & Code Fix Engine",
+      "pass_threshold": 8.0,
+      "skill_path": ".agents/skills/codebase-auditor/SKILL.md",
+      "output_file": "reports/01_codebase_audit_report.md"
+    },
+    {
+      "id": "AGT-03",
+      "name": "UI/UX & Layout Specialist",
+      "role": "Industrial Aesthetics, Ergonomics & Conversion Funnel",
+      "pass_threshold": 8.0,
+      "skill_path": ".agents/skills/ui-ux-specialist/SKILL.md",
+      "output_file": "reports/02_ui_ux_design_report.md"
+    },
+    {
+      "id": "AGT-04",
+      "name": "Nepal Industrial Market Researcher",
+      "role": "Pan-Nepal & Corridor Intelligence, Genuine Brands, VAT Norms",
+      "pass_threshold": 8.0,
+      "skill_path": ".agents/skills/nepal-market-researcher/SKILL.md",
+      "output_file": "reports/03_nepal_market_research_report.md"
+    },
+    {
+      "id": "AGT-05",
+      "name": "End-User Experience Persona Auditor",
+      "role": "End-to-End Buyer Persona Simulation & Fault Cataloging",
+      "pass_threshold": 9.5,
+      "skill_path": ".agents/skills/user-experience-evaluator/SKILL.md",
+      "output_file": "reports/04_user_experience_audit_report.md"
+    },
+    {
+      "id": "AGT-06",
+      "name": "Master Strategic Planner & Controller",
+      "role": "Gated 4-Phase Execution Roadmap & Safety Gate Enforcement",
+      "pass_threshold": 8.0,
+      "skill_path": ".agents/skills/master-phase-planner/SKILL.md",
+      "output_file": "reports/05_master_phase_execution_plan.md"
+    }
+  ],
+  "phases": [
+    {
+      "phase_num": 1,
+      "title": "Foundation & Diagnostic Audit",
+      "agents": ["AGT-02", "AGT-03"],
+      "pre_execution_check": "Verify all core HTML/CSS/JS/PWA files exist and can be parsed."
+    },
+    {
+      "phase_num": 2,
+      "title": "Market Context & Strategic Alignment",
+      "agents": ["AGT-04"],
+      "pre_execution_check": "Load regional industrial corridors (Bhairahawa, Birgunj, Kathmandu, Biratnagar) and genuine brand specs."
+    },
+    {
+      "phase_num": 3,
+      "title": "End-User Simulation & UX Gating",
+      "agents": ["AGT-05"],
+      "pre_execution_check": "Verify Phase 1 & 2 recommendations are integrated into the buyer experience."
+    },
+    {
+      "phase_num": 4,
+      "title": "Quality Gatekeeper Evaluation & Master Sign-Off",
+      "agents": ["AGT-01", "AGT-06"],
+      "pre_execution_check": "Ensure all previous phase reports exist in reports/ folder."
+    }
+  ]
+}

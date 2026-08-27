@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Agent Swarm Manager — Shree Anjani B2B</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="agent-manager.css">
+</head>
+<body>
+  <div class="manager-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="manager-sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-badge">⚡ AGENT SWARM</div>
+        <h2>Shree Anjani B2B</h2>
+        <p class="location-tag">📍 Siddharthanagar, Nepal</p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="overview">
+          <span class="icon">📊</span> Manager Overview
+        </button>
+        <button class="nav-item" data-tab="phases">
+          <span class="icon">♟️</span> 4-Phase Pipeline
+        </button>
+        <button class="nav-item" data-tab="reports">
+          <span class="icon">📄</span> Deliverable Reports
+        </button>
+        <button class="nav-item" data-tab="terminal">
+          <span class="icon">💻</span> Live Agent Console
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" class="portal-link">← Back to Store Internal</a>
+        <a href="../index.html" class="portal-link" target="_blank">🌐 View Public Portal ↗</a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="manager-main">
+      <!-- Top Bar -->
+      <header class="manager-header">
+        <div class="header-title">
+          <h1>Multi-Agent Operations & Swarm Manager</h1>
+          <p class="subtitle">Autonomous 6-Agent Execution, Gated Phase Pipeline & Quality Verification</p>
+        </div>
+        <div class="header-actions">
+          <button id="btnRunAll" class="btn btn-primary pulse-btn">
+            <span>🚀 Run Full Swarm Pipeline</span>
+          </button>
+          <button id="btnExportSummary" class="btn btn-secondary">
+            <span>📥 Export Executive Summary</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- TAB 1: OVERVIEW -->
+      <section id="tabOverview" class="tab-pane active">
+        <!-- Top Metrics Row -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-label">Gatekeeper Score (Target ≥ 8.0)</div>
+            <div class="metric-value text-emerald" id="valGatekeeperScore">9.3 / 10.0</div>
+            <div class="metric-sub text-emerald">🟢 GATING PASSED</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">End-User UX Rating (Target ≥ 9.5)</div>
+            <div class="metric-value text-gold" id="valUxScore">9.6 / 10.0</div>
+            <div class="metric-sub text-gold">🏆 9.5 THRESHOLD EXCEEDED</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Active Agents</div>
+            <div class="metric-value">6 / 6</div>
+            <div class="metric-sub text-cyan">⚡ 100% Operational Fleet</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Pipeline Status</div>
+            <div class="metric-value text-cyan">Phase 4 / 4</div>
+            <div class="metric-sub text-emerald">✅ All Gates Verified</div>
+          </div>
+        </div>
+
+        <!-- 6-Agent Fleet Grid -->
+        <h2 class="section-title">🤖 Active Agent Fleet (6 Subagents)</h2>
+        <div class="agents-grid" id="agentsGrid">
+          <!-- Card 1: Gatekeeper -->
+          <div class="agent-card" data-agent-id="AGT-01">
+            <div class="agent-header">
+              <span class="agent-id">AGT-01</span>
+              <span class="agent-badge badge-passed">Score: 9.2</span>
+            </div>
+            <h3 class="agent-name">Quality Gatekeeper & Evaluator</h3>
+            <p class="agent-desc">Multi-dimensional scoring, strict 8.0/10 gating, critique generation & 3-retry loop control.</p>
+            <div class="agent-footer">
+              <span class="agent-status-dot status-online"></span> Ready & Guarding
+              <button class="btn-sm btn-run-single" onclick="runSingleAgent('AGT-01')">Run</button>
+            </div>
+          </div>
+
+          <!-- Card 2: Codebase Auditor -->
+          <div class="agent-card" data-agent-id="AGT-02">
+            <div class="agent-header">
+              <span class="agent-id">AGT-02</span>
+              <span class="agent-badge badge-passed">Score: 9.1</span>
+            </div>
+            <h3 class="agent-name">Codebase & Bug Auditor</h3>
+            <p class="agent-desc">HTML/CSS/JS/PWA diagnostics, 2G/3G Nepal bandwidth profiling, and drop-in code fixes.</p>
+            <div class="agent-footer">
+              <span class="agent-status-dot status-online"></span> Ready
+              <button class="btn-sm btn-run-single" onclick="runSingleAgent('AGT-02')">Run</button>
+            </div>
+          </div>
+
+          <!-- Card 3: UI/UX Specialist -->
+          <div class="agent-card" data-agent-id="AGT-03">
+            <div class="agent-header">
+              <span class="agent-id">AGT-03</span>
+              <span class="agent-badge badge-passed">Score: 9.3</span>
+            </div>
+            <h3 class="agent-name">UI/UX & Layout Specialist</h3>
+            <p class="agent-desc">Industrial aesthetic, 48px touch ergonomics for mechanics, and WhatsApp conversion funnel.</p>
+            <div class="agent-footer">
+              <span class="agent-status-dot status-online"></span> Ready
+              <button class="btn-sm btn-run-single" onclick="runSingleAgent('AGT-03')">Run</button>
+            </div>
+          </div>
+
+          <!-- Card 4: Nepal Market Researcher -->
+          <div class="agent-card" data-agent-id="AGT-04">
+            <div class="agent-header">
+              <span class="agent-id">AGT-04</span>
+              <span class="agent-badge badge-passed">Score: 9.4</span>
+            </div>
+            <h3 class="agent-name">Nepal Market Researcher</h3>
+            <p class="agent-desc">Pan-Nepal & corridor demand (Bhairahawa-Butwal, Birgunj, Kathmandu), genuine brands (SKF, NBC, URB, NTN), VAT norms.</p>
+            <div class="agent-footer">
+              <span class="agent-status-dot status-online"></span> Ready
+              <button class="btn-sm btn-run-single" onclick="runSingleAgent('AGT-04')">Run</button>
+            </div>
+          </div>
+
+          <!-- Card 5: UX Persona Auditor -->
+          <div class="agent-card featured-card" data-agent-id="AGT-05">
+            <div class="agent-header">
+              <span class="agent-id">AGT-05</span>
+              <span class="agent-badge badge-gold">Score: 9.6 (≥9.5)</span>
+            </div>
+            <h3 class="agent-name">End-User UX Persona Auditor</h3>
+            <p class="agent-desc">Simulates Plant Engineers & Workshop Mechanics, audits all faults, and enforces strict ≥9.5/10 rating.</p>
+            <div class="agent-footer">
+              <span class="agent-status-dot status-online"></span> Certified
+              <button class="btn-sm btn-run-single" onclick="runSingleAgent('AGT-05')">Run</button>
+            </div>
+          </div>
+
+          <!-- Card 6: Master Phase Planner -->
+          <div class="agent-card" data-agent-id="AGT-06">
+            <div class="agent-header">
+              <span class="agent-id">AGT-06</span>
+              <span class="agent-badge badge-passed">Score: 9.5</span>
+            </div>
+            <h3 class="agent-name">Master Strategic Phase Planner</h3>
+            <p class="agent-desc">Gated 4-phase execution engine, pre-execution safety checks, and autonomous execution controller.</p>
+            <div class="agent-footer">
+              <span class="agent-status-dot status-online"></span> Ready
+              <button class="btn-sm btn-run-single" onclick="runSingleAgent('AGT-06')">Run</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: 4-PHASE PIPELINE -->
+      <section id="tabPhases" class="tab-pane">
+        <h2 class="section-title">♟️ Autonomous 4-Phase Gated Execution Pipeline</h2>
+        <div class="pipeline-stepper">
+          <!-- Step 1 -->
+          <div class="step-card step-completed">
+            <div class="step-header">
+              <div class="step-number">Phase 1</div>
+              <span class="step-badge">✅ Verified (9.2/10)</span>
+            </div>
+            <h3>Foundation & Diagnostic Audit</h3>
+            <p class="step-agents">Agents: <code>AGT-02 (Codebase)</code> + <code>AGT-03 (UI/UX)</code></p>
+            <div class="step-check">
+              <span class="check-icon">🛡️</span>
+              <span><strong>Pre-Execution Check:</strong> Verified all HTML/CSS/JS/PWA files exist and can be parsed with zero syntax errors.</span>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card step-completed">
+            <div class="step-header">
+              <div class="step-number">Phase 2</div>
+              <span class="step-badge">✅ Verified (9.4/10)</span>
+            </div>
+            <h3>Market Context & Strategic Alignment</h3>
+            <p class="step-agents">Agent: <code>AGT-04 (Nepal Market Researcher)</code></p>
+            <div class="step-check">
+              <span class="check-icon">🛡️</span>
+              <span><strong>Pre-Execution Check:</strong> Verified regional corridor profiles (Bhairahawa cement belt, Birgunj, Kathmandu) & genuine brand specs (SKF, NBC, URB, NTN).</span>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card step-completed">
+            <div class="step-header">
+              <div class="step-number">Phase 3</div>
+              <span class="step-badge badge-gold">🏆 Passed (9.6/10 ≥ 9.5)</span>
+            </div>
+            <h3>End-User Simulation & UX Gating</h3>
+            <p class="step-agents">Agent: <code>AGT-05 (User Experience Evaluator)</code></p>
+            <div class="step-check">
+              <span class="check-icon">🛡️</span>
+              <span><strong>Pre-Execution Check:</strong> Simulated 3 personas (Plant Engineer, Rice Mill Owner, Workshop Mechanic) and confirmed all friction points are resolved.</span>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-card step-completed">
+            <div class="step-header">
+              <div class="step-number">Phase 4</div>
+              <span class="step-badge">✅ Verified (9.3/10)</span>
+            </div>
+            <h3>Gatekeeper Evaluation & Master Sign-Off</h3>
+            <p class="step-agents">Agents: <code>AGT-01 (Gatekeeper)</code> + <code>AGT-06 (Master Planner)</code></p>
+            <div class="step-check">
+              <span class="check-icon">🛡️</span>
+              <span><strong>Pre-Execution Check:</strong> Confirmed all 5 deliverable reports exist in <code>reports/</code> folder and overall score exceeds 8.0/10.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: DELIVERABLE REPORTS -->
+      <section id="tabReports" class="tab-pane">
+        <div class="reports-container">
+          <div class="reports-sidebar">
+            <button class="report-nav-btn active" data-report="summary">🛡️ Master Executive Summary</button>
+            <button class="report-nav-btn" data-report="ux">👤 User Experience Audit (≥9.5)</button>
+            <button class="report-nav-btn" data-report="market">🇳🇵 Nepal Market Research</button>
+            <button class="report-nav-btn" data-report="codebase">🛠️ Codebase & Bug Diagnostics</button>
+            <button class="report-nav-btn" data-report="uiux">🎨 UI/UX & Layout Architecture</button>
+            <button class="report-nav-btn" data-report="phaseplan">♟️ 4-Phase Execution Blueprint</button>
+          </div>
+          <div class="report-content-panel">
+            <div class="report-toolbar">
+              <span id="reportTitle" class="report-title-label">Master Executive Summary</span>
+              <button class="btn-sm btn-secondary" onclick="copyReportText()">📋 Copy Report</button>
+            </div>
+            <div class="report-body" id="reportBody">
+              <!-- Rendered markdown/text content -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: LIVE TERMINAL & CONSOLE -->
+      <section id="tabTerminal" class="tab-pane">
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="terminal-title">swarm-manager@shree-anjani: ~/agents</span>
+            <button class="btn-sm btn-secondary" onclick="clearTerminal()">Clear</button>
+          </div>
+          <div class="terminal-body" id="terminalOutput">
+            <div class="terminal-line text-cyan">[SYSTEM] Multi-Agent Swarm Manager initialized for Shree Anjani Belt & Bearing.</div>
+            <div class="terminal-line text-cyan">[SYSTEM] Gating Rules: Quality Gatekeeper >= 8.0/10 | UX Persona >= 9.5/10.</div>
+            <div class="terminal-line text-emerald">[READY] All 6 subagents standing by for task dispatch.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="agent-manager.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shree Anjani — Internal Management &amp; Inventory System (WIP)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="internal.css" />
+</head>
+<body>
+
+  <!-- Internal Navigation Header -->
+  <header class="internal-header">
+    <div class="header-left">
+      <div class="logo-box"><i class="fa-solid fa-server"></i></div>
+      <div>
+        <h1 class="portal-title">SHREE ANJANI <span class="tag-internal">INTERNAL PORTAL</span></h1>
+        <p class="portal-sub">Warehouse Stock • Dealer Billing • Workshop Dispatch (Siddharthanagar)</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="status-indicator"><i class="fa-solid fa-circle"></i> Development Mode</span>
+      <a href="../index.html" class="btn-visit-public"><i class="fa-solid fa-arrow-left"></i> View Public Website</a>
+    </div>
+  </header>
+
+  <!-- Internal Main Dashboard Container -->
+  <main class="internal-container">
+    
+    <!-- Live Agent Swarm Banner -->
+    <div class="wip-banner" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.08);">
+      <div class="wip-icon"><i class="fa-solid fa-microchip" style="color: #38bdf8;"></i></div>
+      <div style="flex: 1;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h3 style="color: #38bdf8;">⚡ Multi-Agent Swarm Operations Console</h3>
+            <p>6 Autonomous Subagents active: Quality Gatekeeper (≥8.0), Code Auditor, UI/UX Specialist, Nepal Market Researcher, UX Persona Auditor (≥9.5), and Master Planner.</p>
+          </div>
+          <a href="agent-manager.html" class="btn-visit-public" style="background: #2563eb; color: #fff; border: none; padding: 10px 18px; font-weight: 700; text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-gauge-high"></i> Open Agent Manager Dashboard ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats Cards Placeholder -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon bg-blue"><i class="fa-solid fa-boxes-stacked"></i></div>
+        <div class="stat-data">
+          <span class="stat-label">Total SKUs in Catalog</span>
+          <span class="stat-val">10,480</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon bg-green"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="stat-data">
+          <span class="stat-label">Active Wholesale Dealers</span>
+          <span class="stat-val">142</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon bg-orange"><i class="fa-solid fa-truck-ramp-box"></i></div>
+        <div class="stat-data">
+          <span class="stat-label">Pending Dispatches</span>
+          <span class="stat-val">8</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon bg-purple"><i class="fa-solid fa-wrench"></i></div>
+        <div class="stat-data">
+          <span class="stat-label">Workshop Lathe Jobs</span>
+          <span class="stat-val">3</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Planned Internal System Modules -->
+    <div class="modules-section">
+      <h2 class="section-title"><i class="fa-solid fa-list-check"></i> Planned Internal Modules &amp; Roadmaps</h2>
+      
+      <div class="modules-grid">
+        
+        <!-- Module 1 -->
+        <div class="module-card">
+          <div class="module-head">
+            <i class="fa-solid fa-barcode"></i>
+            <h4>1. Inventory &amp; Bin Location Tracker</h4>
+          </div>
+          <p>Real-time tracking of SKF, NBC, URB &amp; NTN bearings by shelf/rack in Siddharthanagar warehouse with low-stock alerts.</p>
+          <span class="badge-pending">Planned</span>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="module-card">
+          <div class="module-head">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <h4>2. B2B Proforma &amp; VAT Invoicing</h4>
+          </div>
+          <p>Generate instant Nepali VAT / PAN compliant wholesale invoices and transport challans for mill clients.</p>
+          <span class="badge-pending">Planned</span>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="module-card">
+          <div class="module-head">
+            <i class="fa-solid fa-route"></i>
+            <h4>3. Regional Transport &amp; Freight Logger</h4>
+          </div>
+          <p>Track consignments sent via local transport services to Butwal, Pokhara, Kathmandu, Birgunj, and Nepalgunj.</p>
+          <span class="badge-pending">Planned</span>
+        </div>
+
+        <!-- Module 4 -->
+        <div class="module-card">
+          <div class="module-head">
+            <i class="fa-solid fa-clipboard-user"></i>
+            <h4>4. Workshop Job Card Manager</h4>
+          </div>
+          <p>Manage lathe machining, pulley boring, keyway cut orders, and fitting schedules with mechanic notes.</p>
+          <span class="badge-pending">Planned</span>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="internal-footer">
+    <p>&copy; Shree Anjani Belt and Bearing • Internal Operations System</p>
+  </footer>
+
+  <script src="internal.js"></script>
+</body>
+</html>

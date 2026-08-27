@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="50%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0B1120"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="rgba(37, 99, 235, 0.25)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="1440" height="600" fill="url(#heroGradient)"/>
+  <rect width="1440" height="600" fill="url(#glow)"/>
+
+  <!-- Precision Engineering Blueprint Grid -->
+  <g opacity="0.06" stroke="#38BDF8" stroke-width="1">
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40"/>
+    </pattern>
+    <rect width="1440" height="600" fill="url(#gridPattern)"/>
+  </g>
+
+  <!-- Giant Transmission Gear Outline -->
+  <g transform="translate(1200, 300)" opacity="0.08" stroke="#38BDF8" stroke-width="4" fill="none">
+    <circle r="260"/>
+    <circle r="180"/>
+    <circle r="80"/>
+    <line x1="-260" y1="0" x2="260" y2="0"/>
+    <line x1="0" y1="-260" x2="0" y2="260"/>
+    <line x1="-184" y1="-184" x2="184" y2="184"/>
+    <line x1="-184" y1="184" x2="184" y2="-184"/>
+  </g>
+</svg>
