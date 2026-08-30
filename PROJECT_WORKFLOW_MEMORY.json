@@ -1,0 +1,177 @@
+{
+  "project_name": "Shree Anjani Belt & Bearing Store",
+  "legacy_name": "Shree Balaji Belt Center",
+  "motto": "ESTB. 2026 • RELIABILITY | QUALITY | SERVICE",
+  "version": "3.2.0",
+  "last_updated": "2026-08-30",
+  "repository": "https://github.com/Abhieeeee/office_web_PWA.git",
+  "live_url": "https://abhieeeee.github.io/office_web_PWA/",
+
+  "business_identity": {
+    "legal_name": "Shree Anjani Belt and Bearing Store",
+    "pan_vat_number": "601249821",
+    "ird_registered": true,
+    "vat_rate": 0.13,
+    "physical_location": {
+      "street": "Main Industrial & Commercial Corridor",
+      "locality": "Siddharthanagar (Bhairahawa)",
+      "district": "Rupandehi",
+      "province": "Lumbini Province",
+      "postal_code": "32900",
+      "country": "Nepal",
+      "plus_code": "GF83+75V, Siddharthanagar, Nepal",
+      "geo_coordinates": {
+        "latitude": 27.5048,
+        "longitude": 83.4502
+      },
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=GF83%2B75V,+Siddharthanagar,+Nepal"
+    },
+    "contacts": {
+      "sales_desk_whatsapp": "+9779804462602",
+      "sales_desk_display": "980-4462602",
+      "warehouse_dispatch_whatsapp": "+9779847301185",
+      "warehouse_dispatch_display": "984-7301185"
+    },
+    "operating_hours": {
+      "standard_days": "Sunday – Friday: 8:00 AM – 8:00 PM",
+      "saturday_emergency_hours": "Saturday: 10:00 AM – 12:00 AM (Open Till Midnight)",
+      "off_hours_breakdown_hotline": true
+    },
+    "payment_methods": [
+      "Bank Transfer (Nepal QR / Fonepay)",
+      "eSewa / Khalti Digital Wallets",
+      "Cash on Transport (Bilty To-Pay / Collection on Delivery)",
+      "Corporate Credit Account (Post-Approval)"
+    ]
+  },
+
+  "architectural_directives": {
+    "framework": "Zero-Framework Vanilla HTML5 + CSS3 + ES6+ JavaScript",
+    "bundle_budget_kb": 250,
+    "target_fcp_seconds": 0.4,
+    "target_performance_audit_score": 96,
+    "accessibility_standard": "WCAG 2.2 AA (Color contrast >= 4.5:1, touch targets >= 48x48px)",
+    "offline_pwa": {
+      "service_worker": "sw.js",
+      "cache_name": "shree-anjani-v3",
+      "manifest": "manifest.json"
+    },
+    "seo_directives": {
+      "primary_canonical": "https://abhieeeee.github.io/office_web_PWA/",
+      "i18n_locales": ["en", "ne-NP"],
+      "schema_org_types": ["AutoPartsStore", "LocalBusiness", "ItemList", "Product", "Offer", "FAQPage", "BreadcrumbList"]
+    }
+  },
+
+  "brand_portfolio": [
+    { "brand": "SKF", "origin": "Sweden 🇸🇪", "category": "Bearings", "authenticity_check": "SKF Authenticate App QR + High-Definition Laser Etching" },
+    { "brand": "NBC", "origin": "India 🇮🇳", "category": "Bearings", "authenticity_check": "Rainbow Hologram + Micro-Text Under NBC Logo" },
+    { "brand": "URB", "origin": "Romania 🇷🇴", "category": "Bearings", "authenticity_check": "Deep Outer Ring Factory Engraving + Waxed Rust Wrapping" },
+    { "brand": "NTN", "origin": "Japan 🇯🇵", "category": "Bearings / Pillow Blocks", "authenticity_check": "High-Precision Grinding + Tamper-Proof Factory Seal" },
+    { "brand": "Fenner", "origin": "India / UK", "category": "V-Belts & Pulleys", "authenticity_check": "Molded Pitch Codes + Anti-Static Oil & Heat Resistant Label" }
+  ],
+
+  "regional_transport_corridors": [
+    { "city": "Kathmandu", "cargo_hub": "Kalanki & Balaju Transport Hubs", "transit_time": "12-16 Hours (Daily Overnight Cargo)", "daily_service": true },
+    { "city": "Pokhara", "cargo_hub": "Baglung Buspark & Prithvi Chowk Depots", "transit_time": "6-8 Hours (Same-Day / Early Morning)", "daily_service": true },
+    { "city": "Birgunj", "cargo_hub": "Dryport Bypass & Railway Road Depots", "transit_time": "8-10 Hours (Express Highway Dispatch)", "daily_service": true },
+    { "city": "Butwal / Sunwal", "cargo_hub": "Direct Express Van Dispatch", "transit_time": "1-2 Hours (Immediate Same-Day Delivery)", "daily_service": true },
+    { "city": "Nepalgunj", "cargo_hub": "Surkhet Road & Kohalpur Depots", "transit_time": "8-10 Hours (Mid-Western Daily Transport)", "daily_service": true },
+    { "city": "Dang (Ghorahi/Tulsipur)", "cargo_hub": "Ghorahi & Tulsipur Buspark Depots", "transit_time": "6-8 Hours (Daily Cargo Dispatch)", "daily_service": true }
+  ],
+
+  "agent_swarm_registry": [
+    {
+      "id": "AGT-01",
+      "name": "Quality Gatekeeper & Evaluator",
+      "role": "Multi-dimensional scoring, strict quality gating & retry loop controller",
+      "threshold": 8.0,
+      "skill_path": ".agents/skills/gatekeeper-evaluator/SKILL.md",
+      "output_file": "reports/master_manager_summary.md"
+    },
+    {
+      "id": "AGT-02",
+      "name": "Codebase & Bug Auditor",
+      "role": "HTML/CSS/JS/PWA diagnostics, NTC/Ncell network optimization, and code patches",
+      "threshold": 8.0,
+      "skill_path": ".agents/skills/codebase-auditor/SKILL.md",
+      "output_file": "reports/01_codebase_audit_report.md"
+    },
+    {
+      "id": "AGT-03",
+      "name": "UI/UX & Layout Specialist",
+      "role": "Industrial aesthetic tokens, mobile touch ergonomics (>=48px), and conversion funnels",
+      "threshold": 8.0,
+      "skill_path": ".agents/skills/ui-ux-specialist/SKILL.md",
+      "output_file": "reports/02_ui_ux_design_report.md"
+    },
+    {
+      "id": "AGT-04",
+      "name": "Nepal Market Researcher",
+      "role": "Industrial corridor intelligence, genuine vs duplicate risks, and VAT/Bilty norms",
+      "threshold": 8.0,
+      "skill_path": ".agents/skills/nepal-market-researcher/SKILL.md",
+      "output_file": "reports/03_nepal_market_research_report.md"
+    },
+    {
+      "id": "AGT-05",
+      "name": "End-User Experience Persona Auditor",
+      "role": "Buyer persona journeys (Rice Mill Owner, Plant Engineer, Lathe Mechanic) with strict >= 9.5 gating",
+      "threshold": 9.5,
+      "skill_path": ".agents/skills/user-experience-evaluator/SKILL.md",
+      "output_file": "reports/04_user_experience_audit_report.md"
+    },
+    {
+      "id": "AGT-06",
+      "name": "Master Phase Planner & Controller",
+      "role": "Sequential 4-phase execution roadmap, safety checks, and orchestrator execution",
+      "threshold": 8.0,
+      "skill_path": ".agents/skills/master-phase-planner/SKILL.md",
+      "output_file": "reports/05_master_phase_execution_plan.md"
+    }
+  ],
+
+  "completed_milestones": [
+    "Phase 1: Core PWA setup, responsive zero-framework UI, and sub-0.4s FCP.",
+    "Phase 2: Official emblem branding, Schema.org JSON-LD (AutoPartsStore, ItemList, FAQPage).",
+    "Phase 3: Hyper-local corridor landing page (delivery.html) with city switcher routing.",
+    "Phase 4: Live rotating bearing CAD blueprint with leader callouts in Hero section.",
+    "Phase 5: Mechanical Engineering Workbench (Bearing Interchange + Live Dynamic SVG Pulley Drive Simulation).",
+    "Phase 6: Digital Machine Ledger (Factory Profile Bookmarks & 1-Tap WhatsApp Reorder).",
+    "Phase 7: Emergency FAB dynamic state (Saturday midnight + off-hours breakdown mode).",
+    "Phase 8: Internal ERP with 13% Nepal VAT Proforma Generator and Bulk CSV Inventory Uploader."
+  ],
+
+  "strategic_future_backlog": [
+    {
+      "priority": "P1",
+      "area": "Technical SEO & Expansion",
+      "task": "Automated Static HTML generation for all 77 districts of Nepal (e.g. bearings-chitwan.html, bearings-biratnagar.html)",
+      "impact": "Captures 100% of long-tail local search queries across all industrial zones."
+    },
+    {
+      "priority": "P1",
+      "area": "Customer Experience",
+      "task": "Client-Side Instant PDF Proforma Invoice Downloader (jsPDF / Canvas) with QR code payment on public RFQ modal",
+      "impact": "Allows procurement managers to print or download an official quote before submitting orders."
+    },
+    {
+      "priority": "P2",
+      "area": "Logistics & Tracking",
+      "task": "Live Transport Bilty Tracking Widget (linking Lumbini Transport, Namaste Cargo, Western Courier receipts)",
+      "impact": "Factory owners can check shipment dispatch status without calling the sales desk."
+    },
+    {
+      "priority": "P2",
+      "area": "Accessibility & Voice",
+      "task": "Nepali Voice Search for Mill Mechanics (Web Speech API supporting spoken part numbers e.g. 'छ दुई शून्य पाँच बियरिङ्ग')",
+      "impact": "Mechanics with greasy hands on the shop floor can voice-search part numbers effortlessly."
+    },
+    {
+      "priority": "P3",
+      "area": "Database & ERP",
+      "task": "IndexedDB Cloud Sync Bridge (Firebase / Supabase fallback with offline-first local state replication)",
+      "impact": "Enables multi-device inventory syncing between warehouse counter and sales reps."
+    }
+  ]
+}
