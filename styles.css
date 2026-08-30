@@ -281,7 +281,7 @@ button, input, textarea, select {
 .brand-icon-box {
   width: 52px;
   height: 52px;
-  background: #08111E;
+  background: #FFFFFF;
   border-radius: 50%;
   border: 2px solid var(--orange-electric);
   display: flex;
