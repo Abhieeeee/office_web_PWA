@@ -363,53 +363,104 @@
 
       </div>
 
-      <!-- Hero Visual Art Composition -->
+      <!-- Hero Visual Art Composition: Moving Precision Bearing Blueprint -->
       <div class="hero-visual-block">
         <div class="hero-showcase-container">
           <div class="floating-warehouse-tag">
-            <i class="fa-solid fa-warehouse"></i> Ready Warehouse Inventory
+            <i class="fa-solid fa-arrows-spin"></i> Live Bearing CAD Blueprint
           </div>
           
-          <svg viewBox="0 0 540 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-vector-illustration" role="img" aria-label="Industrial Inventory Showcase">
-            <rect width="540" height="380" rx="16" fill="#0A1624"/>
+          <svg viewBox="0 0 560 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-vector-illustration" role="img" aria-label="Interactive Precision Bearing Blueprint">
+            <!-- Blueprint Background -->
+            <rect width="560" height="380" rx="16" fill="#081422"/>
             
-            <!-- Warehouse Rack Grid Lines -->
-            <path d="M40 50 H500 M40 130 H500 M40 210 H500 M40 290 H500" stroke="#18314B" stroke-width="2" stroke-dasharray="4 4"/>
-            <path d="M60 40 V340 M180 40 V340 M300 40 V340 M420 40 V340" stroke="#18314B" stroke-width="2"/>
+            <!-- Grid Lines -->
+            <path d="M30 40 H530 M30 120 H530 M30 200 H530 M30 280 H530 M30 350 H530" class="blueprint-grid-line"/>
+            <path d="M50 30 V360 M150 30 V360 M250 30 V360 M350 30 V360 M450 30 V360" class="blueprint-grid-line"/>
+            <circle cx="155" cy="190" r="130" stroke="rgba(56, 189, 248, 0.08)" stroke-width="1"/>
             
-            <!-- Precision Heavy Bearing Illustration -->
-            <g transform="translate(140, 170)">
-              <circle cx="0" cy="0" r="100" fill="#13273D" stroke="#38BDF8" stroke-width="5"/>
-              <circle cx="0" cy="0" r="72" fill="#0C1B2B" stroke="#FF5500" stroke-width="4"/>
-              <circle cx="0" cy="0" r="44" fill="#081420" stroke="#38BDF8" stroke-width="4"/>
-              <!-- High-tolerance balls -->
-              <circle cx="0" cy="-58" r="12" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
-              <circle cx="41" cy="-41" r="12" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
-              <circle cx="58" cy="0" r="12" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
-              <circle cx="41" cy="41" r="12" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
-              <circle cx="0" cy="58" r="12" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
-              <circle cx="-41" cy="41" r="12" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
-              <circle cx="-58" cy="0" r="12" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
-              <circle cx="-41" cy="-41" r="12" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2"/>
+            <!-- Outer Ring Tolerance Marks -->
+            <circle cx="155" cy="190" r="105" stroke="#38BDF8" stroke-width="4" stroke-dasharray="12 4" opacity="0.8"/>
+            <circle cx="155" cy="190" r="96" fill="#0D2238" stroke="#1E3A5F" stroke-width="2"/>
+            
+            <!-- Rotating Bearing Cage Assembly -->
+            <g class="spinning-bearing-assembly">
+              <!-- Brass/Steel Retainer Ring -->
+              <circle cx="155" cy="190" r="68" fill="none" stroke="#FF5500" stroke-width="6" opacity="0.9"/>
+              <circle cx="155" cy="190" r="68" fill="none" stroke="#FFAE73" stroke-width="1.5" stroke-dasharray="8 6"/>
+
+              <!-- 8 Precision Chrome Steel Spheres with Specular Light Reflex -->
+              <circle cx="155" cy="122" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
+              <circle cx="151" cy="118" r="3" fill="#FFFFFF" opacity="0.8"/>
+              
+              <circle cx="203" cy="142" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
+              <circle cx="199" cy="138" r="3" fill="#FFFFFF" opacity="0.8"/>
+              
+              <circle cx="223" cy="190" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
+              <circle cx="219" cy="186" r="3" fill="#FFFFFF" opacity="0.8"/>
+              
+              <circle cx="203" cy="238" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
+              <circle cx="199" cy="234" r="3" fill="#FFFFFF" opacity="0.8"/>
+              
+              <circle cx="155" cy="258" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
+              <circle cx="151" cy="254" r="3" fill="#FFFFFF" opacity="0.8"/>
+              
+              <circle cx="107" cy="238" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
+              <circle cx="103" cy="234" r="3" fill="#FFFFFF" opacity="0.8"/>
+              
+              <circle cx="87" cy="190" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
+              <circle cx="83" cy="186" r="3" fill="#FFFFFF" opacity="0.8"/>
+              
+              <circle cx="107" cy="142" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
+              <circle cx="103" cy="138" r="3" fill="#FFFFFF" opacity="0.8"/>
             </g>
 
-            <!-- Stacked Power Belts & Pulleys -->
-            <g transform="translate(380, 130)">
-              <rect x="-60" y="-40" width="120" height="24" rx="4" fill="#FF5500" stroke="#FFA726" stroke-width="2"/>
-              <text x="0" y="-24" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">HEAVY V-BELTS</text>
-              
-              <rect x="-70" y="-10" width="140" height="26" rx="4" fill="#1E3A5F" stroke="#60A5FA" stroke-width="2"/>
-              <text x="0" y="7" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">CONVEYOR RUBBER</text>
-              
-              <rect x="-80" y="22" width="160" height="28" rx="4" fill="#244164" stroke="#94A3B8" stroke-width="2"/>
-              <text x="0" y="40" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">CI PULLEYS &amp; COUPLINGS</text>
-            </g>
+            <!-- Inner Ring & Bore (Stationary with Shaft Ticks) -->
+            <circle cx="155" cy="190" r="42" fill="#06111C" stroke="#38BDF8" stroke-width="4"/>
+            <circle cx="155" cy="190" r="28" fill="#040A12" stroke="#64748B" stroke-width="2" stroke-dasharray="4 2"/>
+            <text x="155" y="194" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">25mm BORE</text>
 
-            <!-- Stock Ready Notification Card -->
-            <rect x="250" y="240" width="250" height="90" rx="10" fill="#0D2035" stroke="#FF5500" stroke-width="1.5"/>
-            <text x="270" y="270" fill="#FFAE73" font-family="Chakra Petch, sans-serif" font-size="14" font-weight="bold">SIDDHARTHANAGAR HUB</text>
-            <text x="270" y="292" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="12">Bulk stock ready for immediate dispatch</text>
-            <text x="270" y="312" fill="#94A3B8" font-family="Inter, sans-serif" font-size="11">Rupandehi &amp; All Districts in Nepal</text>
+            <!-- Gradient Definition for 3D Chrome Spheres -->
+            <defs>
+              <radialGradient id="steelBallGrad" cx="30%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="35%" stop-color="#E2E8F0"/>
+                <stop offset="70%" stop-color="#94A3B8"/>
+                <stop offset="100%" stop-color="#334155"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Technical Leader Callout 1: Outer Ring -->
+            <line x1="155" y1="86" x2="280" y2="40" class="blueprint-pointer-line"/>
+            <line x1="280" y1="40" x2="520" y2="40" stroke="#38BDF8" stroke-width="1.5"/>
+            <circle cx="155" cy="86" r="4" fill="#38BDF8" class="pulse-pointer-dot"/>
+            <rect x="290" y="18" width="240" height="38" rx="6" class="blueprint-callout-card"/>
+            <text x="302" y="33" class="blueprint-callout-title">OUTER RACEWAY (GCr15 STEEL)</text>
+            <text x="302" y="48" class="blueprint-callout-desc">Laser-Etched Traceable Code • HRC 60-64</text>
+
+            <!-- Technical Leader Callout 2: Precision Balls -->
+            <line x1="215" y1="160" x2="310" y2="95" class="blueprint-pointer-line"/>
+            <line x1="310" y1="95" x2="520" y2="95" stroke="#38BDF8" stroke-width="1.5"/>
+            <circle cx="215" cy="160" r="4" fill="#FFAE73" class="pulse-pointer-dot"/>
+            <rect x="310" y="74" width="220" height="38" rx="6" class="blueprint-callout-card orange-theme"/>
+            <text x="322" y="89" class="blueprint-callout-title orange-text">GRADE 10 STEEL BALLS</text>
+            <text x="322" y="104" class="blueprint-callout-desc">ISO 3290 Sphericity (&le;0.05&mu;m smooth run)</text>
+
+            <!-- Technical Leader Callout 3: Internal Retainer Cage -->
+            <line x1="195" y1="225" x2="290" y2="150" class="blueprint-pointer-line"/>
+            <line x1="290" y1="150" x2="520" y2="150" stroke="#38BDF8" stroke-width="1.5"/>
+            <circle cx="195" cy="225" r="4" fill="#FF5500" class="pulse-pointer-dot"/>
+            <rect x="300" y="128" width="230" height="38" rx="6" class="blueprint-callout-card"/>
+            <text x="312" y="143" class="blueprint-callout-title">RIVETED STEEL / BRASS CAGE</text>
+            <text x="312" y="158" class="blueprint-callout-desc">Anti-Friction High RPM Vibration Guard</text>
+
+            <!-- Technical Leader Callout 4: 2RS Dust Seals -->
+            <line x1="155" y1="280" x2="260" y2="330" class="blueprint-pointer-line"/>
+            <line x1="260" y1="330" x2="520" y2="330" stroke="#38BDF8" stroke-width="1.5"/>
+            <circle cx="155" cy="280" r="4" fill="#34D399" class="pulse-pointer-dot"/>
+            <rect x="270" y="308" width="260" height="38" rx="6" class="blueprint-callout-card"/>
+            <text x="282" y="323" class="blueprint-callout-title" style="fill: #34D399;">2RS DUAL NITRILE RUBBER SEALS</text>
+            <text x="282" y="338" class="blueprint-callout-desc">Factory Pre-Greased • Dust &amp; Slurry Barrier</text>
           </svg>
 
           <!-- Specifications Strip -->
@@ -797,93 +848,147 @@
   <section class="engineering-tools-section" id="engineering-tools">
     <div class="container">
       
-      <div class="catalog-header-center" style="margin-bottom: 2.5rem;">
-        <div class="catalog-pill-subtitle" style="color: var(--cyan-accent);"><i class="fa-solid fa-calculator"></i> MECHANICAL ENGINEERING TOOLS</div>
-        <h2 class="catalog-main-heading">Bearing Interchange &amp; V-Belt Calculators</h2>
+      <div class="catalog-header-center" style="margin-bottom: 2rem;">
+        <div class="catalog-pill-subtitle" style="color: var(--cyan-accent);"><i class="fa-solid fa-calculator"></i> MECHANICAL ENGINEERING WORKBENCH</div>
+        <h2 class="catalog-main-heading">Bearing Interchange &amp; V-Belt Engineering Calculators</h2>
         <p class="catalog-description">
-          Built specifically for mill engineers, lathe mechanics, and plant maintenance teams in Nepal. Calculate exact cross-references and pulley center distances in seconds.
+          Engineered specifically for plant mechanics, lathe technicians, and mill managers in Nepal. Instant cross-reference lookup and live dynamic pulley drive calculations.
         </p>
       </div>
 
-      <div class="calc-grid-2col">
+      <!-- Workbench Cockpit Wrapper -->
+      <div class="calc-workbench-card">
         
-        <!-- Tool 1: Bearing Brand Interchange Calculator -->
-        <div class="calc-widget-card" id="bearingInterchangeWidget">
-          <div>
-            <div class="calc-header-block">
-              <span class="calc-badge-label"><i class="fa-solid fa-arrows-spin"></i> CROSS-REFERENCE ENGINE</span>
-              <h3 class="calc-title">Bearing Brand Interchange Calculator</h3>
-              <p class="calc-desc">Translate any foreign brand (NSK, FAG, KOYO, ZKL) into verified stock equivalents (SKF, NBC, URB, NTN).</p>
-            </div>
+        <!-- Tab Bar -->
+        <div class="calc-tab-bar" role="tablist">
+          <button type="button" class="calc-tab-btn active" id="tabBtnInterchange" onclick="window.switchCalcTab('interchange')" role="tab">
+            <i class="fa-solid fa-arrows-spin text-orange"></i> Bearing Brand Interchange Engine
+          </button>
+          <button type="button" class="calc-tab-btn" id="tabBtnBelt" onclick="window.switchCalcTab('belt')" role="tab">
+            <i class="fa-solid fa-ruler-combined text-cyan"></i> V-Belt &amp; Pulley Center Distance Formula
+          </button>
+        </div>
 
-            <div class="calc-input-row">
-              <label for="interchangeInput">
-                <span>Enter Part Number or Brand Code</span>
-                <span style="color: var(--orange-amber);">e.g. NSK 6309, FAG 22218, 6205</span>
-              </label>
+        <!-- TAB PANEL 1: BEARING INTERCHANGE -->
+        <div id="panelCalcInterchange" class="calc-panel-content">
+          <div class="calc-header-block">
+            <span class="calc-badge-label"><i class="fa-solid fa-shield-halved"></i> MULTI-BRAND OEM LOOKUP</span>
+            <h3 class="calc-title">Cross-Brand Bearing Interchange &amp; Tolerance Matcher</h3>
+            <p class="calc-desc">Translate any foreign brand code (NSK, FAG, KOYO, ZKL, NTN) into verified in-stock equivalents (SKF, NBC, URB) with full ISO tolerance and load capacity details.</p>
+          </div>
+
+          <div class="calc-input-row" style="max-width: 600px;">
+            <label for="interchangeInput">
+              <span>Enter Part Number or Brand Code</span>
+              <span style="color: var(--orange-amber);">e.g. NSK 6309, FAG 22218, 6205-2RS, 30206</span>
+            </label>
+            <div style="position: relative;">
               <input type="text" id="interchangeInput" class="calc-touch-input" placeholder="Type bearing number (e.g. 6309, 22218, 30206, 6204)..." oninput="window.runBearingInterchange()" autocomplete="off" />
+              <button type="button" onclick="document.getElementById('interchangeInput').value=''; window.runBearingInterchange();" style="position: absolute; right: 12px; top: 12px; background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1rem;"><i class="fa-solid fa-xmark"></i></button>
             </div>
+          </div>
 
-            <!-- Quick Preset Chips -->
-            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">
-              <span style="font-size: 0.725rem; color: var(--text-muted); align-self: center;">Popular:</span>
-              <button type="button" class="chip-btn" onclick="window.setInterchangePreset('NSK 6309')">NSK 6309</button>
-              <button type="button" class="chip-btn" onclick="window.setInterchangePreset('FAG 22218')">FAG 22218</button>
-              <button type="button" class="chip-btn" onclick="window.setInterchangePreset('KOYO 30206')">KOYO 30206</button>
-              <button type="button" class="chip-btn" onclick="window.setInterchangePreset('SKF 6205')">SKF 6205</button>
-            </div>
+          <!-- Quick Preset Chips -->
+          <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem;">
+            <span style="font-size: 0.75rem; color: var(--text-muted); align-self: center; font-weight: 700;">Popular Fast-Lookups:</span>
+            <button type="button" class="chip-btn" onclick="window.setInterchangePreset('NSK 6309')">NSK 6309</button>
+            <button type="button" class="chip-btn" onclick="window.setInterchangePreset('FAG 22218')">FAG 22218</button>
+            <button type="button" class="chip-btn" onclick="window.setInterchangePreset('KOYO 30206')">KOYO 30206</button>
+            <button type="button" class="chip-btn" onclick="window.setInterchangePreset('SKF 6205')">SKF 6205 2RS</button>
+            <button type="button" class="chip-btn" onclick="window.setInterchangePreset('NTN UCP 208')">NTN UCP 208</button>
+          </div>
 
-            <!-- Live Interchange Output Result Card -->
-            <div id="interchangeResultBox" class="calc-result-box">
-              <!-- Populated dynamically via JS -->
-            </div>
+          <!-- Live Dynamic Interchange Output -->
+          <div id="interchangeResultBox" class="calc-result-box">
+            <!-- Populated dynamically via JS -->
           </div>
         </div>
 
-        <!-- Tool 2: V-Belt & Pulley Center Distance Calculator -->
-        <div class="calc-widget-card" id="vbeltCalculatorWidget">
-          <div>
-            <div class="calc-header-block">
-              <span class="calc-badge-label"><i class="fa-solid fa-ruler-combined"></i> DRIVE DESIGN FORMULA</span>
-              <h3 class="calc-title">V-Belt &amp; Pulley Center Distance Calculator</h3>
-              <p class="calc-desc">Calculate exact belt pitch length ($L$) and standard V-belt code based on pulley diameters and shaft center distance.</p>
-            </div>
+        <!-- TAB PANEL 2: V-BELT & PULLEY CALCULATOR -->
+        <div id="panelCalcBelt" class="calc-panel-content" style="display: none;">
+          <div class="calc-header-block">
+            <span class="calc-badge-label"><i class="fa-solid fa-calculator"></i> MECHANICAL DRIVE DESIGN</span>
+            <h3 class="calc-title">V-Belt Pitch Length &amp; Pulley Ratio Calculator</h3>
+            <p class="calc-desc">Calculate exact belt pitch length ($L$), speed reduction ratio ($D_2/D_1$), and standard V-belt cross section based on pulley diameters and shaft centers.</p>
+          </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 0.75rem;">
+          <!-- Live Dynamic SVG Pulley Drive Visual Diagram -->
+          <div class="pulley-diagram-box">
+            <div style="font-size: 0.725rem; font-family: var(--font-mono); color: var(--cyan-accent); margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+              <i class="fa-solid fa-eye"></i> REAL-TIME MECHANICAL PULLEY DRIVE SIMULATION
+            </div>
+            
+            <svg id="pulleyLiveSvg" viewBox="0 0 500 160" class="pulley-svg-canvas" xmlns="http://www.w3.org/2000/svg">
+              <!-- Center Distance Dimension Line -->
+              <line x1="120" y1="25" x2="360" y2="25" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="4 2"/>
+              <circle cx="120" cy="25" r="3" fill="#38BDF8"/>
+              <circle cx="360" cy="25" r="3" fill="#38BDF8"/>
+              <text id="svgCenterDistText" x="240" y="20" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">Center Distance C = 24.0"</text>
+
+              <!-- Looping Animated V-Belt Path -->
+              <path id="svgBeltPath" d="M120 45 L360 25 A55 55 0 0 1 360 135 L120 115 A35 35 0 0 1 120 45 Z" class="vbelt-animated-stroke"/>
+
+              <!-- Drive Pulley D1 (Left) -->
+              <circle id="svgPulleyD1" cx="120" cy="80" r="35" fill="#13273D" stroke="#FF5500" stroke-width="3"/>
+              <circle cx="120" cy="80" r="10" fill="#06111C" stroke="#94A3B8" stroke-width="1.5"/>
+              <text id="svgD1Label" x="120" y="84" fill="#FFAE73" font-family="Chakra Petch, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">D1: 6"</text>
+              <text x="120" y="140" fill="#94A3B8" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">Driver Pulley</text>
+
+              <!-- Driven Pulley D2 (Right) -->
+              <circle id="svgPulleyD2" cx="360" cy="80" r="55" fill="#13273D" stroke="#38BDF8" stroke-width="3"/>
+              <circle cx="360" cy="80" r="14" fill="#06111C" stroke="#94A3B8" stroke-width="1.5"/>
+              <text id="svgD2Label" x="360" y="84" fill="#38BDF8" font-family="Chakra Petch, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">D2: 12"</text>
+              <text x="360" y="152" fill="#94A3B8" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">Driven Pulley</text>
+            </svg>
+          </div>
+
+          <!-- Unit Selector & Inputs Grid -->
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1rem;">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
               <div class="calc-input-row" style="margin-bottom: 0;">
-                <label for="calcPulleyD1">Drive Pulley ($D_1$) [Inch]</label>
-                <input type="number" id="calcPulleyD1" class="calc-touch-input" value="6" min="1" step="0.5" oninput="window.runBeltCalculator()" />
+                <label for="calcPulleyD1">
+                  <span>Drive Pulley ($D_1$) [Inches]</span>
+                  <span id="d1MmHint" style="color: var(--text-muted); font-size: 0.725rem;">≈ 152.4 mm</span>
+                </label>
+                <input type="number" id="calcPulleyD1" class="calc-touch-input" value="6" min="1" max="60" step="0.5" oninput="window.runBeltCalculator()" />
               </div>
+              
               <div class="calc-input-row" style="margin-bottom: 0;">
-                <label for="calcPulleyD2">Driven Pulley ($D_2$) [Inch]</label>
-                <input type="number" id="calcPulleyD2" class="calc-touch-input" value="12" min="1" step="0.5" oninput="window.runBeltCalculator()" />
+                <label for="calcPulleyD2">
+                  <span>Driven Pulley ($D_2$) [Inches]</span>
+                  <span id="d2MmHint" style="color: var(--text-muted); font-size: 0.725rem;">≈ 304.8 mm</span>
+                </label>
+                <input type="number" id="calcPulleyD2" class="calc-touch-input" value="12" min="1" max="80" step="0.5" oninput="window.runBeltCalculator()" />
               </div>
             </div>
 
             <div class="calc-input-row">
               <label for="calcCenterDist">
                 <span>Center Distance ($C$) [Inches]</span>
-                <span id="centerDistMmVal" style="color: var(--text-muted); font-size: 0.75rem;">≈ 609.6 mm</span>
+                <span id="centerDistMmVal" style="color: var(--cyan-accent); font-weight: 700; font-size: 0.75rem;">≈ 609.6 mm</span>
               </label>
-              <input type="number" id="calcCenterDist" class="calc-touch-input" value="24" min="2" step="0.5" oninput="window.runBeltCalculator()" />
+              <input type="number" id="calcCenterDist" class="calc-touch-input" value="24" min="3" max="250" step="0.5" oninput="window.runBeltCalculator()" />
             </div>
 
-            <!-- Live Mechanical Calculation Output -->
-            <div class="calc-result-box" id="beltCalcResultBox">
-              <div class="calc-result-heading">Recommended V-Belt Standard Pitch &amp; Code</div>
-              <div class="calc-result-value" id="calcBeltOutputCode">V-Belt B-68 (Pitch: 68.3")</div>
-              <div class="calc-result-memo" id="calcBeltOutputDetails">
-                • Pitch Length: <strong>68.32 inches (1735 mm)</strong><br />
-                • Speed Reduction Ratio: <strong>2.00 : 1</strong> (Half Motor RPM)<br />
-                • Recommended Belt Section: <strong>B-Section (17×11 mm)</strong> or <strong>C-Section</strong> for &gt;25 HP
-              </div>
-              <div style="margin-top: 1rem;">
-                <a id="calcBeltWhatsAppCta" href="https://wa.me/9779804462602?text=Inquiry%20for%20V-Belt%20B-68" target="_blank" rel="noopener noreferrer" class="btn-matrix-wa" style="padding: 0.5rem 1rem; font-size: 0.825rem;">
-                  <i class="fa-brands fa-whatsapp"></i> Inquire Wholesale Rate for this Belt
-                </a>
-              </div>
+          </div>
+
+          <!-- Live Belt Output Result Box -->
+          <div class="calc-result-box" id="beltCalcResultBox" style="margin-top: 1.5rem;">
+            <div class="calc-result-heading">Recommended V-Belt Standard Pitch &amp; Code</div>
+            <div class="calc-result-value" id="calcBeltOutputCode">V-Belt B-68 (Pitch: 68.3")</div>
+            <div class="calc-result-memo" id="calcBeltOutputDetails">
+              • Pitch Length: <strong>68.32 inches (1735 mm)</strong><br />
+              • Speed Reduction Ratio: <strong>2.00 : 1</strong> (Half Motor RPM)<br />
+              • Recommended Belt Section: <strong>B-Section (17×11 mm)</strong> or <strong>C-Section</strong> for &gt;25 HP
+            </div>
+            <div style="margin-top: 1rem;">
+              <a id="calcBeltWhatsAppCta" href="https://wa.me/9779804462602?text=Inquiry%20for%20V-Belt%20B-68" target="_blank" rel="noopener noreferrer" class="btn-matrix-wa" style="padding: 0.65rem 1.25rem; font-size: 0.85rem;">
+                <i class="fa-brands fa-whatsapp"></i> Inquire Wholesale Rate for this Belt Specification
+              </a>
             </div>
           </div>
+
         </div>
 
       </div>
@@ -1171,26 +1276,28 @@
     <div class="container">
       <div class="footer-columns-grid">
         
-        <!-- Column 1: Store Bio & Local Legacy -->
+        <!-- Column 1: Store Bio & Official Emblem Medallion -->
         <div class="footer-col-unit bio-col">
-          <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.85rem;">
-            <img src="assets/logo.png" alt="Shree Anjani Logo" style="width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--orange-electric); box-shadow: var(--shadow-orange-glow); object-fit: cover;" />
-            <div class="footer-logo-title" style="margin-bottom: 0;">
-              SHREE ANJANI <br /><span class="sub-highlight">BELT &amp; BEARING STORE</span>
+          <div class="footer-brand-emblem-wrap">
+            <div class="footer-emblem-badge" title="Official Seal of Shree Anjani Belt and Bearing Store">
+              <img src="assets/logo.png" alt="Shree Anjani Official Emblem" class="footer-emblem-img" />
+            </div>
+            <div class="footer-brand-title-wrap">
+              <span class="footer-brand-main">SHREE ANJANI</span>
+              <span class="footer-brand-sub">BELT &amp; BEARING STORE</span>
+              <span class="footer-brand-motto">ESTB. 2026 • RELIABILITY | QUALITY | SERVICE</span>
             </div>
           </div>
-          <p style="font-family: var(--font-display); font-size: 0.775rem; color: var(--orange-amber); letter-spacing: 0.05em; margin-bottom: 0.75rem; font-weight: 700;">
-            ESTB. 2026 • RELIABILITY | QUALITY | SERVICE
-          </p>
+
           <p class="badge-history-footer">
             <i class="fa-solid fa-history"></i> Formerly Known as <strong>Shree Balaji Belt Center</strong>
           </p>
           <p class="footer-bio-text">
-            Siddharthanagar's premier wholesale destination for industrial bearings, heavy-duty transmission belts, mechanical spares, and engineering workshop solutions.
+            Siddharthanagar's premier wholesale destination for 100% authentic industrial bearings, heavy-duty transmission belts, mechanical spares, and engineering workshop solutions.
           </p>
           <div class="distributor-disclaimer-box">
             <i class="fa-solid fa-shield-halved text-orange"></i>
-            <span><strong>Independent Wholesale Distributor:</strong> Stocking genuine SKF, NBC, URB, NTN and leading power transmission brands.</span>
+            <span><strong>Independent Wholesale Distributor:</strong> Verified authentic SKF, NBC, URB, NTN and leading power transmission lines with 13% official Nepal VAT billing.</span>
           </div>
         </div>
 

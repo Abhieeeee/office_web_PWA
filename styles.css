@@ -2910,3 +2910,286 @@ button, input, textarea, select {
   color: #FCA5A5 !important;
 }
 
+/* ==========================================================================
+   20. HERO MOVING BEARING & TECHNICAL BLUEPRINT CALLOUTS
+   ========================================================================== */
+.hero-bearing-blueprint-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: radial-gradient(circle at 35% 50%, #0F253C 0%, #06111C 100%);
+  border: 1px solid var(--slate-border);
+  padding: 1.25rem;
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.6);
+}
+
+.spinning-bearing-assembly {
+  transform-origin: 155px 190px;
+  animation: spinBearingAssembly 20s linear infinite;
+}
+
+.hero-bearing-blueprint-wrap:hover .spinning-bearing-assembly {
+  animation-duration: 8s;
+}
+
+@keyframes spinBearingAssembly {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.blueprint-grid-line {
+  stroke: rgba(56, 189, 248, 0.12);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.blueprint-pointer-line {
+  stroke: var(--cyan-accent);
+  stroke-width: 2;
+  stroke-dasharray: 6 3;
+  animation: dashPointer 2s linear infinite;
+}
+
+@keyframes dashPointer {
+  from { stroke-dashoffset: 18; }
+  to { stroke-dashoffset: 0; }
+}
+
+.pulse-pointer-dot {
+  transform-origin: center;
+  animation: pulseLeaderDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseLeaderDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.5; }
+}
+
+.blueprint-callout-card {
+  fill: rgba(10, 22, 38, 0.92);
+  stroke: rgba(56, 189, 248, 0.4);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+}
+
+.blueprint-callout-card.orange-theme {
+  stroke: rgba(255, 85, 0, 0.5);
+}
+
+.blueprint-callout-title {
+  fill: #38BDF8;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.blueprint-callout-title.orange-text {
+  fill: #FFAE73;
+}
+
+.blueprint-callout-desc {
+  fill: #E2E8F0;
+  font-family: var(--font-sans);
+  font-size: 10px;
+}
+
+/* ==========================================================================
+   21. ENGINEERING CALCULATOR WORKBENCH & COCKPIT UI
+   ========================================================================== */
+.calc-workbench-card {
+  background: linear-gradient(145deg, rgba(13, 27, 46, 0.95) 0%, rgba(8, 17, 30, 0.98) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-card), 0 0 30px rgba(10, 25, 45, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.calc-workbench-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--orange-electric), var(--cyan-accent), var(--emerald-trust));
+}
+
+.calc-tab-bar {
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--slate-border);
+  padding-bottom: 0.85rem;
+  overflow-x: auto;
+}
+
+.calc-tab-btn {
+  background: rgba(15, 29, 48, 0.7);
+  border: 1px solid var(--slate-border);
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.75rem 1.4rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.calc-tab-btn.active {
+  background: linear-gradient(135deg, rgba(255, 85, 0, 0.2) 0%, rgba(56, 189, 248, 0.2) 100%);
+  border-color: var(--orange-electric);
+  color: #FFFFFF;
+  box-shadow: 0 0 15px rgba(255, 85, 0, 0.25);
+}
+
+.calc-tab-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+}
+
+/* Pulley Drive Interactive SVG */
+.pulley-diagram-box {
+  background: #06111C;
+  border: 1px solid var(--slate-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pulley-svg-canvas {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+}
+
+.vbelt-animated-stroke {
+  stroke: var(--orange-electric);
+  stroke-width: 4;
+  fill: none;
+  stroke-dasharray: 10 5;
+  animation: rotateBeltPath 1.5s linear infinite;
+}
+
+@keyframes rotateBeltPath {
+  from { stroke-dashoffset: 30; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Interchange Detailed Result Specs */
+.interchange-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.interchange-spec-tile {
+  background: rgba(15, 29, 48, 0.6);
+  border: 1px solid var(--slate-border);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+}
+
+.spec-tile-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  display: block;
+}
+
+.spec-tile-value {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+/* ==========================================================================
+   22. FOOTER OFFICIAL EMBLEM MEDALLION
+   ========================================================================== */
+.footer-brand-emblem-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.footer-emblem-badge {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 3px solid var(--orange-electric);
+  box-shadow: 0 0 25px rgba(255, 85, 0, 0.4), inset 0 0 8px rgba(0, 0, 0, 0.2);
+  padding: 3px;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-normal);
+}
+
+.footer-emblem-badge:hover {
+  transform: scale(1.06) rotate(3deg);
+  box-shadow: 0 0 35px rgba(255, 85, 0, 0.6);
+}
+
+.footer-emblem-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.footer-brand-title-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand-main {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+}
+
+.footer-brand-sub {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--orange-electric);
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.footer-brand-motto {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--orange-amber);
+  margin-top: 0.35rem;
+  letter-spacing: 0.04em;
+}
+
+

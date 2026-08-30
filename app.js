@@ -229,94 +229,134 @@
   const INTERCHANGE_DATABASE = [
     {
       baseCode: "6205",
-      dims: "25 x 52 x 15 mm",
-      skf: "6205-2RS1 / 6205-ZZ",
-      nbc: "6205 LLU / 6205 ZZ",
-      urb: "6205 2RS",
-      ntn: "6205 LLUC3",
-      fag: "6205-2RSR",
-      nsk: "6205 DDU",
-      koyo: "6205 2RS",
-      app: "Rice Mill Polisher Shafts, 5HP Electric Motors, Centrifugal Pumps",
-      clearance: "Normal / C3",
-      stockStatus: "Ready Stock in Siddharthanagar Hub"
+      dims: "25 x 52 x 15 mm (0.984 x 2.047 x 0.591 in)",
+      skf: "6205-2RS1 (Sweden 🇸🇪)",
+      nbc: "6205 LLU (India 🇮🇳)",
+      urb: "6205 2RS (Romania 🇷🇴)",
+      ntn: "6205 LLUC3 (Japan 🇯🇵)",
+      fag: "6205-2RSR (Germany 🇩🇪)",
+      nsk: "6205 DDU (Japan 🇯🇵)",
+      koyo: "6205 2RS (Japan 🇯🇵)",
+      cr: "14.8 kN",
+      cor: "7.8 kN",
+      app: "Rice Mill Polisher Shafts, 5HP Electric Motors, Centrifugal Water Pumps",
+      clearance: "Normal / C3 (ISO 5753-1)",
+      speedLimit: "12,000 RPM (Grease)",
+      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
     },
     {
       baseCode: "6309",
-      dims: "45 x 100 x 25 mm",
-      skf: "6309-2RS1 / C3",
-      nbc: "6309 LLU C3",
-      urb: "6309 2RS",
-      ntn: "6309 LLU",
-      fag: "6309-2RSR-C3",
-      nsk: "6309 DDUC3",
-      koyo: "6309 2RS",
-      app: "Heavy Destoner Vibrating Shafts, Oil Expeller Barrels, 25-40 HP Motor",
-      clearance: "C3 Radial Internal",
-      stockStatus: "Ready Stock in Siddharthanagar Hub"
+      dims: "45 x 100 x 25 mm (1.771 x 3.937 x 0.984 in)",
+      skf: "6309-2RS1 / C3 (Sweden 🇸🇪)",
+      nbc: "6309 LLU C3 (India 🇮🇳)",
+      urb: "6309 2RS (Romania 🇷🇴)",
+      ntn: "6309 LLU (Japan 🇯🇵)",
+      fag: "6309-2RSR-C3 (Germany 🇩🇪)",
+      nsk: "6309 DDUC3 (Japan 🇯🇵)",
+      koyo: "6309 2RS (Japan 🇯🇵)",
+      cr: "55.3 kN",
+      cor: "31.5 kN",
+      app: "Paddy Destoner Vibrating Shafts, Oil Expeller Barrels, 25-40 HP Motor Drives",
+      clearance: "C3 Radial Internal Clearance (High Heat / Heavy Load)",
+      speedLimit: "7,500 RPM (Grease)",
+      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
     },
     {
       baseCode: "22218",
-      dims: "90 x 160 x 40 mm",
-      skf: "22218 EK / W33",
-      nbc: "22218 CA / W33",
-      urb: "22218 EK C3 (Brass Cage)",
-      ntn: "22218 EAKD1",
-      fag: "22218-E1-K",
-      nsk: "22218 EAE4",
-      koyo: "22218 RHR",
-      app: "Stone Crusher 24x12 Jaw & Vibrating Screens, Clinker Grinding Mills",
-      clearance: "C3 Spherical Roller (Taper/Cylindrical Bore)",
-      stockStatus: "Ready Stock in Siddharthanagar Hub"
+      dims: "90 x 160 x 40 mm (3.543 x 6.299 x 1.575 in)",
+      skf: "22218 EK / W33 (Sweden 🇸🇪)",
+      nbc: "22218 CA / W33 (India 🇮🇳)",
+      urb: "22218 EK C3 (Romania 🇷🇴)",
+      ntn: "22218 EAKD1 (Japan 🇯🇵)",
+      fag: "22218-E1-K (Germany 🇩🇪)",
+      nsk: "22218 EAE4 (Japan 🇯🇵)",
+      koyo: "22218 RHR (Japan 🇯🇵)",
+      cr: "345.0 kN",
+      cor: "375.0 kN",
+      app: "Stone Crusher 24x12 / 30x15 Jaw, Vibrating Screens, Clinker Grinding Mills",
+      clearance: "C3 Spherical Roller (Tapered 1:12 Bore with H318 Sleeve)",
+      speedLimit: "3,800 RPM (Oil/Grease)",
+      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
     },
     {
       baseCode: "30206",
-      dims: "30 x 62 x 17.25 mm",
-      skf: "30206 J2/Q",
-      nbc: "30206",
-      urb: "30206",
-      ntn: "30206",
-      fag: "30206-A",
-      nsk: "HR30206J",
-      koyo: "30206JR",
-      app: "Tractor Front Axle Hubs, Reducer Gearboxes, Intermediate Pinion Shafts",
-      clearance: "Taper Roller (High Radial & Axial Thrust)",
-      stockStatus: "Ready Stock in Siddharthanagar Hub"
+      dims: "30 x 62 x 17.25 mm (1.181 x 2.441 x 0.679 in)",
+      skf: "30206 J2/Q (Sweden 🇸🇪)",
+      nbc: "30206 (India 🇮🇳)",
+      urb: "30206 (Romania 🇷🇴)",
+      ntn: "30206 (Japan 🇯🇵)",
+      fag: "30206-A (Germany 🇩🇪)",
+      nsk: "HR30206J (Japan 🇯🇵)",
+      koyo: "30206JR (Japan 🇯🇵)",
+      cr: "43.5 kN",
+      cor: "45.0 kN",
+      app: "Tractor Front Axle Hubs, Industrial Reducer Gearboxes, Bevel Pinion Shafts",
+      clearance: "Taper Roller (High Combined Radial & Heavy Axial Thrust)",
+      speedLimit: "9,000 RPM",
+      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
     },
     {
       baseCode: "6207",
-      dims: "35 x 72 x 17 mm",
-      skf: "6207-2RS1",
-      nbc: "6207 LLU",
-      urb: "6207 2RS",
-      ntn: "6207 LLU",
-      fag: "6207-2RSR",
-      nsk: "6207 DDU",
-      koyo: "6207 2RS",
-      app: "Heavy Paddy Huller Main Shafts, Industrial Blowers",
+      dims: "35 x 72 x 17 mm (1.378 x 2.835 x 0.669 in)",
+      skf: "6207-2RS1 (Sweden 🇸🇪)",
+      nbc: "6207 LLU (India 🇮🇳)",
+      urb: "6207 2RS (Romania 🇷🇴)",
+      ntn: "6207 LLU (Japan 🇯🇵)",
+      fag: "6207-2RSR (Germany 🇩🇪)",
+      nsk: "6207 DDU (Japan 🇯🇵)",
+      koyo: "6207 2RS (Japan 🇯🇵)",
+      cr: "27.0 kN",
+      cor: "15.3 kN",
+      app: "Heavy Paddy Huller Main Shafts, Centrifugal Air Blowers",
       clearance: "Normal / C3",
-      stockStatus: "Ready Stock in Siddharthanagar Hub"
+      speedLimit: "9,500 RPM",
+      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
     },
     {
-      baseCode: "6312",
-      dims: "60 x 130 x 31 mm",
-      skf: "6312-2RS1 / C3",
-      nbc: "6312 ZZ C3",
-      urb: "6312 2RS",
-      ntn: "6312 LLU",
-      fag: "6312-2RSR",
-      nsk: "6312 DDU",
-      koyo: "6312 2RS",
-      app: "Heavy Cement Plant Exhaust Fans, 50-75 HP Main Motor Drives",
-      clearance: "C3 Radial Internal",
-      stockStatus: "Ready Stock in Siddharthanagar Hub"
+      baseCode: "UCP 208",
+      dims: "40 mm Bore (1.575 in) • Solid Cast Iron Housing",
+      skf: "SY 40 TF",
+      nbc: "UCP 208",
+      urb: "UCP 208",
+      ntn: "UCP 208D1",
+      fag: "ASE08",
+      nsk: "UCP 208D1",
+      koyo: "UCP 208",
+      cr: "29.1 kN",
+      cor: "17.8 kN",
+      app: "Rice Mill Rubber Roll Huller Shafts (High Demand in Nepal), Agro Conveyors",
+      clearance: "Self-Aligning Insert with Set-Screw Lock",
+      speedLimit: "4,800 RPM",
+      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
     }
   ];
+
+  window.switchCalcTab = function (tabKey) {
+    const btnInterchange = document.getElementById('tabBtnInterchange');
+    const btnBelt = document.getElementById('tabBtnBelt');
+    const panelInterchange = document.getElementById('panelCalcInterchange');
+    const panelBelt = document.getElementById('panelCalcBelt');
+
+    if (tabKey === 'interchange') {
+      btnInterchange?.classList.add('active');
+      btnBelt?.classList.remove('active');
+      if (panelInterchange) panelInterchange.style.display = 'block';
+      if (panelBelt) panelBelt.style.display = 'none';
+      window.runBearingInterchange();
+    } else {
+      btnBelt?.classList.add('active');
+      btnInterchange?.classList.remove('active');
+      if (panelBelt) panelBelt.style.display = 'block';
+      if (panelInterchange) panelInterchange.style.display = 'none';
+      window.runBeltCalculator();
+    }
+  };
 
   window.setInterchangePreset = function (code) {
     const input = document.getElementById('interchangeInput');
     if (input) {
       input.value = code;
+      window.switchCalcTab('interchange');
       window.runBearingInterchange();
     }
   };
@@ -330,63 +370,91 @@
     if (!raw) {
       resultBox.innerHTML = `
         <div class="calc-result-heading">Equivalent Part In Stock</div>
-        <div class="calc-result-value" style="font-size: 1.2rem; color: var(--text-muted);">Type a bearing part number to see cross-reference</div>
+        <div class="calc-result-value" style="font-size: 1.2rem; color: var(--text-muted);">Type a bearing part number or select a fast-lookup preset above</div>
       `;
       return;
     }
 
-    // Extract core numbers (e.g. "6309", "22218", "6205")
     const match = INTERCHANGE_DATABASE.find(item => raw.includes(item.baseCode)) || {
       baseCode: raw,
-      dims: "Standard ISO Dimensions",
-      skf: `SKF ${raw}`,
-      nbc: `NBC ${raw}`,
-      urb: `URB ${raw}`,
-      ntn: `NTN ${raw}`,
-      fag: `FAG ${raw}`,
-      nsk: `NSK ${raw}`,
-      koyo: `KOYO ${raw}`,
+      dims: "Standard ISO Metric Dimensions",
+      skf: `SKF ${raw} (Sweden 🇸🇪)`,
+      nbc: `NBC ${raw} (India 🇮🇳)`,
+      urb: `URB ${raw} (Romania 🇷🇴)`,
+      ntn: `NTN ${raw} (Japan 🇯🇵)`,
+      fag: `FAG ${raw} (Germany 🇩🇪)`,
+      nsk: `NSK ${raw} (Japan 🇯🇵)`,
+      koyo: `KOYO ${raw} (Japan 🇯🇵)`,
+      cr: "Standard ISO Rating",
+      cor: "Standard ISO Rating",
       app: "General Industrial Mill & Transmission Equipment in Nepal",
-      clearance: "C3 / Normal",
-      stockStatus: "Verified Stock in Siddharthanagar Hub"
+      clearance: "C3 / Normal Radial Internal",
+      speedLimit: "Standard Industrial Rating",
+      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
     };
 
     resultBox.innerHTML = `
-      <div class="calc-result-heading">Cross-Reference Match for: <span style="color: #fff;">${raw}</span></div>
-      <div class="calc-result-value" style="color: var(--orange-electric); font-size: 1.4rem;">
-        SKF ${match.skf} | NBC ${match.nbc} | URB ${match.urb}
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+        <div class="calc-result-heading" style="margin-bottom: 0;">Cross-Reference Match For: <strong style="color: #FFFFFF; font-size: 0.95rem;">${raw}</strong></div>
+        <span style="background: rgba(16, 185, 129, 0.15); color: #34D399; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: var(--radius-pill); border: 1px solid rgba(16, 185, 129, 0.3);">
+          <i class="fa-solid fa-circle-check"></i> ${match.stockStatus}
+        </span>
       </div>
-      <div class="calc-result-memo" style="margin-top: 0.6rem;">
-        • Dimensions ($d \\times D \\times B$): <strong>${match.dims}</strong><br />
-        • Recommended Clearance: <strong>${match.clearance}</strong><br />
-        • Common Machine Application: <strong>${match.app}</strong><br />
-        • Warehouse Availability: <strong style="color: #34D399;">${match.stockStatus}</strong>
+
+      <div class="calc-result-value" style="color: var(--orange-electric); font-size: 1.35rem; line-height: 1.3; margin-bottom: 0.65rem;">
+        SKF ${match.skf} <br class="mobile-only" />| NBC ${match.nbc} | URB ${match.urb}
       </div>
-      <table class="interchange-table-compact">
-        <tr style="background: rgba(255,255,255,0.04); font-weight: bold; color: #fff;">
-          <td>Input / Brand</td>
-          <td>Direct In-Stock Equivalent</td>
-          <td>Action</td>
+
+      <!-- Tech Specs Badges Grid -->
+      <div class="interchange-spec-grid">
+        <div class="interchange-spec-tile">
+          <span class="spec-tile-label">Dimensions ($d \\times D \\times B$)</span>
+          <span class="spec-tile-value">${match.dims}</span>
+        </div>
+        <div class="interchange-spec-tile">
+          <span class="spec-tile-label">Internal Clearance</span>
+          <span class="spec-tile-value" style="color: var(--cyan-accent);">${match.clearance}</span>
+        </div>
+        <div class="interchange-spec-tile">
+          <span class="spec-tile-label">Dynamic Load ($C_r$)</span>
+          <span class="spec-tile-value">${match.cr}</span>
+        </div>
+        <div class="interchange-spec-tile">
+          <span class="spec-tile-label">Static Load ($C_{0r}$)</span>
+          <span class="spec-tile-value">${match.cor}</span>
+        </div>
+      </div>
+
+      <p style="font-size: 0.825rem; color: #E2E8F0; margin: 0.75rem 0; line-height: 1.45;">
+        ⚙️ <strong>Primary Nepal Industry Use:</strong> ${match.app}
+      </p>
+
+      <!-- Multi-Brand Equivalent Matrix Table -->
+      <table class="interchange-table-compact" style="margin-top: 0.75rem;">
+        <tr style="background: rgba(255,255,255,0.06); font-weight: bold; color: #FFFFFF;">
+          <td>Brand</td>
+          <td>Verified Direct Replacement Code</td>
+          <td style="text-align: right;">Action</td>
         </tr>
         <tr>
-          <td>SKF</td>
+          <td><strong style="color: #38BDF8;">SKF</strong> (Sweden 🇸🇪)</td>
           <td><strong>${match.skf}</strong></td>
-          <td><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & rate for ' + match.skf)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;"><i class="fa-brands fa-whatsapp"></i> Quote</a></td>
+          <td style="text-align: right;"><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & wholesale price for SKF ' + match.skf)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.725rem; padding: 0.3rem 0.65rem;"><i class="fa-brands fa-whatsapp"></i> Get Quote</a></td>
         </tr>
         <tr>
-          <td>NBC</td>
+          <td><strong style="color: #FFAE73;">NBC</strong> (India 🇮🇳)</td>
           <td><strong>${match.nbc}</strong></td>
-          <td><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & rate for ' + match.nbc)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;"><i class="fa-brands fa-whatsapp"></i> Quote</a></td>
+          <td style="text-align: right;"><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & wholesale price for NBC ' + match.nbc)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.725rem; padding: 0.3rem 0.65rem;"><i class="fa-brands fa-whatsapp"></i> Get Quote</a></td>
         </tr>
         <tr>
-          <td>URB</td>
+          <td><strong style="color: #34D399;">URB</strong> (Romania 🇷🇴)</td>
           <td><strong>${match.urb}</strong></td>
-          <td><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & rate for ' + match.urb)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;"><i class="fa-brands fa-whatsapp"></i> Quote</a></td>
+          <td style="text-align: right;"><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & wholesale price for URB ' + match.urb)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.725rem; padding: 0.3rem 0.65rem;"><i class="fa-brands fa-whatsapp"></i> Get Quote</a></td>
         </tr>
         <tr>
-          <td>NTN / FAG / NSK</td>
-          <td><strong>${match.ntn}</strong></td>
-          <td><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & rate for ' + match.ntn)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;"><i class="fa-brands fa-whatsapp"></i> Quote</a></td>
+          <td><strong>NTN / FAG / NSK</strong></td>
+          <td><strong>${match.ntn}</strong> / <strong>${match.fag}</strong></td>
+          <td style="text-align: right;"><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & wholesale price for ' + match.ntn)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.725rem; padding: 0.3rem 0.65rem;"><i class="fa-brands fa-whatsapp"></i> Get Quote</a></td>
         </tr>
       </table>
     `;
@@ -398,10 +466,13 @@
     const d2 = parseFloat(document.getElementById('calcPulleyD2')?.value) || 12;
     const c = parseFloat(document.getElementById('calcCenterDist')?.value) || 24;
 
+    // Update MM Hints
+    const d1Mm = document.getElementById('d1MmHint');
+    const d2Mm = document.getElementById('d2MmHint');
     const mmValSpan = document.getElementById('centerDistMmVal');
-    if (mmValSpan) {
-      mmValSpan.textContent = `≈ ${(c * 25.4).toFixed(1)} mm`;
-    }
+    if (d1Mm) d1Mm.textContent = `≈ ${(d1 * 25.4).toFixed(1)} mm`;
+    if (d2Mm) d2Mm.textContent = `≈ ${(d2 * 25.4).toFixed(1)} mm`;
+    if (mmValSpan) mmValSpan.textContent = `≈ ${(c * 25.4).toFixed(1)} mm`;
 
     // Standard Mechanical Engineering Formula:
     // L = 2*C + (pi/2)*(D1 + D2) + ((D2 - D1)^2)/(4*C)
@@ -417,16 +488,44 @@
 
     const beltCode = `V-Belt ${section}-${approxNumber}`;
 
+    // Update SVG Pulley Visuals
+    const svgD1 = document.getElementById('svgPulleyD1');
+    const svgD2 = document.getElementById('svgPulleyD2');
+    const svgD1Label = document.getElementById('svgD1Label');
+    const svgD2Label = document.getElementById('svgD2Label');
+    const svgCenterText = document.getElementById('svgCenterDistText');
+    const svgBeltPath = document.getElementById('svgBeltPath');
+
+    if (svgD1 && svgD2) {
+      const r1 = Math.min(50, Math.max(18, d1 * 4.5));
+      const r2 = Math.min(65, Math.max(22, d2 * 4.5));
+      svgD1.setAttribute('r', r1);
+      svgD2.setAttribute('r', r2);
+      if (svgD1Label) svgD1Label.textContent = `D1: ${d1}"`;
+      if (svgD2Label) svgD2Label.textContent = `D2: ${d2}"`;
+      if (svgCenterText) svgCenterText.textContent = `Center Distance C = ${c.toFixed(1)}" (${(c * 25.4).toFixed(0)} mm)`;
+
+      if (svgBeltPath) {
+        // Dynamically compute tangent connection points for animated belt
+        const yTop1 = 80 - r1;
+        const yBot1 = 80 + r1;
+        const yTop2 = 80 - r2;
+        const yBot2 = 80 + r2;
+        svgBeltPath.setAttribute('d', `M120 ${yTop1} L360 ${yTop2} A${r2} ${r2} 0 0 1 360 ${yBot2} L120 ${yBot1} A${r1} ${r1} 0 0 1 120 ${yTop1} Z`);
+      }
+    }
+
     const outputCode = document.getElementById('calcBeltOutputCode');
     const outputDetails = document.getElementById('calcBeltOutputDetails');
     const waCta = document.getElementById('calcBeltWhatsAppCta');
 
-    if (outputCode) outputCode.textContent = `${beltCode} (Pitch: ${pitchLengthInches.toFixed(1)}")`;
+    if (outputCode) outputCode.textContent = `${beltCode} (Pitch Length: ${pitchLengthInches.toFixed(1)}")`;
     if (outputDetails) {
       outputDetails.innerHTML = `
         • Calculated Pitch Length: <strong>${pitchLengthInches.toFixed(2)} inches (${pitchLengthMm.toFixed(0)} mm)</strong><br />
-        • Speed Ratio: <strong>${speedRatio} : 1</strong> (${d1 > d2 ? 'Speed Increaser' : 'Speed Reducer'})<br />
-        • Recommended Section: <strong>${section}-Section (${section === 'A' ? '13×8' : section === 'B' ? '17×11' : '22×14'} mm)</strong>
+        • Speed Reduction Ratio: <strong>${speedRatio} : 1</strong> (${d1 > d2 ? 'Speed Increaser' : 'Speed Reducer'})<br />
+        • Recommended Section: <strong>${section}-Section (${section === 'A' ? '13×8' : section === 'B' ? '17×11' : '22×14'} mm)</strong><br />
+        • Standard Motor RPM: <strong>1440 RPM $\\rightarrow$ Driven Shaft: ${(1440 / speedRatio).toFixed(0)} RPM</strong>
       `;
     }
     if (waCta) {
