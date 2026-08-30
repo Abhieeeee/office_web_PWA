@@ -1,10 +1,13 @@
-const CACHE_NAME = 'shree-anjani-v2';
+const CACHE_NAME = 'shree-anjani-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './delivery.html',
   './styles.css',
   './app.js',
   './manifest.json',
+  './assets/logo.png',
+  './assets/logo.jpg',
   './assets/bearings-belts.svg',
   './assets/crusher-machine.svg',
   './assets/rice-mill.svg',

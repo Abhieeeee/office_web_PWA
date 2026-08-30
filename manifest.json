@@ -1,22 +1,24 @@
 {
-  "name": "Shree Anjani Belt & Bearing - Wholesale Portal",
+  "name": "Shree Anjani Belt & Bearing Store - Nepal Wholesale",
   "short_name": "Shree Anjani",
   "description": "Nepal's Trusted Wholesale Supplier for Genuine Bearings, Conveyor Belts & Industrial Spares in Siddharthanagar.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#08121E",
-  "theme_color": "#0B192C",
+  "background_color": "#050B14",
+  "theme_color": "#050B14",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230B192C' stroke='%23FF6500' stroke-width='4'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black' font-size='42' fill='%23FF6500'>SA</text></svg>",
-      "sizes": "192x192",
-      "type": "image/svg+xml"
+      "src": "assets/logo.jpg",
+      "sizes": "192x192 512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230B192C' stroke='%23FF6500' stroke-width='4'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black' font-size='42' fill='%23FF6500'>SA</text></svg>",
+      "src": "assets/logo.png",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

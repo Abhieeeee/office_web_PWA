@@ -3,138 +3,690 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shree Anjani — Internal Management &amp; Inventory System (WIP)</title>
+  <title>Shree Anjani — Internal Store Operations &amp; ERP Portal</title>
+  
+  <!-- Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Mukta:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <link rel="icon" type="image/jpeg" href="../assets/logo.jpg" />
   <link rel="stylesheet" href="internal.css" />
 </head>
 <body>
 
-  <!-- Internal Navigation Header -->
+  <!-- ================= 1. INTERNAL HEADER ================= -->
   <header class="internal-header">
-    <div class="header-left">
-      <div class="logo-box"><i class="fa-solid fa-server"></i></div>
-      <div>
-        <h1 class="portal-title">SHREE ANJANI <span class="tag-internal">INTERNAL PORTAL</span></h1>
-        <p class="portal-sub">Warehouse Stock • Dealer Billing • Workshop Dispatch (Siddharthanagar)</p>
+    <div class="header-brand-wrap">
+      <div class="logo-orb" style="background: transparent; padding: 0; overflow: hidden; border: 2px solid var(--accent-orange); border-radius: 50%; width: 48px; height: 48px;">
+        <img src="../assets/logo.png" alt="Shree Anjani Logo" style="width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+      <div class="header-titles">
+        <h1>SHREE ANJANI <span class="badge-erp">INTERNAL ERP</span></h1>
+        <p class="header-subtitle">Warehouse Inventory • Proforma VAT Billing • Transport Dispatch (Siddharthanagar)</p>
       </div>
     </div>
-    <div class="header-right">
-      <span class="status-indicator"><i class="fa-solid fa-circle"></i> Development Mode</span>
-      <a href="../index.html" class="btn-visit-public"><i class="fa-solid fa-arrow-left"></i> View Public Website</a>
+
+    <div class="header-right-tools">
+      <span class="time-badge" id="internalNepalClock">
+        <span class="pulse-dot"></span> <span id="clockDisplay">Nepal Time</span>
+      </span>
+      <a href="../index.html" class="btn-public-store">
+        <i class="fa-solid fa-arrow-left"></i> Customer Storefront
+      </a>
     </div>
   </header>
 
-  <!-- Internal Main Dashboard Container -->
-  <main class="internal-container">
-    
-    <!-- Live Agent Swarm Banner -->
-    <div class="wip-banner" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.08);">
-      <div class="wip-icon"><i class="fa-solid fa-microchip" style="color: #38bdf8;"></i></div>
-      <div style="flex: 1;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-          <div>
-            <h3 style="color: #38bdf8;">⚡ Multi-Agent Swarm Operations Console</h3>
-            <p>6 Autonomous Subagents active: Quality Gatekeeper (≥8.0), Code Auditor, UI/UX Specialist, Nepal Market Researcher, UX Persona Auditor (≥9.5), and Master Planner.</p>
-          </div>
-          <a href="agent-manager.html" class="btn-visit-public" style="background: #2563eb; color: #fff; border: none; padding: 10px 18px; font-weight: 700; text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 8px;">
-            <i class="fa-solid fa-gauge-high"></i> Open Agent Manager Dashboard ↗
-          </a>
-        </div>
-      </div>
-    </div>
+  <!-- ================= 2. TAB NAVIGATION ================= -->
+  <nav class="internal-nav-bar" aria-label="Internal Modules Navigation">
+    <ul class="nav-tabs-list">
+      <li>
+        <button class="tab-btn active" data-tab="tab-overview" onclick="window.switchInternalTab('tab-overview')">
+          <i class="fa-solid fa-chart-pie"></i> Overview
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-inventory" onclick="window.switchInternalTab('tab-inventory')">
+          <i class="fa-solid fa-boxes-stacked"></i> Inventory &amp; Bin Locator
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-invoicing" onclick="window.switchInternalTab('tab-invoicing')">
+          <i class="fa-solid fa-file-invoice-dollar"></i> B2B Invoicing &amp; VAT
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-transport" onclick="window.switchInternalTab('tab-transport')">
+          <i class="fa-solid fa-truck-fast"></i> Transport Dispatch Log
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-workshop" onclick="window.switchInternalTab('tab-workshop')">
+          <i class="fa-solid fa-wrench"></i> Workshop Job Cards
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-settings" onclick="window.switchInternalTab('tab-settings')">
+          <i class="fa-solid fa-database"></i> Backup &amp; Data
+        </button>
+      </li>
+    </ul>
+  </nav>
 
-    <!-- Quick Stats Cards Placeholder -->
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon bg-blue"><i class="fa-solid fa-boxes-stacked"></i></div>
-        <div class="stat-data">
-          <span class="stat-label">Total SKUs in Catalog</span>
-          <span class="stat-val">10,480</span>
-        </div>
-      </div>
+  <!-- ================= 3. MAIN DASHBOARD PANELS ================= -->
+  <main class="internal-main-content">
 
-      <div class="stat-card">
-        <div class="stat-icon bg-green"><i class="fa-solid fa-circle-check"></i></div>
-        <div class="stat-data">
-          <span class="stat-label">Active Wholesale Dealers</span>
-          <span class="stat-val">142</span>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-icon bg-orange"><i class="fa-solid fa-truck-ramp-box"></i></div>
-        <div class="stat-data">
-          <span class="stat-label">Pending Dispatches</span>
-          <span class="stat-val">8</span>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-icon bg-purple"><i class="fa-solid fa-wrench"></i></div>
-        <div class="stat-data">
-          <span class="stat-label">Workshop Lathe Jobs</span>
-          <span class="stat-val">3</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Planned Internal System Modules -->
-    <div class="modules-section">
-      <h2 class="section-title"><i class="fa-solid fa-list-check"></i> Planned Internal Modules &amp; Roadmaps</h2>
+    <!-- ================= TAB 1: OVERVIEW ================= -->
+    <section class="tab-panel active" id="tab-overview">
       
-      <div class="modules-grid">
+      <!-- Top Summary Metrics Cards -->
+      <div class="stats-cards-grid">
+        <div class="stat-box">
+          <div class="stat-icon-wrapper bg-blue"><i class="fa-solid fa-boxes-stacked"></i></div>
+          <div class="stat-content">
+            <span class="stat-title">Inventory SKUs in Stock</span>
+            <span class="stat-number" id="overviewSkuCount">0</span>
+            <span class="stat-memo" id="overviewLowStockCount">0 items low stock</span>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-icon-wrapper bg-emerald"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+          <div class="stat-content">
+            <span class="stat-title">Total Invoices Logged</span>
+            <span class="stat-number" id="overviewInvoiceCount">0</span>
+            <span class="stat-memo" id="overviewRevenueVal">NPR 0.00 total</span>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-icon-wrapper bg-amber"><i class="fa-solid fa-truck-ramp-box"></i></div>
+          <div class="stat-content">
+            <span class="stat-title">Active Dispatches</span>
+            <span class="stat-number" id="overviewDispatchCount">0</span>
+            <span class="stat-memo">Regional transport logistics</span>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-icon-wrapper bg-purple"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <div class="stat-content">
+            <span class="stat-title">Active Lathe &amp; Fitting Jobs</span>
+            <span class="stat-number" id="overviewWorkshopCount">0</span>
+            <span class="stat-memo">Siddharthanagar workshop</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Shortcuts -->
+      <div class="section-panel-card hide-on-print">
+        <div class="panel-header-flex">
+          <h2 class="panel-title"><i class="fa-solid fa-bolt text-orange"></i> Quick Operations Shortcuts</h2>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.85rem;">
+          <button class="btn-primary-action" onclick="window.openStockModal()">
+            <i class="fa-solid fa-plus"></i> Add New Stock SKU
+          </button>
+          <button class="btn-secondary-action" onclick="window.switchInternalTab('tab-invoicing')">
+            <i class="fa-solid fa-file-invoice"></i> Create Proforma Invoice
+          </button>
+          <button class="btn-secondary-action" onclick="window.switchInternalTab('tab-transport')">
+            <i class="fa-solid fa-truck-arrow-right"></i> Log New Transport Bilty
+          </button>
+          <button class="btn-secondary-action" onclick="window.switchInternalTab('tab-workshop')">
+            <i class="fa-solid fa-wrench"></i> New Lathe / Fitting Job Card
+          </button>
+        </div>
+      </div>
+
+      <!-- Recent Invoices Summary Table -->
+      <div class="section-panel-card">
+        <div class="panel-header-flex">
+          <h2 class="panel-title"><i class="fa-solid fa-receipt text-orange"></i> Recent Invoices &amp; Quotations</h2>
+          <button class="btn-secondary-action" onclick="window.switchInternalTab('tab-invoicing')">View All Invoices ➔</button>
+        </div>
+        <div class="table-responsive-container">
+          <table class="data-table" id="recentInvoicesTable">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Date</th>
+                <th>Client / Mill Name</th>
+                <th>Items Count</th>
+                <th>Subtotal (NPR)</th>
+                <th>13% VAT</th>
+                <th>Grand Total</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="recentInvoicesTbody">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 2: INVENTORY & BIN LOCATOR ================= -->
+    <section class="tab-panel" id="tab-inventory">
+      
+      <div class="section-panel-card">
+        <div class="panel-header-flex">
+          <h2 class="panel-title"><i class="fa-solid fa-warehouse text-orange"></i> Warehouse Inventory &amp; Shelf / Bin Locator</h2>
+          
+          <div class="panel-controls">
+            <input type="text" id="inventorySearchInput" class="search-input-control" placeholder="Search Part No. (e.g. 6205, B-65, UCP)..." oninput="window.renderInventoryTable()" />
+            <select id="inventoryCategoryFilter" class="select-filter-control" onchange="window.renderInventoryTable()">
+              <option value="All">All Categories</option>
+              <option value="Bearings">Bearings</option>
+              <option value="Belts & Pulleys">Belts &amp; Pulleys</option>
+              <option value="Machinery Spares">Machinery Spares</option>
+              <option value="Workshop Services">Workshop Services</option>
+            </select>
+            <select id="inventoryBrandFilter" class="select-filter-control" onchange="window.renderInventoryTable()">
+              <option value="All">All Brands</option>
+              <option value="SKF">SKF</option>
+              <option value="NBC">NBC</option>
+              <option value="URB">URB</option>
+              <option value="NTN">NTN</option>
+              <option value="Other">Other Brands</option>
+            </select>
+            <button class="btn-primary-action" onclick="window.openStockModal()">
+              <i class="fa-solid fa-plus"></i> Add Item
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive-container">
+          <table class="data-table" id="inventoryTable">
+            <thead>
+              <tr>
+                <th>Part / Bearing No.</th>
+                <th>Category</th>
+                <th>Brand</th>
+                <th>Warehouse Rack / Bin</th>
+                <th>Stock Qty</th>
+                <th>Wholesale Rate (NPR)</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTbody">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 3: B2B INVOICING & VAT ================= -->
+    <section class="tab-panel" id="tab-invoicing">
+      
+      <!-- New Invoice Generator Box -->
+      <div class="section-panel-card hide-on-print">
+        <div class="panel-header-flex">
+          <h2 class="panel-title"><i class="fa-solid fa-file-circle-plus text-orange"></i> Create B2B Wholesale Proforma / Tax Invoice</h2>
+          <button class="btn-secondary-action" onclick="window.resetInvoiceForm()"><i class="fa-solid fa-rotate-left"></i> Reset Form</button>
+        </div>
+
+        <form id="invoiceGeneratorForm" onsubmit="event.preventDefault(); window.generateAndSaveInvoice();">
+          <div class="form-3col">
+            <div class="input-field-group">
+              <label for="invCustomerName">Client / Mill / Business Name *</label>
+              <input type="text" id="invCustomerName" placeholder="e.g. Lumbini Agro & Rice Mills Ltd." required />
+            </div>
+            <div class="input-field-group">
+              <label for="invCustomerPan">Client PAN / VAT No.</label>
+              <input type="text" id="invCustomerPan" placeholder="e.g. 601234567" />
+            </div>
+            <div class="input-field-group">
+              <label for="invCustomerPhone">Contact Phone / WhatsApp *</label>
+              <input type="tel" id="invCustomerPhone" placeholder="e.g. 98XXXXXXXX" required />
+            </div>
+          </div>
+
+          <div class="form-3col">
+            <div class="input-field-group">
+              <label for="invCustomerLocation">Delivery City / District *</label>
+              <input type="text" id="invCustomerLocation" placeholder="e.g. Siddharthanagar, Pokhara, Butwal" required />
+            </div>
+            <div class="input-field-group">
+              <label for="invDate">Invoice Date</label>
+              <input type="date" id="invDate" />
+            </div>
+            <div class="input-field-group">
+              <label for="invDiscountPct">Special Discount Rate (%)</label>
+              <input type="number" id="invDiscountPct" value="0" min="0" max="50" step="0.5" oninput="window.recalculateInvoiceTotals()" />
+            </div>
+          </div>
+
+          <!-- Dynamic Line Items Container -->
+          <div style="margin: 1.5rem 0 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+              <h3 style="font-family: var(--font-display); font-size: 1rem; color: #fff;">Itemized Bill of Materials</h3>
+              <button type="button" class="btn-secondary-action" onclick="window.addInvoiceItemRow()">
+                <i class="fa-solid fa-plus"></i> Add Item Line
+              </button>
+            </div>
+
+            <div id="invoiceItemsRowsContainer">
+              <!-- Item rows injected via JS -->
+            </div>
+          </div>
+
+          <!-- Invoice Bottom Action Buttons -->
+          <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 1.5rem;">
+            <button type="submit" class="btn-primary-action">
+              <i class="fa-solid fa-floppy-disk"></i> Save &amp; Generate Invoice
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Printable Invoice Paper View (Appears upon generation or viewing) -->
+      <div id="invoicePrintableView" class="invoice-bill-container" style="display: none;">
         
-        <!-- Module 1 -->
-        <div class="module-card">
-          <div class="module-head">
-            <i class="fa-solid fa-barcode"></i>
-            <h4>1. Inventory &amp; Bin Location Tracker</h4>
+        <div class="invoice-bill-header">
+          <div class="invoice-brand" style="display: flex; align-items: center; gap: 1.15rem;">
+            <img src="../assets/logo.png" alt="Shree Anjani Logo" style="width: 68px; height: 68px; border-radius: 50%; border: 2px solid #D94400; object-fit: cover;" />
+            <div>
+              <h2>SHREE ANJANI BELT AND BEARING STORE</h2>
+              <p><strong>Formerly Shree Balaji Belt Center</strong> • ESTB. 2026</p>
+              <p>Main Industrial Corridor, Siddharthanagar (Bhairahawa), Nepal</p>
+              <p><strong>Phone:</strong> 980-4462602 / 984-7301185 • <strong>Plus Code:</strong> GF83+75V</p>
+            </div>
           </div>
-          <p>Real-time tracking of SKF, NBC, URB &amp; NTN bearings by shelf/rack in Siddharthanagar warehouse with low-stock alerts.</p>
-          <span class="badge-pending">Planned</span>
+          <div class="invoice-meta-right">
+            <div class="invoice-tag-title">PROFORMA INVOICE</div>
+            <p><strong>Invoice No:</strong> <span id="printInvNumber" class="font-mono">SA-2026-001</span></p>
+            <p><strong>Date:</strong> <span id="printInvDate">2026-08-29</span></p>
+          </div>
         </div>
 
-        <!-- Module 2 -->
-        <div class="module-card">
-          <div class="module-head">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-            <h4>2. B2B Proforma &amp; VAT Invoicing</h4>
+        <div class="invoice-customer-details">
+          <div>
+            <p><strong>Billed To:</strong> <span id="printClientName">Lumbini Rice Mill</span></p>
+            <p><strong>PAN / VAT No:</strong> <span id="printClientPan">N/A</span></p>
           </div>
-          <p>Generate instant Nepali VAT / PAN compliant wholesale invoices and transport challans for mill clients.</p>
-          <span class="badge-pending">Planned</span>
+          <div>
+            <p><strong>Contact Phone:</strong> <span id="printClientPhone">980-0000000</span></p>
+            <p><strong>Delivery Destination:</strong> <span id="printClientCity">Siddharthanagar, Nepal</span></p>
+          </div>
         </div>
 
-        <!-- Module 3 -->
-        <div class="module-card">
-          <div class="module-head">
-            <i class="fa-solid fa-route"></i>
-            <h4>3. Regional Transport &amp; Freight Logger</h4>
+        <table class="invoice-table-printable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Item Description / Part No.</th>
+              <th>Brand</th>
+              <th>Qty</th>
+              <th>Rate (NPR)</th>
+              <th style="text-align: right;">Amount (NPR)</th>
+            </tr>
+          </thead>
+          <tbody id="printInvTbody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+
+        <table class="invoice-totals-table">
+          <tr>
+            <td><strong>Subtotal:</strong></td>
+            <td style="text-align: right;" id="printSubtotal">NPR 0.00</td>
+          </tr>
+          <tr>
+            <td><strong>Discount:</strong></td>
+            <td style="text-align: right;" id="printDiscount">NPR 0.00</td>
+          </tr>
+          <tr>
+            <td><strong>13% Nepal VAT:</strong></td>
+            <td style="text-align: right;" id="printVat">NPR 0.00</td>
+          </tr>
+          <tr class="total-grand-row">
+            <td><strong>Grand Total:</strong></td>
+            <td style="text-align: right;" id="printGrandTotal">NPR 0.00</td>
+          </tr>
+        </table>
+
+        <div class="invoice-footer-signatures">
+          <div>
+            <p>Prepared By: <strong>Sales Desk (Shree Anjani)</strong></p>
+            <p>100% Genuine Industrial Spares Guarantee</p>
           </div>
-          <p>Track consignments sent via local transport services to Butwal, Pokhara, Kathmandu, Birgunj, and Nepalgunj.</p>
-          <span class="badge-pending">Planned</span>
+          <div style="text-align: right;">
+            <p>_______________________________</p>
+            <p>Authorized Signature &amp; Stamp</p>
+          </div>
         </div>
 
-        <!-- Module 4 -->
-        <div class="module-card">
-          <div class="module-head">
-            <i class="fa-solid fa-clipboard-user"></i>
-            <h4>4. Workshop Job Card Manager</h4>
-          </div>
-          <p>Manage lathe machining, pulley boring, keyway cut orders, and fitting schedules with mechanic notes.</p>
-          <span class="badge-pending">Planned</span>
+        <div class="hide-on-print" style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 1.5rem; border-top: 1px solid #E2E8F0; padding-top: 1.25rem;">
+          <button class="btn-primary-action" onclick="window.print()"><i class="fa-solid fa-print"></i> Print / Save PDF</button>
+          <button class="btn-secondary-action" onclick="window.shareCurrentInvoiceWhatsApp()"><i class="fa-brands fa-whatsapp text-emerald"></i> WhatsApp Invoice to Client</button>
         </div>
 
       </div>
-    </div>
+
+    </section>
+
+    <!-- ================= TAB 4: TRANSPORT DISPATCH LOG ================= -->
+    <section class="tab-panel" id="tab-transport">
+      
+      <div class="section-panel-card">
+        <div class="panel-header-flex">
+          <h2 class="panel-title"><i class="fa-solid fa-truck-fast text-orange"></i> Regional Transport Logistics &amp; Bilty Tracker</h2>
+          <button class="btn-primary-action" onclick="window.openTransportModal()"><i class="fa-solid fa-plus"></i> Log Dispatch</button>
+        </div>
+
+        <div class="table-responsive-container">
+          <table class="data-table" id="transportTable">
+            <thead>
+              <tr>
+                <th>Bilty / Receipt #</th>
+                <th>Dispatch Date</th>
+                <th>Transport Service</th>
+                <th>Destination District</th>
+                <th>Client Name</th>
+                <th>Packages / Cartons</th>
+                <th>Payment Mode</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="transportTbody">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 5: WORKSHOP JOB CARDS ================= -->
+    <section class="tab-panel" id="tab-workshop">
+      
+      <div class="section-panel-card">
+        <div class="panel-header-flex">
+          <h2 class="panel-title"><i class="fa-solid fa-wrench text-orange"></i> Machine Workshop Job Card Manager</h2>
+          <button class="btn-primary-action" onclick="window.openWorkshopModal()"><i class="fa-solid fa-plus"></i> New Job Card</button>
+        </div>
+
+        <div class="table-responsive-container">
+          <table class="data-table" id="workshopTable">
+            <thead>
+              <tr>
+                <th>Job Card #</th>
+                <th>Received Date</th>
+                <th>Job Type</th>
+                <th>Client / Mill Name</th>
+                <th>Specifications / Notes</th>
+                <th>Charges (NPR)</th>
+                <th>Job Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="workshopTbody">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 6: BACKUP & DATA ================= -->
+    <section class="tab-panel" id="tab-settings">
+      
+      <div class="section-panel-card">
+        <div class="panel-header-flex">
+          <h2 class="panel-title"><i class="fa-solid fa-database text-orange"></i> Data Backup, JSON Export &amp; System Maintenance</h2>
+        </div>
+        
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">
+          All stock counts, B2B invoices, transport logs, and workshop job cards are securely stored in your browser's persistent storage. You can create JSON backups or restore data anytime.
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+          <button class="btn-primary-action" onclick="window.exportAllDataJSON()">
+            <i class="fa-solid fa-download"></i> Export Full Backup (JSON)
+          </button>
+          
+          <label class="btn-secondary-action" style="cursor: pointer;">
+            <i class="fa-solid fa-upload"></i> Restore Backup (JSON)
+            <input type="file" id="importJsonInput" accept=".json" style="display: none;" onchange="window.importDataJSON(event)" />
+          </label>
+
+          <button class="btn-secondary-action" style="border-color: #F87171; color: #F87171;" onclick="window.resetToDemoSeedData()">
+            <i class="fa-solid fa-rotate"></i> Reset to Factory Seed Data
+          </button>
+        </div>
+
+        <!-- Bulk CSV Inventory Uploader Component -->
+        <div style="background: rgba(10, 19, 32, 0.8); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.1rem; color: #FFFFFF;">
+              <i class="fa-solid fa-file-csv text-orange"></i> Bulk Warehouse Inventory Uploader (CSV / Excel)
+            </h3>
+            <button type="button" class="btn-secondary-action" onclick="window.downloadSampleInventoryCSV()">
+              <i class="fa-solid fa-download"></i> Download Sample CSV Template
+            </button>
+          </div>
+          <p style="font-size: 0.825rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            Upload a supplier CSV spreadsheet to batch import thousands of bearing, belt, and spare part SKUs directly into your warehouse locator.
+          </p>
+
+          <div style="border: 2px dashed var(--border-subtle); border-radius: var(--radius-md); padding: 1.75rem; text-align: center; background: rgba(5, 11, 20, 0.5);">
+            <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 0.75rem;"></i>
+            <p style="font-size: 0.9rem; color: #FFFFFF; font-weight: 600; margin-bottom: 0.25rem;">Select or Drag &amp; Drop CSV File</p>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">Columns: PartNo, Brand, Category, RackLocation, Quantity, WholesaleRate, LowStockAlert</p>
+            <input type="file" id="bulkCsvFileInput" accept=".csv" style="display: none;" onchange="window.handleBulkCSVUpload(event)" />
+            <button type="button" class="btn-primary-action" onclick="document.getElementById('bulkCsvFileInput').click()">
+              <i class="fa-solid fa-folder-open"></i> Browse CSV Spreadsheet
+            </button>
+          </div>
+
+          <div id="csvPreviewContainer" style="display: none; margin-top: 1.5rem;">
+            <h4 style="font-size: 0.95rem; color: #FFFFFF; margin-bottom: 0.5rem;">Parsed Records Preview:</h4>
+            <div class="table-responsive-container" style="max-height: 280px; overflow-y: auto;">
+              <table class="data-table" id="csvPreviewTable">
+                <thead>
+                  <tr>
+                    <th>Part No.</th>
+                    <th>Brand</th>
+                    <th>Category</th>
+                    <th>Rack / Bin</th>
+                    <th>Qty</th>
+                    <th>Rate (NPR)</th>
+                  </tr>
+                </thead>
+                <tbody id="csvPreviewTbody"></tbody>
+              </table>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 1rem;">
+              <button type="button" class="btn-secondary-action" onclick="document.getElementById('csvPreviewContainer').style.display='none'">Cancel</button>
+              <button type="button" class="btn-primary-action" onclick="window.commitBulkCSVImport()">
+                <i class="fa-solid fa-check"></i> Commit Batch Update to Warehouse
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
 
   </main>
 
-  <footer class="internal-footer">
-    <p>&copy; Shree Anjani Belt and Bearing • Internal Operations System</p>
-  </footer>
+  <!-- ================= MODALS ================= -->
+
+  <!-- Modal 1: Stock Item Add/Edit -->
+  <div class="modal-overlay" id="stockModal">
+    <div class="modal-content-box">
+      <button class="modal-close-icon" onclick="window.closeStockModal()">&times;</button>
+      <h3 style="font-family: var(--font-display); color: #fff; margin-bottom: 1.25rem;">Add / Edit Inventory Stock SKU</h3>
+      
+      <form id="stockForm" onsubmit="event.preventDefault(); window.saveStockItem();">
+        <input type="hidden" id="stockEditId" value="" />
+        
+        <div class="form-2col">
+          <div class="input-field-group">
+            <label for="stockPartNo">Part / Bearing No. *</label>
+            <input type="text" id="stockPartNo" placeholder="e.g. 6205-2RS, B-65, UCP 208" required />
+          </div>
+          <div class="input-field-group">
+            <label for="stockBrand">Brand *</label>
+            <select id="stockBrand" required>
+              <option value="SKF">SKF</option>
+              <option value="NBC">NBC</option>
+              <option value="URB">URB</option>
+              <option value="NTN">NTN</option>
+              <option value="ZKL">ZKL</option>
+              <option value="Fenner">Fenner</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-2col">
+          <div class="input-field-group">
+            <label for="stockCategory">Category *</label>
+            <select id="stockCategory" required>
+              <option value="Bearings">Bearings</option>
+              <option value="Belts & Pulleys">Belts &amp; Pulleys</option>
+              <option value="Machinery Spares">Machinery Spares</option>
+              <option value="Workshop Services">Workshop Services</option>
+            </select>
+          </div>
+          <div class="input-field-group">
+            <label for="stockRackLocation">Rack / Bin Location *</label>
+            <input type="text" id="stockRackLocation" placeholder="e.g. Rack A-04, Shelf 2" required />
+          </div>
+        </div>
+
+        <div class="form-2col">
+          <div class="input-field-group">
+            <label for="stockQuantity">Stock Quantity (Pcs/Units) *</label>
+            <input type="number" id="stockQuantity" min="0" value="10" required />
+          </div>
+          <div class="input-field-group">
+            <label for="stockWholesaleRate">Wholesale Rate (NPR) *</label>
+            <input type="number" id="stockWholesaleRate" min="0" step="10" value="500" required />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 1.5rem;">
+          <button type="button" class="btn-secondary-action" onclick="window.closeStockModal()">Cancel</button>
+          <button type="submit" class="btn-primary-action">Save to Inventory</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Transport Dispatch Log -->
+  <div class="modal-overlay" id="transportModal">
+    <div class="modal-content-box">
+      <button class="modal-close-icon" onclick="window.closeTransportModal()">&times;</button>
+      <h3 style="font-family: var(--font-display); color: #fff; margin-bottom: 1.25rem;">Log Regional Transport Dispatch</h3>
+      
+      <form id="transportForm" onsubmit="event.preventDefault(); window.saveTransportDispatch();">
+        <div class="form-2col">
+          <div class="input-field-group">
+            <label for="transBiltyNo">Bilty / Receipt No. *</label>
+            <input type="text" id="transBiltyNo" placeholder="e.g. LUM-8921" required />
+          </div>
+          <div class="input-field-group">
+            <label for="transService">Transport Service Name *</label>
+            <input type="text" id="transService" placeholder="e.g. Lumbini Transport Express" required />
+          </div>
+        </div>
+
+        <div class="form-2col">
+          <div class="input-field-group">
+            <label for="transDestination">Destination District / City *</label>
+            <input type="text" id="transDestination" placeholder="e.g. Pokhara, Kathmandu, Butwal" required />
+          </div>
+          <div class="input-field-group">
+            <label for="transClientName">Client Name *</label>
+            <input type="text" id="transClientName" placeholder="e.g. Himalayan Flour Mill" required />
+          </div>
+        </div>
+
+        <div class="form-2col">
+          <div class="input-field-group">
+            <label for="transPackages">Cartons / Bags Count</label>
+            <input type="text" id="transPackages" placeholder="e.g. 2 Cartons, 1 Bundle" required />
+          </div>
+          <div class="input-field-group">
+            <label for="transPaymentMode">Freight Payment Mode</label>
+            <select id="transPaymentMode">
+              <option value="To-Pay (Client Pays)">To-Pay (Client Pays)</option>
+              <option value="Paid (Prepaid)">Paid (Prepaid)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 1.5rem;">
+          <button type="button" class="btn-secondary-action" onclick="window.closeTransportModal()">Cancel</button>
+          <button type="submit" class="btn-primary-action">Save Dispatch</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: Workshop Job Card -->
+  <div class="modal-overlay" id="workshopModal">
+    <div class="modal-content-box">
+      <button class="modal-close-icon" onclick="window.closeWorkshopModal()">&times;</button>
+      <h3 style="font-family: var(--font-display); color: #fff; margin-bottom: 1.25rem;">Create Machine Workshop Job Card</h3>
+      
+      <form id="workshopForm" onsubmit="event.preventDefault(); window.saveWorkshopJob();">
+        <div class="form-2col">
+          <div class="input-field-group">
+            <label for="wsJobType">Job Type *</label>
+            <select id="wsJobType" required>
+              <option value="Lathe Turning / Bush Fabrication">Lathe Turning / Bush Fabrication</option>
+              <option value="Pulley Rebore & Keyway Cutting">Pulley Rebore &amp; Keyway Cutting</option>
+              <option value="Hydraulic Bearing Fitting & Removal">Hydraulic Bearing Fitting &amp; Removal</option>
+              <option value="Shaft Alignment & Sleeving">Shaft Alignment &amp; Sleeving</option>
+              <option value="Conveyor Belt Splicing">Conveyor Belt Splicing</option>
+            </select>
+          </div>
+          <div class="input-field-group">
+            <label for="wsClientName">Client / Mill Name *</label>
+            <input type="text" id="wsClientName" placeholder="e.g. Western Agro Crusher" required />
+          </div>
+        </div>
+
+        <div class="input-field-group" style="margin-bottom: 1rem;">
+          <label for="wsNotes">Dimensions / Specifications / Notes *</label>
+          <textarea id="wsNotes" rows="3" placeholder="e.g. 10-inch 3-groove B-section Pulley, bore from 35mm to 42mm with 10mm keyway" required></textarea>
+        </div>
+
+        <div class="form-2col">
+          <div class="input-field-group">
+            <label for="wsCharges">Estimated Charges (NPR) *</label>
+            <input type="number" id="wsCharges" min="0" step="50" value="1200" required />
+          </div>
+          <div class="input-field-group">
+            <label for="wsStatus">Initial Job Status</label>
+            <select id="wsStatus">
+              <option value="Received">Received</option>
+              <option value="In Machining">In Machining</option>
+              <option value="Quality Tested">Quality Tested</option>
+              <option value="Ready for Pickup">Ready for Pickup</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 1.5rem;">
+          <button type="button" class="btn-secondary-action" onclick="window.closeWorkshopModal()">Cancel</button>
+          <button type="submit" class="btn-primary-action">Create Job Card</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <script src="internal.js"></script>
 </body>

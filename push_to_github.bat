@@ -4,17 +4,12 @@ echo Pushing Shree Anjani B2B Portal to GitHub
 echo Repo: https://github.com/Abhieeeee/office_web_PWA.git
 echo ===================================================
 
-git init
-git remote remove origin 2>nul
-git remote add origin https://github.com/Abhieeeee/office_web_PWA.git
-git branch -M main
 git add .
-git commit -m "feat: complete public B2B wholesale website with PWA and internal system scaffold"
-git push -u origin main --force
+git commit -m "feat: complete industrial B2B portal, SEO corridors, engineering calculators, machine ledger, logo and ERP uploader"
+git push -u origin main
 
 echo.
 echo ===================================================
-echo Done! Pushed to GitHub.
-echo Enable GitHub Pages in your repo Settings -> Pages
+echo Done! Code pushed to GitHub repository.
+echo Live GitHub Pages URL: https://abhieeeee.github.io/office_web_PWA/
 echo ===================================================
-pause
