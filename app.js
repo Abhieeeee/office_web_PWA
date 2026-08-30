@@ -815,6 +815,188 @@
     showToast('Quote request dispatched to WhatsApp Sales Desk!');
   };
 
+  // ================= 10. NEPALI BILINGUAL VOICE SEARCH =================
+  window.startNepaliVoiceSearch = function () {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const btn = document.getElementById('nepaliVoiceBtn');
+    const textSpan = document.getElementById('voiceBtnText');
+
+    if (!SpeechRecognition) {
+      showToast('Voice search not supported on this browser. Try Chrome or Android.');
+      return;
+    }
+
+    try {
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'ne-NP';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      if (btn) {
+        btn.style.background = 'rgba(239, 68, 68, 0.25)';
+        btn.style.borderColor = '#EF4444';
+      }
+      if (textSpan) textSpan.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Listening in Nepali... (बोल्नुहोस्)';
+      showToast('Listening... Speak bearing part number (e.g. "६२०५", "६३०९", "२२२१८", "युसिपी २०८")');
+
+      recognition.onresult = function (event) {
+        let transcript = event.results[0][0].transcript.toLowerCase();
+        
+        // Nepali digit converter
+        const nepaliDigits = {'०':'0', '१':'1', '२':'2', '३':'3', '४':'4', '५':'5', '६':'6', '७':'7', '८':'8', '९':'9'};
+        let converted = transcript.replace(/[०-९]/g, char => nepaliDigits[char]);
+
+        showToast(`Heard: "${transcript}" -> Searching: "${converted}"`);
+
+        // Check matching series
+        if (converted.includes('62') || converted.includes('६२')) {
+          window.filterBearingMatrix('6200');
+        } else if (converted.includes('63') || converted.includes('६३')) {
+          window.filterBearingMatrix('6300');
+        } else if (converted.includes('222') || converted.includes('२२२')) {
+          window.filterBearingMatrix('22200');
+        } else if (converted.includes('302') || converted.includes('३०२')) {
+          window.filterBearingMatrix('30200');
+        } else if (converted.includes('ucp') || converted.includes('युसिपी')) {
+          window.filterBearingMatrix('ucp');
+        }
+
+        // Trigger interchange preset if matching
+        if (converted.includes('6205') || converted.includes('6205')) window.setInterchangePreset('SKF 6205');
+        if (converted.includes('6309')) window.setInterchangePreset('NSK 6309');
+        if (converted.includes('22218')) window.setInterchangePreset('FAG 22218');
+        if (converted.includes('30206')) window.setInterchangePreset('KOYO 30206');
+        if (converted.includes('208')) window.setInterchangePreset('NTN UCP 208');
+
+        document.getElementById('bearings-deepdive')?.scrollIntoView({ behavior: 'smooth' });
+      };
+
+      recognition.onerror = function (e) {
+        console.warn('Speech recognition error:', e);
+        showToast('Voice not recognized. Please try speaking clearly.');
+      };
+
+      recognition.onend = function () {
+        if (btn) {
+          btn.style.background = 'rgba(255, 85, 0, 0.15)';
+          btn.style.borderColor = 'var(--orange-electric)';
+        }
+        if (textSpan) textSpan.textContent = 'Nepali Voice Search (बोलेर खोज्नुहोस्)';
+      };
+
+      recognition.start();
+    } catch (err) {
+      console.warn('Voice recognition initialization error:', err);
+      showToast('Voice Search Error: ' + err.message);
+    }
+  };
+
+  // ================= 11. 1-CLICK PROFORMA INVOICE PDF GENERATOR =================
+  window.generatePublicPdfProforma = function () {
+    const partNo = document.getElementById('quickPartNo')?.value || 'SKF 6205-2RS / Fenner B-65';
+    const qty = document.getElementById('quickQty')?.value || '10';
+    const company = document.getElementById('quickCompany')?.value || 'Valued Industrial Customer';
+    const district = document.getElementById('quickLocation')?.value || 'Siddharthanagar';
+    const dateStr = new Date().toLocaleDateString('en-GB');
+
+    const printWin = window.open('', '_blank', 'width=800,height=900');
+    if (!printWin) {
+      showToast('Please allow popups to download quotation PDF.');
+      return;
+    }
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Shree Anjani — Official Wholesale Quotation</title>
+        <style>
+          body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1E293B; margin: 0; padding: 2.5rem; }
+          .header { display: flex; justify-content: space-between; border-bottom: 2px solid #FF5500; padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+          .brand-title { font-size: 1.5rem; font-weight: 800; color: #0F172A; }
+          .brand-sub { font-size: 0.9rem; color: #FF5500; font-weight: bold; }
+          .meta-box { font-size: 0.85rem; line-height: 1.5; text-align: right; }
+          .client-box { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem; font-size: 0.9rem; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem; }
+          th { background: #0F172A; color: #FFFFFF; text-align: left; padding: 0.65rem 0.75rem; }
+          td { border-bottom: 1px solid #E2E8F0; padding: 0.65rem 0.75rem; }
+          .total-box { margin-left: auto; width: 320px; font-size: 0.95rem; line-height: 1.8; }
+          .grand-total { font-size: 1.15rem; font-weight: bold; color: #FF5500; border-top: 2px solid #0F172A; padding-top: 0.4rem; }
+          .qr-seal-wrap { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 2.5rem; border-top: 1px dashed #CBD5E1; padding-top: 1.5rem; }
+          .seal-box { border: 2px solid #059669; color: #059669; font-weight: bold; padding: 0.5rem 1rem; border-radius: 4px; display: inline-block; font-size: 0.8rem; }
+          @media print { .no-print { display: none; } }
+        </style>
+      </head>
+      <body>
+        <div class="no-print" style="margin-bottom: 1rem; text-align: right;">
+          <button onclick="window.print()" style="background: #FF5500; color: #fff; border: none; padding: 0.6rem 1.25rem; font-weight: bold; border-radius: 4px; cursor: pointer;">🖨️ Print / Save as PDF</button>
+        </div>
+        <div class="header">
+          <div>
+            <div class="brand-title">SHREE ANJANI BELT &amp; BEARING STORE</div>
+            <div class="brand-sub">ESTB. 2026 • RELIABILITY | QUALITY | SERVICE</div>
+            <div style="font-size: 0.85rem; color: #64748B; margin-top: 0.25rem;">Formerly Known as <em>Shree Balaji Belt Center</em></div>
+            <div style="font-size: 0.85rem; color: #64748B;">Siddharthanagar (Bhairahawa), Nepal • PAN: 601249821</div>
+          </div>
+          <div class="meta-box">
+            <div><strong>ESTIMATE / PROFORMA QUOTE</strong></div>
+            <div>Date: ${dateStr}</div>
+            <div>Hotline: 980-4462602</div>
+            <div>Warehouse: 984-7301185</div>
+          </div>
+        </div>
+
+        <div class="client-box">
+          <strong>Quotation Issued To:</strong><br />
+          <strong>Client / Company:</strong> ${company}<br />
+          <strong>Delivery Destination:</strong> ${district}, Nepal<br />
+          <strong>Dispatch Hub:</strong> Siddharthanagar Main Warehouse
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>SN</th>
+              <th>Description / Part Number</th>
+              <th>Brand Origin</th>
+              <th>Qty</th>
+              <th>Estimated Rate (NPR)</th>
+              <th style="text-align: right;">Amount (NPR)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>${partNo}</strong></td>
+              <td>Genuine SKF / NBC / URB</td>
+              <td>${qty} pcs</td>
+              <td>Market Wholesale Rate</td>
+              <td style="text-align: right;">Contact Sales Desk</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="qr-seal-wrap">
+          <div>
+            <div class="seal-box">✓ 100% GENUINE FACTORY SPARES GUARANTEED</div>
+            <p style="font-size: 0.75rem; color: #64748B; margin-top: 0.5rem;">Subject to final stock availability at Siddharthanagar Hub.</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 0.75rem; font-weight: bold; color: #0F172A; margin-bottom: 0.25rem;">Fonepay / Nepal QR Accepted</div>
+            <div style="width: 80px; height: 80px; border: 1px solid #CBD5E1; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #64748B; margin: 0 auto; background: #F8FAFC;">
+              [ QR Code ]
+            </div>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+
+    printWin.document.write(htmlContent);
+    printWin.document.close();
+    showToast('Proforma Quote generated in new window!');
+  };
+
   function showToast(text) {
     const container = document.getElementById('toastNotification');
     if (!container) return;
@@ -832,7 +1014,7 @@
     }, 4000);
   }
 
-  // ================= 10. INITIALIZATION =================
+  // ================= 12. INITIALIZATION =================
   window.filterBearingMatrix('6200');
   window.filterBeltMatrix('b-section');
   window.runBearingInterchange();

@@ -703,14 +703,21 @@
           </div>
         </div>
 
-        <!-- Interactive Size Filter Chips -->
-        <div class="matrix-filter-bar">
-          <span class="filter-label-txt"><i class="fa-solid fa-filter"></i> Select Series:</span>
-          <button class="chip-btn active" onclick="window.filterBearingMatrix('6200')">6200 Series (Medium Duty)</button>
-          <button class="chip-btn" onclick="window.filterBearingMatrix('6300')">6300 Series (Heavy Duty)</button>
-          <button class="chip-btn" onclick="window.filterBearingMatrix('22200')">22200 Spherical Roller</button>
-          <button class="chip-btn" onclick="window.filterBearingMatrix('30200')">30200 Taper Roller</button>
-          <button class="chip-btn" onclick="window.filterBearingMatrix('ucp')">UCP Pillow Block Units</button>
+        <!-- Interactive Size Filter Chips & Nepali Voice Search -->
+        <div class="matrix-filter-bar" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem;">
+          <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;">
+            <span class="filter-label-txt"><i class="fa-solid fa-filter"></i> Select Series:</span>
+            <button class="chip-btn active" onclick="window.filterBearingMatrix('6200')">6200 Series (Medium Duty)</button>
+            <button class="chip-btn" onclick="window.filterBearingMatrix('6300')">6300 Series (Heavy Duty)</button>
+            <button class="chip-btn" onclick="window.filterBearingMatrix('22200')">22200 Spherical Roller</button>
+            <button class="chip-btn" onclick="window.filterBearingMatrix('30200')">30200 Taper Roller</button>
+            <button class="chip-btn" onclick="window.filterBearingMatrix('ucp')">UCP Pillow Block Units</button>
+          </div>
+
+          <!-- Nepali Voice Search Button -->
+          <button type="button" id="nepaliVoiceBtn" class="chip-btn" style="background: rgba(255, 85, 0, 0.15); border-color: var(--orange-electric); color: #FFAE73; font-weight: 700;" onclick="window.startNepaliVoiceSearch()">
+            <i class="fa-solid fa-microphone text-orange"></i> <span id="voiceBtnText">Nepali Voice Search (बोलेर खोज्नुहोस्)</span>
+          </button>
         </div>
 
         <!-- Researched Standard Size Table -->
@@ -1523,6 +1530,9 @@
         <div class="modal-buttons-stack">
           <button type="submit" class="btn-modal-submit-wa">
             <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp to Sales Desk
+          </button>
+          <button type="button" class="btn-modal-submit-wa" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38BDF8; color: #38BDF8;" onclick="window.generatePublicPdfProforma()">
+            <i class="fa-solid fa-file-pdf"></i> Download Official PDF Estimate (Fonepay QR)
           </button>
           <a href="tel:+9779804462602" class="btn-modal-call-direct">
             <i class="fa-solid fa-phone"></i> Or Call Sales Direct: 980-4462602

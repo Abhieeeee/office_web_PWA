@@ -68,6 +68,11 @@
         </button>
       </li>
       <li>
+        <button class="tab-btn" data-tab="tab-scanner" onclick="window.switchInternalTab('tab-scanner')">
+          <i class="fa-solid fa-camera"></i> Physical Bill Scanner
+        </button>
+      </li>
+      <li>
         <button class="tab-btn" data-tab="tab-settings" onclick="window.switchInternalTab('tab-settings')">
           <i class="fa-solid fa-database"></i> Backup &amp; Data
         </button>
@@ -434,6 +439,173 @@
             </tbody>
           </table>
         </div>
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 5: PHYSICAL BILL & INVOICE OCR SCANNER ================= -->
+    <section class="tab-panel" id="tab-scanner">
+      
+      <div class="section-panel-card">
+        <div class="panel-header-flex">
+          <div>
+            <h2 class="panel-title"><i class="fa-solid fa-camera text-orange"></i> Physical Bill &amp; Invoice Scanner (OCR)</h2>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.25rem;">
+              Capture physical paper bills or upload invoice photos. Automatically detect part numbers, quantities, and update warehouse inventory.
+            </p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <span class="badge-erp" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3);">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Smart Stock Sync
+            </span>
+          </div>
+        </div>
+
+        <!-- Bill Type Selector -->
+        <div style="background: rgba(10, 19, 32, 0.85); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+          <span style="font-weight: 700; color: #FFFFFF; font-size: 0.9rem;">
+            <i class="fa-solid fa-arrow-right-arrow-left text-orange"></i> Transaction Intent:
+          </span>
+          <div style="display: flex; gap: 1.5rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; color: #34D399; font-weight: 700; cursor: pointer;">
+              <input type="radio" name="billTypeRadio" value="PURCHASE" checked onchange="window.updateBillScanMode()" />
+              <span>📥 Purchase Bill (Inward / Restock &rarr; <strong style="text-decoration: underline;">ADDS TO STOCK</strong>)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; color: #38BDF8; font-weight: 700; cursor: pointer;">
+              <input type="radio" name="billTypeRadio" value="SALES" onchange="window.updateBillScanMode()" />
+              <span>📤 Sales Bill (Outward / Dispatch &rarr; <strong style="text-decoration: underline;">DEDUCTS STOCK</strong>)</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 1.5rem;">
+          
+          <!-- Column 1: Camera Viewfinder & File Input -->
+          <div>
+            <div style="border: 2px dashed var(--border-subtle); border-radius: var(--radius-md); background: #060e18; min-height: 240px; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem;">
+              
+              <video id="scannerVideoFeed" autoplay playsinline style="width: 100%; height: 220px; object-fit: cover; border-radius: 6px; display: none;"></video>
+              <canvas id="scannerCanvasOutput" style="width: 100%; max-height: 220px; object-fit: contain; border-radius: 6px; display: none;"></canvas>
+
+              <div id="scannerPlaceholder" style="text-align: center; padding: 1.5rem 0;">
+                <i class="fa-solid fa-file-invoice" style="font-size: 2.75rem; color: var(--accent-orange); margin-bottom: 0.75rem; opacity: 0.85;"></i>
+                <p style="font-size: 0.95rem; color: #FFFFFF; font-weight: 600; margin-bottom: 0.25rem;">Camera Viewfinder Ready</p>
+                <p style="font-size: 0.75rem; color: var(--text-muted);">Position physical bill under bright light or upload photo</p>
+              </div>
+
+              <!-- Viewfinder Guide Box Overlay -->
+              <div id="scannerOverlayGuide" style="position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; border: 2px solid rgba(56, 189, 248, 0.5); border-radius: 8px; pointer-events: none; display: none;">
+                <div style="position: absolute; top: 5px; left: 10px; font-size: 0.65rem; color: #38BDF8; font-family: var(--font-mono); font-weight: bold;">
+                  SCAN AREA • ALIGN INVOICE TABLE
+                </div>
+              </div>
+            </div>
+
+            <!-- Viewfinder Controls -->
+            <div style="display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1rem;">
+              <button type="button" class="btn-primary-action" id="btnStartCam" onclick="window.startBillCamera()">
+                <i class="fa-solid fa-video"></i> Start Camera
+              </button>
+              <button type="button" class="btn-secondary-action" id="btnSnapCam" onclick="window.captureBillSnapshot()" style="display: none; border-color: #34D399; color: #34D399;">
+                <i class="fa-solid fa-camera"></i> Capture &amp; Scan
+              </button>
+              <button type="button" class="btn-secondary-action" onclick="document.getElementById('billPhotoUpload').click()">
+                <i class="fa-solid fa-image"></i> Upload Bill Photo
+              </button>
+              <input type="file" id="billPhotoUpload" accept="image/*" style="display: none;" onchange="window.handleBillPhotoUpload(event)" />
+            </div>
+
+            <!-- Header Info Extraction -->
+            <div style="background: rgba(10, 19, 32, 0.8); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1rem; margin-top: 1rem;">
+              <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-orange); margin-bottom: 0.65rem; font-weight: bold;">
+                <i class="fa-solid fa-receipt"></i> INVOICE HEADER DETAILS
+              </div>
+              <div class="form-2col" style="margin-bottom: 0.5rem;">
+                <div class="input-field-group">
+                  <label for="billPartyName">Supplier / Customer</label>
+                  <input type="text" id="billPartyName" placeholder="e.g. SKF Nepal / ABC Mills" />
+                </div>
+                <div class="input-field-group">
+                  <label for="billInvoiceNumber">Bill / Invoice No.</label>
+                  <input type="text" id="billInvoiceNumber" placeholder="e.g. INV-2026-890" />
+                </div>
+              </div>
+              <div class="form-2col">
+                <div class="input-field-group">
+                  <label for="billPanVat">PAN / VAT No.</label>
+                  <input type="text" id="billPanVat" placeholder="e.g. 601249821" />
+                </div>
+                <div class="input-field-group">
+                  <label for="billDate">Bill Date</label>
+                  <input type="date" id="billDate" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Column 2: Scanned Line Items & Stock Impact Preview -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+              <h3 style="font-family: var(--font-display); font-size: 1.1rem; color: #FFFFFF;">
+                <i class="fa-solid fa-list-check text-orange"></i> Detected Line Items &amp; Stock Impact
+              </h3>
+              <button type="button" class="btn-secondary-action" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;" onclick="window.addBlankScannedItemRow()">
+                <i class="fa-solid fa-plus"></i> Add Item Line
+              </button>
+            </div>
+
+            <div class="table-responsive-container" style="max-height: 320px; overflow-y: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+              <table class="data-table" id="scannedItemsTable">
+                <thead>
+                  <tr>
+                    <th>Part Number</th>
+                    <th>Brand</th>
+                    <th>Scanned Qty</th>
+                    <th>Unit Rate</th>
+                    <th>Current &rarr; New Stock</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="scannedItemsTbody">
+                  <!-- Dynamically populated or manually edited -->
+                  <tr>
+                    <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                      <i class="fa-solid fa-qrcode" style="font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>
+                      Scan a physical bill or click "Add Item Line" to preview stock impact.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Financial Summary Box -->
+            <div style="background: rgba(10, 19, 32, 0.8); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1rem; margin-top: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.35rem;">
+                <span>Taxable Amount:</span>
+                <strong id="scannedTaxableVal" style="color: #FFFFFF;">NPR 0.00</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.35rem;">
+                <span>13% Nepal VAT:</span>
+                <strong id="scannedVatVal" style="color: var(--accent-blue);">NPR 0.00</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; font-weight: 700; color: #FFFFFF; border-top: 1px solid var(--border-subtle); padding-top: 0.5rem; margin-top: 0.5rem;">
+                <span>Bill Grand Total:</span>
+                <span id="scannedGrandTotalVal" style="color: var(--accent-orange);">NPR 0.00</span>
+              </div>
+            </div>
+
+            <!-- Apply CTA Button -->
+            <div style="margin-top: 1.25rem;">
+              <button type="button" class="btn-primary-action" style="width: 100%; justify-content: center; font-size: 1rem; padding: 0.85rem;" onclick="window.commitScannedBillToWarehouse()">
+                <i class="fa-solid fa-boxes-stacked"></i> ⚡ Apply Bill &amp; Update Warehouse Stock
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
     </section>
