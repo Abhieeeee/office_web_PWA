@@ -902,6 +902,56 @@
     </div>
   </div>
 
+  <!-- Modal 4: Review Velocity Automation (Google Maps 5-Star WhatsApp Funnel) -->
+  <div class="modal-overlay" id="reviewVelocityModal">
+    <div class="modal-content-box" style="max-width: 540px;">
+      <button class="modal-close-icon" onclick="window.closeReviewVelocityModal()">&times;</button>
+      
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+        <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 85, 0, 0.15); border: 2px solid var(--accent-orange); display: flex; align-items: center; justify-content: center; color: var(--accent-orange); font-size: 1.25rem;">
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <div>
+          <h3 style="font-family: var(--font-display); color: #fff; margin: 0; font-size: 1.15rem;">Review Velocity Automation</h3>
+          <p style="color: #34D399; font-size: 0.775rem; margin: 0.2rem 0 0 0; font-weight: bold;">
+            <i class="fa-solid fa-circle-check"></i> Job / Delivery Marked Resolved
+          </p>
+        </div>
+      </div>
+
+      <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.25rem; line-height: 1.5;">
+        Send a polite, pre-formatted 5-star Google Maps review request to the client on WhatsApp to boost local search rankings in Rupandehi.
+      </p>
+
+      <div style="background: rgba(10, 19, 32, 0.8); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem;">
+        <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-orange); font-weight: bold; margin-bottom: 0.5rem;">
+          PREVIEW WHATSAPP MESSAGE (NEPALI):
+        </div>
+        <div id="reviewMessagePreview" style="font-size: 0.825rem; color: #E2E8F0; line-height: 1.6; white-space: pre-wrap; font-family: inherit;"></div>
+      </div>
+
+      <div class="form-2col" style="margin-bottom: 1.25rem;">
+        <div class="input-field-group">
+          <label for="reviewClientName">Client / Mill Name</label>
+          <input type="text" id="reviewClientName" />
+        </div>
+        <div class="input-field-group">
+          <label for="reviewClientPhone">Client Phone / WhatsApp</label>
+          <input type="tel" id="reviewClientPhone" placeholder="98XXXXXXXX" />
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.85rem;">
+        <button type="button" class="btn-secondary-action" onclick="window.copyReviewMessageText()">
+          <i class="fa-solid fa-copy"></i> Copy Message
+        </button>
+        <a id="btnSendWhatsAppReview" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary-action" style="background: #059669; border-color: #059669;">
+          <i class="fa-brands fa-whatsapp"></i> Send 5★ Request via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
   <script src="internal.js"></script>
 </body>
 </html>

@@ -785,6 +785,7 @@
           </select>
         </td>
         <td>
+          <button class="table-action-btn" title="Send 5★ Review Request" style="color: #FBBF24;" onclick="window.openReviewVelocityModal('${wItem.clientName}', '', '${wItem.jobType}')"><i class="fa-solid fa-star"></i></button>
           <button class="table-action-btn" title="Delete" style="color: #F87171;" onclick="window.deleteWorkshopJob('${wItem.id}')"><i class="fa-solid fa-trash"></i></button>
         </td>
       `;
@@ -842,6 +843,9 @@
     persistAll();
     renderOverviewDashboard();
     showToast(`Job status updated to ${newStatus}`);
+    if (newStatus === 'Ready for Pickup' || newStatus === 'Delivered') {
+      window.openReviewVelocityModal(w.clientName, '', w.jobType);
+    }
   };
 
   window.deleteWorkshopJob = function (id) {
@@ -1516,6 +1520,46 @@
       }
     }
   }
+
+  // ================= 9. REVIEW VELOCITY AUTOMATION (5-STAR GOOGLE REVIEW FUNNEL) =================
+  const GOOGLE_MAPS_REVIEW_URL = 'https://maps.app.goo.gl/GF8375V'; // Siddharthanagar Hub
+
+  window.openReviewVelocityModal = function (clientName, phone, context) {
+    const name = clientName || 'Valued Customer';
+    const cPhone = (phone || '').replace(/[^0-9]/g, '');
+    const cleanPhone = cPhone.startsWith('977') ? cPhone : (cPhone.length === 10 ? `977${cPhone}` : '9779804462602');
+
+    const messageNepali = `नमस्ते ${name} ज्यू!\n\nShree Anjani Belt and Bearing Store (भैरहवा) लाई विश्वास गर्नुभएकोमा मुरी मुरी धन्यवाद।\n\nयदि आज हाम्रो सेवा/सामानले तपाईंको मिल तथा फ्याक्ट्रीको काम छिटो बनाउन मद्दत गर्यो भने, कृपया हामीलाई Google Maps मा छोटो ५-स्टार (5★) रिभ्यु दिएर हौसला प्रदान गरिदिनुहोला:\n👉 ${GOOGLE_MAPS_REVIEW_URL}\n\nधन्यवाद!\nShree Anjani Team, Siddharthanagar\n📞 980-4462602`;
+
+    const modal = document.getElementById('reviewVelocityModal');
+    const previewBox = document.getElementById('reviewMessagePreview');
+    const nameInput = document.getElementById('reviewClientName');
+    const phoneInput = document.getElementById('reviewClientPhone');
+    const waBtn = document.getElementById('btnSendWhatsAppReview');
+
+    if (previewBox) previewBox.textContent = messageNepali;
+    if (nameInput) nameInput.value = name;
+    if (phoneInput) phoneInput.value = phone || '';
+    if (waBtn) waBtn.href = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(messageNepali)}`;
+
+    if (modal) modal.style.display = 'flex';
+  };
+
+  window.closeReviewVelocityModal = function () {
+    const modal = document.getElementById('reviewVelocityModal');
+    if (modal) modal.style.display = 'none';
+  };
+
+  window.copyReviewMessageText = function () {
+    const previewBox = document.getElementById('reviewMessagePreview');
+    if (previewBox) {
+      navigator.clipboard.writeText(previewBox.textContent).then(() => {
+        showToast('Review message copied to clipboard!');
+      }).catch(() => {
+        showToast('Failed to copy to clipboard.');
+      });
+    }
+  };
 
   // Initialization
   initStorage();

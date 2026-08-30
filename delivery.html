@@ -428,6 +428,44 @@
         faqBox.appendChild(item);
       });
 
+      // Inject Dynamic ServiceArea Schema.org JSON-LD
+      const jsonLdScript = document.getElementById('cityJsonLd');
+      if (jsonLdScript) {
+        const corridorSchema = {
+          "@context": "https://schema.org",
+          "@type": ["AutoPartsStore", "LocalBusiness"],
+          "name": `Shree Anjani Belt and Bearing Store — ${data.name} Corridor`,
+          "url": `https://abhieeeee.github.io/office_web_PWA/delivery.html?city=${key}`,
+          "telephone": "+9779804462602",
+          "priceRange": "NPR 100 - NPR 500,000",
+          "taxID": "601249821",
+          "serviceArea": {
+            "@type": "AdministrativeArea",
+            "name": data.name,
+            "containedIn": {
+              "@type": "Country",
+              "name": "Nepal"
+            }
+          },
+          "areaServed": data.name,
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": `Industrial Bearing & V-Belt Supply for ${data.name}`,
+            "itemListElement": data.topProducts.map(p => ({
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": p.code,
+                "description": p.desc
+              },
+              "priceCurrency": "NPR",
+              "availability": "https://schema.org/InStock"
+            }))
+          }
+        };
+        jsonLdScript.textContent = JSON.stringify(corridorSchema, null, 2);
+      }
+
       // Render Selector Pills
       const pillsContainer = document.getElementById('citySelectorPills');
       pillsContainer.innerHTML = '';

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- 1. Main Storefront Homepage -->
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://abhieeeee.github.io/office_web_PWA/" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://abhieeeee.github.io/office_web_PWA/?lang=ne" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://abhieeeee.github.io/office_web_PWA/" />
+    <image:image>
+      <image:loc>https://abhieeeee.github.io/office_web_PWA/assets/logo.jpg</image:loc>
+      <image:title>Shree Anjani Belt and Bearing Store Emblem</image:title>
+    </image:image>
+  </url>
+
+  <!-- 2. Nepali Homepage State -->
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/?lang=ne</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://abhieeeee.github.io/office_web_PWA/" />
+    <xhtml:link rel="alternate" hreflang="ne" href="https://abhieeeee.github.io/office_web_PWA/?lang=ne" />
+  </url>
+
+  <!-- 3. National Delivery Hub Master Page -->
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/delivery.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 4. Programmatic Regional Transit Corridors -->
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/delivery.html?city=pokhara</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/delivery.html?city=birgunj</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/delivery.html?city=kathmandu</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/delivery.html?city=butwal</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/delivery.html?city=nepalgunj</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/delivery.html?city=dang</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 5. Top Seed Product SKUs -->
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/?sku=SKF-6205-2RS</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/?sku=NBC-6309-2RS-C3</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/?sku=URB-22218-EK-C3</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/?sku=NTN-UCP-208-24</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/?sku=FENNER-V-BELT-B-65</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://abhieeeee.github.io/office_web_PWA/?sku=EP-400-3-CONVEYOR</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+</urlset>

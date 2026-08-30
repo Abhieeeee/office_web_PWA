@@ -1,0 +1,16 @@
+# robots.txt for Shree Anjani Belt and Bearing Store
+# Priority 1 SEO: Allow public catalog & regional corridors, block internal ERP
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /delivery.html
+Allow: /assets/
+Allow: /sitemap.xml
+
+# Strictly block internal staff ERP & OCR scanner from search indexing
+Disallow: /internal/
+Disallow: /internal/*
+Disallow: /scratch/
+
+Sitemap: https://abhieeeee.github.io/office_web_PWA/sitemap.xml

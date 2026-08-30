@@ -1014,7 +1014,50 @@
     }, 4000);
   }
 
-  // ================= 12. INITIALIZATION =================
+  // ================= 12. BILINGUAL I18N SWITCHER =================
+  const I18N_DICT = {
+    en: {
+      topTrust: "<strong>Nepal's Trusted Independent Wholesale Supplier</strong> for Genuine Bearings & Industrial Spares.",
+      heroSubtitle: "ESTB. 2026 • RELIABILITY | QUALITY | SERVICE",
+      heroBadge: "🇳🇵 100% GENUINE INDUSTRIAL BEARINGS & V-BELTS",
+      heroHeadline: "Nepal's Premier Wholesale Hub for Bearings & Industrial Spares",
+      heroDesc: "Direct supply of authentic SKF, NBC, URB, and NTN bearings, classical V-belts, conveyor systems, and CI pulleys. Same-day Bilty dispatch from Siddharthanagar warehouse.",
+      btnCatalog: "Explore Size Matrices",
+      btnEmergency: "🚨 Emergency Saturday Breakdown (Open Till Midnight)",
+      liveOpen: "Open Now (Siddharthanagar)",
+      liveSat: "Emergency Saturday Breakdown Open Till Midnight"
+    },
+    ne: {
+      topTrust: "<strong>नेपालको भरपर्दो होलसेल सप्लायर</strong> — १००% ओरिजिनल बियरिङ्ग, कन्वेयर बेल्ट र मेसिनरी स्पेयर पार्ट्स।",
+      heroSubtitle: "स्थापना २०८२ • विश्वसनीयता | गुणस्तर | निरन्तर सेवा",
+      heroBadge: "🇳🇵 १००% ओरिजिनल इन्डस्ट्रियल बियरिङ्ग र भी-बेल्ट",
+      heroHeadline: "नेपालभरिका मिल तथा उद्योगका लागि ओरिजिनल बियरिङ्ग र बेल्ट",
+      heroDesc: "SKF, NBC, URB, र NTN बियरिङ्ग, भी-बेल्ट, कन्वेयर र पुल्लीहरू भैरहवा गोदामबाट नेपालभर तत्काल बिल्टी डेलिभरी।",
+      btnCatalog: "साइज र विवरण हेर्नुहोस्",
+      btnEmergency: "🚨 शनिबार राति १२ बजेसम्म आपतकालीन सेवा खुला",
+      liveOpen: "अहिले खुला छ (सिद्धार्थनगर)",
+      liveSat: "शनिबार मध्यरातसम्म आपतकालीन सेवा खुला"
+    }
+  };
+
+  window.setLanguage = function (lang) {
+    const activeLang = lang === 'ne' ? 'ne' : 'en';
+    document.documentElement.lang = activeLang;
+    try { localStorage.setItem('shree_anjani_lang', activeLang); } catch (e) {}
+
+    const btnEn = document.getElementById('langBtnEn');
+    const btnNe = document.getElementById('langBtnNe');
+    if (btnEn) btnEn.classList.toggle('active', activeLang === 'en');
+    if (btnNe) btnNe.classList.toggle('active', activeLang === 'ne');
+
+    const d = I18N_DICT[activeLang];
+    const elTopTrust = document.getElementById('txtTopTrust');
+    if (elTopTrust) elTopTrust.innerHTML = d.topTrust;
+
+    showToast(activeLang === 'ne' ? 'भाषा नेपालीमा परिवर्तन भयो (Language: Nepali)' : 'Language switched to English');
+  };
+
+  // ================= 13. INITIALIZATION =================
   window.filterBearingMatrix('6200');
   window.filterBeltMatrix('b-section');
   window.runBearingInterchange();
@@ -1022,6 +1065,13 @@
   loadLedgerProfiles();
   checkOperatingStatusAndEmergencyFab();
   setInterval(checkOperatingStatusAndEmergencyFab, 60000);
+
+  // Auto-detect Language from URL or Storage
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  const savedLang = localStorage.getItem('shree_anjani_lang');
+  if (urlLang === 'ne' || (!urlLang && savedLang === 'ne')) {
+    window.setLanguage('ne');
+  }
 
   // Register PWA Service Worker
   if ('serviceWorker' in navigator) {
