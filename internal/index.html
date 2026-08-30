@@ -13,6 +13,7 @@
   
   <link rel="icon" type="image/jpeg" href="../assets/logo.jpg" />
   <link rel="stylesheet" href="internal.css" />
+  <script src="../supabase_client.js"></script>
 </head>
 <body>
 
@@ -460,8 +461,49 @@
           </label>
 
           <button class="btn-secondary-action" style="border-color: #F87171; color: #F87171;" onclick="window.resetToDemoSeedData()">
-            <i class="fa-solid fa-rotate"></i> Reset to Factory Seed Data
+            <i class="fa-solid fa-rotate"></i> Reset to Factory Seed Data (10 Units Stock)
           </button>
+        </div>
+
+        <!-- Supabase Cloud Database Real-Time Synchronization Card -->
+        <div style="background: rgba(10, 19, 32, 0.8); border: 1px solid var(--accent-orange); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: #FFFFFF; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-bolt text-orange"></i> Supabase Cloud PostgreSQL Database &amp; Real-Time Sync
+            </h3>
+            <span id="supabaseStatusBadge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.75rem; border-radius: var(--radius-pill); border: 1px solid rgba(56, 189, 248, 0.3);">
+              <i class="fa-solid fa-circle-dot"></i> Standalone Local PWA Mode
+            </span>
+          </div>
+
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+            Connect your Supabase project to enable real-time multi-device cloud synchronization between your warehouse sales counter and field agents across Nepal.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+            <div class="input-field-group">
+              <label for="supabaseUrlInput">Supabase Project URL</label>
+              <input type="url" id="supabaseUrlInput" placeholder="https://your-project.supabase.co" />
+            </div>
+            <div class="input-field-group">
+              <label for="supabaseKeyInput">Supabase Anon Public API Key</label>
+              <input type="password" id="supabaseKeyInput" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." />
+            </div>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <button type="button" class="btn-primary-action" onclick="window.saveAndTestSupabase()">
+              <i class="fa-solid fa-plug"></i> Connect &amp; Test Supabase
+            </button>
+            <button type="button" class="btn-secondary-action" onclick="window.syncLocalWithSupabase()">
+              <i class="fa-solid fa-arrows-rotate"></i> Pull Products from Supabase
+            </button>
+            <button type="button" class="btn-secondary-action" style="border-color: #34D399; color: #34D399;" onclick="window.seedAllInventoryTenUnits()">
+              <i class="fa-solid fa-layer-group"></i> ⚡ Initialize 70+ Items (10 Units Stock Each)
+            </button>
+          </div>
+
+          <div id="supabaseFeedbackMsg" style="margin-top: 1rem; font-size: 0.825rem; display: none; padding: 0.65rem 1rem; border-radius: 6px;"></div>
         </div>
 
         <!-- Bulk CSV Inventory Uploader Component -->

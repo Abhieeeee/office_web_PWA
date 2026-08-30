@@ -1,10 +1,11 @@
-const CACHE_NAME = 'shree-anjani-v3';
+const CACHE_NAME = 'shree-anjani-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './delivery.html',
   './styles.css',
   './app.js',
+  './supabase_client.js',
   './manifest.json',
   './assets/logo.png',
   './assets/logo.jpg',

@@ -23,16 +23,85 @@
   // Seed Data for Instant Out-of-the-Box Usage
   const DEFAULT_SEED_DATA = {
     inventory: [
-      { id: '1', partNo: '6205 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-01, Shelf 2', qty: 45, rate: 480, lowAlert: 10 },
-      { id: '2', partNo: '22218 EK', brand: 'URB', category: 'Bearings', rack: 'Rack B-03, Shelf 1', qty: 12, rate: 8500, lowAlert: 5 },
-      { id: '3', partNo: '30209', brand: 'NBC', category: 'Bearings', rack: 'Rack A-04, Shelf 3', qty: 28, rate: 1250, lowAlert: 8 },
-      { id: '4', partNo: 'UCP 208-24', brand: 'NTN', category: 'Bearings', rack: 'Rack C-02, Heavy Bin', qty: 16, rate: 2100, lowAlert: 5 },
-      { id: '5', partNo: 'V-Belt B-65', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Hanger Belt Wall 1', qty: 60, rate: 620, lowAlert: 15 },
-      { id: '6', partNo: 'V-Belt C-112', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Hanger Belt Wall 2', qty: 24, rate: 1450, lowAlert: 8 },
-      { id: '7', partNo: '3-Groove B-Section Pulley 10"', brand: 'Other', category: 'Belts & Pulleys', rack: 'Floor Pallet 04', qty: 8, rate: 3200, lowAlert: 4 },
-      { id: '8', partNo: 'High Pressure Oil Seal 45x65x10', brand: 'Other', category: 'Machinery Spares', rack: 'Small Parts Bin D-12', qty: 85, rate: 180, lowAlert: 20 },
-      { id: '9', partNo: 'Spider Coupling Jaw Set L-095', brand: 'Other', category: 'Machinery Spares', rack: 'Rack D-02, Shelf 2', qty: 18, rate: 950, lowAlert: 6 },
-      { id: '10', partNo: 'Roller Chain 08B-1 (10 Feet)', brand: 'Other', category: 'Machinery Spares', rack: 'Rack D-05, Shelf 1', qty: 14, rate: 2400, lowAlert: 4 }
+      // 1. Deep Groove Ball Bearings (10 Units Stock Each)
+      { id: '1', partNo: '6204 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-01, Shelf 1', qty: 10, rate: 380, lowAlert: 3 },
+      { id: '2', partNo: '6205 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-01, Shelf 2', qty: 10, rate: 480, lowAlert: 3 },
+      { id: '3', partNo: '6206 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-01, Shelf 3', qty: 10, rate: 620, lowAlert: 3 },
+      { id: '4', partNo: '6207 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-01, Shelf 4', qty: 10, rate: 790, lowAlert: 3 },
+      { id: '5', partNo: '6208 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-02, Shelf 1', qty: 10, rate: 950, lowAlert: 3 },
+      { id: '6', partNo: '6209 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-02, Shelf 2', qty: 10, rate: 1150, lowAlert: 3 },
+      { id: '7', partNo: '6210 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-02, Shelf 3', qty: 10, rate: 1380, lowAlert: 3 },
+      { id: '8', partNo: '6305 2RS', brand: 'NBC', category: 'Bearings', rack: 'Rack A-03, Shelf 1', qty: 10, rate: 560, lowAlert: 3 },
+      { id: '9', partNo: '6306 2RS', brand: 'NBC', category: 'Bearings', rack: 'Rack A-03, Shelf 2', qty: 10, rate: 740, lowAlert: 3 },
+      { id: '10', partNo: '6307 2RS', brand: 'NBC', category: 'Bearings', rack: 'Rack A-03, Shelf 3', qty: 10, rate: 980, lowAlert: 3 },
+      { id: '11', partNo: '6308 2RS C3', brand: 'NBC', category: 'Bearings', rack: 'Rack A-03, Shelf 4', qty: 10, rate: 1280, lowAlert: 3 },
+      { id: '12', partNo: '6309 2RS C3', brand: 'NBC', category: 'Bearings', rack: 'Rack A-04, Shelf 1', qty: 10, rate: 1650, lowAlert: 3 },
+      { id: '13', partNo: '6310 2RS C3', brand: 'NBC', category: 'Bearings', rack: 'Rack A-04, Shelf 2', qty: 10, rate: 2100, lowAlert: 3 },
+      { id: '14', partNo: '6312 2RS C3', brand: 'NBC', category: 'Bearings', rack: 'Rack A-04, Shelf 3', qty: 10, rate: 3200, lowAlert: 3 },
+
+      // 2. Spherical Roller Bearings (10 Units Stock Each)
+      { id: '15', partNo: '22212 EK W33', brand: 'URB', category: 'Bearings', rack: 'Rack B-01, Shelf 1', qty: 10, rate: 4800, lowAlert: 2 },
+      { id: '16', partNo: '22214 EK W33', brand: 'URB', category: 'Bearings', rack: 'Rack B-01, Shelf 2', qty: 10, rate: 5900, lowAlert: 2 },
+      { id: '17', partNo: '22216 EK W33', brand: 'URB', category: 'Bearings', rack: 'Rack B-01, Shelf 3', qty: 10, rate: 7200, lowAlert: 2 },
+      { id: '18', partNo: '22218 EK C3', brand: 'URB', category: 'Bearings', rack: 'Rack B-02, Shelf 1', qty: 10, rate: 8500, lowAlert: 2 },
+      { id: '19', partNo: '22220 EK C3', brand: 'URB', category: 'Bearings', rack: 'Rack B-02, Shelf 2', qty: 10, rate: 11500, lowAlert: 2 },
+      { id: '20', partNo: '22222 EK C3', brand: 'URB', category: 'Bearings', rack: 'Rack B-02, Shelf 3', qty: 10, rate: 14800, lowAlert: 2 },
+
+      // 3. Taper Roller Bearings (10 Units Stock Each)
+      { id: '21', partNo: '30205', brand: 'SKF', category: 'Bearings', rack: 'Rack B-03, Shelf 1', qty: 10, rate: 520, lowAlert: 3 },
+      { id: '22', partNo: '30206', brand: 'SKF', category: 'Bearings', rack: 'Rack B-03, Shelf 2', qty: 10, rate: 680, lowAlert: 3 },
+      { id: '23', partNo: '30207', brand: 'SKF', category: 'Bearings', rack: 'Rack B-03, Shelf 3', qty: 10, rate: 890, lowAlert: 3 },
+      { id: '24', partNo: '30208', brand: 'SKF', category: 'Bearings', rack: 'Rack B-03, Shelf 4', qty: 10, rate: 1080, lowAlert: 3 },
+      { id: '25', partNo: '30209', brand: 'SKF', category: 'Bearings', rack: 'Rack B-04, Shelf 1', qty: 10, rate: 1280, lowAlert: 3 },
+      { id: '26', partNo: '32210', brand: 'SKF', category: 'Bearings', rack: 'Rack B-04, Shelf 2', qty: 10, rate: 1680, lowAlert: 3 },
+      { id: '27', partNo: '32212', brand: 'SKF', category: 'Bearings', rack: 'Rack B-04, Shelf 3', qty: 10, rate: 2450, lowAlert: 3 },
+
+      // 4. Pillow Blocks & Flange Housings (10 Units Stock Each)
+      { id: '28', partNo: 'UCP 204', brand: 'NTN', category: 'Bearings', rack: 'Rack C-01, Shelf 1', qty: 10, rate: 950, lowAlert: 3 },
+      { id: '29', partNo: 'UCP 205', brand: 'NTN', category: 'Bearings', rack: 'Rack C-01, Shelf 2', qty: 10, rate: 1150, lowAlert: 3 },
+      { id: '30', partNo: 'UCP 206', brand: 'NTN', category: 'Bearings', rack: 'Rack C-01, Shelf 3', qty: 10, rate: 1380, lowAlert: 3 },
+      { id: '31', partNo: 'UCP 207', brand: 'NTN', category: 'Bearings', rack: 'Rack C-01, Shelf 4', qty: 10, rate: 1680, lowAlert: 3 },
+      { id: '32', partNo: 'UCP 208-24', brand: 'NTN', category: 'Bearings', rack: 'Rack C-02, Shelf 1', qty: 10, rate: 2100, lowAlert: 3 },
+      { id: '33', partNo: 'UCP 209', brand: 'NTN', category: 'Bearings', rack: 'Rack C-02, Shelf 2', qty: 10, rate: 2550, lowAlert: 3 },
+      { id: '34', partNo: 'UCP 210', brand: 'NTN', category: 'Bearings', rack: 'Rack C-02, Shelf 3', qty: 10, rate: 3100, lowAlert: 3 },
+      { id: '35', partNo: 'UCP 212', brand: 'NTN', category: 'Bearings', rack: 'Rack C-02, Shelf 4', qty: 10, rate: 4600, lowAlert: 3 },
+      { id: '36', partNo: 'UCF 208', brand: 'NTN', category: 'Bearings', rack: 'Rack C-03, Shelf 1', qty: 10, rate: 2250, lowAlert: 3 },
+      { id: '37', partNo: 'UCF 210', brand: 'NTN', category: 'Bearings', rack: 'Rack C-03, Shelf 2', qty: 10, rate: 3300, lowAlert: 3 },
+
+      // 5. Industrial V-Belts (10 Units Stock Each)
+      { id: '38', partNo: 'V-Belt A-32 to A-50', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 1', qty: 10, rate: 280, lowAlert: 3 },
+      { id: '39', partNo: 'V-Belt A-60 to A-80', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 1', qty: 10, rate: 350, lowAlert: 3 },
+      { id: '40', partNo: 'V-Belt B-52', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 2', qty: 10, rate: 520, lowAlert: 3 },
+      { id: '41', partNo: 'V-Belt B-65 (Top Seller)', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 2', qty: 10, rate: 620, lowAlert: 3 },
+      { id: '42', partNo: 'V-Belt B-72', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 2', qty: 10, rate: 680, lowAlert: 3 },
+      { id: '43', partNo: 'V-Belt B-85', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 2', qty: 10, rate: 780, lowAlert: 3 },
+      { id: '44', partNo: 'V-Belt B-100 to B-120', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 3', qty: 10, rate: 950, lowAlert: 3 },
+      { id: '45', partNo: 'V-Belt C-75', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 4', qty: 10, rate: 1150, lowAlert: 3 },
+      { id: '46', partNo: 'V-Belt C-100', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 4', qty: 10, rate: 1480, lowAlert: 3 },
+      { id: '47', partNo: 'V-Belt C-144', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 5', qty: 10, rate: 2100, lowAlert: 3 },
+      { id: '48', partNo: 'V-Belt C-180', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 5', qty: 10, rate: 2650, lowAlert: 3 },
+      { id: '49', partNo: 'V-Belt D-210', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Floor Pallet 01', qty: 10, rate: 4800, lowAlert: 2 },
+
+      // 6. Rubber Conveyor Belts & Cast Iron Pulleys (10 Units Stock Each)
+      { id: '50', partNo: 'Rubber Conveyor EP 400/3 (16" / 400mm)', brand: 'Other', category: 'Belts & Pulleys', rack: 'Yard Roll 01', qty: 10, rate: 1850, lowAlert: 2 },
+      { id: '51', partNo: 'Rubber Conveyor EP 400/3 (20" / 500mm)', brand: 'Other', category: 'Belts & Pulleys', rack: 'Yard Roll 02', qty: 10, rate: 2350, lowAlert: 2 },
+      { id: '52', partNo: 'Rubber Conveyor EP 500/3 (24" / 600mm)', brand: 'Other', category: 'Belts & Pulleys', rack: 'Yard Roll 03', qty: 10, rate: 2950, lowAlert: 2 },
+      { id: '53', partNo: 'Rubber Conveyor EP 630/4 (32" / 800mm)', brand: 'Other', category: 'Belts & Pulleys', rack: 'Yard Roll 04', qty: 10, rate: 4200, lowAlert: 2 },
+      { id: '54', partNo: 'CI 2-Groove B-Section Pulley 6"', brand: 'Other', category: 'Belts & Pulleys', rack: 'Floor Pallet 02', qty: 10, rate: 1650, lowAlert: 3 },
+      { id: '55', partNo: 'CI 3-Groove B-Section Pulley 10"', brand: 'Other', category: 'Belts & Pulleys', rack: 'Floor Pallet 03', qty: 10, rate: 3200, lowAlert: 3 },
+      { id: '56', partNo: 'CI 4-Groove C-Section Pulley 14"', brand: 'Other', category: 'Belts & Pulleys', rack: 'Floor Pallet 04', qty: 10, rate: 6800, lowAlert: 2 },
+
+      // 7. Machinery Spares, Seals, Couplings & Greases (10 Units Stock Each)
+      { id: '57', partNo: 'Oil Seal 25x47x10 TC', brand: 'Other', category: 'Machinery Spares', rack: 'Small Bin D-01', qty: 10, rate: 120, lowAlert: 3 },
+      { id: '58', partNo: 'Oil Seal 35x62x10 TC', brand: 'Other', category: 'Machinery Spares', rack: 'Small Bin D-02', qty: 10, rate: 160, lowAlert: 3 },
+      { id: '59', partNo: 'Oil Seal 45x65x10 TC', brand: 'Other', category: 'Machinery Spares', rack: 'Small Bin D-03', qty: 10, rate: 180, lowAlert: 3 },
+      { id: '60', partNo: 'Oil Seal 60x85x10 TC', brand: 'Other', category: 'Machinery Spares', rack: 'Small Bin D-04', qty: 10, rate: 280, lowAlert: 3 },
+      { id: '61', partNo: 'Jaw Coupling L-095 Set', brand: 'Other', category: 'Machinery Spares', rack: 'Rack D-05, Shelf 1', qty: 10, rate: 1450, lowAlert: 3 },
+      { id: '62', partNo: 'Jaw Coupling L-100 Set', brand: 'Other', category: 'Machinery Spares', rack: 'Rack D-05, Shelf 2', qty: 10, rate: 1950, lowAlert: 3 },
+      { id: '63', partNo: 'Simplex Roller Chain #50 (10ft Box)', brand: 'Other', category: 'Machinery Spares', rack: 'Rack D-06, Shelf 1', qty: 10, rate: 2400, lowAlert: 3 },
+      { id: '64', partNo: 'Simplex Roller Chain #60 (10ft Box)', brand: 'Other', category: 'Machinery Spares', rack: 'Rack D-06, Shelf 2', qty: 10, rate: 3300, lowAlert: 3 },
+      { id: '65', partNo: 'High-Temp Lithium Complex Grease (1 kg)', brand: 'SKF', category: 'Machinery Spares', rack: 'Chemical Cabinet 01', qty: 10, rate: 850, lowAlert: 3 },
+      { id: '66', partNo: 'Heavy Industrial Grease Bucket (5 kg)', brand: 'SKF', category: 'Machinery Spares', rack: 'Chemical Cabinet 02', qty: 10, rate: 3800, lowAlert: 2 }
     ],
     invoices: [
       {
@@ -986,6 +1055,109 @@
     showToast(`Batch import successful! (${addedCount} added, ${updatedCount} updated).`);
   };
 
+  // ================= 7. SUPABASE CLOUD DATABASE SYNC =================
+  window.saveAndTestSupabase = async function () {
+    const urlInput = document.getElementById('supabaseUrlInput');
+    const keyInput = document.getElementById('supabaseKeyInput');
+    const feedback = document.getElementById('supabaseFeedbackMsg');
+    const badge = document.getElementById('supabaseStatusBadge');
+
+    if (!window.SupabaseBridge) {
+      showToast('Supabase client script not loaded.');
+      return;
+    }
+
+    const url = urlInput?.value.trim();
+    const key = keyInput?.value.trim();
+
+    if (!url || !key) {
+      if (feedback) {
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
+        feedback.style.color = '#F87171';
+        feedback.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Please enter both Supabase URL and API Key.';
+      }
+      return;
+    }
+
+    if (feedback) {
+      feedback.style.display = 'block';
+      feedback.style.background = 'rgba(56, 189, 248, 0.15)';
+      feedback.style.color = '#38BDF8';
+      feedback.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Supabase Cloud PostgreSQL...';
+    }
+
+    const res = await window.SupabaseBridge.setCredentials(url, key);
+    if (res.success) {
+      if (feedback) {
+        feedback.style.background = 'rgba(16, 185, 129, 0.15)';
+        feedback.style.color = '#34D399';
+        feedback.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${res.message}`;
+      }
+      if (badge) {
+        badge.style.background = 'rgba(16, 185, 129, 0.15)';
+        badge.style.color = '#34D399';
+        badge.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+        badge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Supabase Cloud Connected';
+      }
+      showToast('Connected to Supabase Cloud!');
+    } else {
+      if (feedback) {
+        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
+        feedback.style.color = '#F87171';
+        feedback.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${res.message}`;
+      }
+      if (badge) {
+        badge.style.background = 'rgba(239, 68, 68, 0.15)';
+        badge.style.color = '#F87171';
+        badge.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Supabase Disconnected';
+      }
+    }
+  };
+
+  window.syncLocalWithSupabase = async function () {
+    if (!window.SupabaseBridge || !window.SupabaseBridge.isConfigured()) {
+      showToast('Please configure Supabase URL & Key first.');
+      return;
+    }
+
+    showToast('Fetching latest products from Supabase...');
+    const remoteProducts = await window.SupabaseBridge.fetchProducts();
+    if (remoteProducts && Array.isArray(remoteProducts) && remoteProducts.length > 0) {
+      state.inventory = remoteProducts.map(p => ({
+        id: p.id || String(Date.now()),
+        partNo: p.part_no,
+        brand: p.brand_name,
+        category: p.category_slug === 'bearings' ? 'Bearings' : p.category_slug === 'belts-pulleys' ? 'Belts & Pulleys' : 'Machinery Spares',
+        rack: p.rack_location,
+        qty: p.quantity,
+        rate: parseFloat(p.wholesale_rate_npr),
+        lowAlert: p.low_stock_threshold || 3
+      }));
+
+      persistAll();
+      window.renderInventoryTable();
+      renderOverviewDashboard();
+      showToast(`Synchronized ${remoteProducts.length} items from Supabase Cloud!`);
+    } else {
+      showToast('No remote products found in Supabase table.');
+    }
+  };
+
+  window.seedAllInventoryTenUnits = function () {
+    if (confirm('Initialize all 66+ industrial items to exactly 10 units stock each?')) {
+      state.inventory = JSON.parse(JSON.stringify(DEFAULT_SEED_DATA.inventory));
+      // Ensure all quantities are strictly 10
+      state.inventory.forEach(item => {
+        item.qty = 10;
+      });
+      persistAll();
+      window.renderInventoryTable();
+      renderOverviewDashboard();
+      showToast('All 66+ items initialized with 10 units stock!');
+    }
+  };
+
   // Toast Notification
   function showToast(text) {
     const existing = document.querySelector('.internal-toast');
@@ -1004,9 +1176,32 @@
     }, 4000);
   }
 
+  // Load Saved Supabase Credentials into Inputs
+  function loadSavedSupabaseCredentials() {
+    if (window.SupabaseBridge) {
+      const savedUrl = window.SupabaseBridge.getUrl();
+      const savedKey = window.SupabaseBridge.getKey();
+      const urlInput = document.getElementById('supabaseUrlInput');
+      const keyInput = document.getElementById('supabaseKeyInput');
+      const badge = document.getElementById('supabaseStatusBadge');
+
+      if (urlInput && savedUrl) urlInput.value = savedUrl;
+      if (keyInput && savedKey) keyInput.value = savedKey;
+
+      if (savedUrl && savedKey && badge) {
+        badge.style.background = 'rgba(16, 185, 129, 0.15)';
+        badge.style.color = '#34D399';
+        badge.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+        badge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Supabase Cloud Configured';
+      }
+    }
+  }
+
   // Initialization
   initStorage();
   renderOverviewDashboard();
+  loadSavedSupabaseCredentials();
 
 })();
+
 

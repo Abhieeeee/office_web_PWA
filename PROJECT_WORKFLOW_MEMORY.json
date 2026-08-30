@@ -131,6 +131,24 @@
     }
   ],
 
+  "database_architecture": {
+    "engine": "Supabase PostgreSQL 15+",
+    "schema_file": "supabase_schema.sql",
+    "client_module": "supabase_client.js",
+    "default_sku_stock_quantity": 10,
+    "total_catalog_seed_skus": 66,
+    "core_tables": [
+      "categories (id, slug, name, description)",
+      "brands (id, name, country_of_origin, flag_emoji, verification_guide)",
+      "products (id, part_no, brand_name, category_slug, dimensions, clearance_rating, quantity, wholesale_rate_npr, rack_location, low_stock_threshold, application_notes)",
+      "customers (id, client_name, company_name, pan_vat_number, phone, city_district, credit_limit_npr)",
+      "invoices (id, invoice_number, invoice_date, customer_name, customer_pan, subtotal_npr, vat_amount_npr, grand_total_npr, payment_status)",
+      "invoice_items (id, invoice_id, product_id, item_description, quantity, unit_rate_npr, line_total_npr)",
+      "transport_dispatches (id, bilty_number, transporter_name, destination_district, consignee_name, package_count, freight_payment_type, delivery_status)",
+      "machine_ledger_profiles (id, machine_name, factory_name, industry_sector, installed_spares)"
+    ]
+  },
+
   "completed_milestones": [
     "Phase 1: Core PWA setup, responsive zero-framework UI, and sub-0.4s FCP.",
     "Phase 2: Official emblem branding, Schema.org JSON-LD (AutoPartsStore, ItemList, FAQPage).",
@@ -139,7 +157,8 @@
     "Phase 5: Mechanical Engineering Workbench (Bearing Interchange + Live Dynamic SVG Pulley Drive Simulation).",
     "Phase 6: Digital Machine Ledger (Factory Profile Bookmarks & 1-Tap WhatsApp Reorder).",
     "Phase 7: Emergency FAB dynamic state (Saturday midnight + off-hours breakdown mode).",
-    "Phase 8: Internal ERP with 13% Nepal VAT Proforma Generator and Bulk CSV Inventory Uploader."
+    "Phase 8: Internal ERP with 13% Nepal VAT Proforma Generator and Bulk CSV Inventory Uploader.",
+    "Phase 9: Supabase PostgreSQL Database Schema, REST client bridge, and 66+ item seed catalog with 10 units stock each."
   ],
 
   "strategic_future_backlog": [

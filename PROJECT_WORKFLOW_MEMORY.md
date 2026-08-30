@@ -89,10 +89,30 @@ sequenceDiagram
 - [x] **Dynamic Corridor SEO:** Dedicated `delivery.html` with city switcher routing (Kathmandu, Pokhara, Birgunj, Butwal, Nepalgunj, Dang) and full Schema.org structured data.
 - [x] **Emergency Breakdown FAB:** Time-triggered mode for Saturday night / off-hours emergencies.
 - [x] **Internal ERP & Invoicing:** 13% Nepal VAT Proforma Generator + Drag-and-Drop Bulk CSV Inventory Uploader in `internal/index.html`.
+- [x] **Supabase Cloud PostgreSQL Database:** Full DDL schema ([`supabase_schema.sql`](file:///C:/Users/DELL/.gemini/antigravity/scratch/shree-anjani-b2b/supabase_schema.sql)), REST client adapter ([`supabase_client.js`](file:///C:/Users/DELL/.gemini/antigravity/scratch/shree-anjani-b2b/supabase_client.js)), and 70+ industrial items initialized to **10 units stock each**.
 
 ---
 
-## 🚀 6. Prioritized Future Backlog (Roadmap for Next Upgrades)
+## 🗄️ 6. Supabase Cloud Database Architecture
+
+```mermaid
+erDiagram
+    CATEGORIES ||--o{ PRODUCTS : categorizes
+    BRANDS ||--o{ PRODUCTS : manufactures
+    CUSTOMERS ||--o{ INVOICES : bills
+    INVOICES ||--|{ INVOICE_ITEMS : contains
+    PRODUCTS ||--o{ INVOICE_ITEMS : includes
+    CUSTOMERS ||--o{ MACHINE_LEDGER_PROFILES : registers
+```
+
+- **PostgreSQL Schema:** [`supabase_schema.sql`](file:///C:/Users/DELL/.gemini/antigravity/scratch/shree-anjani-b2b/supabase_schema.sql)
+- **Client Sync Adapter:** [`supabase_client.js`](file:///C:/Users/DELL/.gemini/antigravity/scratch/shree-anjani-b2b/supabase_client.js)
+- **Stock Policy:** Every single SKU (Bearings, V-Belts, Pulleys, Conveyor Belts, Oil Seals, Couplings, Chains, Greases) is pre-configured with **10 units in stock**.
+- **Offline-First Protocol:** The PWA functions 100% offline using `localStorage` and bi-directionally synchronizes with Supabase when online.
+
+---
+
+## 🚀 7. Prioritized Future Backlog (Roadmap for Next Upgrades)
 
 ### 🥇 Priority 1: High-Impact Conversions & Local Dominance
 1. **Automated Static 77-District SEO Landing Pages:**
