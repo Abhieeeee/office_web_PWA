@@ -1057,13 +1057,40 @@
     showToast(activeLang === 'ne' ? 'भाषा नेपालीमा परिवर्तन भयो (Language: Nepali)' : 'Language switched to English');
   };
 
-  // ================= 13. INITIALIZATION =================
+  // ================= 13. DYNAMIC SCROLL READING PROGRESS BAR =================
+  function initScrollProgressBar() {
+    const progressBar = document.getElementById('scrollProgressBar');
+    if (!progressBar) return;
+
+    let ticking = false;
+    const updateProgress = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = scrollHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100)) : 0;
+      progressBar.style.width = progress + '%';
+      progressBar.setAttribute('aria-valuenow', Math.round(progress));
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // ================= 14. INITIALIZATION =================
   window.filterBearingMatrix('6200');
   window.filterBeltMatrix('b-section');
   window.runBearingInterchange();
   window.runBeltCalculator();
   loadLedgerProfiles();
   checkOperatingStatusAndEmergencyFab();
+  initScrollProgressBar();
   setInterval(checkOperatingStatusAndEmergencyFab, 60000);
 
   // Auto-detect Language from URL or Storage
