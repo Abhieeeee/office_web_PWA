@@ -225,28 +225,6 @@
     });
   };
 
-  // ================= 4. BEARING BRAND INTERCHANGE CALCULATOR =================
-  const INTERCHANGE_DATABASE = [
-    {
-      baseCode: "6205",
-      dims: "25 x 52 x 15 mm (0.984 x 2.047 x 0.591 in)",
-      skf: "6205-2RS1 (Sweden 🇸🇪)",
-      nbc: "6205 LLU (India 🇮🇳)",
-      urb: "6205 2RS (Romania 🇷🇴)",
-      ntn: "6205 LLUC3 (Japan 🇯🇵)",
-      fag: "6205-2RSR (Germany 🇩🇪)",
-      nsk: "6205 DDU (Japan 🇯🇵)",
-      koyo: "6205 2RS (Japan 🇯🇵)",
-      cr: "14.8 kN",
-      cor: "7.8 kN",
-      app: "Rice Mill Polisher Shafts, 5HP Electric Motors, Centrifugal Water Pumps",
-      clearance: "Normal / C3 (ISO 5753-1)",
-      speedLimit: "12,000 RPM (Grease)",
-      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
-    },
-    {
-      baseCode: "6309",
-      dims: "45 x 100 x 25 mm (1.771 x 3.937 x 0.984 in)",
   // ================= 3. MULTI-TIER BRAND BEARING INTERCHANGE & DIMENSIONS DATABASE =================
   const INTERCHANGE_DATABASE = [
     {
@@ -667,17 +645,6 @@
         </div>
 
       </div>
-    `;
-  };
-          <td><strong>${match.urb}</strong></td>
-          <td style="text-align: right;"><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & wholesale price for URB ' + match.urb)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.725rem; padding: 0.3rem 0.65rem;"><i class="fa-brands fa-whatsapp"></i> Get Quote</a></td>
-        </tr>
-        <tr>
-          <td><strong>NTN / FAG / NSK</strong></td>
-          <td><strong>${match.ntn}</strong> / <strong>${match.fag}</strong></td>
-          <td style="text-align: right;"><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & wholesale price for ' + match.ntn)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.725rem; padding: 0.3rem 0.65rem;"><i class="fa-brands fa-whatsapp"></i> Get Quote</a></td>
-        </tr>
-      </table>
     `;
   };
 
