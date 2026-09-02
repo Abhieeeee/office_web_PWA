@@ -456,6 +456,36 @@ button, input, textarea, select {
   border-color: var(--orange-electric);
 }
 
+/* Mobile Header Action Buttons */
+.btn-mobile-search-toggle,
+.btn-mobile-call-icon {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--slate-border);
+  color: var(--text-primary);
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-mobile-call-icon {
+  color: var(--orange-electric);
+  border-color: rgba(255, 85, 0, 0.4);
+  background: rgba(255, 85, 0, 0.12);
+}
+
+.btn-mobile-search-toggle:hover,
+.btn-mobile-call-icon:hover {
+  transform: scale(1.05);
+  border-color: var(--orange-electric);
+}
+
 /* Header CTAs */
 .header-cta-cluster {
   display: flex;
@@ -3322,78 +3352,200 @@ button, input, textarea, select {
 
 /* --- 4. Smartphones & Narrow Screen Ratios (< 768px: 16:9, 18:9, 19.5:9, 20:9) --- */
 @media (max-width: 767px) {
+  /* Strict Zero Horizontal Overflow Container Rules */
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden !important;
+  }
+
+  .container {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   /* Fluid Typography Scaling */
   .hero-main-title {
-    font-size: clamp(1.85rem, 6vw, 2.5rem);
+    font-size: clamp(1.75rem, 6vw, 2.2rem);
     line-height: 1.2;
   }
   .hero-subtitle-lead {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
   .section-headline-title {
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: clamp(1.4rem, 5vw, 1.85rem);
   }
 
-  /* Header & Navigation Adaptations */
+  /* 1. Compact Slim Top Bar */
   .top-trust-bar {
-    padding: 0.4rem 0;
+    padding: 0.3rem 0;
+    font-size: 0.75rem;
   }
   .top-bar-inner {
-    flex-direction: column;
-    gap: 0.35rem;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+  }
+  .trust-announcement {
+    display: none; /* Hide verbose sentence on mobile to save vertical space */
   }
   .top-bar-controls {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.4rem;
   }
+  .status-pill {
+    padding: 0.18rem 0.5rem;
+    font-size: 0.68rem;
+    white-space: nowrap;
+  }
+  .top-hotline-link {
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+  .lang-toggle-wrapper {
+    gap: 0.2rem;
+  }
+  .lang-btn {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.68rem;
+  }
+
+  /* 2. Sleek Single-Row Mobile Header (Height ~56px) */
   .site-header {
-    padding: 0.6rem 0;
+    padding: 0.45rem 0;
   }
   .header-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
   .brand-wrapper {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+  }
+  .brand-anchor {
+    gap: 0.6rem;
+    min-width: 0;
   }
   .brand-icon-box {
-    width: 52px;
-    height: 52px;
+    width: 42px;
+    height: 42px;
+    padding: 1px;
+    border-width: 2px;
+    box-shadow: 0 0 12px rgba(255, 85, 0, 0.4);
+    flex-shrink: 0;
+  }
+  .brand-text-block {
+    min-width: 0;
   }
   .brand-title {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .brand-subtitle-line {
+    display: none; /* Hide subtitle to keep mobile header clean and slim */
+  }
+
+  /* Mobile CTA Buttons */
+  .btn-mobile-search-toggle,
+  .btn-mobile-call-icon {
+    display: inline-flex;
+  }
+  .header-cta-cluster {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+  }
+  .btn-header-rfq {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  .btn-header-rfq span {
+    display: none; /* Icon only on mobile */
+  }
+  .header-sales-card {
+    display: none !important;
+  }
+
+  /* Mobile Search Bar (Smooth Slide-Down when active) */
+  .header-search-wrapper {
+    display: none;
+    width: 100%;
+    order: 3;
+    margin-top: 0.4rem;
+    max-width: 100%;
+  }
+  .header-search-wrapper.mobile-search-active {
+    display: block;
+    animation: slideDownMobileSearch 0.25s ease-out;
+  }
+  @keyframes slideDownMobileSearch {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .search-input-box input {
+    padding: 0.55rem 4.5rem 0.55rem 2.2rem;
+    font-size: 0.8rem;
+    border-radius: var(--radius-sm);
+  }
+  .search-icon-lens {
+    left: 0.75rem;
+    font-size: 0.8rem;
+  }
+  .search-submit-btn {
+    padding: 0.35rem 0.65rem;
     font-size: 0.7rem;
   }
 
-  /* Search & Controls */
-  .header-search-wrapper {
-    max-width: 100%;
-    width: 100%;
-  }
-
-  /* Grids & Cards */
+  /* 3. Responsive Grids & Cards */
   .hero-b2b-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.75rem;
   }
   .trust-pillars-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.85rem;
   }
   .catalog-products-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
   }
   .footer-columns-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.75rem;
+  }
+
+  /* Prevent Diagram / SVG Overflow */
+  .hero-bearing-blueprint-wrap {
+    padding: 0.75rem;
+    max-width: 100%;
+  }
+  .pulley-diagram-box {
+    padding: 0.5rem;
+    max-width: 100%;
+  }
+  .pulley-svg-canvas {
+    max-width: 100%;
+    height: auto;
   }
 
   /* Horizontal Swipe Data Tables & Matrices */
@@ -3401,10 +3553,11 @@ button, input, textarea, select {
   .size-matrix-table-container,
   .matrix-table-wrap {
     width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     border-radius: var(--radius-md);
-    margin: 1rem 0;
+    margin: 0.85rem 0;
     padding-bottom: 0.5rem;
   }
 
@@ -3416,9 +3569,10 @@ button, input, textarea, select {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
-    gap: 0.5rem;
-    padding-bottom: 0.6rem;
+    gap: 0.45rem;
+    padding-bottom: 0.5rem;
     scrollbar-width: none;
+    max-width: 100%;
   }
   .category-selector-tabs::-webkit-scrollbar,
   .matrix-tab-bar::-webkit-scrollbar,
@@ -3428,15 +3582,15 @@ button, input, textarea, select {
 
   /* Floating WhatsApp FAB Safe Positioning */
   .fab-whatsapp-wrapper {
-    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 12px);
-    right: 12px;
+    bottom: calc(75px + env(safe-area-inset-bottom, 0px) + 10px);
+    right: 10px;
   }
 
   /* Modals & Dialogs Dynamic Viewport Height */
   .modal-dialog-card {
-    width: 94%;
+    width: 95%;
     max-height: 88dvh;
-    padding: 1.25rem;
+    padding: 1.15rem;
     margin: 1rem auto;
   }
 }
@@ -3444,11 +3598,11 @@ button, input, textarea, select {
 /* --- 5. Compact Mobile Screens (< 400px: iPhone SE, Galaxy Fold cover) --- */
 @media (max-width: 400px) {
   .brand-title {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
   }
   .hero-action-buttons {
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.55rem;
   }
   .btn-hero-primary,
   .btn-hero-secondary {

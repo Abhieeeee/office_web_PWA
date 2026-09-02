@@ -1057,7 +1057,17 @@
     showToast(activeLang === 'ne' ? 'भाषा नेपालीमा परिवर्तन भयो (Language: Nepali)' : 'Language switched to English');
   };
 
-  // ================= 13. DYNAMIC SCROLL READING PROGRESS BAR =================
+  // ================= 13. DYNAMIC SCROLL READING PROGRESS BAR & MOBILE SEARCH =================
+  window.toggleMobileSearch = function () {
+    const searchWrap = document.querySelector('.header-search-wrapper');
+    if (!searchWrap) return;
+    const isVisible = searchWrap.classList.toggle('mobile-search-active');
+    if (isVisible) {
+      const input = document.getElementById('partSearchInput');
+      if (input) input.focus();
+    }
+  };
+
   function initScrollProgressBar() {
     const progressBar = document.getElementById('scrollProgressBar');
     if (!progressBar) return;
