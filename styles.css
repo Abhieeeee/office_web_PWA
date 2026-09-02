@@ -3195,6 +3195,162 @@ button, input, textarea, select {
   display: block;
 }
 
+/* 3-Tier Brand Comparison Grid */
+.brand-tiers-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.brand-tier-card {
+  background: var(--bg-card);
+  border: 1px solid var(--slate-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tier-premium-card {
+  border-color: rgba(56, 189, 248, 0.4);
+  background: linear-gradient(145deg, rgba(15, 29, 48, 0.9) 0%, rgba(10, 30, 55, 0.95) 100%);
+}
+
+.tier-premium-card:hover {
+  border-color: #38BDF8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.2);
+}
+
+.tier-standard-card {
+  border-color: rgba(245, 158, 11, 0.4);
+  background: linear-gradient(145deg, rgba(15, 29, 48, 0.9) 0%, rgba(30, 25, 15, 0.95) 100%);
+}
+
+.tier-standard-card:hover {
+  border-color: #F59E0B;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.2);
+}
+
+.tier-economy-card {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: linear-gradient(145deg, rgba(15, 29, 48, 0.9) 0%, rgba(10, 30, 25, 0.95) 100%);
+}
+
+.tier-economy-card:hover {
+  border-color: #10B981;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.2);
+}
+
+.tier-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tier-badge-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.04em;
+  font-family: var(--font-display);
+}
+
+.badge-tier-premium {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38BDF8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.badge-tier-standard {
+  background: rgba(245, 158, 11, 0.2);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.badge-tier-economy {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.tier-durability {
+  font-size: 0.72rem;
+  color: #CBD5E1;
+  font-weight: 600;
+}
+
+.tier-brand-names {
+  font-size: 0.85rem;
+  color: #FFFFFF;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.tier-price-est {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.tier-price-est strong {
+  color: var(--orange-electric);
+  font-family: var(--font-mono);
+}
+
+.btn-tier-action {
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-tier-premium-action {
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+  color: #FFFFFF;
+}
+.btn-tier-premium-action:hover {
+  background: #38BDF8;
+  color: #050B14;
+}
+
+.btn-tier-standard-action {
+  background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+  color: #FFFFFF;
+}
+.btn-tier-standard-action:hover {
+  background: #F59E0B;
+  color: #050B14;
+}
+
+.btn-tier-economy-action {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #FFFFFF;
+}
+.btn-tier-economy-action:hover {
+  background: #10B981;
+  color: #050B14;
+}
+
 /* ==========================================================================
    22. FOOTER OFFICIAL EMBLEM MEDALLION & BRAND CARD
    ========================================================================== */

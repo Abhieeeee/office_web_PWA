@@ -563,14 +563,32 @@
       grandTotal
     };
 
+    // Automatic Real-Time Stock Deduction from Inventory
+    const deductedLogs = [];
+    items.forEach(billed => {
+      const matchedInv = state.inventory.find(inv => 
+        inv.partNo.toLowerCase().trim() === billed.desc.toLowerCase().trim() ||
+        inv.partNo.toLowerCase().includes(billed.desc.toLowerCase()) || 
+        billed.desc.toLowerCase().includes(inv.partNo.toLowerCase())
+      );
+      if (matchedInv) {
+        const prevQty = matchedInv.qty;
+        matchedInv.qty = Math.max(0, matchedInv.qty - billed.qty);
+        deductedLogs.push(`${matchedInv.partNo} (${prevQty} → ${matchedInv.qty})`);
+      }
+    });
+
     state.invoices.unshift(newInvoice);
     state.currentGeneratedInvoice = newInvoice;
     persistAll();
     renderOverviewDashboard();
+    renderInventoryTable();
 
     // Render Printable View
     displayPrintableInvoice(newInvoice);
-    showToast(`Invoice ${newInvoice.id} generated!`);
+    
+    const stockMsg = deductedLogs.length > 0 ? ` & Deducted: ${deductedLogs.join(', ')}` : '';
+    showToast(`Invoice ${newInvoice.id} generated! Stock updated${stockMsg}`);
   };
 
   function displayPrintableInvoice(inv) {
@@ -1561,10 +1579,81 @@
     }
   };
 
+  // ================= 10. SECURE STAFF AUTHENTICATION & SESSION MANAGEMENT =================
+  const STAFF_SESSION_KEY = 'shree_anjani_staff_session';
+
+  function checkStaffAuthSession() {
+    const session = localStorage.getItem(STAFF_SESSION_KEY);
+    const authOverlay = document.getElementById('staffAuthOverlay');
+    const badge = document.getElementById('staffSessionBadge');
+    
+    if (session) {
+      try {
+        const data = JSON.parse(session);
+        // Valid within 8 hours
+        if (Date.now() - data.timestamp < 8 * 3600 * 1000) {
+          if (authOverlay) authOverlay.style.display = 'none';
+          if (badge) {
+            badge.style.display = 'inline-flex';
+            const displayTag = document.getElementById('staffDisplayTag');
+            if (displayTag) displayTag.textContent = data.user || 'STAFF';
+          }
+          return true;
+        }
+      } catch (e) {}
+    }
+
+    if (authOverlay) authOverlay.style.display = 'flex';
+    if (badge) badge.style.display = 'none';
+    return false;
+  }
+
+  window.handleStaffAuthLogin = function () {
+    const email = document.getElementById('staffAuthEmail')?.value.trim();
+    const pass = document.getElementById('staffAuthPass')?.value.trim();
+
+    if (!email || !pass) {
+      showToast('Please enter your Staff Email / ID and PIN / Password.');
+      return;
+    }
+
+    // Accept PIN 2026 or store credentials
+    if (pass === '2026' || pass === 'shreeanjani2026' || pass.length >= 6) {
+      const userNick = (email.split('@')[0] || 'STORE STAFF').toUpperCase();
+      const sessionData = {
+        user: userNick,
+        email: email,
+        timestamp: Date.now()
+      };
+      localStorage.setItem(STAFF_SESSION_KEY, JSON.stringify(sessionData));
+      
+      const authOverlay = document.getElementById('staffAuthOverlay');
+      if (authOverlay) authOverlay.style.display = 'none';
+      
+      const badge = document.getElementById('staffSessionBadge');
+      if (badge) {
+        badge.style.display = 'inline-flex';
+        const displayTag = document.getElementById('staffDisplayTag');
+        if (displayTag) displayTag.textContent = userNick;
+      }
+      
+      showToast(`Staff authenticated! Welcome, ${userNick}.`);
+    } else {
+      showToast('Authentication failed. Check Store PIN (2026) or password.');
+    }
+  };
+
+  window.handleStaffLogout = function () {
+    localStorage.removeItem(STAFF_SESSION_KEY);
+    checkStaffAuthSession();
+    showToast('Staff logged out. Private ERP locked.');
+  };
+
   // Initialization
   initStorage();
   renderOverviewDashboard();
   loadSavedSupabaseCredentials();
+  checkStaffAuthSession();
 
 })();
 

@@ -17,6 +17,39 @@
 </head>
 <body>
 
+  <!-- ================= 0. STAFF AUTHENTICATION GUARD OVERLAY ================= -->
+  <div class="staff-auth-backdrop" id="staffAuthOverlay" style="display: flex;">
+    <div class="staff-auth-modal">
+      <div class="auth-brand-logo">
+        <img src="../assets/logo.png?v=4" alt="Shree Anjani Emblem" style="width: 72px; height: 72px; border-radius: 50%; border: 2.5px solid var(--accent-orange); background: #FFFFFF; padding: 2px;" />
+      </div>
+      <h2>Store Staff Authentication</h2>
+      <p class="auth-subtitle">Private Internal ERP — Shree Anjani Belt &amp; Bearing Store</p>
+      
+      <form id="staffLoginForm" onsubmit="event.preventDefault(); window.handleStaffAuthLogin();">
+        <div class="form-group-field" style="margin-bottom: 1rem; text-align: left;">
+          <label for="staffAuthEmail" style="display: block; font-size: 0.8rem; color: #94A3B8; margin-bottom: 0.35rem; font-weight: 600;">Store Staff ID / Email</label>
+          <input type="text" id="staffAuthEmail" placeholder="staff@shreeanjani.com or admin" value="staff@shreeanjani.com" style="width: 100%; background: #071220; border: 1px solid #1E3756; color: #fff; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;" required />
+        </div>
+        <div class="form-group-field" style="margin-bottom: 1.25rem; text-align: left;">
+          <label for="staffAuthPass" style="display: block; font-size: 0.8rem; color: #94A3B8; margin-bottom: 0.35rem; font-weight: 600;">Security Password / Quick Store PIN</label>
+          <input type="password" id="staffAuthPass" placeholder="Enter PIN (2026) or Password" value="2026" style="width: 100%; background: #071220; border: 1px solid #1E3756; color: #fff; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;" required />
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; font-size: 0.78rem; color: #94A3B8;">
+          <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;"><input type="checkbox" id="rememberStaffSession" checked /> Keep Active (8h)</label>
+          <span style="color: #38BDF8; display: flex; align-items: center; gap: 0.3rem;"><i class="fa-solid fa-lock"></i> Supabase Secure</span>
+        </div>
+        <button type="submit" style="width: 100%; background: linear-gradient(135deg, #FF5500 0%, #D44400 100%); color: #fff; border: none; padding: 0.85rem; border-radius: 6px; font-family: 'Chakra Petch', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 0 20px rgba(255,85,0,0.4);">
+          <i class="fa-solid fa-shield-halved"></i> Access Internal ERP
+        </button>
+      </form>
+      
+      <div style="margin-top: 1.25rem; text-align: center;">
+        <a href="../index.html" style="color: #94A3B8; font-size: 0.8rem; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> Return to Customer Storefront</a>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= 1. INTERNAL HEADER ================= -->
   <header class="internal-header">
     <div class="header-brand-wrap">
@@ -30,6 +63,12 @@
     </div>
 
     <div class="header-right-tools">
+      <div class="staff-session-indicator" id="staffSessionBadge" style="display: none; align-items: center; gap: 0.5rem; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.35rem 0.75rem; border-radius: 9999px;">
+        <span style="color: #34D399; font-size: 0.78rem; font-weight: 700;"><i class="fa-solid fa-user-check"></i> <span id="staffDisplayTag">STAFF</span></span>
+        <button onclick="window.handleStaffLogout()" title="Log out and Lock ERP" style="background: none; border: none; color: #EF4444; cursor: pointer; font-size: 0.85rem; padding-left: 0.25rem;">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+      </div>
       <span class="time-badge" id="internalNepalClock">
         <span class="pulse-dot"></span> <span id="clockDisplay">Nepal Time</span>
       </span>

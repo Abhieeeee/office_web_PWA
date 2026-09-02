@@ -247,87 +247,266 @@
     {
       baseCode: "6309",
       dims: "45 x 100 x 25 mm (1.771 x 3.937 x 0.984 in)",
-      skf: "6309-2RS1 / C3 (Sweden 🇸🇪)",
-      nbc: "6309 LLU C3 (India 🇮🇳)",
-      urb: "6309 2RS (Romania 🇷🇴)",
-      ntn: "6309 LLU (Japan 🇯🇵)",
-      fag: "6309-2RSR-C3 (Germany 🇩🇪)",
-      nsk: "6309 DDUC3 (Japan 🇯🇵)",
-      koyo: "6309 2RS (Japan 🇯🇵)",
-      cr: "55.3 kN",
-      cor: "31.5 kN",
-      app: "Paddy Destoner Vibrating Shafts, Oil Expeller Barrels, 25-40 HP Motor Drives",
-      clearance: "C3 Radial Internal Clearance (High Heat / Heavy Load)",
-      speedLimit: "7,500 RPM (Grease)",
-      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
+  // ================= 3. MULTI-TIER BRAND BEARING INTERCHANGE & DIMENSIONS DATABASE =================
+  const INTERCHANGE_DATABASE = [
+    {
+      baseCode: "6204",
+      dims: "20 × 47 × 14 mm",
+      d_mm: 20,
+      D_mm: 47,
+      B_mm: 14,
+      weight_kg: "0.11 kg",
+      cr: "13.5 kN",
+      cor: "6.55 kN",
+      speedLimit: "18,000 RPM (Grease) / 22,000 RPM (Oil)",
+      clearance: "Normal / C3 Radial Clearance",
+      app: "Small Flour Mills, Electric Motors (1-3 HP), Centrifugal Water Pumps",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 6204-2RS1 (Sweden 🇸🇪) • NTN 6204 LLU (Japan 🇯🇵) • FAG 6204-2RSR (Germany 🇩🇪)",
+          durability: "★★★★★ (Max Lifespan under continuous 24/7 industrial run)",
+          priceTag: "NPR 380 - 450 / unit",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 6204 LLU (India 🇮🇳) • ARB 6204 2RS (India 🇮🇳) • ZKL 6204 2RS (Czech 🇨🇿)",
+          durability: "★★★★☆ (Excellent balance of reliability and cost for mills)",
+          priceTag: "NPR 260 - 320 / unit",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 6204 2RS (India/UAE 🇮🇳) • HI-BOND 6204 (India 🇮🇳) • V-TECH / KG Economy",
+          durability: "★★★☆☆ (Best for intermittent, light-duty, or cost-sensitive agro drives)",
+          priceTag: "NPR 140 - 190 / unit",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "6205",
+      dims: "25 × 52 × 15 mm",
+      d_mm: 25,
+      D_mm: 52,
+      B_mm: 15,
+      weight_kg: "0.13 kg",
+      cr: "14.8 kN",
+      cor: "7.8 kN",
+      speedLimit: "15,000 RPM (Grease) / 18,000 RPM (Oil)",
+      clearance: "Normal / C3 Radial Clearance",
+      app: "Centrifugal Water Pumps, Rice Mill Polisher Shafts, 3-5 HP Electric Motors",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 6205-2RS1 (Sweden 🇸🇪) • NTN 6205 LLU (Japan 🇯🇵) • URB 6205 2RS (Romania 🇷🇴)",
+          durability: "★★★★★ (Highest precision, noise-free, zero early fatigue)",
+          priceTag: "NPR 480 - 550 / unit",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 6205 LLU (India 🇮🇳) • ARB 6205 2RS (India 🇮🇳) • KOYO 6205 2RS (Japan 🇯🇵)",
+          durability: "★★★★☆ (Top choice for commercial rice/flour mills in Nepal)",
+          priceTag: "NPR 320 - 390 / unit",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 6205 2RS (India/UAE 🇮🇳) • HI-BOND 6205 • V-TECH / Chinese Industrial Grade",
+          durability: "★★★☆☆ (Cost-effective solution for light agricultural machinery)",
+          priceTag: "NPR 160 - 220 / unit",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "6308",
+      dims: "40 × 90 × 23 mm",
+      d_mm: 40,
+      D_mm: 90,
+      B_mm: 23,
+      weight_kg: "0.64 kg",
+      cr: "42.5 kN",
+      cor: "24.0 kN",
+      speedLimit: "8,500 RPM (Grease) / 10,000 RPM (Oil)",
+      clearance: "C3 Radial Internal Clearance (High Heat & Shock)",
+      app: "Heavy 3-Phase Electric Motors (15-25 HP), Crusher Intermediate Drives, Oil Mill Barrels",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 6308-2RS1/C3 (Sweden 🇸🇪) • FAG 6308-2RSR-C3 (Germany 🇩🇪) • NTN 6308 LLU C3",
+          durability: "★★★★★ (Engineered for high thermal loads and heavy motor armatures)",
+          priceTag: "NPR 1,450 - 1,750 / unit",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 6308 2RS C3 (India 🇮🇳) • ARB 6308 C3 (India 🇮🇳) • ZKL 6308 2RS (Czech 🇨🇿)",
+          durability: "★★★★☆ (Heavy-duty plant standard across Lumbini Province)",
+          priceTag: "NPR 980 - 1,250 / unit",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 6308 2RS (India/UAE 🇮🇳) • HI-BOND 6308 • V-TECH Heavy Duty Line",
+          durability: "★★★☆☆ (Economic choice for slower shaft speeds & secondary equipment)",
+          priceTag: "NPR 550 - 750 / unit",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "22212",
+      dims: "60 × 110 × 28 mm",
+      d_mm: 60,
+      D_mm: 110,
+      B_mm: 28,
+      weight_kg: "1.15 kg",
+      cr: "156.0 kN",
+      cor: "166.0 kN",
+      speedLimit: "5,300 RPM (Oil/Grease)",
+      clearance: "C3 Spherical Roller (Self-Aligning with W33 Lube Groove)",
+      app: "Stone Crusher Vibrating Screens, Heavy Vibratory Feeders, Asphalt Mixers",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 22212 EK/W33 (Sweden 🇸🇪) • URB 22212 EK C3 (Romania 🇷🇴) • NTN 22212 EAKD1",
+          durability: "★★★★★ (Withstands massive quarry vibration and shock without cracking)",
+          priceTag: "NPR 4,800 - 5,900 / unit",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 22212 CA/W33 (India 🇮🇳) • ARB 22212 EK (India 🇮🇳) • ZKL 22212 (Czech 🇨🇿)",
+          durability: "★★★★☆ (Proven track record in crushing & screening plants in Nepal)",
+          priceTag: "NPR 3,400 - 4,200 / unit",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 22212 EK • HI-BOND Spherical • KG International 22212",
+          durability: "★★★☆☆ (Budget replacement for low-vibration secondary rollers)",
+          priceTag: "NPR 1,950 - 2,600 / unit",
+          tagClass: "tier-economy"
+        }
+      }
     },
     {
       baseCode: "22218",
-      dims: "90 x 160 x 40 mm (3.543 x 6.299 x 1.575 in)",
-      skf: "22218 EK / W33 (Sweden 🇸🇪)",
-      nbc: "22218 CA / W33 (India 🇮🇳)",
-      urb: "22218 EK C3 (Romania 🇷🇴)",
-      ntn: "22218 EAKD1 (Japan 🇯🇵)",
-      fag: "22218-E1-K (Germany 🇩🇪)",
-      nsk: "22218 EAE4 (Japan 🇯🇵)",
-      koyo: "22218 RHR (Japan 🇯🇵)",
+      dims: "90 × 160 × 40 mm",
+      d_mm: 90,
+      D_mm: 160,
+      B_mm: 40,
+      weight_kg: "3.45 kg",
       cr: "345.0 kN",
       cor: "375.0 kN",
-      app: "Stone Crusher 24x12 / 30x15 Jaw, Vibrating Screens, Clinker Grinding Mills",
-      clearance: "C3 Spherical Roller (Tapered 1:12 Bore with H318 Sleeve)",
       speedLimit: "3,800 RPM (Oil/Grease)",
-      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
+      clearance: "C3 Spherical Roller (Tapered 1:12 Bore with Adapter Sleeve H318)",
+      app: "Primary Stone Jaw Crushers (24x12 & 30x15 size), Rotary Kilns, Heavy Clinker Grinding Mills",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 22218 EK/W33 (Sweden 🇸🇪) • URB 22218 EK C3 (Romania 🇷🇴) • FAG 22218-E1-K",
+          durability: "★★★★★ (Ultra high dynamic capacity for boulder crushing impacts)",
+          priceTag: "NPR 8,500 - 11,500 / unit",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 22218 CA/W33 (India 🇮🇳) • ARB 22218 EK (India 🇮🇳) • KOYO 22218 RHR",
+          durability: "★★★★☆ (Strong reliability for medium-heavy aggregate crushing plants)",
+          priceTag: "NPR 6,200 - 7,800 / unit",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 22218 EK • HI-BOND 22218 • Commercial Chinese Quarry Grade",
+          durability: "★★★☆☆ (Cost-saving option for lighter duty secondary crushing stages)",
+          priceTag: "NPR 3,800 - 4,900 / unit",
+          tagClass: "tier-economy"
+        }
+      }
     },
     {
       baseCode: "30206",
-      dims: "30 x 62 x 17.25 mm (1.181 x 2.441 x 0.679 in)",
-      skf: "30206 J2/Q (Sweden 🇸🇪)",
-      nbc: "30206 (India 🇮🇳)",
-      urb: "30206 (Romania 🇷🇴)",
-      ntn: "30206 (Japan 🇯🇵)",
-      fag: "30206-A (Germany 🇩🇪)",
-      nsk: "HR30206J (Japan 🇯🇵)",
-      koyo: "30206JR (Japan 🇯🇵)",
+      dims: "30 × 62 × 17.25 mm",
+      d_mm: 30,
+      D_mm: 62,
+      B_mm: 17.25,
+      weight_kg: "0.24 kg",
       cr: "43.5 kN",
       cor: "45.0 kN",
-      app: "Tractor Front Axle Hubs, Industrial Reducer Gearboxes, Bevel Pinion Shafts",
-      clearance: "Taper Roller (High Combined Radial & Heavy Axial Thrust)",
       speedLimit: "9,000 RPM",
-      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
-    },
-    {
-      baseCode: "6207",
-      dims: "35 x 72 x 17 mm (1.378 x 2.835 x 0.669 in)",
-      skf: "6207-2RS1 (Sweden 🇸🇪)",
-      nbc: "6207 LLU (India 🇮🇳)",
-      urb: "6207 2RS (Romania 🇷🇴)",
-      ntn: "6207 LLU (Japan 🇯🇵)",
-      fag: "6207-2RSR (Germany 🇩🇪)",
-      nsk: "6207 DDU (Japan 🇯🇵)",
-      koyo: "6207 2RS (Japan 🇯🇵)",
-      cr: "27.0 kN",
-      cor: "15.3 kN",
-      app: "Heavy Paddy Huller Main Shafts, Centrifugal Air Blowers",
-      clearance: "Normal / C3",
-      speedLimit: "9,500 RPM",
-      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
+      clearance: "Tapered Roller (High Combined Radial & Axial Thrust)",
+      app: "Tractor Front Axle Hubs, Industrial Reducer Gearboxes, Bevel Pinion Shafts",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 30206 J2/Q (Sweden 🇸🇪) • NTN 30206 (Japan 🇯🇵) • TIMKEN 30206 (USA 🇺🇸)",
+          durability: "★★★★★ (Case-carburized alloy steel for heavy vehicle shock loads)",
+          priceTag: "NPR 680 - 850 / unit",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 30206 (India 🇮🇳) • ARB 30206 (India 🇮🇳) • ZKL 30206 (Czech 🇨🇿)",
+          durability: "★★★★☆ (Widespread standard for commercial vehicles and gearboxes in Nepal)",
+          priceTag: "NPR 450 - 580 / unit",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 30206 • HI-BOND 30206 • V-TECH Taper Line",
+          durability: "★★★☆☆ (Economy solution for agro implements and trailer axles)",
+          priceTag: "NPR 250 - 340 / unit",
+          tagClass: "tier-economy"
+        }
+      }
     },
     {
       baseCode: "UCP 208",
-      dims: "40 mm Bore (1.575 in) • Solid Cast Iron Housing",
-      skf: "SY 40 TF",
-      nbc: "UCP 208",
-      urb: "UCP 208",
-      ntn: "UCP 208D1",
-      fag: "ASE08",
-      nsk: "UCP 208D1",
-      koyo: "UCP 208",
+      dims: "40 mm Bore (1.575 in) • Solid Cast Iron Pillow Block Housing",
+      d_mm: 40,
+      D_mm: 184,
+      B_mm: 49.2,
+      weight_kg: "2.10 kg",
       cr: "29.1 kN",
       cor: "17.8 kN",
-      app: "Rice Mill Rubber Roll Huller Shafts (High Demand in Nepal), Agro Conveyors",
-      clearance: "Self-Aligning Insert with Set-Screw Lock",
       speedLimit: "4,800 RPM",
-      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
+      clearance: "Self-Aligning Insert Ball Bearing with Set-Screw Lock",
+      app: "Rice Mill Rubber Roll Huller Shafts (High Demand in Nepal), Agro Conveyors, Elevators",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "NTN UCP 208D1 (Japan 🇯🇵) • SKF SY 40 TF (Sweden 🇸🇪) • FYH UCP 208 (Japan 🇯🇵)",
+          durability: "★★★★★ (Heavy ductile iron housing, dual triple-lip sealing for paddy dust)",
+          priceTag: "NPR 2,100 - 2,650 / unit",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC UCP 208 (India 🇮🇳) • ARB UCP 208 (India 🇮🇳) • URB UCP 208 (Romania 🇷🇴)",
+          durability: "★★★★☆ (Standard workhorse across rice mills in Terai region)",
+          priceTag: "NPR 1,350 - 1,750 / unit",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI UCP 208 • HI-BOND UCP 208 • V-TECH Block Line",
+          durability: "★★★☆☆ (Economical unit for slow speed grain elevators and sorting conveyors)",
+          priceTag: "NPR 750 - 950 / unit",
+          tagClass: "tier-economy"
+        }
+      }
     }
   ];
 
@@ -369,85 +548,127 @@
     const raw = input.value.toUpperCase().trim();
     if (!raw) {
       resultBox.innerHTML = `
-        <div class="calc-result-heading">Equivalent Part In Stock</div>
-        <div class="calc-result-value" style="font-size: 1.2rem; color: var(--text-muted);">Type a bearing part number or select a fast-lookup preset above</div>
+        <div class="calc-result-heading">Multi-Tier Brand &amp; Dimensions Calculator</div>
+        <div class="calc-result-value" style="font-size: 1.15rem; color: var(--text-muted);">Type any bearing number (e.g. 6205, 6308, 22212, 22218, 30206, UCP 208) to inspect exact dimensions and all brand tier options</div>
       `;
       return;
     }
 
-    const match = INTERCHANGE_DATABASE.find(item => raw.includes(item.baseCode)) || {
+    const match = INTERCHANGE_DATABASE.find(item => raw.includes(item.baseCode) || item.baseCode.includes(raw)) || {
       baseCode: raw,
-      dims: "Standard ISO Metric Dimensions",
-      skf: `SKF ${raw} (Sweden 🇸🇪)`,
-      nbc: `NBC ${raw} (India 🇮🇳)`,
-      urb: `URB ${raw} (Romania 🇷🇴)`,
-      ntn: `NTN ${raw} (Japan 🇯🇵)`,
-      fag: `FAG ${raw} (Germany 🇩🇪)`,
-      nsk: `NSK ${raw} (Japan 🇯🇵)`,
-      koyo: `KOYO ${raw} (Japan 🇯🇵)`,
-      cr: "Standard ISO Rating",
-      cor: "Standard ISO Rating",
-      app: "General Industrial Mill & Transmission Equipment in Nepal",
-      clearance: "C3 / Normal Radial Internal",
+      dims: "Standard ISO Dimensions Available",
+      d_mm: "Standard",
+      D_mm: "Standard",
+      B_mm: "Standard",
+      weight_kg: "Standard ISO Weight",
+      cr: "Standard ISO Load Rating",
+      cor: "Standard ISO Load Rating",
       speedLimit: "Standard Industrial Rating",
-      stockStatus: "Verified Ready Stock in Siddharthanagar Hub"
+      clearance: "Normal / C3 Radial Clearance",
+      app: "Industrial Mills, Crushers, Motors & Transmission Shafts in Nepal",
+      stockStatus: "Ready Stock in Siddharthanagar Hub",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: `SKF ${raw} (Sweden 🇸🇪) • NTN ${raw} (Japan 🇯🇵) • FAG ${raw} (Germany 🇩🇪)`,
+          durability: "★★★★★ (Max Heavy-Duty Lifespan)",
+          priceTag: "Wholesale Rate on Direct Inquiry",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: `NBC ${raw} (India 🇮🇳) • ARB ${raw} (India 🇮🇳) • ZKL ${raw} (Czech 🇨🇿)`,
+          durability: "★★★★☆ (Standard Plant Workhorse)",
+          priceTag: "Wholesale Rate on Direct Inquiry",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: `DPI ${raw} • HI-BOND ${raw} • V-TECH / KG Commercial Line`,
+          durability: "★★★☆☆ (Best for Cost-Sensitive / Light Applications)",
+          priceTag: "Wholesale Rate on Direct Inquiry",
+          tagClass: "tier-economy"
+        }
+      }
     };
 
     resultBox.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
-        <div class="calc-result-heading" style="margin-bottom: 0;">Cross-Reference Match For: <strong style="color: #FFFFFF; font-size: 0.95rem;">${raw}</strong></div>
+        <div class="calc-result-heading" style="margin-bottom: 0;">Technical Specs &amp; Tier Matrix For: <strong style="color: #FFFFFF; font-size: 1.1rem; text-decoration: underline var(--orange-electric);">${raw}</strong></div>
         <span style="background: rgba(16, 185, 129, 0.15); color: #34D399; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: var(--radius-pill); border: 1px solid rgba(16, 185, 129, 0.3);">
           <i class="fa-solid fa-circle-check"></i> ${match.stockStatus}
         </span>
       </div>
 
-      <div class="calc-result-value" style="color: var(--orange-electric); font-size: 1.35rem; line-height: 1.3; margin-bottom: 0.65rem;">
-        SKF ${match.skf} <br class="mobile-only" />| NBC ${match.nbc} | URB ${match.urb}
-      </div>
-
-      <!-- Tech Specs Badges Grid -->
+      <!-- Tech Specs Dimensions Grid -->
       <div class="interchange-spec-grid">
         <div class="interchange-spec-tile">
           <span class="spec-tile-label">Dimensions ($d \\times D \\times B$)</span>
-          <span class="spec-tile-value">${match.dims}</span>
+          <span class="spec-tile-value" style="color: var(--cyan-accent);">${match.dims}</span>
         </div>
         <div class="interchange-spec-tile">
-          <span class="spec-tile-label">Internal Clearance</span>
-          <span class="spec-tile-value" style="color: var(--cyan-accent);">${match.clearance}</span>
+          <span class="spec-tile-label">Bore ($d$) / OD ($D$) / Width ($B$)</span>
+          <span class="spec-tile-value">${match.d_mm} mm × ${match.D_mm} mm × ${match.B_mm} mm</span>
         </div>
         <div class="interchange-spec-tile">
-          <span class="spec-tile-label">Dynamic Load ($C_r$)</span>
-          <span class="spec-tile-value">${match.cr}</span>
+          <span class="spec-tile-label">Dynamic Load ($C_r$) / Static ($C_{0r}$)</span>
+          <span class="spec-tile-value">${match.cr} / ${match.cor}</span>
         </div>
         <div class="interchange-spec-tile">
-          <span class="spec-tile-label">Static Load ($C_{0r}$)</span>
-          <span class="spec-tile-value">${match.cor}</span>
+          <span class="spec-tile-label">Ref Speed / Weight</span>
+          <span class="spec-tile-value">${match.speedLimit} • ${match.weight_kg}</span>
         </div>
       </div>
 
-      <p style="font-size: 0.825rem; color: #E2E8F0; margin: 0.75rem 0; line-height: 1.45;">
-        ⚙️ <strong>Primary Nepal Industry Use:</strong> ${match.app}
+      <p style="font-size: 0.825rem; color: #E2E8F0; margin: 0.75rem 0 1rem; line-height: 1.45;">
+        ⚙️ <strong>Primary Nepal Industry Application:</strong> ${match.app}
       </p>
 
-      <!-- Multi-Brand Equivalent Matrix Table -->
-      <table class="interchange-table-compact" style="margin-top: 0.75rem;">
-        <tr style="background: rgba(255,255,255,0.06); font-weight: bold; color: #FFFFFF;">
-          <td>Brand</td>
-          <td>Verified Direct Replacement Code</td>
-          <td style="text-align: right;">Action</td>
-        </tr>
-        <tr>
-          <td><strong style="color: #38BDF8;">SKF</strong> (Sweden 🇸🇪)</td>
-          <td><strong>${match.skf}</strong></td>
-          <td style="text-align: right;"><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & wholesale price for SKF ' + match.skf)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.725rem; padding: 0.3rem 0.65rem;"><i class="fa-brands fa-whatsapp"></i> Get Quote</a></td>
-        </tr>
-        <tr>
-          <td><strong style="color: #FFAE73;">NBC</strong> (India 🇮🇳)</td>
-          <td><strong>${match.nbc}</strong></td>
-          <td style="text-align: right;"><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & wholesale price for NBC ' + match.nbc)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.725rem; padding: 0.3rem 0.65rem;"><i class="fa-brands fa-whatsapp"></i> Get Quote</a></td>
-        </tr>
-        <tr>
-          <td><strong style="color: #34D399;">URB</strong> (Romania 🇷🇴)</td>
+      <!-- 3-Tier Brand Options Grid (Premium vs Standard vs Economy) -->
+      <div class="brand-tiers-comparison-grid">
+        
+        <!-- Tier 1: Premium -->
+        <div class="brand-tier-card tier-premium-card">
+          <div class="tier-card-header">
+            <span class="tier-badge-pill badge-tier-premium">💎 PREMIUM HEAVY-DUTY</span>
+            <span class="tier-durability">${match.tiers.premium.durability}</span>
+          </div>
+          <div class="tier-brand-names">${match.tiers.premium.brands}</div>
+          <div class="tier-price-est">Estimated: <strong>${match.tiers.premium.priceTag}</strong></div>
+          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring Premium Tier (SKF/NTN/FAG) wholesale price for ' + raw)}" target="_blank" class="btn-tier-action btn-tier-premium-action">
+            <i class="fa-brands fa-whatsapp"></i> Inquire Premium Rate
+          </a>
+        </div>
+
+        <!-- Tier 2: Standard -->
+        <div class="brand-tier-card tier-standard-card">
+          <div class="tier-card-header">
+            <span class="tier-badge-pill badge-tier-standard">⚡ STANDARD INDUSTRIAL</span>
+            <span class="tier-durability">${match.tiers.standard.durability}</span>
+          </div>
+          <div class="tier-brand-names">${match.tiers.standard.brands}</div>
+          <div class="tier-price-est">Estimated: <strong>${match.tiers.standard.priceTag}</strong></div>
+          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring Standard Tier (NBC/ARB/ZKL) wholesale price for ' + raw)}" target="_blank" class="btn-tier-action btn-tier-standard-action">
+            <i class="fa-brands fa-whatsapp"></i> Inquire Standard Rate
+          </a>
+        </div>
+
+        <!-- Tier 3: Economy -->
+        <div class="brand-tier-card tier-economy-card">
+          <div class="tier-card-header">
+            <span class="tier-badge-pill badge-tier-economy">💰 BUDGET / ECONOMY</span>
+            <span class="tier-durability">${match.tiers.economy.durability}</span>
+          </div>
+          <div class="tier-brand-names">${match.tiers.economy.brands}</div>
+          <div class="tier-price-est">Estimated: <strong>${match.tiers.economy.priceTag}</strong></div>
+          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring Budget Economy Tier (DPI/HI-BOND/V-TECH) wholesale price for ' + raw)}" target="_blank" class="btn-tier-action btn-tier-economy-action">
+            <i class="fa-brands fa-whatsapp"></i> Inquire Budget Rate
+          </a>
+        </div>
+
+      </div>
+    `;
+  };
           <td><strong>${match.urb}</strong></td>
           <td style="text-align: right;"><a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring stock & wholesale price for URB ' + match.urb)}" target="_blank" class="btn-matrix-wa" style="font-size: 0.725rem; padding: 0.3rem 0.65rem;"><i class="fa-brands fa-whatsapp"></i> Get Quote</a></td>
         </tr>
@@ -717,7 +938,7 @@
     }
   }
 
-  // ================= 8. CATALOG SEARCH =================
+  // ================= 8. MULTI-TIER CATALOG SEARCH =================
   window.searchCatalog = function () {
     const input = document.getElementById('partSearchInput');
     if (!input) return;
@@ -730,12 +951,16 @@
     }
 
     const lower = query.toLowerCase();
-    if (lower.includes('62') || lower.includes('63') || lower.includes('222') || lower.includes('302') || lower.includes('ucp') || lower.includes('bearing')) {
-      document.getElementById('bearings-deepdive')?.scrollIntoView({ behavior: 'smooth' });
-      showToast(`Browsing technical size matrices for "${query}"`);
-    } else if (lower.includes('belt') || lower.includes('pulley') || lower.includes('conveyor') || lower.includes('b-') || lower.includes('c-')) {
+    const bearingMatch = INTERCHANGE_DATABASE.find(b => lower.includes(b.baseCode.toLowerCase()) || b.baseCode.toLowerCase().includes(lower));
+
+    if (bearingMatch || lower.includes('62') || lower.includes('63') || lower.includes('222') || lower.includes('302') || lower.includes('ucp') || lower.includes('bearing') || lower.includes('roller')) {
+      const targetCode = bearingMatch ? bearingMatch.baseCode : query;
+      window.setInterchangePreset(targetCode);
+      document.getElementById('engineering-tools')?.scrollIntoView({ behavior: 'smooth' });
+      showToast(`Showing 3 Brand Tiers & Dimensions for "${targetCode}"`);
+    } else if (lower.includes('belt') || lower.includes('pulley') || lower.includes('conveyor') || lower.includes('b-') || lower.includes('c-') || lower.includes('a-')) {
       document.getElementById('belts-deepdive')?.scrollIntoView({ behavior: 'smooth' });
-      showToast(`Browsing belt specifications for "${query}"`);
+      showToast(`Browsing power transmission belt specs for "${query}"`);
     } else {
       const msg = `Namaste Shree Anjani Belt and Bearing! I want to check availability & wholesale price for: *${query}*`;
       const waUrl = `https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent(msg)}`;
