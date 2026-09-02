@@ -3129,36 +3129,92 @@ button, input, textarea, select {
   color: #FFFFFF;
 }
 
-/* Pulley Drive Interactive SVG */
-.pulley-diagram-box {
-  background: #06111C;
-  border: 1px solid var(--slate-border);
-  border-radius: var(--radius-md);
-  padding: 1rem;
-  margin: 1.25rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* CAD Blueprint Cockpit & Diagram Panels */
+.cad-blueprint-box {
+  background: radial-gradient(circle at 50% 0%, #0F233B 0%, #081525 60%, #050E1A 100%);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(56, 189, 248, 0.05);
   position: relative;
+  overflow: hidden;
 }
 
+.cad-blueprint-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--orange-electric), var(--cyan-accent), #34D399);
+}
+
+.cad-diagram-panel {
+  background: #040A14;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-md);
+  margin: 1.25rem 0;
+  overflow: hidden;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8), 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.cad-panel-header {
+  background: rgba(15, 35, 60, 0.7);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cad-header-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--cyan-accent);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.cad-scale-badge {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(255, 85, 0, 0.15);
+  color: #FFAE73;
+  border: 1px solid rgba(255, 85, 0, 0.35);
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-pill);
+}
+
+.cad-svg-wrapper {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #030810;
+}
+
+.cad-svg-canvas,
 .pulley-svg-canvas {
   width: 100%;
-  max-width: 480px;
+  max-width: 520px;
   height: auto;
 }
 
 .vbelt-animated-stroke {
   stroke: var(--orange-electric);
-  stroke-width: 4;
+  stroke-width: 3.5;
   fill: none;
-  stroke-dasharray: 10 5;
-  animation: rotateBeltPath 1.5s linear infinite;
+  stroke-dasharray: 12 6;
+  animation: rotateBeltPath 1.2s linear infinite;
 }
 
 @keyframes rotateBeltPath {
-  from { stroke-dashoffset: 30; }
+  from { stroke-dashoffset: 36; }
   to { stroke-dashoffset: 0; }
 }
 

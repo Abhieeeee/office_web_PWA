@@ -488,25 +488,26 @@
     }
   ];
 
+  // ================= 4. MECHANICAL ENGINEERING WORKBENCH CONTROLLERS =================
   window.switchCalcTab = function (tabKey) {
     const btnInterchange = document.getElementById('tabBtnInterchange');
     const btnBelt = document.getElementById('tabBtnBelt');
+    const btnShaft = document.getElementById('tabBtnShaft');
     const panelInterchange = document.getElementById('panelCalcInterchange');
     const panelBelt = document.getElementById('panelCalcBelt');
+    const panelShaft = document.getElementById('panelCalcShaft');
 
-    if (tabKey === 'interchange') {
-      btnInterchange?.classList.add('active');
-      btnBelt?.classList.remove('active');
-      if (panelInterchange) panelInterchange.style.display = 'block';
-      if (panelBelt) panelBelt.style.display = 'none';
-      window.runBearingInterchange();
-    } else {
-      btnBelt?.classList.add('active');
-      btnInterchange?.classList.remove('active');
-      if (panelBelt) panelBelt.style.display = 'block';
-      if (panelInterchange) panelInterchange.style.display = 'none';
-      window.runBeltCalculator();
-    }
+    btnInterchange?.classList.toggle('active', tabKey === 'interchange');
+    btnBelt?.classList.toggle('active', tabKey === 'belt');
+    btnShaft?.classList.toggle('active', tabKey === 'shaft');
+
+    if (panelInterchange) panelInterchange.style.display = tabKey === 'interchange' ? 'block' : 'none';
+    if (panelBelt) panelBelt.style.display = tabKey === 'belt' ? 'block' : 'none';
+    if (panelShaft) panelShaft.style.display = tabKey === 'shaft' ? 'block' : 'none';
+
+    if (tabKey === 'interchange') window.runBearingInterchange();
+    else if (tabKey === 'belt') window.runBeltCalculator();
+    else if (tabKey === 'shaft') window.runShaftTorqueCalculator();
   };
 
   window.setInterchangePreset = function (code) {
@@ -523,24 +524,17 @@
     const resultBox = document.getElementById('interchangeResultBox');
     if (!input || !resultBox) return;
 
-    const raw = input.value.toUpperCase().trim();
-    if (!raw) {
-      resultBox.innerHTML = `
-        <div class="calc-result-heading">Multi-Tier Brand &amp; Dimensions Calculator</div>
-        <div class="calc-result-value" style="font-size: 1.15rem; color: var(--text-muted);">Type any bearing number (e.g. 6205, 6308, 22212, 22218, 30206, UCP 208) to inspect exact dimensions and all brand tier options</div>
-      `;
-      return;
-    }
+    const raw = input.value.toUpperCase().trim() || '6205';
 
     const match = INTERCHANGE_DATABASE.find(item => raw.includes(item.baseCode) || item.baseCode.includes(raw)) || {
       baseCode: raw,
-      dims: "Standard ISO Dimensions Available",
-      d_mm: "Standard",
-      D_mm: "Standard",
-      B_mm: "Standard",
+      dims: "Standard Metric Dimensions",
+      d_mm: 25,
+      D_mm: 52,
+      B_mm: 15,
       weight_kg: "Standard ISO Weight",
-      cr: "Standard ISO Load Rating",
-      cor: "Standard ISO Load Rating",
+      cr: "Standard ISO Rating",
+      cor: "Standard ISO Rating",
       speedLimit: "Standard Industrial Rating",
       clearance: "Normal / C3 Radial Clearance",
       app: "Industrial Mills, Crushers, Motors & Transmission Shafts in Nepal",
@@ -569,6 +563,17 @@
         }
       }
     };
+
+    // Update 2D CAD Blueprint SVG Diagram Callouts
+    const cadOD = document.getElementById('cadODLabel');
+    const cadBore = document.getElementById('cadBoreLabel');
+    const cadWidth = document.getElementById('cadWidthLabel');
+    const cadBadge = document.getElementById('cadBearingBadge');
+    
+    if (cadOD) cadOD.textContent = `OD (D) = ${match.D_mm} mm`;
+    if (cadBore) cadBore.textContent = `Bore (d) = ${match.d_mm} mm`;
+    if (cadWidth) cadWidth.textContent = `Width (B) = ${match.B_mm} mm`;
+    if (cadBadge) cadBadge.textContent = `${match.baseCode} CAD Schematic (${match.d_mm}×${match.D_mm}×${match.B_mm} mm)`;
 
     resultBox.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
@@ -648,25 +653,43 @@
     `;
   };
 
-  // ================= 5. V-BELT & PULLEY CENTER DISTANCE CALCULATOR =================
+  // ================= 5. V-BELT & PULLEY SIMULATOR CONTROLLER =================
   window.runBeltCalculator = function () {
     const d1 = parseFloat(document.getElementById('calcPulleyD1')?.value) || 6;
     const d2 = parseFloat(document.getElementById('calcPulleyD2')?.value) || 12;
     const c = parseFloat(document.getElementById('calcCenterDist')?.value) || 24;
+    const motorRpm = parseFloat(document.getElementById('calcMotorRpm')?.value) || 1440;
+
+    // Update Slider Values if available
+    const r1Slider = document.getElementById('calcPulleyD1Range');
+    const r2Slider = document.getElementById('calcPulleyD2Range');
+    const cSlider = document.getElementById('calcCenterDistRange');
+    if (r1Slider) r1Slider.value = d1;
+    if (r2Slider) r2Slider.value = d2;
+    if (cSlider) cSlider.value = c;
 
     // Update MM Hints
     const d1Mm = document.getElementById('d1MmHint');
     const d2Mm = document.getElementById('d2MmHint');
     const mmValSpan = document.getElementById('centerDistMmVal');
-    if (d1Mm) d1Mm.textContent = `≈ ${(d1 * 25.4).toFixed(1)} mm`;
-    if (d2Mm) d2Mm.textContent = `≈ ${(d2 * 25.4).toFixed(1)} mm`;
-    if (mmValSpan) mmValSpan.textContent = `≈ ${(c * 25.4).toFixed(1)} mm`;
+    if (d1Mm) d1Mm.textContent = `${d1.toFixed(1)}" (${(d1 * 25.4).toFixed(0)} mm)`;
+    if (d2Mm) d2Mm.textContent = `${d2.toFixed(1)}" (${(d2 * 25.4).toFixed(0)} mm)`;
+    if (mmValSpan) mmValSpan.textContent = `${c.toFixed(1)}" (${(c * 25.4).toFixed(0)} mm)`;
 
     // Standard Mechanical Engineering Formula:
     // L = 2*C + (pi/2)*(D1 + D2) + ((D2 - D1)^2)/(4*C)
     const pitchLengthInches = (2 * c) + (Math.PI / 2) * (d1 + d2) + (Math.pow(d2 - d1, 2) / (4 * c));
     const pitchLengthMm = pitchLengthInches * 25.4;
-    const speedRatio = (Math.max(d1, d2) / Math.min(d1, d2)).toFixed(2);
+    const speedRatio = (d2 / d1).toFixed(2);
+    const drivenRpm = (motorRpm / (d2 / d1)).toFixed(0);
+
+    // Linear Belt Velocity: V = (pi * D1_meters * RPM) / 60
+    const d1Meters = (d1 * 25.4) / 1000;
+    const beltVelocity = ((Math.PI * d1Meters * motorRpm) / 60).toFixed(1);
+
+    // Arc of Contact on Smaller Pulley: theta = 180 - 2 * arcsin((D2-D1)/(2C)) * (180/pi)
+    const sinVal = Math.max(-1, Math.min(1, Math.abs(d2 - d1) / (2 * c)));
+    const arcOfContact = (180 - (2 * Math.asin(sinVal) * (180 / Math.PI))).toFixed(1);
 
     // Closest Standard Belt Size
     const approxNumber = Math.round(pitchLengthInches);
@@ -675,6 +698,10 @@
     else if (d1 >= 9.0) section = "C";
 
     const beltCode = `V-Belt ${section}-${approxNumber}`;
+
+    // Update Ratio Badge
+    const ratioBadge = document.getElementById('beltRatioBadge');
+    if (ratioBadge) ratioBadge.textContent = `Ratio: ${speedRatio} : 1 • Driven: ${drivenRpm} RPM`;
 
     // Update SVG Pulley Visuals
     const svgD1 = document.getElementById('svgPulleyD1');
@@ -685,16 +712,15 @@
     const svgBeltPath = document.getElementById('svgBeltPath');
 
     if (svgD1 && svgD2) {
-      const r1 = Math.min(50, Math.max(18, d1 * 4.5));
-      const r2 = Math.min(65, Math.max(22, d2 * 4.5));
+      const r1 = Math.min(50, Math.max(16, d1 * 4.2));
+      const r2 = Math.min(65, Math.max(20, d2 * 4.2));
       svgD1.setAttribute('r', r1);
       svgD2.setAttribute('r', r2);
-      if (svgD1Label) svgD1Label.textContent = `D1: ${d1}"`;
-      if (svgD2Label) svgD2Label.textContent = `D2: ${d2}"`;
+      if (svgD1Label) svgD1Label.textContent = `D1: ${d1}" (${(d1 * 25.4).toFixed(0)}mm)`;
+      if (svgD2Label) svgD2Label.textContent = `D2: ${d2}" (${(d2 * 25.4).toFixed(0)}mm)`;
       if (svgCenterText) svgCenterText.textContent = `Center Distance C = ${c.toFixed(1)}" (${(c * 25.4).toFixed(0)} mm)`;
 
       if (svgBeltPath) {
-        // Dynamically compute tangent connection points for animated belt
         const yTop1 = 80 - r1;
         const yBot1 = 80 + r1;
         const yTop2 = 80 - r2;
@@ -710,16 +736,101 @@
     if (outputCode) outputCode.textContent = `${beltCode} (Pitch Length: ${pitchLengthInches.toFixed(1)}")`;
     if (outputDetails) {
       outputDetails.innerHTML = `
-        • Calculated Pitch Length: <strong>${pitchLengthInches.toFixed(2)} inches (${pitchLengthMm.toFixed(0)} mm)</strong><br />
-        • Speed Reduction Ratio: <strong>${speedRatio} : 1</strong> (${d1 > d2 ? 'Speed Increaser' : 'Speed Reducer'})<br />
-        • Recommended Section: <strong>${section}-Section (${section === 'A' ? '13×8' : section === 'B' ? '17×11' : '22×14'} mm)</strong><br />
-        • Standard Motor RPM: <strong>1440 RPM $\\rightarrow$ Driven Shaft: ${(1440 / speedRatio).toFixed(0)} RPM</strong>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin-top: 0.5rem;">
+          <div class="interchange-spec-tile">
+            <span class="spec-tile-label">Calculated Pitch Length ($L_p$)</span>
+            <span class="spec-tile-value" style="color: var(--cyan-accent);">${pitchLengthInches.toFixed(2)}" (${pitchLengthMm.toFixed(0)} mm)</span>
+          </div>
+          <div class="interchange-spec-tile">
+            <span class="spec-tile-label">Driven Shaft Speed</span>
+            <span class="spec-tile-value" style="color: #34D399;">${drivenRpm} RPM (${speedRatio} : 1)</span>
+          </div>
+          <div class="interchange-spec-tile">
+            <span class="spec-tile-label">Linear Belt Speed ($V$)</span>
+            <span class="spec-tile-value">${beltVelocity} m/s ${parseFloat(beltVelocity) > 30 ? '⚠️ (High Speed)' : '✓ (Optimal)'}</span>
+          </div>
+          <div class="interchange-spec-tile">
+            <span class="spec-tile-label">Small Pulley Arc of Contact</span>
+            <span class="spec-tile-value">${arcOfContact}° ${parseFloat(arcOfContact) < 140 ? '⚠️ (Use Idler)' : '✓ (Sufficient Grip)'}</span>
+          </div>
+        </div>
       `;
     }
     if (waCta) {
       waCta.href = `https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring wholesale rate for ' + beltCode + ' calculated for ' + d1 + '" x ' + d2 + '" pulleys at ' + c + '" center distance.')}`;
       waCta.innerHTML = `<i class="fa-brands fa-whatsapp"></i> Inquire Wholesale Rate for ${beltCode}`;
     }
+  };
+
+  // ================= 6. MOTOR TORQUE & SHAFT DIAMETER SIZER =================
+  window.runShaftTorqueCalculator = function () {
+    const rawPower = parseFloat(document.getElementById('shaftMotorHp')?.value) || 15;
+    const unit = document.getElementById('shaftPowerUnit')?.value || 'hp';
+    const rpm = parseFloat(document.getElementById('shaftRpmInput')?.value) || 1440;
+    const ks = parseFloat(document.getElementById('shaftServiceFactor')?.value) || 1.5;
+    const resultBox = document.getElementById('shaftCalcResultBox');
+    if (!resultBox) return;
+
+    // Convert to kW
+    const powerKw = unit === 'hp' ? rawPower * 0.7457 : rawPower;
+    const powerHp = unit === 'hp' ? rawPower : rawPower / 0.7457;
+
+    // Nominal Torque: T = (9550 * P_kW) / RPM  [N.m]
+    const torqueNm = rpm > 0 ? (9550 * powerKw) / rpm : 0;
+    const designTorqueNm = torqueNm * ks;
+
+    // Solid Shaft Diameter under pure torsion:
+    // tau_allowable = 40 MPa (40 * 10^6 N/m^2) for standard commercial mild steel
+    // d = ( (16 * T_d) / (pi * tau) )^(1/3)
+    const tau = 40 * 1e6; // 40 MPa
+    const dMeters = Math.pow((16 * designTorqueNm) / (Math.PI * tau), 1/3);
+    const minShaftMm = (dMeters * 1000).toFixed(1);
+    const stdShaftMm = Math.ceil(parseFloat(minShaftMm) / 5) * 5; // round up to standard 5mm step
+
+    // Standard Parallel Keyway (DIN 6885/1)
+    let keyway = "6 × 6 mm (DIN 6885/1)";
+    let pillowBlock = "UCP 204 / UCP 205";
+    if (stdShaftMm <= 22) { keyway = "6 × 6 mm"; pillowBlock = "UCP 204 (20mm)"; }
+    else if (stdShaftMm <= 30) { keyway = "8 × 7 mm"; pillowBlock = "UCP 206 (30mm)"; }
+    else if (stdShaftMm <= 38) { keyway = "10 × 8 mm"; pillowBlock = "UCP 207 (35mm)"; }
+    else if (stdShaftMm <= 44) { keyway = "12 × 8 mm"; pillowBlock = "UCP 208 (40mm)"; }
+    else if (stdShaftMm <= 50) { keyway = "14 × 9 mm"; pillowBlock = "UCP 210 (50mm)"; }
+    else if (stdShaftMm <= 58) { keyway = "16 × 10 mm"; pillowBlock = "UCP 211 (55mm)"; }
+    else if (stdShaftMm <= 65) { keyway = "18 × 11 mm"; pillowBlock = "UCP 212 (60mm)"; }
+    else if (stdShaftMm <= 75) { keyway = "20 × 12 mm"; pillowBlock = "UCP 215 (75mm)"; }
+    else { keyway = "22 × 14 mm"; pillowBlock = "UCP 218 (90mm)"; }
+
+    resultBox.innerHTML = `
+      <div class="calc-result-heading">Transmitted Shaft Torque &amp; Minimum Steel Shaft Diameter</div>
+      <div class="calc-result-value" style="color: #34D399; font-size: 1.4rem;">
+        Nominal Torque: ${torqueNm.toFixed(1)} N⋅m • Design Torque (${ks}x): ${designTorqueNm.toFixed(1)} N⋅m
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+        <div class="interchange-spec-tile">
+          <span class="spec-tile-label">Minimum Calculated Shaft OD</span>
+          <span class="spec-tile-value" style="color: var(--cyan-accent);">${minShaftMm} mm</span>
+        </div>
+        <div class="interchange-spec-tile">
+          <span class="spec-tile-label">Standard Commercial Shaft Size</span>
+          <span class="spec-tile-value" style="color: #FFFFFF;">${stdShaftMm} mm (${(stdShaftMm / 25.4).toFixed(2)}")</span>
+        </div>
+        <div class="interchange-spec-tile">
+          <span class="spec-tile-label">DIN 6885/1 Parallel Keyway</span>
+          <span class="spec-tile-value" style="color: var(--orange-electric);">${keyway}</span>
+        </div>
+        <div class="interchange-spec-tile">
+          <span class="spec-tile-label">Matching Pillow Block Unit</span>
+          <span class="spec-tile-value" style="color: #38BDF8;">${pillowBlock}</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.25rem;">
+        <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring shaft, pillow block ' + pillowBlock + ', and pulley machining for ' + powerHp.toFixed(1) + ' HP motor at ' + rpm + ' RPM.')}" target="_blank" class="btn-matrix-wa" style="padding: 0.65rem 1.25rem; font-size: 0.85rem;">
+          <i class="fa-brands fa-whatsapp"></i> Inquire Shaft &amp; Bearing ${pillowBlock} Stock
+        </a>
+      </div>
+    `;
   };
 
   // ================= 6. DIGITAL MACHINE LEDGER (FACTORY PROFILES) =================
