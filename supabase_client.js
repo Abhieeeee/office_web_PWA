@@ -13,14 +13,15 @@
     SYNC_STATUS: 'shree_anjani_supabase_status'
   };
 
+  const DEFAULT_URL = 'https://zddkvzqeirkenqyxzqln.supabase.co';
   const DEFAULT_KEY = 'sb_publishable_Ok7x8IZ5wLQdN14YYcVJFQ_oz1FRx_n';
 
   const SupabaseBridge = {
-    getUrl: () => localStorage.getItem(STORAGE_KEYS.URL) || '',
+    getUrl: () => localStorage.getItem(STORAGE_KEYS.URL) || DEFAULT_URL,
     getKey: () => localStorage.getItem(STORAGE_KEYS.KEY) || DEFAULT_KEY,
 
     setCredentials: function (url, key) {
-      const cleanUrl = (url || '').trim().replace(/\/+$/, '');
+      const cleanUrl = (url || '').trim().replace(/\/+$/, '') || DEFAULT_URL;
       const cleanKey = (key || '').trim() || DEFAULT_KEY;
       localStorage.setItem(STORAGE_KEYS.URL, cleanUrl);
       localStorage.setItem(STORAGE_KEYS.KEY, cleanKey);
