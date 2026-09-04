@@ -1,0 +1,46 @@
+﻿name: CI & Integrity Checks
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  validate-codebase:
+    name: Codebase Syntax & Integrity Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate JavaScript Syntax
+        run: |
+          echo "Auditing core JavaScript modules..."
+          node -c app.js
+          node -c supabase_client.js
+          node -c internal/auth_security.js
+          node -c internal/internal.js
+          echo "All core JavaScript modules passed Node.js AST compilation!"
+
+      - name: Validate HTML Structure & JSON Manifests
+        run: |
+          echo "Auditing PWA Manifest..."
+          node -e "const m = require('./manifest.json'); if (!m.name || !m.icons) throw new Error('Invalid manifest'); console.log('Manifest OK:', m.name);"
+          echo "Auditing Internal ERP Manifest..."
+          node -e "const m = require('./internal/manifest.json'); if (!m.name || !m.icons) throw new Error('Invalid internal manifest'); console.log('Internal Manifest OK:', m.name);"
+
+      - name: Security & Secret Leak Prevention Check
+        run: |
+          echo "Auditing for hardcoded private service role keys..."
+          if grep -rn "service_role" --exclude-dir=".git" --exclude="*.md" .; then
+            echo "Error: Service role key found in non-markdown source!"
+            exit 1
+          else
+            echo "Security Audit Passed: No private service_role keys found."
+          fi

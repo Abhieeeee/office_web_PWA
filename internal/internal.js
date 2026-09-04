@@ -390,8 +390,14 @@
   setInterval(updateNepalClock, 1000);
   updateNepalClock();
 
-  // Tab Navigation Switcher
+  // Tab Navigation Switcher with RBAC Security Gating
   window.switchInternalTab = function (tabId) {
+    // RBAC Security Gating for Settings & Database Management
+    if (tabId === 'tab-settings' && window.AuthSecurity && !window.AuthSecurity.hasPermission('database:backup')) {
+      showToast('⚠️ Admin Access Required for System Settings & Database Backup (PIN: 7788).');
+      return;
+    }
+
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
 
@@ -404,8 +410,10 @@
     if (tabId === 'tab-overview') renderOverviewDashboard();
     if (tabId === 'tab-inventory') window.renderInventoryTable();
     if (tabId === 'tab-invoicing') renderInvoicingPanel();
+    if (tabId === 'tab-customers') renderCustomerDirectory();
     if (tabId === 'tab-transport') renderTransportTable();
     if (tabId === 'tab-workshop') renderWorkshopTable();
+    if (tabId === 'tab-scanner') window.initBillScanner?.();
   };
 
   // ================= 1. OVERVIEW DASHBOARD =================
@@ -2203,12 +2211,13 @@
     }
   };
 
-  // ================= 12. ROLE-BASED AUTHENTICATION (ADMIN VS STAFF) =================
-  const STAFF_SESSION_KEY = 'shree_anjani_staff_session';
-
+  // ================= 12. ROLE-BASED AUTHENTICATION (WEB-CRYPTO SHA-256 RBAC) =================
   function getCurrentUserRole() {
+    if (window.AuthSecurity && window.AuthSecurity.currentSession) {
+      return window.AuthSecurity.currentSession.role || 'STAFF';
+    }
     try {
-      const session = localStorage.getItem(STAFF_SESSION_KEY);
+      const session = sessionStorage.getItem('shree_anjani_secure_session') || localStorage.getItem('shree_anjani_remember_token');
       if (session) {
         const data = JSON.parse(session);
         return data.role || 'STAFF';
@@ -2218,39 +2227,141 @@
   }
 
   function isAdmin() {
+    if (window.AuthSecurity) {
+      return window.AuthSecurity.hasPermission('database:backup');
+    }
     return getCurrentUserRole() === 'ADMIN';
   }
 
-  function checkStaffAuthSession() {
-    const session = localStorage.getItem(STAFF_SESSION_KEY);
+  window.showStaffAuthOverlay = function (customMessage) {
     const authOverlay = document.getElementById('staffAuthOverlay');
     const badge = document.getElementById('staffSessionBadge');
-    
-    if (session) {
-      try {
-        const data = JSON.parse(session);
-        // 12 hours active session
-        if (Date.now() - data.timestamp < 12 * 3600 * 1000) {
-          if (authOverlay) authOverlay.style.display = 'none';
-          if (badge) {
-            badge.style.display = 'inline-flex';
-            const displayTag = document.getElementById('staffDisplayTag');
-            if (displayTag) {
-              if (data.role === 'ADMIN') {
-                displayTag.innerHTML = `<span style="color: #FBBF24;"><i class="fa-solid fa-crown"></i> ADMIN (${data.user})</span>`;
-              } else {
-                displayTag.innerHTML = `<span style="color: #34D399;"><i class="fa-solid fa-user-check"></i> STAFF (${data.user})</span>`;
-              }
-            }
-          }
-          applyRolePermissions(data.role);
-          return true;
+    if (authOverlay) authOverlay.style.display = 'flex';
+    if (badge) badge.style.display = 'none';
+
+    const warnBox = document.getElementById('authModalWarningNotice');
+    if (warnBox && customMessage) {
+      warnBox.textContent = customMessage;
+      warnBox.style.display = 'block';
+    }
+
+    checkAndRenderLockoutState();
+  };
+
+  function checkAndRenderLockoutState() {
+    if (!window.AuthSecurity) return;
+    const lockout = window.AuthSecurity.isLockedOut();
+    const banner = document.getElementById('authLockoutBanner');
+    const timerSpan = document.getElementById('authLockoutTimer');
+    const loginBtn = document.getElementById('authLoginSubmitBtn');
+
+    if (lockout.locked) {
+      if (banner) banner.style.display = 'flex';
+      if (loginBtn) loginBtn.disabled = true;
+
+      const updateCountdown = () => {
+        const currentLock = window.AuthSecurity.isLockedOut();
+        if (currentLock.locked) {
+          const seconds = Math.ceil(currentLock.remainingMs / 1000);
+          if (timerSpan) timerSpan.textContent = `${seconds}s`;
+        } else {
+          if (banner) banner.style.display = 'none';
+          if (loginBtn) loginBtn.disabled = false;
+          clearInterval(window.__authLockoutInterval);
+          window.__authLockoutInterval = null;
         }
+      };
+
+      updateCountdown();
+      if (!window.__authLockoutInterval) {
+        window.__authLockoutInterval = setInterval(updateCountdown, 1000);
+      }
+    } else {
+      if (banner) banner.style.display = 'none';
+      if (loginBtn) loginBtn.disabled = false;
+      if (window.__authLockoutInterval) {
+        clearInterval(window.__authLockoutInterval);
+        window.__authLockoutInterval = null;
+      }
+    }
+  }
+
+  window.selectAuthRolePreset = function (roleKey) {
+    const emailInput = document.getElementById('staffAuthEmail');
+    const passInput = document.getElementById('staffAuthPass');
+    
+    document.querySelectorAll('#roleChipsContainer .role-chip-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-role') === roleKey);
+    });
+
+    if (roleKey === 'ADMIN') {
+      if (emailInput) emailInput.value = 'admin@shreeanjani.com';
+      if (passInput) passInput.value = '7788';
+    } else if (roleKey === 'STAFF') {
+      if (emailInput) emailInput.value = 'staff@shreeanjani.com';
+      if (passInput) passInput.value = '2026';
+    } else if (roleKey === 'AUDITOR') {
+      if (emailInput) emailInput.value = 'auditor@shreeanjani.com';
+      if (passInput) passInput.value = '1122';
+    }
+  };
+
+  window.toggleAuthPassVisibility = function () {
+    const passInput = document.getElementById('staffAuthPass');
+    const eyeIcon = document.getElementById('authPassEyeIcon');
+    if (!passInput) return;
+
+    if (passInput.type === 'password') {
+      passInput.type = 'text';
+      if (eyeIcon) {
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+      }
+    } else {
+      passInput.type = 'password';
+      if (eyeIcon) {
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+      }
+    }
+  };
+
+  function checkStaffAuthSession() {
+    const authOverlay = document.getElementById('staffAuthOverlay');
+    const badge = document.getElementById('staffSessionBadge');
+
+    let session = null;
+    if (window.AuthSecurity) {
+      session = window.AuthSecurity.restoreSession();
+    } else {
+      try {
+        const raw = sessionStorage.getItem('shree_anjani_secure_session');
+        if (raw) session = JSON.parse(raw);
       } catch (e) {}
+    }
+
+    if (session) {
+      if (authOverlay) authOverlay.style.display = 'none';
+      if (badge) {
+        badge.style.display = 'inline-flex';
+        const displayTag = document.getElementById('staffDisplayTag');
+        if (displayTag) {
+          if (session.role === 'ADMIN') {
+            displayTag.innerHTML = `<span style="color: #FBBF24;"><i class="fa-solid fa-crown"></i> ADMIN (${session.user || 'ADMIN'})</span>`;
+          } else if (session.role === 'AUDITOR') {
+            displayTag.innerHTML = `<span style="color: #60A5FA;"><i class="fa-solid fa-clipboard-check"></i> AUDITOR (${session.user || 'AUDITOR'})</span>`;
+          } else {
+            displayTag.innerHTML = `<span style="color: #34D399;"><i class="fa-solid fa-user-check"></i> STAFF (${session.user || 'STAFF'})</span>`;
+          }
+        }
+      }
+      applyRolePermissions(session.role);
+      return true;
     }
 
     if (authOverlay) authOverlay.style.display = 'flex';
     if (badge) badge.style.display = 'none';
+    checkAndRenderLockoutState();
     return false;
   }
 
@@ -2262,97 +2373,69 @@
     adminRestrictedElements.forEach(el => {
       el.style.display = isAdminUser ? '' : 'none';
     });
+
+    // Auditor read-only restrictions
+    if (role === 'AUDITOR') {
+      document.querySelectorAll('.auditor-restricted').forEach(el => {
+        el.style.display = 'none';
+      });
+    }
   }
 
   window.handleStaffAuthLogin = async function () {
     const email = document.getElementById('staffAuthEmail')?.value.trim();
     const pass = document.getElementById('staffAuthPass')?.value.trim();
+    const remember = document.getElementById('staffAuthRemember')?.checked || false;
 
     if (!email || !pass) {
-      showToast('Please enter your Staff Email / ID and PIN / Password.');
+      showToast('Please enter your Staff Email / Role ID and PIN / Password.');
       return;
     }
 
-    let authenticated = false;
-    let role = 'STAFF';
-    let userNick = (email.split('@')[0] || 'STORE STAFF').toUpperCase();
-
-    // 1. Check Admin Credentials (Admin PIN: 7788 / shreeanjaniadmin / admin email)
-    if (pass === '7788' || pass === 'shreeanjaniadmin' || email.toLowerCase().includes('admin')) {
-      if (pass === '7788' || pass === 'shreeanjaniadmin' || pass === '2026' || pass.length >= 6) {
-        authenticated = true;
-        role = 'ADMIN';
-        userNick = userNick || 'ADMINISTRATOR';
-      }
-    } 
-    // 2. Check Store Staff Credentials (Store PIN: 2026 / password)
-    else if (pass === '2026' || pass === 'shreeanjani2026' || pass.length >= 6) {
-      authenticated = true;
-      role = 'STAFF';
+    if (!window.AuthSecurity) {
+      showToast('AuthSecurity engine initializing. Please try again.');
+      return;
     }
 
-    // 3. Optional Supabase Cloud Native Auth
-    if (!authenticated && window.SupabaseBridge && window.SupabaseBridge.isConfigured() && email.includes('@')) {
-      try {
-        const authRes = await fetch(`${window.SupabaseBridge.getUrl()}/auth/v1/token?grant_type=password`, {
-          method: 'POST',
-          headers: {
-            'apikey': window.SupabaseBridge.getKey(),
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email: email, password: pass })
-        });
-        if (authRes.ok) {
-          const authData = await authRes.json();
-          authenticated = true;
-          role = (authData.user?.user_metadata?.role || (email.includes('admin') ? 'ADMIN' : 'STAFF')).toUpperCase();
-          userNick = (authData.user?.email.split('@')[0] || 'STAFF').toUpperCase();
-        }
-      } catch (err) {
-        console.warn('Supabase Cloud auth offline fallback');
-      }
-    }
+    const authResult = await window.AuthSecurity.authenticate(email, pass, remember);
 
-    if (authenticated) {
-      const sessionData = {
-        user: userNick,
-        email: email,
-        role: role,
-        timestamp: Date.now()
-      };
-      localStorage.setItem(STAFF_SESSION_KEY, JSON.stringify(sessionData));
-      
+    if (authResult.success) {
       const authOverlay = document.getElementById('staffAuthOverlay');
       if (authOverlay) authOverlay.style.display = 'none';
       
-      const badge = document.getElementById('staffSessionBadge');
-      if (badge) {
-        badge.style.display = 'inline-flex';
-        const displayTag = document.getElementById('staffDisplayTag');
-        if (displayTag) {
-          if (role === 'ADMIN') {
-            displayTag.innerHTML = `<span style="color: #FBBF24;"><i class="fa-solid fa-crown"></i> ADMIN (${userNick})</span>`;
-          } else {
-            displayTag.innerHTML = `<span style="color: #34D399;"><i class="fa-solid fa-user-check"></i> STAFF (${userNick})</span>`;
-          }
-        }
-      }
-      
-      applyRolePermissions(role);
-      showToast(`Welcome, ${userNick}! Logged in as ${role}.`);
+      checkStaffAuthSession();
+      showToast(`Welcome, ${authResult.user}! Terminal unlocked [${authResult.role}].`);
     } else {
-      showToast('Authentication failed. Check Store PIN (2026 for Staff, 7788 for Admin) or Password.');
+      showToast(authResult.error || 'Authentication failed. Please verify PIN.');
+      checkAndRenderLockoutState();
     }
   };
 
   window.handleStaffLogout = function () {
-    localStorage.removeItem(STAFF_SESSION_KEY);
+    if (window.AuthSecurity) {
+      window.AuthSecurity.logout('USER_LOGOUT');
+    }
     checkStaffAuthSession();
     showToast('Staff logged out. Private ERP locked.');
   };
 
+  window.lockTerminal = function () {
+    if (window.AuthSecurity) {
+      window.AuthSecurity.logout('TERMINAL_LOCK');
+    }
+    window.showStaffAuthOverlay('Terminal locked manually. Enter PIN to resume session.');
+    showToast('ERP Terminal locked.');
+  };
+
   // Global ERP Keyboard Shortcuts for High-Speed Counter Operations
   window.addEventListener('keydown', (e) => {
+    // Quick Lock Shortcut: Ctrl+L / Cmd+L
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'l' || e.key === 'L')) {
+      e.preventDefault();
+      window.lockTerminal();
+      return;
+    }
+
     if (e.key === 'Escape') {
       window.closeStockModal?.();
       window.closeTransportModal?.();

@@ -14,6 +14,7 @@
   <link rel="icon" type="image/jpeg" href="../assets/logo.jpg" />
   <link rel="stylesheet" href="internal.css" />
   <script src="../supabase_client.js"></script>
+  <script src="auth_security.js"></script>
 </head>
 <body>
 
@@ -26,13 +27,21 @@
       <h2>Internal ERP Authentication</h2>
       <p class="auth-subtitle">Shree Anjani Belt &amp; Bearing Store • Siddharthanagar Hub</p>
 
+      <!-- Brute-Force Rate Limiter Lockout Warning Banner -->
+      <div id="authLockoutBanner" style="display: none; background: rgba(239, 68, 68, 0.15); border: 1px solid #EF4444; color: #FCA5A5; padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.825rem; margin-bottom: 1rem; text-align: left;">
+        <i class="fa-solid fa-triangle-exclamation text-red"></i> <span id="authLockoutMsg">Too many failed attempts. Termial locked.</span>
+      </div>
+
       <!-- Quick Role Mode Switcher -->
-      <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; background: #071220; padding: 0.25rem; border-radius: 6px; border: 1px solid #1E3756;">
-        <button type="button" onclick="document.getElementById('staffAuthEmail').value='staff@shreeanjani.com'; document.getElementById('staffAuthPass').value='2026';" style="flex: 1; background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; padding: 0.4rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">
-          ⚡ Staff Mode (2026)
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin-bottom: 1.25rem; background: #071220; padding: 0.3rem; border-radius: 6px; border: 1px solid #1E3756;">
+        <button type="button" onclick="window.selectAuthRolePreset('STAFF')" id="roleBtnStaff" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; padding: 0.45rem 0.2rem; font-size: 0.725rem; font-weight: 700; cursor: pointer;">
+          ⚡ Staff (2026)
         </button>
-        <button type="button" onclick="document.getElementById('staffAuthEmail').value='admin@shreeanjani.com'; document.getElementById('staffAuthPass').value='7788';" style="flex: 1; background: rgba(251, 191, 36, 0.15); color: #FBBF24; border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 4px; padding: 0.4rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">
-          👑 Admin Mode (7788)
+        <button type="button" onclick="window.selectAuthRolePreset('ADMIN')" id="roleBtnAdmin" style="background: rgba(251, 191, 36, 0.15); color: #FBBF24; border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 4px; padding: 0.45rem 0.2rem; font-size: 0.725rem; font-weight: 700; cursor: pointer;">
+          👑 Admin (7788)
+        </button>
+        <button type="button" onclick="window.selectAuthRolePreset('AUDITOR')" id="roleBtnAuditor" style="background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 4px; padding: 0.45rem 0.2rem; font-size: 0.725rem; font-weight: 700; cursor: pointer;">
+          📋 Auditor (1122)
         </button>
       </div>
       
@@ -41,21 +50,27 @@
           <label for="staffAuthEmail" style="display: block; font-size: 0.8rem; color: #94A3B8; margin-bottom: 0.35rem; font-weight: 600;">Account ID / Supabase Email</label>
           <input type="text" id="staffAuthEmail" placeholder="staff@shreeanjani.com or admin" value="staff@shreeanjani.com" style="width: 100%; background: #071220; border: 1px solid #1E3756; color: #fff; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;" required />
         </div>
-        <div class="form-group-field" style="margin-bottom: 1.25rem; text-align: left;">
+        <div class="form-group-field" style="margin-bottom: 1.25rem; text-align: left; position: relative;">
           <label for="staffAuthPass" style="display: block; font-size: 0.8rem; color: #94A3B8; margin-bottom: 0.35rem; font-weight: 600;">Security PIN / Password</label>
-          <input type="password" id="staffAuthPass" placeholder="Enter PIN (2026 / 7788) or Password" value="2026" style="width: 100%; background: #071220; border: 1px solid #1E3756; color: #fff; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;" required />
+          <div style="position: relative;">
+            <input type="password" id="staffAuthPass" placeholder="Enter PIN (2026 / 7788 / 1122) or Password" value="2026" style="width: 100%; background: #071220; border: 1px solid #1E3756; color: #fff; padding: 0.75rem 2.5rem 0.75rem 0.75rem; border-radius: 6px; font-size: 0.9rem;" required />
+            <button type="button" onclick="window.toggleAuthPassVisibility()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94A3B8; cursor: pointer;" title="Show/Hide PIN">
+              <i class="fa-solid fa-eye" id="passToggleIcon"></i>
+            </button>
+          </div>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; font-size: 0.78rem; color: #94A3B8;">
           <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;"><input type="checkbox" id="rememberStaffSession" checked /> Keep Active (12h)</label>
-          <span style="color: #38BDF8; display: flex; align-items: center; gap: 0.3rem;"><i class="fa-solid fa-lock"></i> Supabase RBAC</span>
+          <span style="color: #38BDF8; display: flex; align-items: center; gap: 0.3rem;"><i class="fa-solid fa-shield-halved"></i> WebCrypto SHA-256</span>
         </div>
-        <button type="submit" style="width: 100%; background: linear-gradient(135deg, #FF5500 0%, #D44400 100%); color: #fff; border: none; padding: 0.85rem; border-radius: 6px; font-family: 'Chakra Petch', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 0 20px rgba(255,85,0,0.4);">
+        <button type="submit" id="btnSubmitAuth" style="width: 100%; background: linear-gradient(135deg, #FF5500 0%, #D44400 100%); color: #fff; border: none; padding: 0.85rem; border-radius: 6px; font-family: 'Chakra Petch', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 0 20px rgba(255,85,0,0.4);">
           <i class="fa-solid fa-shield-halved"></i> Access Internal ERP
         </button>
       </form>
       
-      <div style="margin-top: 1.25rem; text-align: center;">
-        <a href="../index.html" style="color: #94A3B8; font-size: 0.8rem; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> Return to Customer Storefront</a>
+      <div style="margin-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #64748B;">
+        <span title="Auto-locks after 15m idle"><i class="fa-solid fa-clock"></i> 15m Auto-Lockout</span>
+        <a href="../index.html" style="color: #94A3B8; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> Customer Storefront</a>
       </div>
     </div>
   </div>
@@ -77,9 +92,9 @@
         <i class="fa-solid fa-cloud"></i> <span id="headerSupabaseText">Supabase Connected</span>
       </div>
       <div class="staff-session-indicator" id="staffSessionBadge" style="display: none; align-items: center; gap: 0.5rem; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.35rem 0.75rem; border-radius: 9999px;">
-        <span style="color: #34D399; font-size: 0.78rem; font-weight: 700;"><i class="fa-solid fa-user-check"></i> <span id="staffDisplayTag">STAFF</span></span>
-        <button onclick="window.handleStaffLogout()" title="Log out and Lock ERP" style="background: none; border: none; color: #EF4444; cursor: pointer; font-size: 0.85rem; padding-left: 0.25rem;">
-          <i class="fa-solid fa-right-from-bracket"></i>
+        <span id="staffDisplayTag" style="font-size: 0.78rem; font-weight: 700;"><i class="fa-solid fa-user-check"></i> STAFF</span>
+        <button onclick="window.lockTerminal()" title="Lock Terminal Now (Ctrl+L / Esc)" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #FCA5A5; cursor: pointer; font-size: 0.75rem; padding: 0.2rem 0.45rem; border-radius: 4px; display: inline-flex; align-items: center; gap: 0.25rem;">
+          <i class="fa-solid fa-lock"></i> Lock
         </button>
       </div>
       <span class="time-badge" id="internalNepalClock">
