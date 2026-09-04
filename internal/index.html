@@ -23,21 +23,31 @@
       <div class="auth-brand-logo">
         <img src="../assets/logo.png?v=4" alt="Shree Anjani Emblem" style="width: 72px; height: 72px; border-radius: 50%; border: 2.5px solid var(--accent-orange); background: #FFFFFF; padding: 2px;" />
       </div>
-      <h2>Store Staff Authentication</h2>
-      <p class="auth-subtitle">Private Internal ERP — Shree Anjani Belt &amp; Bearing Store</p>
+      <h2>Internal ERP Authentication</h2>
+      <p class="auth-subtitle">Shree Anjani Belt &amp; Bearing Store • Siddharthanagar Hub</p>
+
+      <!-- Quick Role Mode Switcher -->
+      <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; background: #071220; padding: 0.25rem; border-radius: 6px; border: 1px solid #1E3756;">
+        <button type="button" onclick="document.getElementById('staffAuthEmail').value='staff@shreeanjani.com'; document.getElementById('staffAuthPass').value='2026';" style="flex: 1; background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; padding: 0.4rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">
+          ⚡ Staff Mode (2026)
+        </button>
+        <button type="button" onclick="document.getElementById('staffAuthEmail').value='admin@shreeanjani.com'; document.getElementById('staffAuthPass').value='7788';" style="flex: 1; background: rgba(251, 191, 36, 0.15); color: #FBBF24; border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 4px; padding: 0.4rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">
+          👑 Admin Mode (7788)
+        </button>
+      </div>
       
       <form id="staffLoginForm" onsubmit="event.preventDefault(); window.handleStaffAuthLogin();">
         <div class="form-group-field" style="margin-bottom: 1rem; text-align: left;">
-          <label for="staffAuthEmail" style="display: block; font-size: 0.8rem; color: #94A3B8; margin-bottom: 0.35rem; font-weight: 600;">Store Staff ID / Email</label>
+          <label for="staffAuthEmail" style="display: block; font-size: 0.8rem; color: #94A3B8; margin-bottom: 0.35rem; font-weight: 600;">Account ID / Supabase Email</label>
           <input type="text" id="staffAuthEmail" placeholder="staff@shreeanjani.com or admin" value="staff@shreeanjani.com" style="width: 100%; background: #071220; border: 1px solid #1E3756; color: #fff; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;" required />
         </div>
         <div class="form-group-field" style="margin-bottom: 1.25rem; text-align: left;">
-          <label for="staffAuthPass" style="display: block; font-size: 0.8rem; color: #94A3B8; margin-bottom: 0.35rem; font-weight: 600;">Security Password / Quick Store PIN</label>
-          <input type="password" id="staffAuthPass" placeholder="Enter PIN (2026) or Password" value="2026" style="width: 100%; background: #071220; border: 1px solid #1E3756; color: #fff; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;" required />
+          <label for="staffAuthPass" style="display: block; font-size: 0.8rem; color: #94A3B8; margin-bottom: 0.35rem; font-weight: 600;">Security PIN / Password</label>
+          <input type="password" id="staffAuthPass" placeholder="Enter PIN (2026 / 7788) or Password" value="2026" style="width: 100%; background: #071220; border: 1px solid #1E3756; color: #fff; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem;" required />
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; font-size: 0.78rem; color: #94A3B8;">
-          <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;"><input type="checkbox" id="rememberStaffSession" checked /> Keep Active (8h)</label>
-          <span style="color: #38BDF8; display: flex; align-items: center; gap: 0.3rem;"><i class="fa-solid fa-lock"></i> Supabase Secure</span>
+          <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;"><input type="checkbox" id="rememberStaffSession" checked /> Keep Active (12h)</label>
+          <span style="color: #38BDF8; display: flex; align-items: center; gap: 0.3rem;"><i class="fa-solid fa-lock"></i> Supabase RBAC</span>
         </div>
         <button type="submit" style="width: 100%; background: linear-gradient(135deg, #FF5500 0%, #D44400 100%); color: #fff; border: none; padding: 0.85rem; border-radius: 6px; font-family: 'Chakra Petch', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 0 20px rgba(255,85,0,0.4);">
           <i class="fa-solid fa-shield-halved"></i> Access Internal ERP

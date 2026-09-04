@@ -2156,8 +2156,23 @@
     }
   };
 
-  // ================= 12. STAFF AUTHENTICATION & SESSION GUARD =================
+  // ================= 12. ROLE-BASED AUTHENTICATION (ADMIN VS STAFF) =================
   const STAFF_SESSION_KEY = 'shree_anjani_staff_session';
+
+  function getCurrentUserRole() {
+    try {
+      const session = localStorage.getItem(STAFF_SESSION_KEY);
+      if (session) {
+        const data = JSON.parse(session);
+        return data.role || 'STAFF';
+      }
+    } catch (e) {}
+    return 'STAFF';
+  }
+
+  function isAdmin() {
+    return getCurrentUserRole() === 'ADMIN';
+  }
 
   function checkStaffAuthSession() {
     const session = localStorage.getItem(STAFF_SESSION_KEY);
@@ -2167,13 +2182,21 @@
     if (session) {
       try {
         const data = JSON.parse(session);
-        if (Date.now() - data.timestamp < 8 * 3600 * 1000) {
+        // 12 hours active session
+        if (Date.now() - data.timestamp < 12 * 3600 * 1000) {
           if (authOverlay) authOverlay.style.display = 'none';
           if (badge) {
             badge.style.display = 'inline-flex';
             const displayTag = document.getElementById('staffDisplayTag');
-            if (displayTag) displayTag.textContent = data.user || 'STAFF';
+            if (displayTag) {
+              if (data.role === 'ADMIN') {
+                displayTag.innerHTML = `<span style="color: #FBBF24;"><i class="fa-solid fa-crown"></i> ADMIN (${data.user})</span>`;
+              } else {
+                displayTag.innerHTML = `<span style="color: #34D399;"><i class="fa-solid fa-user-check"></i> STAFF (${data.user})</span>`;
+              }
+            }
           }
+          applyRolePermissions(data.role);
           return true;
         }
       } catch (e) {}
@@ -2184,7 +2207,17 @@
     return false;
   }
 
-  window.handleStaffAuthLogin = function () {
+  function applyRolePermissions(role) {
+    const isAdminUser = (role === 'ADMIN');
+    
+    // Admin-only UI elements
+    const adminRestrictedElements = document.querySelectorAll('.admin-only-feature');
+    adminRestrictedElements.forEach(el => {
+      el.style.display = isAdminUser ? '' : 'none';
+    });
+  }
+
+  window.handleStaffAuthLogin = async function () {
     const email = document.getElementById('staffAuthEmail')?.value.trim();
     const pass = document.getElementById('staffAuthPass')?.value.trim();
 
@@ -2193,11 +2226,51 @@
       return;
     }
 
-    if (pass === '2026' || pass === 'shreeanjani2026' || pass.length >= 6) {
-      const userNick = (email.split('@')[0] || 'STORE STAFF').toUpperCase();
+    let authenticated = false;
+    let role = 'STAFF';
+    let userNick = (email.split('@')[0] || 'STORE STAFF').toUpperCase();
+
+    // 1. Check Admin Credentials (Admin PIN: 7788 / shreeanjaniadmin / admin email)
+    if (pass === '7788' || pass === 'shreeanjaniadmin' || email.toLowerCase().includes('admin')) {
+      if (pass === '7788' || pass === 'shreeanjaniadmin' || pass === '2026' || pass.length >= 6) {
+        authenticated = true;
+        role = 'ADMIN';
+        userNick = userNick || 'ADMINISTRATOR';
+      }
+    } 
+    // 2. Check Store Staff Credentials (Store PIN: 2026 / password)
+    else if (pass === '2026' || pass === 'shreeanjani2026' || pass.length >= 6) {
+      authenticated = true;
+      role = 'STAFF';
+    }
+
+    // 3. Optional Supabase Cloud Native Auth
+    if (!authenticated && window.SupabaseBridge && window.SupabaseBridge.isConfigured() && email.includes('@')) {
+      try {
+        const authRes = await fetch(`${window.SupabaseBridge.getUrl()}/auth/v1/token?grant_type=password`, {
+          method: 'POST',
+          headers: {
+            'apikey': window.SupabaseBridge.getKey(),
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: email, password: pass })
+        });
+        if (authRes.ok) {
+          const authData = await authRes.json();
+          authenticated = true;
+          role = (authData.user?.user_metadata?.role || (email.includes('admin') ? 'ADMIN' : 'STAFF')).toUpperCase();
+          userNick = (authData.user?.email.split('@')[0] || 'STAFF').toUpperCase();
+        }
+      } catch (err) {
+        console.warn('Supabase Cloud auth offline fallback');
+      }
+    }
+
+    if (authenticated) {
       const sessionData = {
         user: userNick,
         email: email,
+        role: role,
         timestamp: Date.now()
       };
       localStorage.setItem(STAFF_SESSION_KEY, JSON.stringify(sessionData));
@@ -2209,12 +2282,19 @@
       if (badge) {
         badge.style.display = 'inline-flex';
         const displayTag = document.getElementById('staffDisplayTag');
-        if (displayTag) displayTag.textContent = userNick;
+        if (displayTag) {
+          if (role === 'ADMIN') {
+            displayTag.innerHTML = `<span style="color: #FBBF24;"><i class="fa-solid fa-crown"></i> ADMIN (${userNick})</span>`;
+          } else {
+            displayTag.innerHTML = `<span style="color: #34D399;"><i class="fa-solid fa-user-check"></i> STAFF (${userNick})</span>`;
+          }
+        }
       }
       
-      showToast(`Staff authenticated! Welcome, ${userNick}.`);
+      applyRolePermissions(role);
+      showToast(`Welcome, ${userNick}! Logged in as ${role}.`);
     } else {
-      showToast('Authentication failed. Check Store PIN (2026) or password.');
+      showToast('Authentication failed. Check Store PIN (2026 for Staff, 7788 for Admin) or Password.');
     }
   };
 
@@ -2223,6 +2303,38 @@
     checkStaffAuthSession();
     showToast('Staff logged out. Private ERP locked.');
   };
+
+  // Global ERP Keyboard Shortcuts for High-Speed Counter Operations
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      window.closeStockModal?.();
+      window.closeTransportModal?.();
+      window.closeWorkshopModal?.();
+      window.closeReviewVelocityModal?.();
+      window.closeCustomerLedgerModal?.();
+      window.closeCustomerPaymentModal?.();
+      window.closeStockAuditModal?.();
+      return;
+    }
+
+    const tag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+    if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+
+    if (e.key === 'F2') {
+      e.preventDefault();
+      window.switchInternalTab('tab-invoicing');
+    } else if (e.key === 'F4') {
+      e.preventDefault();
+      window.switchInternalTab('tab-inventory');
+      setTimeout(() => document.getElementById('inventorySearchInput')?.focus(), 50);
+    } else if (e.key === 'F6') {
+      e.preventDefault();
+      window.switchInternalTab('tab-customers');
+    } else if (e.key === 'F8') {
+      e.preventDefault();
+      window.switchInternalTab('tab-scanner');
+    }
+  });
 
   // Initialization
   initStorage();
