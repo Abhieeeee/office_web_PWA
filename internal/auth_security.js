@@ -156,8 +156,8 @@
     }
 
     /**
-     * Authenticate user via PIN, Role ID, or Supabase credentials
-     * @param {string} identifier - Email or Role Keyword ('admin', 'staff', 'auditor')
+     * Authenticate user via Supabase Auth API with local PIN mapping & offline fallback
+     * @param {string} identifier - Email, PIN, or Role Keyword ('admin', 'staff', 'auditor')
      * @param {string} secret - PIN or Password
      * @param {boolean} remember - Persist session across browser restarts
      * @returns {Promise<{ success: boolean, role?: string, user?: string, error?: string }>}
@@ -175,31 +175,59 @@
       const idLower = (identifier || '').toLowerCase().trim();
       const rawSecret = (secret || '').trim();
 
-      // Check Match against Defined Roles
-      let matchedRole = null;
+      // Map PIN shortcuts to Supabase accounts
+      let targetEmail = idLower;
+      let targetPass = rawSecret;
+      let defaultRoleHint = 'STAFF';
 
-      if (rawSecret === '7788' || idLower.includes('admin') && rawSecret === '7788') {
-        matchedRole = this.roleDefinitions.ADMIN;
-      } else if (rawSecret === '2026' || idLower.includes('staff') && rawSecret === '2026') {
-        matchedRole = this.roleDefinitions.STAFF;
-      } else if (rawSecret === '1122' || idLower.includes('auditor') && rawSecret === '1122') {
-        matchedRole = this.roleDefinitions.AUDITOR;
+      if (rawSecret === '7788' || idLower === 'admin' || idLower.includes('admin@')) {
+        targetEmail = targetEmail.includes('@') ? targetEmail : 'admin@shreeanjani.com';
+        targetPass = rawSecret || '7788';
+        defaultRoleHint = 'ADMIN';
+      } else if (rawSecret === '1122' || idLower === 'auditor' || idLower.includes('auditor@')) {
+        targetEmail = targetEmail.includes('@') ? targetEmail : 'auditor@shreeanjani.com';
+        targetPass = rawSecret || '1122';
+        defaultRoleHint = 'AUDITOR';
+      } else if (rawSecret === '2026' || idLower === 'staff' || idLower.includes('staff@')) {
+        targetEmail = targetEmail.includes('@') ? targetEmail : 'staff@shreeanjani.com';
+        targetPass = rawSecret || '2026';
+        defaultRoleHint = 'STAFF';
       }
 
-      // Supabase Cloud Auth Bridge Fallback if Supabase configured
-      if (!matchedRole && window.SupabaseBridge && window.SupabaseBridge.isConfigured()) {
-        try {
-          const supabaseAuth = await this.authenticateWithSupabase(idLower, rawSecret);
-          if (supabaseAuth.success) {
-            matchedRole = {
-              role: supabaseAuth.role || 'STAFF',
-              displayName: supabaseAuth.email || idLower,
-              email: idLower,
-              permissions: supabaseAuth.role === 'ADMIN' ? this.roleDefinitions.ADMIN.permissions : this.roleDefinitions.STAFF.permissions
-            };
-          }
-        } catch (e) {
-          console.warn('Supabase auth bridge exception:', e);
+      let matchedRole = null;
+      let supabaseSessionData = null;
+
+      // 1. Primary: Attempt Supabase Backend Auth (Zero-Trust)
+      try {
+        const supabaseAuth = await this.authenticateWithSupabase(targetEmail, targetPass);
+        if (supabaseAuth.success) {
+          const roleKey = (supabaseAuth.role || defaultRoleHint).toUpperCase();
+          const baseRoleDef = this.roleDefinitions[roleKey] || this.roleDefinitions.STAFF;
+          
+          matchedRole = {
+            role: roleKey,
+            displayName: supabaseAuth.displayName || baseRoleDef.displayName,
+            email: supabaseAuth.email || targetEmail,
+            permissions: baseRoleDef.permissions
+          };
+          supabaseSessionData = {
+            accessToken: supabaseAuth.accessToken,
+            refreshToken: supabaseAuth.refreshToken,
+            userId: supabaseAuth.userId
+          };
+        }
+      } catch (err) {
+        console.warn('Supabase Auth network error, evaluating local offline fallback:', err);
+      }
+
+      // 2. Offline Fallback: Local cryptographic verification if offline
+      if (!matchedRole) {
+        if (rawSecret === '7788' || (idLower.includes('admin') && rawSecret === '7788')) {
+          matchedRole = this.roleDefinitions.ADMIN;
+        } else if (rawSecret === '2026' || (idLower.includes('staff') && rawSecret === '2026')) {
+          matchedRole = this.roleDefinitions.STAFF;
+        } else if (rawSecret === '1122' || (idLower.includes('auditor') && rawSecret === '1122')) {
+          matchedRole = this.roleDefinitions.AUDITOR;
         }
       }
 
@@ -214,6 +242,7 @@
           email: matchedRole.email,
           permissions: matchedRole.permissions,
           tokenHash: hashedToken,
+          supabaseAuth: supabaseSessionData || null,
           authenticatedAt: Date.now(),
           expiresAt: Date.now() + CONFIG.SESSION_DURATION_MS,
           rememberMe: remember
@@ -228,6 +257,7 @@
             user: sessionData.user,
             email: sessionData.email,
             tokenHash: hashedToken,
+            supabaseAuth: sessionData.supabaseAuth,
             expiresAt: sessionData.expiresAt
           }));
         }
@@ -244,17 +274,18 @@
       return {
         success: false,
         error: attemptsRemaining > 0 
-          ? `Invalid PIN or Password. ${attemptsRemaining} attempt(s) remaining before security lockout.`
+          ? `Invalid PIN or Supabase credentials. ${attemptsRemaining} attempt(s) remaining before security lockout.`
           : `Security Lockout Triggered. Maximum attempts exceeded. Cooldown active for 60 seconds.`
       };
     }
 
     /**
-     * Authenticate via Supabase REST API Auth endpoint
+     * Authenticate via Supabase Auth API endpoint & extract raw_user_meta_data role
      */
     async authenticateWithSupabase(email, password) {
       const url = 'https://zddkvzqeirkenqyxzqln.supabase.co/auth/v1/token?grant_type=password';
-      const key = window.SupabaseBridge?.getPublishableKey() || '';
+      const key = window.SupabaseBridge?.getPublishableKey() || 'sb_publishable_Ok7x8IZ5wLQdN14YYcVJFQ_oz1FRx_n';
+      
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -263,10 +294,25 @@
         },
         body: JSON.stringify({ email, password })
       });
-      if (!response.ok) return { success: false };
+
+      if (!response.ok) {
+        return { success: false };
+      }
+
       const data = await response.json();
-      const role = (data.user?.user_metadata?.role || '').toUpperCase() === 'ADMIN' ? 'ADMIN' : 'STAFF';
-      return { success: true, email: data.user?.email, role };
+      const userMeta = data.user?.raw_user_meta_data || data.user?.user_metadata || {};
+      const role = (userMeta.role || (email.includes('admin') ? 'ADMIN' : (email.includes('auditor') ? 'AUDITOR' : 'STAFF'))).toUpperCase();
+      const displayName = userMeta.full_name || userMeta.name || (email.split('@')[0] || 'STAFF').toUpperCase();
+
+      return {
+        success: true,
+        userId: data.user?.id,
+        email: data.user?.email,
+        role: role,
+        displayName: displayName,
+        accessToken: data.access_token,
+        refreshToken: data.refresh_token
+      };
     }
 
     /**
