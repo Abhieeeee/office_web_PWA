@@ -84,76 +84,164 @@
 
   // ================= 2. RESEARCHED BEARING STANDARD SIZE MATRICES =================
   const BEARING_SIZE_DATA = {
+    '6000': [
+      { part: '6004 2RS / ZZ', id: '20 mm', od: '42 mm', w: '12 mm', app: 'High-Speed Alternators, Small Workshop Power Tools, Compact Blowers' },
+      { part: '6005 2RS / ZZ', id: '25 mm', od: '47 mm', w: '12 mm', app: 'Electric Motor Shafts (2-3 HP), Submersible Pumps, Lawn Equipments' },
+      { part: '6006 2RS / ZZ', id: '30 mm', od: '55 mm', w: '13 mm', app: 'Conveyor Intermediate Rollers, Packaging Machine Drives' },
+      { part: '6007 2RS / ZZ', id: '35 mm', od: '62 mm', w: '14 mm', app: 'High-Speed Centrifugal Impellers, Printing Press Rollers' },
+      { part: '6008 2RS / ZZ', id: '40 mm', od: '68 mm', w: '15 mm', app: 'Textile Machinery Spindles, Feed Mill Vibrating Feeders' },
+      { part: '6010 2RS / ZZ', id: '50 mm', od: '80 mm', w: '16 mm', app: 'High RPM Industrial Fans, Centrifugal Water Pumps in Agro Irrigation' },
+      { part: '6012 2RS / ZZ', id: '60 mm', od: '95 mm', w: '18 mm', app: 'Compressor Crankshafts, Heavy Industrial Fan Assemblies' }
+    ],
     '6200': [
-      { part: '6204 2RS / ZZ', id: '20 mm', od: '47 mm', w: '14 mm', app: 'Small Flour Mills, Electric Motors, Agricultural Pumps' },
-      { part: '6205 2RS / ZZ', id: '25 mm', od: '52 mm', w: '15 mm', app: 'Centrifugal Water Pumps, Rice Mill Polisher Shafts' },
-      { part: '6206 2RS / ZZ', id: '30 mm', od: '62 mm', w: '16 mm', app: 'Standard 30mm Motor Drives, Conveyor Return Rollers' },
-      { part: '6207 2RS / ZZ', id: '35 mm', od: '72 mm', w: '17 mm', app: 'Heavy Paddy Huller Shafts, Industrial Blowers' },
-      { part: '6208 2RS / ZZ', id: '40 mm', od: '80 mm', w: '18 mm', app: 'Oil Expeller Main Shafts, Tractor Implement Gearboxes' },
+      { part: '6200 2RS / ZZ', id: '10 mm', od: '30 mm', w: '9 mm', app: 'Small Electric Motors, Power Saws, Precision Instruments' },
+      { part: '6202 2RS / ZZ', id: '15 mm', od: '35 mm', w: '11 mm', app: 'Domestic Water Pumps, Motorcycle Alternators, Starter Motors' },
+      { part: '6204 2RS / ZZ', id: '20 mm', od: '47 mm', w: '14 mm', app: 'Small Flour Mills, Electric Motors (1-3 HP), Centrifugal Water Pumps' },
+      { part: '6205 2RS / ZZ', id: '25 mm', od: '52 mm', w: '15 mm', app: 'Centrifugal Water Pumps, Rice Mill Polisher Shafts, 3-5 HP Motors' },
+      { part: '6206 2RS / ZZ', id: '30 mm', od: '62 mm', w: '16 mm', app: 'Standard 30mm Motor Drives, Conveyor Return Rollers, Threshers' },
+      { part: '6207 2RS / ZZ', id: '35 mm', od: '72 mm', w: '17 mm', app: 'Heavy Paddy Huller Shafts, Industrial Blowers, Dal Mill Separators' },
+      { part: '6208 2RS / ZZ', id: '40 mm', od: '80 mm', w: '18 mm', app: 'Oil Expeller Main Shafts, Tractor Implement Gearboxes, Agro Drives' },
       { part: '6209 2RS / ZZ', id: '45 mm', od: '85 mm', w: '19 mm', app: 'Industrial Reducer Gearboxes, Cement Screw Conveyors' },
-      { part: '6210 2RS / ZZ', id: '50 mm', od: '90 mm', w: '20 mm', app: 'Heavy 50mm Industrial Drives, Mill Countershafts' }
+      { part: '6210 2RS / ZZ', id: '50 mm', od: '90 mm', w: '20 mm', app: 'Heavy 50mm Industrial Drives, Mill Countershafts, Elevator Pulleys' },
+      { part: '6212 2RS / ZZ', id: '60 mm', od: '110 mm', w: '22 mm', app: 'Heavy Mill Line Shafts, Large Industrial Gearboxes, Brick Plants' },
+      { part: '6214 2RS / ZZ', id: '70 mm', od: '125 mm', w: '24 mm', app: 'Heavy Cement & Fertilizer Elevators, Sugar Mill Conveyor Heads' },
+      { part: '6215 2RS / ZZ', id: '75 mm', od: '130 mm', w: '25 mm', app: 'High Torque Reduction Drives, Heavy Duty Terai Industrial Shafts' }
     ],
     '6300': [
-      { part: '6305 2RS / ZZ', id: '25 mm', od: '62 mm', w: '17 mm', app: 'Heavy Shock Load Pumps, High Torque Gear Drives' },
-      { part: '6306 2RS / ZZ', id: '30 mm', od: '72 mm', w: '19 mm', app: 'Rice Huller Beater Shafts, Pulverizer Hammers' },
-      { part: '6307 2RS / ZZ', id: '35 mm', od: '80 mm', w: '21 mm', app: 'Dal Mill De-husker, Brick Plant Extruder' },
-      { part: '6308 2RS / ZZ', id: '40 mm', od: '90 mm', w: '23 mm', app: 'Heavy 3-Phase Electric Motors (15-25 HP), Crusher Drives' },
-      { part: '6309 2RS / ZZ', id: '45 mm', od: '100 mm', w: '25 mm', app: 'Paddy Destoner Vibrating Shafts, Oil Mill Main Barrel' },
-      { part: '6310 2RS / ZZ', id: '50 mm', od: '110 mm', w: '27 mm', app: 'Heavy Stone Crusher Screeners, 50 HP Motor Shafts' },
-      { part: '6312 2RS / ZZ', id: '60 mm', od: '130 mm', w: '31 mm', app: 'Cement Plant Fan Shafts, Heavy Industrial Agitators' }
+      { part: '6304 2RS / ZZ', id: '20 mm', od: '52 mm', w: '15 mm', app: 'High Torque Small Motors, Deep Well Pump Heads' },
+      { part: '6305 2RS / ZZ', id: '25 mm', od: '62 mm', w: '17 mm', app: 'Heavy Shock Load Pumps, High Torque Gear Drives, Cultivators' },
+      { part: '6306 2RS / ZZ', id: '30 mm', od: '72 mm', w: '19 mm', app: 'Rice Huller Beater Shafts, Pulverizer Hammers, 7.5 HP Motors' },
+      { part: '6307 2RS / ZZ', id: '35 mm', od: '80 mm', w: '21 mm', app: 'Dal Mill De-husker, Brick Plant Extruder, Heavy Bevel Drives' },
+      { part: '6308 2RS / ZZ C3', id: '40 mm', od: '90 mm', w: '23 mm', app: 'Heavy 3-Phase Electric Motors (15-25 HP), Crusher Intermediate Drives' },
+      { part: '6309 2RS / ZZ C3', id: '45 mm', od: '100 mm', w: '25 mm', app: 'Paddy Destoner Vibrating Shafts, Oil Mill Main Barrel, 30 HP Motors' },
+      { part: '6310 2RS / ZZ C3', id: '50 mm', od: '110 mm', w: '27 mm', app: 'Heavy Stone Crusher Screeners, 50 HP Motor Shafts, Hammer Mills' },
+      { part: '6312 2RS / ZZ C3', id: '60 mm', od: '130 mm', w: '31 mm', app: 'Cement Plant Fan Shafts, Heavy Industrial Agitators, Clinker Lines' },
+      { part: '6314 2RS / ZZ C3', id: '70 mm', od: '150 mm', w: '35 mm', app: 'Heavy Quarry Primary Crushers, Heavy Induced Draft (ID) Fans' },
+      { part: '6315 2RS / ZZ C3', id: '75 mm', od: '160 mm', w: '37 mm', app: 'Steel Rolling Mill Auxiliary Shafts, Heavy Cement Grinders' }
     ],
     '22200': [
-      { part: '22212 EK / W33', id: '60 mm', od: '110 mm', w: '28 mm', app: 'Stone Crusher Vibrating Screens, Heavy Vibratory Feeders' },
+      { part: '22210 EK / W33', id: '50 mm', od: '90 mm', w: '23 mm', app: 'Vibrating Screens, Small Quarry Feeders, Sand Washing Units' },
+      { part: '22212 EK / W33', id: '60 mm', od: '110 mm', w: '28 mm', app: 'Stone Crusher Vibrating Screens, Heavy Vibratory Feeders, Asphalt Mixers' },
       { part: '22214 EK / W33', id: '70 mm', od: '125 mm', w: '31 mm', app: 'Asphalt Hot Mix Plant Drums, Heavy Conveyor Head Pulleys' },
       { part: '22216 EK / W33', id: '80 mm', od: '140 mm', w: '33 mm', app: 'Rotary Kiln Support Rollers, Primary Jaw Crusher Drives' },
-      { part: '22218 EK / W33', id: '90 mm', od: '160 mm', w: '40 mm', app: 'Heavy Stone Jaw Crushers (24x12, 30x15 size in Nepal)' },
-      { part: '22220 EK / W33', id: '100 mm', od: '180 mm', w: '46 mm', app: 'Cement Clinker Grinding Mills, Heavy Steel Mill Rollers' }
+      { part: '22218 EK / W33', id: '90 mm', od: '160 mm', w: '40 mm', app: 'Heavy Stone Jaw Crushers (24x12 & 30x15 size in Nepal), Rotary Kilns' },
+      { part: '22220 EK / W33', id: '100 mm', od: '180 mm', w: '46 mm', app: 'Cement Clinker Grinding Mills, Heavy Steel Mill Rollers, 36x24 Crushers' },
+      { part: '22222 EK / W33', id: '110 mm', od: '200 mm', w: '53 mm', app: 'Primary Boulders Jaw Crushers (Nepal Highway & Hydropower Projects)' },
+      { part: '22224 EK / W33', id: '120 mm', od: '215 mm', w: '58 mm', app: 'Heavy Hydropower Dam Construction Crushers, Cement Raw Mills' },
+      { part: '22226 EK / W33', id: '130 mm', od: '230 mm', w: '64 mm', app: 'Mining SAG Mills, Heavy Ball Mill Trunnions, Heavy Quarry Crushers' },
+      { part: '22228 EK / W33', id: '140 mm', od: '250 mm', w: '68 mm', app: 'Extreme Heavy Industrial Crushing & Grinding Plants in Nepal' }
+    ],
+    '22300': [
+      { part: '22312 EK / W33', id: '60 mm', od: '130 mm', w: '46 mm', app: 'Severe Impact Vibrating Screens, Heavy Aggregate Screen Boxes' },
+      { part: '22314 EK / W33', id: '70 mm', od: '150 mm', w: '51 mm', app: 'High G-Force Vibrating Screen Shafts, Asphalt Plant Mixers' },
+      { part: '22316 EK / W33', id: '80 mm', od: '170 mm', w: '58 mm', app: 'Heavy Duty Quarry Jaw Crusher Pitman Shafts (Severe Shock Loads)' },
+      { part: '22318 EK / W33', id: '90 mm', od: '190 mm', w: '64 mm', app: 'Primary Hard Rock Quarry Jaw Crushers (High Dynamic Capacity)' },
+      { part: '22320 EK / W33', id: '100 mm', od: '215 mm', w: '73 mm', app: 'Heavy Clinker & Boulders Impact Crushers, Mining Trunnions' }
     ],
     '30200': [
-      { part: '30205', id: '25 mm', od: '52 mm', w: '16.25 mm', app: 'Light Commercial Vehicle Wheel Hubs, Speed Reducers' },
-      { part: '30206', id: '30 mm', od: '62 mm', w: '17.25 mm', app: 'Tractor Front Axle Hubs, Industrial Bevel Gearboxes' },
-      { part: '30207', id: '35 mm', od: '72 mm', w: '18.25 mm', app: 'Truck Intermediate Shafts, Heavy Worm Reducers' },
-      { part: '30208', id: '40 mm', od: '80 mm', w: '19.75 mm', app: 'Heavy Commercial Tipper Hubs, Agro Harvester Drives' },
-      { part: '30209', id: '45 mm', od: '85 mm', w: '20.75 mm', app: 'Heavy Differential Pinion Shafts, Crusher Idler Hubs' },
-      { part: '32210', id: '50 mm', od: '90 mm', w: '24.75 mm', app: 'High Axial Thrust Mill Gearboxes, Heavy Duty Axles' }
+      { part: '30205', id: '25 mm', od: '52 mm', w: '16.25 mm', app: 'Light Commercial Vehicle Wheel Hubs, Speed Reducers, Lathes' },
+      { part: '30206', id: '30 mm', od: '62 mm', w: '17.25 mm', app: 'Tractor Front Axle Hubs, Industrial Bevel Gearboxes, Tillers' },
+      { part: '30207', id: '35 mm', od: '72 mm', w: '18.25 mm', app: 'Truck Intermediate Shafts, Heavy Worm Reducers, Combine Harvesters' },
+      { part: '30208', id: '40 mm', od: '80 mm', w: '19.75 mm', app: 'Heavy Commercial Tipper Hubs, Agro Harvester Drives, Tractor Transmissions' },
+      { part: '30209', id: '45 mm', od: '85 mm', w: '20.75 mm', app: 'Heavy Differential Pinion Shafts, Crusher Idler Hubs, Truck Axles' },
+      { part: '30210', id: '50 mm', od: '90 mm', w: '21.75 mm', app: 'Heavy Transport Trailer Hubs, Industrial Gearboxes, Rotary Tillers' },
+      { part: '30211', id: '55 mm', od: '100 mm', w: '22.75 mm', app: 'Commercial Bus & Truck Rear Differential Pinion Shafts' },
+      { part: '30212', id: '60 mm', od: '110 mm', w: '23.75 mm', app: 'Heavy Duty 60mm Transmission Reducers, Heavy Vehicle Axles' }
+    ],
+    '32200': [
+      { part: '32208', id: '40 mm', od: '80 mm', w: '24.75 mm', app: 'High Thrust Reducer Gearboxes, Agricultural Tractor Axle Hubs' },
+      { part: '32210', id: '50 mm', od: '90 mm', w: '24.75 mm', app: 'High Axial Thrust Mill Gearboxes, Heavy Duty Axles, Brick Mixers' },
+      { part: '32212', id: '60 mm', od: '110 mm', w: '29.75 mm', app: 'Heavy Duty Planetary Drives, Stone Crusher Bevel Gear Sets' },
+      { part: '32214', id: '70 mm', od: '125 mm', w: '33.25 mm', app: 'Heavy Commercial Truck Drive Axles, High Load Worm Drives' },
+      { part: '32216', id: '80 mm', od: '140 mm', w: '35.25 mm', app: 'Heavy Industrial Reducer Output Shafts, Cement Mill Gearboxes' },
+      { part: '32309', id: '45 mm', od: '100 mm', w: '38.25 mm', app: 'Extra Heavy Duty Commercial Vehicle Pinion & Tractor Drive Shafts' },
+      { part: '32310', id: '50 mm', od: '110 mm', w: '42.25 mm', app: 'Heavy Commercial Vehicle Differential Assemblies in Nepal' },
+      { part: '32312', id: '60 mm', od: '130 mm', w: '48.75 mm', app: 'Extreme Shock Load Truck Transmissions & Quarry Gear Drives' }
     ],
     'ucp': [
-      { part: 'UCP 204', id: '20 mm', od: 'Cast Iron Housing', w: 'Solid Base', app: 'Packaging Conveyor Lines, Grain Cleaner Elevators' },
-      { part: 'UCP 205', id: '25 mm', od: 'Cast Iron Housing', w: 'Solid Base', app: 'Standard 25mm Rice Mill Belt Conveyors, Sieve Shakers' },
-      { part: 'UCP 206', id: '30 mm', od: 'Cast Iron Housing', w: 'Solid Base', app: 'Paddy Elevator Head/Tail Shafts, Agro Trommels' },
-      { part: 'UCP 207', id: '35 mm', od: 'Cast Iron Housing', w: 'Solid Base', app: 'Medium Duty Conveyor Systems, Seed Processing Plants' },
-      { part: 'UCP 208', id: '40 mm', od: 'Cast Iron Housing', w: 'Solid Base', app: 'Rice Mill Rubber Roll Huller Main Shafts (High Demand in Terai)' },
-      { part: 'UCP 209', id: '45 mm', od: 'Cast Iron Housing', w: 'Solid Base', app: 'Heavy Paddy Separator Shafts, Flour Mill Rotors' },
-      { part: 'UCP 210', id: '50 mm', od: 'Cast Iron Housing', w: 'Solid Base', app: 'Stone Crusher Discharge Belt Head Drum Shafts' },
-      { part: 'UCP 212', id: '60 mm', od: 'Cast Iron Housing', w: 'Solid Base', app: 'Heavy Duty 60mm Crusher Conveyor Drives & Elevators' }
+      { part: 'UCP 204', id: '20 mm', od: 'Cast Iron Solid Base', w: '127 mm Base', app: 'Packaging Conveyor Lines, Grain Cleaner Elevators, Small Blowers' },
+      { part: 'UCP 205', id: '25 mm', od: 'Cast Iron Solid Base', w: '140 mm Base', app: 'Standard 25mm Rice Mill Belt Conveyors, Sieve Shakers, Feed Mixers' },
+      { part: 'UCP 206', id: '30 mm', od: 'Cast Iron Solid Base', w: '165 mm Base', app: 'Paddy Elevator Head/Tail Shafts, Agro Trommels, Threshers' },
+      { part: 'UCP 207', id: '35 mm', od: 'Cast Iron Solid Base', w: '167 mm Base', app: 'Medium Duty Conveyor Systems, Seed Processing Plants, Dal Mills' },
+      { part: 'UCP 208 / 208-24', id: '40 mm (1.5" option)', od: 'Cast Iron Solid Base', w: '184 mm Base', app: 'Rice Mill Rubber Roll Huller Main Shafts (Universal Terai Workhorse)' },
+      { part: 'UCP 209', id: '45 mm', od: 'Cast Iron Solid Base', w: '190 mm Base', app: 'Heavy Paddy Separator Shafts, Flour Mill Rotors, Expeller Feeders' },
+      { part: 'UCP 210', id: '50 mm', od: 'Cast Iron Solid Base', w: '206 mm Base', app: 'Stone Crusher Discharge Belt Head Drum Shafts, Heavy Elevators' },
+      { part: 'UCP 211', id: '55 mm', od: 'Cast Iron Solid Base', w: '219 mm Base', app: 'Heavy Duty 55mm Line Shafts, Cement Packing Conveyors' },
+      { part: 'UCP 212', id: '60 mm', od: 'Cast Iron Solid Base', w: '241 mm Base', app: 'Heavy Duty 60mm Crusher Conveyor Drives, Heavy Bucket Elevators' },
+      { part: 'UCP 214', id: '70 mm', od: 'Cast Iron Solid Base', w: '266 mm Base', app: 'Heavy Quarry Conveyors, Fertilizer Mixing Drums, Sand Washers' },
+      { part: 'UCP 215', id: '75 mm', od: 'Cast Iron Solid Base', w: '275 mm Base', app: 'Large Diameter Main Transmission Shafts in Cement & Rice Plants' }
+    ],
+    'ucf': [
+      { part: 'UCF 205 (4-Bolt Flange)', id: '25 mm', od: 'Square Cast Iron Flange', w: '95 × 95 mm', app: 'Flour Mill Sifter Side Frames, Grain Cleaner Side Walls' },
+      { part: 'UCF 206 (4-Bolt Flange)', id: '30 mm', od: 'Square Cast Iron Flange', w: '108 × 108 mm', app: 'Paddy Destoner Side Mounting, Bucket Elevator Side Bearings' },
+      { part: 'UCF 207 (4-Bolt Flange)', id: '35 mm', od: 'Square Cast Iron Flange', w: '117 × 117 mm', app: 'Screw Conveyor Trough Ends, Agro Processing Machines' },
+      { part: 'UCF 208 (4-Bolt Flange)', id: '40 mm', od: 'Square Cast Iron Flange', w: '130 × 130 mm', app: 'Rice Mill Polisher Machine Side Flanges, Oil Expeller Walls' },
+      { part: 'UCF 210 (4-Bolt Flange)', id: '50 mm', od: 'Square Cast Iron Flange', w: '143 × 143 mm', app: 'Heavy Screw Conveyors, Cement Silo Bottom Dischargers' },
+      { part: 'UCF 212 (4-Bolt Flange)', id: '60 mm', od: 'Square Cast Iron Flange', w: '175 × 175 mm', app: 'Heavy Industrial Agitators, Rotary Drum Washer End Bearings' }
+    ],
+    'nu_nj': [
+      { part: 'NU 208 / NJ 208', id: '40 mm', od: '80 mm', w: '18 mm', app: 'Electric Motor Drive Ends (15-20 HP), Compressor Armatures' },
+      { part: 'NU 210 / NJ 210', id: '50 mm', od: '90 mm', w: '20 mm', app: 'High Speed 50mm Reducer Pinions, Heavy Motor Non-Locating Ends' },
+      { part: 'NU 308 / NJ 308', id: '40 mm', od: '90 mm', w: '23 mm', app: 'Severe Radial Load Electric Motors, Crusher Countershafts' },
+      { part: 'NU 310 / NJ 310', id: '50 mm', od: '110 mm', w: '27 mm', app: 'Heavy 50 HP 3-Phase Electric Motors in Rice & Cement Mills' },
+      { part: 'NU 312 / NJ 312', id: '60 mm', od: '130 mm', w: '31 mm', app: 'Cement Mill ID Fan Motor Armatures, Heavy Reducer Drives' }
+    ],
+    'self_aligning': [
+      { part: '1205 2RS / Open', id: '25 mm', od: '52 mm', w: '15 mm', app: 'Vibrating Sieve Frames, Grain Cleaner Shakers (Accommodates Flex)' },
+      { part: '1206 2RS / Open', id: '30 mm', od: '62 mm', w: '16 mm', app: 'Paddy Destoner Eccentric Linkages, Sifter Rocking Shafts' },
+      { part: '1207 2RS / Open', id: '35 mm', od: '72 mm', w: '17 mm', app: 'Dal Mill Shaking Screens, Medium Sieve Agitators' },
+      { part: '1208 2RS / Open', id: '40 mm', od: '80 mm', w: '18 mm', app: 'Heavy Grain Sieve Rocker Arms, Long Flexible Transmission Shafts' },
+      { part: '2208 2RS / Open', id: '40 mm', od: '80 mm', w: '23 mm', app: 'Double Row Self-Aligning Ball for High-Flex Paddy Separators' },
+      { part: '2210 2RS / Open', id: '50 mm', od: '90 mm', w: '23 mm', app: 'Heavy Vibratory Agro Graders, Long Line Shafts with Deflection' }
+    ],
+    'plummer_sleeves': [
+      { part: 'Plummer SN 512 + Sleeve H 312', id: '55 mm (Shaft)', od: 'Split Housing for 22212 EK', w: 'Two-Bolt Base', app: 'Quarry Vibrating Screens, Cement Secondary Belt Pulleys' },
+      { part: 'Plummer SN 515 + Sleeve H 315', id: '65 mm (Shaft)', od: 'Split Housing for 22215 EK', w: 'Two-Bolt Base', app: 'Heavy Conveyor Drive Drums, Sand Plant Head Pulleys' },
+      { part: 'Plummer SN 516 + Sleeve H 316', id: '70 mm (Shaft)', od: 'Split Housing for 22216 EK', w: 'Two-Bolt Base', app: 'Rotary Kiln Support Shafts, Primary Screen Eccentrics' },
+      { part: 'Plummer SN 518 + Sleeve H 318', id: '80 mm (Shaft)', od: 'Split Housing for 22218 EK', w: 'Two/Four-Bolt Base', app: 'Heavy Jaw Crusher Countershafts (24x12, 30x15 Plants in Nepal)' },
+      { part: 'Plummer SN 520 + Sleeve H 320', id: '90 mm (Shaft)', od: 'Split Housing for 22220 EK', w: 'Four-Bolt Base', app: 'Heavy Mining Clinker Conveyors, Hydropower Crusher Drives' },
+      { part: 'Plummer SN 522 + Sleeve H 322', id: '100 mm (Shaft)', od: 'Split Housing for 22222 EK', w: 'Four-Bolt Base', app: 'Heavy Ball Mill Trunnions, Primary Boulder Jaw Crushers' },
+      { part: 'Adapter Sleeve H 2314 / H 2316', id: '60 / 70 mm', od: 'Hydraulic Taper Lock', w: 'With Locknut & Washer', app: 'High Impact 22300-Series Vibrating Screen Spherical Bearings' }
     ]
   };
 
   // ================= 3. RESEARCHED V-BELT & CONVEYOR STANDARD DIMENSIONS =================
   const BELT_SIZE_DATA = {
+    'a-section': [
+      { code: 'V-Belt A-28 to A-45', width: '13 mm', thick: '8 mm', len: 'Inside Length: 28" to 45"', app: 'Small Workshop Lathes, Drill Presses, Air Compressors, Sewing Units' },
+      { code: 'V-Belt A-48 to A-65', width: '13 mm', thick: '8 mm', len: 'Inside Length: 48" to 65"', app: 'Grain Destoner Sieve Blowers, Domestic Flour Chakkis, Water Pumps' },
+      { code: 'V-Belt A-70 to A-95', width: '13 mm', thick: '8 mm', len: 'Inside Length: 70" to 95"', app: 'Paddy Cleaner Exhaust Fans, Light Belt Conveyors, Feed Mixers' },
+      { code: 'V-Belt A-100 to A-140', width: '13 mm', thick: '8 mm', len: 'Inside Length: 100" to 140"', app: 'Agricultural Threshers, Overhead Workshop Line Shafts' }
+    ],
     'b-section': [
-      { code: 'V-Belt B-45 to B-60', width: '17 mm', thick: '11 mm', len: 'Inside Length: 45" to 60"', app: 'Standard Electric Motor to Water Pump Drives' },
-      { code: 'V-Belt B-65 (Top Demand)', width: '17 mm', thick: '11 mm', len: 'Inside Length: 65" (1651 mm)', app: 'Universal Rice Mill Polisher & Huller Drives in Nepal' },
-      { code: 'V-Belt B-70 to B-85', width: '17 mm', thick: '11 mm', len: 'Inside Length: 70" to 85"', app: 'Flour Mill Chakkis, Centrifugal Blowers' },
-      { code: 'V-Belt B-90 to B-120', width: '17 mm', thick: '11 mm', len: 'Inside Length: 90" to 120"', app: 'Agricultural Threshers, Tractor Pulley Linkages' },
-      { code: 'V-Belt B-130 to B-180', width: '17 mm', thick: '11 mm', len: 'Inside Length: 130" to 180"', app: 'Long Center Distance Overhead Line Shafts' }
+      { code: 'V-Belt B-40 to B-55', width: '17 mm', thick: '11 mm', len: 'Inside Length: 40" to 55"', app: 'Standard 5-7.5 HP Electric Motor to Centrifugal Water Pump Drives' },
+      { code: 'V-Belt B-65 (Top Demand)', width: '17 mm', thick: '11 mm', len: 'Inside Length: 65" (1651 mm)', app: 'Universal Rice Mill Polisher & Huller Drives across Nepal' },
+      { code: 'V-Belt B-68 to B-80', width: '17 mm', thick: '11 mm', len: 'Inside Length: 68" to 80"', app: 'Flour Mill Commercial Chakkis, Centrifugal Industrial Blowers' },
+      { code: 'V-Belt B-85 to B-110', width: '17 mm', thick: '11 mm', len: 'Inside Length: 85" to 110"', app: 'Agricultural Threshers, Tractor Pulley Linkages, Sawmills' },
+      { code: 'V-Belt B-120 to B-160', width: '17 mm', thick: '11 mm', len: 'Inside Length: 120" to 160"', app: 'Long Center Distance Rice Mill Overhead Drives, Oil Expellers' },
+      { code: 'V-Belt B-170 to B-210', width: '17 mm', thick: '11 mm', len: 'Inside Length: 170" to 210"', app: 'Heavy Agricultural Harvesters & Multi-Machine Line Drives' }
     ],
     'c-section': [
-      { code: 'V-Belt C-68 to C-90', width: '22 mm', thick: '14 mm', len: 'Inside Length: 68" to 90"', app: 'Heavy 30-50 HP Rice Mill Main Drive Motors' },
-      { code: 'V-Belt C-100 to C-120', width: '22 mm', thick: '14 mm', len: 'Inside Length: 100" to 120"', app: 'Oil Expeller 6-Bolt & 9-Bolt Chamber Drives' },
-      { code: 'V-Belt C-130 to C-160', width: '22 mm', thick: '14 mm', len: 'Inside Length: 130" to 160"', app: 'Stone Crusher Secondary Cone & Jaw Flywheels' },
-      { code: 'V-Belt C-180 to C-240', width: '22 mm', thick: '14 mm', len: 'Inside Length: 180" to 240"', app: 'Heavy Cement Packing Plants, Clinker Elevator Drives' }
+      { code: 'V-Belt C-68 to C-90', width: '22 mm', thick: '14 mm', len: 'Inside Length: 68" to 90"', app: 'Heavy 30-50 HP Rice Mill Main Drive Motors, Heavy Water Turbines' },
+      { code: 'V-Belt C-100 to C-125', width: '22 mm', thick: '14 mm', len: 'Inside Length: 100" to 125"', app: 'Oil Expeller 6-Bolt & 9-Bolt Chamber Drives, Brick Extruders' },
+      { code: 'V-Belt C-130 to C-160', width: '22 mm', thick: '14 mm', len: 'Inside Length: 130" to 160"', app: 'Stone Crusher Secondary Cone & Jaw Flywheels (Universal Quarry Size)' },
+      { code: 'V-Belt C-180 to C-240', width: '22 mm', thick: '14 mm', len: 'Inside Length: 180" to 240"', app: 'Heavy Cement Packing Plants, Clinker Elevator Drives, Sugar Rollers' }
     ],
-    'a-section': [
-      { code: 'V-Belt A-30 to A-45', width: '13 mm', thick: '8 mm', len: 'Inside Length: 30" to 45"', app: 'Small Workshop Lathes, Drill Presses, Compressors' },
-      { code: 'V-Belt A-50 to A-75', width: '13 mm', thick: '8 mm', len: 'Inside Length: 50" to 75"', app: 'Grain Destoner Sieve Blowers, Domestic Flour Chakkis' },
-      { code: 'V-Belt A-80 to A-120', width: '13 mm', thick: '8 mm', len: 'Inside Length: 80" to 120"', app: 'Paddy Cleaner Exhaust Fans, Light Belt Conveyors' }
+    'd-section': [
+      { code: 'V-Belt D-180 to D-220', width: '32 mm', thick: '19 mm', len: 'Inside Length: 180" to 220"', app: 'Primary Stone Crusher Heavy Flywheel Drives (75-100 HP Motors)' },
+      { code: 'V-Belt D-240 to D-300', width: '32 mm', thick: '19 mm', len: 'Inside Length: 240" to 300"', app: 'Heavy Cement Clinker Grinding Mills, Hydropower Generators in Nepal' }
     ],
     'conveyor': [
       { code: 'Rubber Conveyor EP 400/3 (16" / 400mm)', width: '400 mm', thick: '3+1.5 mm covers', len: 'Tensile: 400 N/mm (3 Ply)', app: 'Paddy & Rice Grain Handling Conveyors, Mill Elevators' },
       { code: 'Rubber Conveyor EP 400/3 (20" / 500mm)', width: '500 mm', thick: '3+1.5 mm covers', len: 'Tensile: 400 N/mm (3 Ply)', app: 'Bag Loading Conveyors, Fertilizer & Agro Transport' },
       { code: 'Rubber Conveyor EP 500/3 (24" / 600mm)', width: '600 mm', thick: '4+2 mm covers', len: 'Tensile: 500 N/mm (3 Ply)', app: 'River Sand, Gravel & Stone Crusher Feeder Belts' },
-      { code: 'Rubber Conveyor EP 630/4 (32" / 800mm)', width: '800 mm', thick: '5+2 mm covers', len: 'Tensile: 630 N/mm (4 Ply)', app: 'Heavy Stone Crusher Discharge, Mining & Quarry Stockpiles' }
+      { code: 'Rubber Conveyor EP 630/4 (32" / 800mm)', width: '800 mm', thick: '5+2 mm covers', len: 'Tensile: 630 N/mm (4 Ply)', app: 'Heavy Stone Crusher Discharge, Mining & Quarry Stockpiles' },
+      { code: 'Rubber Conveyor EP 800/4 (36" / 900mm)', width: '900 mm', thick: '6+2 mm covers', len: 'Tensile: 800 N/mm (4 Ply)', app: 'Severe Boulders & Heavy Quarry Extraction Conveyor Lines' }
+    ],
+    'pulleys': [
+      { code: 'Cast Iron (CI) Pulley 4" to 8" (A/B Section, 1-2 Grooves)', width: 'Pilot / Custom Bore', thick: 'Grade 25 CI', len: 'Dynamic Balanced', app: 'Electric Motors (3-10 HP), Water Pumps, Sieve Drives' },
+      { code: 'Cast Iron (CI) Pulley 10" to 14" (B/C Section, 2-4 Grooves)', width: '30mm - 55mm Bore', thick: 'Heavy Duty Hub', len: 'Dynamic Balanced', app: 'Rice Mill Polishers, Oil Expellers, Brick Kiln Blowers' },
+      { code: 'Cast Iron (CI) Pulley 16" to 24" (C/D Section, 3-6 Grooves)', width: '50mm - 90mm Bore', thick: 'Extra Heavy Rim', len: 'Dynamic Balanced', app: 'Stone Jaw Crusher Flywheels, Heavy Hammer Mills, Cement Drives' }
     ]
   };
 
@@ -182,7 +270,7 @@
         <td>${item.w}</td>
         <td>${item.app}</td>
         <td>
-          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Namaste Shree Anjani Belt & Bearing! Inquiring wholesale rate & stock for Bearing: ' + item.part)}" target="_blank" rel="noopener noreferrer" class="btn-matrix-wa" title="WhatsApp Quote">
+          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Namaste Shree Anjani Belt & Bearing! Inquiring wholesale walk-in discount rate & stock for Bearing: ' + item.part)}" target="_blank" rel="noopener noreferrer" class="btn-matrix-wa" title="WhatsApp Quote">
             <i class="fa-brands fa-whatsapp"></i> Get Quote
           </a>
         </td>
@@ -216,7 +304,7 @@
         <td>${item.len}</td>
         <td>${item.app}</td>
         <td>
-          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Namaste Shree Anjani Belt & Bearing! Inquiring wholesale rate & stock for Belt: ' + item.code)}" target="_blank" rel="noopener noreferrer" class="btn-matrix-wa" title="WhatsApp Quote">
+          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Namaste Shree Anjani Belt & Bearing! Inquiring wholesale walk-in discount rate & stock for Belt: ' + item.code)}" target="_blank" rel="noopener noreferrer" class="btn-matrix-wa" title="WhatsApp Quote">
             <i class="fa-brands fa-whatsapp"></i> Get Quote
           </a>
         </td>
@@ -225,7 +313,8 @@
     });
   };
 
-  // ================= 3. MULTI-TIER BRAND BEARING INTERCHANGE & DIMENSIONS DATABASE =================
+  // ================= 3. MULTI-TIER BRAND BEARING INTERCHANGE & STRATEGIC PRICING DATABASE =================
+  // Pricing Model: List MRP (+30% Marked Up) vs Walk-in Counter / Mill Wholesale Rate (20% - 30% Off)
   const INTERCHANGE_DATABASE = [
     {
       baseCode: "6204",
@@ -245,21 +334,27 @@
           title: "Premium Heavy-Duty Tier",
           brands: "SKF 6204-2RS1 (Sweden 🇸🇪) • NTN 6204 LLU (Japan 🇯🇵) • FAG 6204-2RSR (Germany 🇩🇪)",
           durability: "★★★★★ (Max Lifespan under continuous 24/7 industrial run)",
-          priceTag: "NPR 380 - 450 / unit",
+          listMRP: "NPR 520 / unit",
+          counterRate: "NPR 380",
+          savings: "Save 27% Walk-in",
           tagClass: "tier-premium"
         },
         standard: {
           title: "Standard Industrial Tier",
           brands: "NBC 6204 LLU (India 🇮🇳) • ARB 6204 2RS (India 🇮🇳) • ZKL 6204 2RS (Czech 🇨🇿)",
           durability: "★★★★☆ (Excellent balance of reliability and cost for mills)",
-          priceTag: "NPR 260 - 320 / unit",
+          listMRP: "NPR 360 / unit",
+          counterRate: "NPR 260",
+          savings: "Save 28% Walk-in",
           tagClass: "tier-standard"
         },
         economy: {
           title: "Budget / Economy Commercial Tier",
           brands: "DPI 6204 2RS (India/UAE 🇮🇳) • HI-BOND 6204 (India 🇮🇳) • V-TECH / KG Economy",
           durability: "★★★☆☆ (Best for intermittent, light-duty, or cost-sensitive agro drives)",
-          priceTag: "NPR 140 - 190 / unit",
+          listMRP: "NPR 210 / unit",
+          counterRate: "NPR 145",
+          savings: "Save 31% Walk-in",
           tagClass: "tier-economy"
         }
       }
@@ -282,21 +377,113 @@
           title: "Premium Heavy-Duty Tier",
           brands: "SKF 6205-2RS1 (Sweden 🇸🇪) • NTN 6205 LLU (Japan 🇯🇵) • URB 6205 2RS (Romania 🇷🇴)",
           durability: "★★★★★ (Highest precision, noise-free, zero early fatigue)",
-          priceTag: "NPR 480 - 550 / unit",
+          listMRP: "NPR 650 / unit",
+          counterRate: "NPR 480",
+          savings: "Save 26% Walk-in",
           tagClass: "tier-premium"
         },
         standard: {
           title: "Standard Industrial Tier",
           brands: "NBC 6205 LLU (India 🇮🇳) • ARB 6205 2RS (India 🇮🇳) • KOYO 6205 2RS (Japan 🇯🇵)",
           durability: "★★★★☆ (Top choice for commercial rice/flour mills in Nepal)",
-          priceTag: "NPR 320 - 390 / unit",
+          listMRP: "NPR 460 / unit",
+          counterRate: "NPR 330",
+          savings: "Save 28% Walk-in",
           tagClass: "tier-standard"
         },
         economy: {
           title: "Budget / Economy Commercial Tier",
           brands: "DPI 6205 2RS (India/UAE 🇮🇳) • HI-BOND 6205 • V-TECH / Chinese Industrial Grade",
           durability: "★★★☆☆ (Cost-effective solution for light agricultural machinery)",
-          priceTag: "NPR 160 - 220 / unit",
+          listMRP: "NPR 250 / unit",
+          counterRate: "NPR 175",
+          savings: "Save 30% Walk-in",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "6207",
+      dims: "35 × 72 × 17 mm",
+      d_mm: 35,
+      D_mm: 72,
+      B_mm: 17,
+      weight_kg: "0.29 kg",
+      cr: "27.0 kN",
+      cor: "15.3 kN",
+      speedLimit: "11,000 RPM (Grease)",
+      clearance: "Normal / C3 Radial Clearance",
+      app: "Heavy Paddy Huller Shafts, Dal Mill Separators, Industrial Blowers",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 6207-2RS1 (Sweden 🇸🇪) • NTN 6207 LLU • FAG 6207-2RSR",
+          durability: "★★★★★ (Engineered for non-stop grain milling under vibration)",
+          listMRP: "NPR 1,080 / unit",
+          counterRate: "NPR 790",
+          savings: "Save 27% Walk-in",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 6207 LLU (India 🇮🇳) • ARB 6207 2RS • ZKL 6207 2RS",
+          durability: "★★★★☆ (Proven performance across mills in Lumbini & Terai)",
+          listMRP: "NPR 780 / unit",
+          counterRate: "NPR 560",
+          savings: "Save 28% Walk-in",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 6207 2RS • HI-BOND 6207 • V-TECH",
+          durability: "★★★☆☆ (Economical agro replacement)",
+          listMRP: "NPR 440 / unit",
+          counterRate: "NPR 310",
+          savings: "Save 30% Walk-in",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "6208",
+      dims: "40 × 80 × 18 mm",
+      d_mm: 40,
+      D_mm: 80,
+      B_mm: 18,
+      weight_kg: "0.37 kg",
+      cr: "30.7 kN",
+      cor: "19.0 kN",
+      speedLimit: "9,500 RPM (Grease)",
+      clearance: "Normal / C3 Clearance",
+      app: "Oil Expeller Main Shafts, Tractor Implement Gearboxes, Agro Drives",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 6208-2RS1 (Sweden 🇸🇪) • NTN 6208 LLU • FAG 6208-2RSR",
+          durability: "★★★★★ (Heavy duty oil expeller & tractor standard)",
+          listMRP: "NPR 1,280 / unit",
+          counterRate: "NPR 950",
+          savings: "Save 26% Walk-in",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 6208 LLU (India 🇮🇳) • ARB 6208 2RS • KOYO 6208",
+          durability: "★★★★☆ (High reliability for continuous expelling)",
+          listMRP: "NPR 920 / unit",
+          counterRate: "NPR 680",
+          savings: "Save 26% Walk-in",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 6208 2RS • HI-BOND 6208 • V-TECH",
+          durability: "★★★☆☆ (Budget replacement)",
+          listMRP: "NPR 520 / unit",
+          counterRate: "NPR 370",
+          savings: "Save 29% Walk-in",
           tagClass: "tier-economy"
         }
       }
@@ -319,21 +506,70 @@
           title: "Premium Heavy-Duty Tier",
           brands: "SKF 6308-2RS1/C3 (Sweden 🇸🇪) • FAG 6308-2RSR-C3 (Germany 🇩🇪) • NTN 6308 LLU C3",
           durability: "★★★★★ (Engineered for high thermal loads and heavy motor armatures)",
-          priceTag: "NPR 1,450 - 1,750 / unit",
+          listMRP: "NPR 2,250 / unit",
+          counterRate: "NPR 1,650",
+          savings: "Save 27% Walk-in",
           tagClass: "tier-premium"
         },
         standard: {
           title: "Standard Industrial Tier",
           brands: "NBC 6308 2RS C3 (India 🇮🇳) • ARB 6308 C3 (India 🇮🇳) • ZKL 6308 2RS (Czech 🇨🇿)",
           durability: "★★★★☆ (Heavy-duty plant standard across Lumbini Province)",
-          priceTag: "NPR 980 - 1,250 / unit",
+          listMRP: "NPR 1,680 / unit",
+          counterRate: "NPR 1,220",
+          savings: "Save 27% Walk-in",
           tagClass: "tier-standard"
         },
         economy: {
           title: "Budget / Economy Commercial Tier",
           brands: "DPI 6308 2RS (India/UAE 🇮🇳) • HI-BOND 6308 • V-TECH Heavy Duty Line",
           durability: "★★★☆☆ (Economic choice for slower shaft speeds & secondary equipment)",
-          priceTag: "NPR 550 - 750 / unit",
+          listMRP: "NPR 950 / unit",
+          counterRate: "NPR 680",
+          savings: "Save 28% Walk-in",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "6310",
+      dims: "50 × 110 × 27 mm",
+      d_mm: 50,
+      D_mm: 110,
+      B_mm: 27,
+      weight_kg: "1.05 kg",
+      cr: "65.0 kN",
+      cor: "38.0 kN",
+      speedLimit: "7,000 RPM (Grease)",
+      clearance: "C3 Radial Internal Clearance",
+      app: "Heavy Stone Crusher Screeners, 50 HP Motor Shafts, Rice Mill Destoner Heads",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 6310-2RS1/C3 (Sweden 🇸🇪) • NTN 6310 LLU C3 • FAG 6310-2RSR-C3",
+          durability: "★★★★★ (Withstands massive continuous 50 HP motor torque)",
+          listMRP: "NPR 3,450 / unit",
+          counterRate: "NPR 2,550",
+          savings: "Save 26% Walk-in",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 6310 2RS C3 (India 🇮🇳) • ARB 6310 C3 • ZKL 6310 2RS",
+          durability: "★★★★☆ (Standard 50 HP workhorse in Nepal plants)",
+          listMRP: "NPR 2,650 / unit",
+          counterRate: "NPR 1,950",
+          savings: "Save 26% Walk-in",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 6310 2RS • HI-BOND 6310 • V-TECH",
+          durability: "★★★☆☆ (Budget option)",
+          listMRP: "NPR 1,550 / unit",
+          counterRate: "NPR 1,100",
+          savings: "Save 29% Walk-in",
           tagClass: "tier-economy"
         }
       }
@@ -356,21 +592,27 @@
           title: "Premium Heavy-Duty Tier",
           brands: "SKF 22212 EK/W33 (Sweden 🇸🇪) • URB 22212 EK C3 (Romania 🇷🇴) • NTN 22212 EAKD1",
           durability: "★★★★★ (Withstands massive quarry vibration and shock without cracking)",
-          priceTag: "NPR 4,800 - 5,900 / unit",
+          listMRP: "NPR 6,800 / unit",
+          counterRate: "NPR 4,950",
+          savings: "Save 27% Walk-in",
           tagClass: "tier-premium"
         },
         standard: {
           title: "Standard Industrial Tier",
           brands: "NBC 22212 CA/W33 (India 🇮🇳) • ARB 22212 EK (India 🇮🇳) • ZKL 22212 (Czech 🇨🇿)",
           durability: "★★★★☆ (Proven track record in crushing & screening plants in Nepal)",
-          priceTag: "NPR 3,400 - 4,200 / unit",
+          listMRP: "NPR 4,950 / unit",
+          counterRate: "NPR 3,600",
+          savings: "Save 27% Walk-in",
           tagClass: "tier-standard"
         },
         economy: {
           title: "Budget / Economy Commercial Tier",
           brands: "DPI 22212 EK • HI-BOND Spherical • KG International 22212",
           durability: "★★★☆☆ (Budget replacement for low-vibration secondary rollers)",
-          priceTag: "NPR 1,950 - 2,600 / unit",
+          listMRP: "NPR 2,950 / unit",
+          counterRate: "NPR 2,150",
+          savings: "Save 27% Walk-in",
           tagClass: "tier-economy"
         }
       }
@@ -393,21 +635,70 @@
           title: "Premium Heavy-Duty Tier",
           brands: "SKF 22218 EK/W33 (Sweden 🇸🇪) • URB 22218 EK C3 (Romania 🇷🇴) • FAG 22218-E1-K",
           durability: "★★★★★ (Ultra high dynamic capacity for boulder crushing impacts)",
-          priceTag: "NPR 8,500 - 11,500 / unit",
+          listMRP: "NPR 14,800 / unit",
+          counterRate: "NPR 10,800",
+          savings: "Save 27% Walk-in",
           tagClass: "tier-premium"
         },
         standard: {
           title: "Standard Industrial Tier",
           brands: "NBC 22218 CA/W33 (India 🇮🇳) • ARB 22218 EK (India 🇮🇳) • KOYO 22218 RHR",
           durability: "★★★★☆ (Strong reliability for medium-heavy aggregate crushing plants)",
-          priceTag: "NPR 6,200 - 7,800 / unit",
+          listMRP: "NPR 10,500 / unit",
+          counterRate: "NPR 7,650",
+          savings: "Save 27% Walk-in",
           tagClass: "tier-standard"
         },
         economy: {
           title: "Budget / Economy Commercial Tier",
           brands: "DPI 22218 EK • HI-BOND 22218 • Commercial Chinese Quarry Grade",
           durability: "★★★☆☆ (Cost-saving option for lighter duty secondary crushing stages)",
-          priceTag: "NPR 3,800 - 4,900 / unit",
+          listMRP: "NPR 5,950 / unit",
+          counterRate: "NPR 4,350",
+          savings: "Save 27% Walk-in",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "22220",
+      dims: "100 × 180 × 46 mm",
+      d_mm: 100,
+      D_mm: 180,
+      B_mm: 46,
+      weight_kg: "4.85 kg",
+      cr: "435.0 kN",
+      cor: "490.0 kN",
+      speedLimit: "3,400 RPM",
+      clearance: "C3 Spherical Roller (Tapered 1:12 Bore with Sleeve H320 / SN520)",
+      app: "Heavy 36x24 Jaw Crushers, Cement Raw Mills, Sugar Cane Roller Shafts",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 22220 EK/W33 (Sweden 🇸🇪) • URB 22220 EK C3 • FAG 22220-E1-K",
+          durability: "★★★★★ (High capacity for primary quarry jaw crushers)",
+          listMRP: "NPR 19,500 / unit",
+          counterRate: "NPR 14,200",
+          savings: "Save 27% Walk-in",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 22220 CA/W33 (India 🇮🇳) • ARB 22220 EK • ZKL 22220",
+          durability: "★★★★☆ (Proven heavy crusher workhorse in Nepal)",
+          listMRP: "NPR 13,800 / unit",
+          counterRate: "NPR 9,950",
+          savings: "Save 28% Walk-in",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 22220 EK • HI-BOND 22220 • Chinese Quarry Grade",
+          durability: "★★★☆☆ (Budget replacement)",
+          listMRP: "NPR 7,800 / unit",
+          counterRate: "NPR 5,600",
+          savings: "Save 28% Walk-in",
           tagClass: "tier-economy"
         }
       }
@@ -430,21 +721,70 @@
           title: "Premium Heavy-Duty Tier",
           brands: "SKF 30206 J2/Q (Sweden 🇸🇪) • NTN 30206 (Japan 🇯🇵) • TIMKEN 30206 (USA 🇺🇸)",
           durability: "★★★★★ (Case-carburized alloy steel for heavy vehicle shock loads)",
-          priceTag: "NPR 680 - 850 / unit",
+          listMRP: "NPR 950 / unit",
+          counterRate: "NPR 690",
+          savings: "Save 27% Walk-in",
           tagClass: "tier-premium"
         },
         standard: {
           title: "Standard Industrial Tier",
           brands: "NBC 30206 (India 🇮🇳) • ARB 30206 (India 🇮🇳) • ZKL 30206 (Czech 🇨🇿)",
           durability: "★★★★☆ (Widespread standard for commercial vehicles and gearboxes in Nepal)",
-          priceTag: "NPR 450 - 580 / unit",
+          listMRP: "NPR 680 / unit",
+          counterRate: "NPR 490",
+          savings: "Save 28% Walk-in",
           tagClass: "tier-standard"
         },
         economy: {
           title: "Budget / Economy Commercial Tier",
           brands: "DPI 30206 • HI-BOND 30206 • V-TECH Taper Line",
           durability: "★★★☆☆ (Economy solution for agro implements and trailer axles)",
-          priceTag: "NPR 250 - 340 / unit",
+          listMRP: "NPR 390 / unit",
+          counterRate: "NPR 275",
+          savings: "Save 29% Walk-in",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "32210",
+      dims: "50 × 90 × 24.75 mm",
+      d_mm: 50,
+      D_mm: 90,
+      B_mm: 24.75,
+      weight_kg: "0.62 kg",
+      cr: "88.0 kN",
+      cor: "105.0 kN",
+      speedLimit: "6,000 RPM",
+      clearance: "Tapered Roller (Heavy Axial & Radial Load)",
+      app: "High Axial Thrust Mill Gearboxes, Heavy Duty Axles, Brick Extruders",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 32210 J2 (Sweden 🇸🇪) • TIMKEN 32210 (USA 🇺🇸) • NTN 32210",
+          durability: "★★★★★ (Extreme load rating for gear reducers)",
+          listMRP: "NPR 2,450 / unit",
+          counterRate: "NPR 1,780",
+          savings: "Save 27% Walk-in",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 32210 (India 🇮🇳) • ARB 32210 • ZKL 32210",
+          durability: "★★★★☆ (Commercial truck & plant standard)",
+          listMRP: "NPR 1,750 / unit",
+          counterRate: "NPR 1,280",
+          savings: "Save 27% Walk-in",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 32210 • HI-BOND 32210 • V-TECH",
+          durability: "★★★☆☆ (Budget replacement)",
+          listMRP: "NPR 980 / unit",
+          counterRate: "NPR 710",
+          savings: "Save 28% Walk-in",
           tagClass: "tier-economy"
         }
       }
@@ -467,21 +807,199 @@
           title: "Premium Heavy-Duty Tier",
           brands: "NTN UCP 208D1 (Japan 🇯🇵) • SKF SY 40 TF (Sweden 🇸🇪) • FYH UCP 208 (Japan 🇯🇵)",
           durability: "★★★★★ (Heavy ductile iron housing, dual triple-lip sealing for paddy dust)",
-          priceTag: "NPR 2,100 - 2,650 / unit",
+          listMRP: "NPR 3,100 / unit",
+          counterRate: "NPR 2,250",
+          savings: "Save 27% Walk-in",
           tagClass: "tier-premium"
         },
         standard: {
           title: "Standard Industrial Tier",
           brands: "NBC UCP 208 (India 🇮🇳) • ARB UCP 208 (India 🇮🇳) • URB UCP 208 (Romania 🇷🇴)",
           durability: "★★★★☆ (Standard workhorse across rice mills in Terai region)",
-          priceTag: "NPR 1,350 - 1,750 / unit",
+          listMRP: "NPR 2,150 / unit",
+          counterRate: "NPR 1,550",
+          savings: "Save 28% Walk-in",
           tagClass: "tier-standard"
         },
         economy: {
           title: "Budget / Economy Commercial Tier",
           brands: "DPI UCP 208 • HI-BOND UCP 208 • V-TECH Block Line",
           durability: "★★★☆☆ (Economical unit for slow speed grain elevators and sorting conveyors)",
-          priceTag: "NPR 750 - 950 / unit",
+          listMRP: "NPR 1,250 / unit",
+          counterRate: "NPR 880",
+          savings: "Save 30% Walk-in",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "UCP 210",
+      dims: "50 mm Bore • Heavy Cast Iron Base Pillow Block Housing",
+      d_mm: 50,
+      D_mm: 206,
+      B_mm: 51.6,
+      weight_kg: "2.75 kg",
+      cr: "35.1 kN",
+      cor: "23.2 kN",
+      speedLimit: "4,000 RPM",
+      clearance: "Self-Aligning Insert Ball with Set-Screw Lock",
+      app: "Stone Crusher Discharge Belt Head Drum Shafts, Heavy Mill Elevators, Feed Mixers",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "NTN UCP 210D1 (Japan 🇯🇵) • SKF SY 50 TF • FYH UCP 210",
+          durability: "★★★★★ (Heavy duty industrial standard for conveyor drums)",
+          listMRP: "NPR 4,500 / unit",
+          counterRate: "NPR 3,300",
+          savings: "Save 27% Walk-in",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC UCP 210 (India 🇮🇳) • ARB UCP 210 • URB UCP 210",
+          durability: "★★★★☆ (High reliability for continuous conveyor operation)",
+          listMRP: "NPR 3,150 / unit",
+          counterRate: "NPR 2,300",
+          savings: "Save 27% Walk-in",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI UCP 210 • HI-BOND UCP 210 • V-TECH",
+          durability: "★★★☆☆ (Economical replacement)",
+          listMRP: "NPR 1,750 / unit",
+          counterRate: "NPR 1,250",
+          savings: "Save 29% Walk-in",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "UCF 208",
+      dims: "40 mm Bore • 4-Bolt Square Cast Iron Flange Housing",
+      d_mm: 40,
+      D_mm: 130,
+      B_mm: 51.2,
+      weight_kg: "1.90 kg",
+      cr: "29.1 kN",
+      cor: "17.8 kN",
+      speedLimit: "4,800 RPM",
+      clearance: "Self-Aligning Flange Unit with Set-Screw Lock",
+      app: "Rice Mill Polisher Machine Side Flanges, Oil Expeller Walls, Flour Mill Sifters",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "NTN UCF 208D1 (Japan 🇯🇵) • SKF FY 40 TF • FYH UCF 208",
+          durability: "★★★★★ (Rigid 4-bolt square flange for machine sidewalls)",
+          listMRP: "NPR 3,250 / unit",
+          counterRate: "NPR 2,400",
+          savings: "Save 26% Walk-in",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC UCF 208 (India 🇮🇳) • ARB UCF 208 • URB UCF 208",
+          durability: "★★★★☆ (Universal grain machine sidewall workhorse)",
+          listMRP: "NPR 2,250 / unit",
+          counterRate: "NPR 1,650",
+          savings: "Save 27% Walk-in",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI UCF 208 • HI-BOND UCF 208 • V-TECH",
+          durability: "★★★☆☆ (Budget replacement)",
+          listMRP: "NPR 1,350 / unit",
+          counterRate: "NPR 950",
+          savings: "Save 30% Walk-in",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "NU 208",
+      dims: "40 × 80 × 18 mm",
+      d_mm: 40,
+      D_mm: 80,
+      B_mm: 18,
+      weight_kg: "0.38 kg",
+      cr: "56.0 kN",
+      cor: "51.0 kN",
+      speedLimit: "11,000 RPM",
+      clearance: "Cylindrical Roller (High Speed & Heavy Radial Capacity)",
+      app: "Electric Motor Drive Ends (15-20 HP), Compressor Armatures, Gearbox Pinions",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF NU 208 ECP (Sweden 🇸🇪) • NTN NU 208 • FAG NU 208-E",
+          durability: "★★★★★ (Heavy radial load capacity with high RPM tolerance)",
+          listMRP: "NPR 2,850 / unit",
+          counterRate: "NPR 2,100",
+          savings: "Save 26% Walk-in",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC NU 208 (India 🇮🇳) • ARB NU 208 • ZKL NU 208",
+          durability: "★★★★☆ (Standard industrial motor armature replacement)",
+          listMRP: "NPR 1,950 / unit",
+          counterRate: "NPR 1,420",
+          savings: "Save 27% Walk-in",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI NU 208 • HI-BOND • V-TECH",
+          durability: "★★★☆☆ (Budget commercial grade)",
+          listMRP: "NPR 1,150 / unit",
+          counterRate: "NPR 820",
+          savings: "Save 29% Walk-in",
+          tagClass: "tier-economy"
+        }
+      }
+    },
+    {
+      baseCode: "1207",
+      dims: "35 × 72 × 17 mm",
+      d_mm: 35,
+      D_mm: 72,
+      B_mm: 17,
+      weight_kg: "0.31 kg",
+      cr: "15.9 kN",
+      cor: "5.1 kN",
+      speedLimit: "12,000 RPM",
+      clearance: "Self-Aligning Double Row Ball Bearing",
+      app: "Paddy Destoner Shaking Screens, Dal Mill Sieve Shakers, Long Agro Shafts",
+      stockStatus: "Ready Stock (10+ Units in Siddharthanagar Hub)",
+      tiers: {
+        premium: {
+          title: "Premium Heavy-Duty Tier",
+          brands: "SKF 1207 EKTN9 (Sweden 🇸🇪) • NTN 1207 • FAG 1207-TVH",
+          durability: "★★★★★ (Self-compensates for shaft deflection under vigorous vibration)",
+          listMRP: "NPR 1,950 / unit",
+          counterRate: "NPR 1,450",
+          savings: "Save 26% Walk-in",
+          tagClass: "tier-premium"
+        },
+        standard: {
+          title: "Standard Industrial Tier",
+          brands: "NBC 1207 (India 🇮🇳) • ARB 1207 • ZKL 1207",
+          durability: "★★★★☆ (Top choice for vibrating cleaning sieves in Terai mills)",
+          listMRP: "NPR 1,350 / unit",
+          counterRate: "NPR 980",
+          savings: "Save 27% Walk-in",
+          tagClass: "tier-standard"
+        },
+        economy: {
+          title: "Budget / Economy Commercial Tier",
+          brands: "DPI 1207 • HI-BOND 1207 • V-TECH",
+          durability: "★★★☆☆ (Budget agro option)",
+          listMRP: "NPR 750 / unit",
+          counterRate: "NPR 520",
+          savings: "Save 31% Walk-in",
           tagClass: "tier-economy"
         }
       }
@@ -544,21 +1062,27 @@
           title: "Premium Heavy-Duty Tier",
           brands: `SKF ${raw} (Sweden 🇸🇪) • NTN ${raw} (Japan 🇯🇵) • FAG ${raw} (Germany 🇩🇪)`,
           durability: "★★★★★ (Max Heavy-Duty Lifespan)",
-          priceTag: "Wholesale Rate on Direct Inquiry",
+          listMRP: "List MRP: Inquire Desk",
+          counterRate: "Special Walk-in Wholesale Rate",
+          savings: "Save 20-30% Walk-in",
           tagClass: "tier-premium"
         },
         standard: {
           title: "Standard Industrial Tier",
           brands: `NBC ${raw} (India 🇮🇳) • ARB ${raw} (India 🇮🇳) • ZKL ${raw} (Czech 🇨🇿)`,
           durability: "★★★★☆ (Standard Plant Workhorse)",
-          priceTag: "Wholesale Rate on Direct Inquiry",
+          listMRP: "List MRP: Inquire Desk",
+          counterRate: "Special Walk-in Wholesale Rate",
+          savings: "Save 20-30% Walk-in",
           tagClass: "tier-standard"
         },
         economy: {
           title: "Budget / Economy Commercial Tier",
           brands: `DPI ${raw} • HI-BOND ${raw} • V-TECH / KG Commercial Line`,
           durability: "★★★☆☆ (Best for Cost-Sensitive / Light Applications)",
-          priceTag: "Wholesale Rate on Direct Inquiry",
+          listMRP: "List MRP: Inquire Desk",
+          counterRate: "Special Walk-in Wholesale Rate",
+          savings: "Save 20-30% Walk-in",
           tagClass: "tier-economy"
         }
       }
@@ -576,6 +1100,17 @@
     if (cadBadge) cadBadge.textContent = `${match.baseCode} CAD Schematic (${match.d_mm}×${match.D_mm}×${match.B_mm} mm)`;
 
     resultBox.innerHTML = `
+      <!-- Strategic Walk-in & Bulk Factory Discount Announcement -->
+      <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(245, 158, 11, 0.1)); border: 1px solid rgba(249, 115, 22, 0.4); border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem;">
+        <div style="font-size: 0.85rem; color: #F8FAFC; line-height: 1.45;">
+          <strong style="color: var(--orange-electric);"><i class="fa-solid fa-tags"></i> Direct Siddharthanagar Counter Wholesale Discount:</strong><br />
+          Official catalog rates reflect List MRP. Visiting our <strong>Siddharthanagar counter</strong> or issuing a factory purchase order unlocks direct <strong>20% to 30% Wholesale Discount</strong> on genuine factory-sealed bearings.
+        </div>
+        <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Namaste! Inquiring Walk-in Counter Wholesale Discount for ' + raw)}" target="_blank" class="btn-matrix-wa" style="white-space: nowrap; padding: 0.45rem 0.9rem; font-size: 0.8rem;">
+          <i class="fa-brands fa-whatsapp"></i> Claim Walk-in Rate
+        </a>
+      </div>
+
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
         <div class="calc-result-heading" style="margin-bottom: 0;">Technical Specs &amp; Tier Matrix For: <strong style="color: #FFFFFF; font-size: 1.1rem; text-decoration: underline var(--orange-electric);">${raw}</strong></div>
         <span style="background: rgba(16, 185, 129, 0.15); color: #34D399; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: var(--radius-pill); border: 1px solid rgba(16, 185, 129, 0.3);">
@@ -617,8 +1152,13 @@
             <span class="tier-durability">${match.tiers.premium.durability}</span>
           </div>
           <div class="tier-brand-names">${match.tiers.premium.brands}</div>
-          <div class="tier-price-est">Estimated: <strong>${match.tiers.premium.priceTag}</strong></div>
-          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring Premium Tier (SKF/NTN/FAG) wholesale price for ' + raw)}" target="_blank" class="btn-tier-action btn-tier-premium-action">
+          <div style="margin: 0.5rem 0 0.75rem;">
+            <div style="font-size: 0.775rem; color: var(--text-muted); text-decoration: line-through;">List MRP: ${match.tiers.premium.listMRP}</div>
+            <div style="font-size: 1.05rem; font-weight: 800; color: #34D399; font-family: var(--font-display);">
+              Counter Rate: ${match.tiers.premium.counterRate} <span style="background: rgba(16, 185, 129, 0.2); color: #34D399; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; margin-left: 4px;">${match.tiers.premium.savings}</span>
+            </div>
+          </div>
+          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring Premium Tier (SKF/NTN/FAG) Walk-in Wholesale Rate for ' + raw)}" target="_blank" class="btn-tier-action btn-tier-premium-action">
             <i class="fa-brands fa-whatsapp"></i> Inquire Premium Rate
           </a>
         </div>
@@ -630,8 +1170,13 @@
             <span class="tier-durability">${match.tiers.standard.durability}</span>
           </div>
           <div class="tier-brand-names">${match.tiers.standard.brands}</div>
-          <div class="tier-price-est">Estimated: <strong>${match.tiers.standard.priceTag}</strong></div>
-          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring Standard Tier (NBC/ARB/ZKL) wholesale price for ' + raw)}" target="_blank" class="btn-tier-action btn-tier-standard-action">
+          <div style="margin: 0.5rem 0 0.75rem;">
+            <div style="font-size: 0.775rem; color: var(--text-muted); text-decoration: line-through;">List MRP: ${match.tiers.standard.listMRP}</div>
+            <div style="font-size: 1.05rem; font-weight: 800; color: var(--cyan-accent); font-family: var(--font-display);">
+              Counter Rate: ${match.tiers.standard.counterRate} <span style="background: rgba(56, 189, 248, 0.2); color: var(--cyan-accent); font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; margin-left: 4px;">${match.tiers.standard.savings}</span>
+            </div>
+          </div>
+          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring Standard Tier (NBC/ARB/ZKL) Walk-in Wholesale Rate for ' + raw)}" target="_blank" class="btn-tier-action btn-tier-standard-action">
             <i class="fa-brands fa-whatsapp"></i> Inquire Standard Rate
           </a>
         </div>
@@ -643,8 +1188,13 @@
             <span class="tier-durability">${match.tiers.economy.durability}</span>
           </div>
           <div class="tier-brand-names">${match.tiers.economy.brands}</div>
-          <div class="tier-price-est">Estimated: <strong>${match.tiers.economy.priceTag}</strong></div>
-          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring Budget Economy Tier (DPI/HI-BOND/V-TECH) wholesale price for ' + raw)}" target="_blank" class="btn-tier-action btn-tier-economy-action">
+          <div style="margin: 0.5rem 0 0.75rem;">
+            <div style="font-size: 0.775rem; color: var(--text-muted); text-decoration: line-through;">List MRP: ${match.tiers.economy.listMRP}</div>
+            <div style="font-size: 1.05rem; font-weight: 800; color: var(--amber-glow); font-family: var(--font-display);">
+              Counter Rate: ${match.tiers.economy.counterRate} <span style="background: rgba(245, 158, 11, 0.2); color: var(--amber-glow); font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; margin-left: 4px;">${match.tiers.economy.savings}</span>
+            </div>
+          </div>
+          <a href="https://wa.me/${SALES_PHONE_CLEAN}?text=${encodeURIComponent('Inquiring Budget Economy Tier (DPI/HI-BOND/V-TECH) Walk-in Wholesale Rate for ' + raw)}" target="_blank" class="btn-tier-action btn-tier-economy-action">
             <i class="fa-brands fa-whatsapp"></i> Inquire Budget Rate
           </a>
         </div>
