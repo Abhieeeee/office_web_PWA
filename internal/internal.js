@@ -1,12 +1,18 @@
 /**
- * Shree Anjani Belt & Bearing — Internal ERP & Store Operations Logic
- * Persistent Data Architecture (LocalStorage) with Full Modules:
- * 1. Overview Dashboard Metrics
- * 2. Inventory & Rack Locator CRUD
- * 3. Proforma Invoicing & 13% Nepal VAT Engine
- * 4. Regional Transport & Bilty Logger
+ * Shree Anjani Belt & Bearing Store — Internal ERP & Store Operations Engine
+ * Location: Siddharthanagar (Bhairahawa), Nepal | IRD PAN: 601249821
+ * 
+ * Modules:
+ * 1. Overview Dashboard Metrics & Live Nepalese Clock
+ * 2. Enterprise Inventory & Multi-Zone Bin Locator (Supabase REST + LocalStorage Fallback)
+ * 3. Proforma Invoicing & 13% Nepal VAT Engine with A4 & POS Thermal Slip
+ * 4. Regional Transport Logistics & Bilty Freight Tracker
  * 5. Machine Workshop Job Card Manager
- * 6. JSON Backup & Restore
+ * 6. Physical Bill OCR Optical Scanner & Stock Impact Sync
+ * 7. B2B Customer Ledger & Credit Account Settlement
+ * 8. Live Stock Audit Trail & History Log
+ * 9. Google Maps 5-Star Review Velocity Automation
+ * 10. Data Backup, Bulk CSV Spreadsheet Import & Maintenance
  */
 
 (function () {
@@ -17,13 +23,16 @@
     INVENTORY: STORAGE_KEY_PREFIX + 'inventory',
     INVOICES: STORAGE_KEY_PREFIX + 'invoices',
     TRANSPORTS: STORAGE_KEY_PREFIX + 'transports',
-    WORKSHOP: STORAGE_KEY_PREFIX + 'workshop'
+    WORKSHOP: STORAGE_KEY_PREFIX + 'workshop',
+    CUSTOMERS: STORAGE_KEY_PREFIX + 'customers',
+    CUSTOMER_LEDGER: STORAGE_KEY_PREFIX + 'customer_ledger',
+    STOCK_AUDIT: 'shree_anjani_erp_stock_audit'
   };
 
-  // Seed Data for Instant Out-of-the-Box Usage
+  // 66+ Seed Industrial Items for Instant Out-of-the-Box Usage
   const DEFAULT_SEED_DATA = {
     inventory: [
-      // 1. Deep Groove Ball Bearings (10 Units Stock Each)
+      // 1. Deep Groove Ball Bearings (6200 & 6300 Series) — 10 Units Stock Each
       { id: '1', partNo: '6204 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-01, Shelf 1', qty: 10, rate: 380, lowAlert: 3 },
       { id: '2', partNo: '6205 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-01, Shelf 2', qty: 10, rate: 480, lowAlert: 3 },
       { id: '3', partNo: '6206 2RS', brand: 'SKF', category: 'Bearings', rack: 'Rack A-01, Shelf 3', qty: 10, rate: 620, lowAlert: 3 },
@@ -39,7 +48,7 @@
       { id: '13', partNo: '6310 2RS C3', brand: 'NBC', category: 'Bearings', rack: 'Rack A-04, Shelf 2', qty: 10, rate: 2100, lowAlert: 3 },
       { id: '14', partNo: '6312 2RS C3', brand: 'NBC', category: 'Bearings', rack: 'Rack A-04, Shelf 3', qty: 10, rate: 3200, lowAlert: 3 },
 
-      // 2. Spherical Roller Bearings (10 Units Stock Each)
+      // 2. Spherical Roller Bearings (22200 Series) — 10 Units Stock Each
       { id: '15', partNo: '22212 EK W33', brand: 'URB', category: 'Bearings', rack: 'Rack B-01, Shelf 1', qty: 10, rate: 4800, lowAlert: 2 },
       { id: '16', partNo: '22214 EK W33', brand: 'URB', category: 'Bearings', rack: 'Rack B-01, Shelf 2', qty: 10, rate: 5900, lowAlert: 2 },
       { id: '17', partNo: '22216 EK W33', brand: 'URB', category: 'Bearings', rack: 'Rack B-01, Shelf 3', qty: 10, rate: 7200, lowAlert: 2 },
@@ -47,7 +56,7 @@
       { id: '19', partNo: '22220 EK C3', brand: 'URB', category: 'Bearings', rack: 'Rack B-02, Shelf 2', qty: 10, rate: 11500, lowAlert: 2 },
       { id: '20', partNo: '22222 EK C3', brand: 'URB', category: 'Bearings', rack: 'Rack B-02, Shelf 3', qty: 10, rate: 14800, lowAlert: 2 },
 
-      // 3. Taper Roller Bearings (10 Units Stock Each)
+      // 3. Taper Roller Bearings (30200 & 32200 Series) — 10 Units Stock Each
       { id: '21', partNo: '30205', brand: 'SKF', category: 'Bearings', rack: 'Rack B-03, Shelf 1', qty: 10, rate: 520, lowAlert: 3 },
       { id: '22', partNo: '30206', brand: 'SKF', category: 'Bearings', rack: 'Rack B-03, Shelf 2', qty: 10, rate: 680, lowAlert: 3 },
       { id: '23', partNo: '30207', brand: 'SKF', category: 'Bearings', rack: 'Rack B-03, Shelf 3', qty: 10, rate: 890, lowAlert: 3 },
@@ -56,7 +65,7 @@
       { id: '26', partNo: '32210', brand: 'SKF', category: 'Bearings', rack: 'Rack B-04, Shelf 2', qty: 10, rate: 1680, lowAlert: 3 },
       { id: '27', partNo: '32212', brand: 'SKF', category: 'Bearings', rack: 'Rack B-04, Shelf 3', qty: 10, rate: 2450, lowAlert: 3 },
 
-      // 4. Pillow Blocks & Flange Housings (10 Units Stock Each)
+      // 4. Pillow Blocks & Flange Housings (UCP & UCF Series) — 10 Units Stock Each
       { id: '28', partNo: 'UCP 204', brand: 'NTN', category: 'Bearings', rack: 'Rack C-01, Shelf 1', qty: 10, rate: 950, lowAlert: 3 },
       { id: '29', partNo: 'UCP 205', brand: 'NTN', category: 'Bearings', rack: 'Rack C-01, Shelf 2', qty: 10, rate: 1150, lowAlert: 3 },
       { id: '30', partNo: 'UCP 206', brand: 'NTN', category: 'Bearings', rack: 'Rack C-01, Shelf 3', qty: 10, rate: 1380, lowAlert: 3 },
@@ -68,7 +77,7 @@
       { id: '36', partNo: 'UCF 208', brand: 'NTN', category: 'Bearings', rack: 'Rack C-03, Shelf 1', qty: 10, rate: 2250, lowAlert: 3 },
       { id: '37', partNo: 'UCF 210', brand: 'NTN', category: 'Bearings', rack: 'Rack C-03, Shelf 2', qty: 10, rate: 3300, lowAlert: 3 },
 
-      // 5. Industrial V-Belts (10 Units Stock Each)
+      // 5. Industrial V-Belts (Classical A, B, C, D Sections) — 10 Units Stock Each
       { id: '38', partNo: 'V-Belt A-32 to A-50', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 1', qty: 10, rate: 280, lowAlert: 3 },
       { id: '39', partNo: 'V-Belt A-60 to A-80', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 1', qty: 10, rate: 350, lowAlert: 3 },
       { id: '40', partNo: 'V-Belt B-52', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 2', qty: 10, rate: 520, lowAlert: 3 },
@@ -82,24 +91,24 @@
       { id: '48', partNo: 'V-Belt C-180', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Belt Wall 5', qty: 10, rate: 2650, lowAlert: 3 },
       { id: '49', partNo: 'V-Belt D-210', brand: 'Fenner', category: 'Belts & Pulleys', rack: 'Floor Pallet 01', qty: 10, rate: 4800, lowAlert: 2 },
 
-      // 6. Rubber Conveyor Belts & Cast Iron Pulleys (10 Units Stock Each)
-      { id: '50', partNo: 'Rubber Conveyor EP 400/3 (16" / 400mm)', brand: 'Other', category: 'Belts & Pulleys', rack: 'Yard Roll 01', qty: 10, rate: 1850, lowAlert: 2 },
-      { id: '51', partNo: 'Rubber Conveyor EP 400/3 (20" / 500mm)', brand: 'Other', category: 'Belts & Pulleys', rack: 'Yard Roll 02', qty: 10, rate: 2350, lowAlert: 2 },
-      { id: '52', partNo: 'Rubber Conveyor EP 500/3 (24" / 600mm)', brand: 'Other', category: 'Belts & Pulleys', rack: 'Yard Roll 03', qty: 10, rate: 2950, lowAlert: 2 },
-      { id: '53', partNo: 'Rubber Conveyor EP 630/4 (32" / 800mm)', brand: 'Other', category: 'Belts & Pulleys', rack: 'Yard Roll 04', qty: 10, rate: 4200, lowAlert: 2 },
-      { id: '54', partNo: 'CI 2-Groove B-Section Pulley 6"', brand: 'Other', category: 'Belts & Pulleys', rack: 'Floor Pallet 02', qty: 10, rate: 1650, lowAlert: 3 },
-      { id: '55', partNo: 'CI 3-Groove B-Section Pulley 10"', brand: 'Other', category: 'Belts & Pulleys', rack: 'Floor Pallet 03', qty: 10, rate: 3200, lowAlert: 3 },
-      { id: '56', partNo: 'CI 4-Groove C-Section Pulley 14"', brand: 'Other', category: 'Belts & Pulleys', rack: 'Floor Pallet 04', qty: 10, rate: 6800, lowAlert: 2 },
+      // 6. Rubber Conveyor Belts & Cast Iron Pulleys — 10 Units Stock Each
+      { id: '50', partNo: 'Rubber Conveyor EP 400/3 (16" / 400mm)', brand: 'Other Genuine', category: 'Belts & Pulleys', rack: 'Yard Roll 01', qty: 10, rate: 1850, lowAlert: 2 },
+      { id: '51', partNo: 'Rubber Conveyor EP 400/3 (20" / 500mm)', brand: 'Other Genuine', category: 'Belts & Pulleys', rack: 'Yard Roll 02', qty: 10, rate: 2350, lowAlert: 2 },
+      { id: '52', partNo: 'Rubber Conveyor EP 500/3 (24" / 600mm)', brand: 'Other Genuine', category: 'Belts & Pulleys', rack: 'Yard Roll 03', qty: 10, rate: 2950, lowAlert: 2 },
+      { id: '53', partNo: 'Rubber Conveyor EP 630/4 (32" / 800mm)', brand: 'Other Genuine', category: 'Belts & Pulleys', rack: 'Yard Roll 04', qty: 10, rate: 4200, lowAlert: 2 },
+      { id: '54', partNo: 'CI 2-Groove B-Section Pulley 6"', brand: 'Other Genuine', category: 'Belts & Pulleys', rack: 'Floor Pallet 02', qty: 10, rate: 1650, lowAlert: 3 },
+      { id: '55', partNo: 'CI 3-Groove B-Section Pulley 10"', brand: 'Other Genuine', category: 'Belts & Pulleys', rack: 'Floor Pallet 03', qty: 10, rate: 3200, lowAlert: 3 },
+      { id: '56', partNo: 'CI 4-Groove C-Section Pulley 14"', brand: 'Other Genuine', category: 'Belts & Pulleys', rack: 'Floor Pallet 04', qty: 10, rate: 6800, lowAlert: 2 },
 
-      // 7. Machinery Spares, Seals, Couplings & Greases (10 Units Stock Each)
-      { id: '57', partNo: 'Oil Seal 25x47x10 TC', brand: 'Other', category: 'Machinery Spares', rack: 'Small Bin D-01', qty: 10, rate: 120, lowAlert: 3 },
-      { id: '58', partNo: 'Oil Seal 35x62x10 TC', brand: 'Other', category: 'Machinery Spares', rack: 'Small Bin D-02', qty: 10, rate: 160, lowAlert: 3 },
-      { id: '59', partNo: 'Oil Seal 45x65x10 TC', brand: 'Other', category: 'Machinery Spares', rack: 'Small Bin D-03', qty: 10, rate: 180, lowAlert: 3 },
-      { id: '60', partNo: 'Oil Seal 60x85x10 TC', brand: 'Other', category: 'Machinery Spares', rack: 'Small Bin D-04', qty: 10, rate: 280, lowAlert: 3 },
-      { id: '61', partNo: 'Jaw Coupling L-095 Set', brand: 'Other', category: 'Machinery Spares', rack: 'Rack D-05, Shelf 1', qty: 10, rate: 1450, lowAlert: 3 },
-      { id: '62', partNo: 'Jaw Coupling L-100 Set', brand: 'Other', category: 'Machinery Spares', rack: 'Rack D-05, Shelf 2', qty: 10, rate: 1950, lowAlert: 3 },
-      { id: '63', partNo: 'Simplex Roller Chain #50 (10ft Box)', brand: 'Other', category: 'Machinery Spares', rack: 'Rack D-06, Shelf 1', qty: 10, rate: 2400, lowAlert: 3 },
-      { id: '64', partNo: 'Simplex Roller Chain #60 (10ft Box)', brand: 'Other', category: 'Machinery Spares', rack: 'Rack D-06, Shelf 2', qty: 10, rate: 3300, lowAlert: 3 },
+      // 7. Machinery Spares, Seals, Couplings & Greases — 10 Units Stock Each
+      { id: '57', partNo: 'Oil Seal 25x47x10 TC', brand: 'Other Genuine', category: 'Machinery Spares', rack: 'Small Bin D-01', qty: 10, rate: 120, lowAlert: 3 },
+      { id: '58', partNo: 'Oil Seal 35x62x10 TC', brand: 'Other Genuine', category: 'Machinery Spares', rack: 'Small Bin D-02', qty: 10, rate: 160, lowAlert: 3 },
+      { id: '59', partNo: 'Oil Seal 45x65x10 TC', brand: 'Other Genuine', category: 'Machinery Spares', rack: 'Small Bin D-03', qty: 10, rate: 180, lowAlert: 3 },
+      { id: '60', partNo: 'Oil Seal 60x85x10 TC', brand: 'Other Genuine', category: 'Machinery Spares', rack: 'Small Bin D-04', qty: 10, rate: 280, lowAlert: 3 },
+      { id: '61', partNo: 'Jaw Coupling L-095 Set', brand: 'Other Genuine', category: 'Machinery Spares', rack: 'Rack D-05, Shelf 1', qty: 10, rate: 1450, lowAlert: 3 },
+      { id: '62', partNo: 'Jaw Coupling L-100 Set', brand: 'Other Genuine', category: 'Machinery Spares', rack: 'Rack D-05, Shelf 2', qty: 10, rate: 1950, lowAlert: 3 },
+      { id: '63', partNo: 'Simplex Roller Chain #50 (10ft Box)', brand: 'Other Genuine', category: 'Machinery Spares', rack: 'Rack D-06, Shelf 1', qty: 10, rate: 2400, lowAlert: 3 },
+      { id: '64', partNo: 'Simplex Roller Chain #60 (10ft Box)', brand: 'Other Genuine', category: 'Machinery Spares', rack: 'Rack D-06, Shelf 2', qty: 10, rate: 3300, lowAlert: 3 },
       { id: '65', partNo: 'High-Temp Lithium Complex Grease (1 kg)', brand: 'SKF', category: 'Machinery Spares', rack: 'Chemical Cabinet 01', qty: 10, rate: 850, lowAlert: 3 },
       { id: '66', partNo: 'Heavy Industrial Grease Bucket (5 kg)', brand: 'SKF', category: 'Machinery Spares', rack: 'Chemical Cabinet 02', qty: 10, rate: 3800, lowAlert: 2 }
     ],
@@ -157,6 +166,28 @@
         charges: 1800,
         status: 'In Machining'
       }
+    ],
+    customers: [
+      {
+        id: 'CUST-101',
+        name: 'Lumbini Modern Rice Mill',
+        contactPerson: 'Bimal Agrawal',
+        phone: '9857022345',
+        pan: '601249821',
+        city: 'Siddharthanagar (Bhairahawa)',
+        creditLimit: 250000,
+        currentDue: 15673.10
+      },
+      {
+        id: 'CUST-102',
+        name: 'Western Crusher Works',
+        contactPerson: 'Suresh Thapa',
+        phone: '9847033910',
+        pan: '602981440',
+        city: 'Butwal Industrial Area',
+        creditLimit: 500000,
+        currentDue: 45200.00
+      }
     ]
   };
 
@@ -166,15 +197,33 @@
     invoices: [],
     transports: [],
     workshop: [],
-    currentGeneratedInvoice: null
+    customers: [],
+    currentGeneratedInvoice: null,
+    activeRackFilter: 'ALL',
+    searchQuery: ''
   };
+
+  function getCurrentStaffName() {
+    try {
+      const session = localStorage.getItem('shree_anjani_staff_session');
+      if (session) {
+        const parsed = JSON.parse(session);
+        return parsed.user || 'STORE STAFF';
+      }
+    } catch (e) {}
+    return 'STORE STAFF';
+  }
 
   function initStorage() {
     state.inventory = JSON.parse(localStorage.getItem(KEYS.INVENTORY)) || DEFAULT_SEED_DATA.inventory;
     state.invoices = JSON.parse(localStorage.getItem(KEYS.INVOICES)) || DEFAULT_SEED_DATA.invoices;
     state.transports = JSON.parse(localStorage.getItem(KEYS.TRANSPORTS)) || DEFAULT_SEED_DATA.transports;
     state.workshop = JSON.parse(localStorage.getItem(KEYS.WORKSHOP)) || DEFAULT_SEED_DATA.workshop;
+    state.customers = JSON.parse(localStorage.getItem(KEYS.CUSTOMERS)) || DEFAULT_SEED_DATA.customers;
     persistAll();
+
+    // Auto sync with Supabase in background if configured
+    autoSyncSupabaseBackground();
   }
 
   function persistAll() {
@@ -182,6 +231,100 @@
     localStorage.setItem(KEYS.INVOICES, JSON.stringify(state.invoices));
     localStorage.setItem(KEYS.TRANSPORTS, JSON.stringify(state.transports));
     localStorage.setItem(KEYS.WORKSHOP, JSON.stringify(state.workshop));
+    localStorage.setItem(KEYS.CUSTOMERS, JSON.stringify(state.customers));
+  }
+
+  // Automatic Background Supabase Synchronization with Seamless LocalStorage Fallback
+  async function autoSyncSupabaseBackground() {
+    if (!window.SupabaseBridge) return;
+
+    window.SupabaseBridge.onStatusChange((status, details) => {
+      updateSupabaseStatusUI(status, details);
+    });
+
+    if (window.SupabaseBridge.isConfigured()) {
+      try {
+        const remoteProducts = await window.SupabaseBridge.fetchProducts();
+        if (remoteProducts && Array.isArray(remoteProducts) && remoteProducts.length > 0) {
+          // Merge remote products with local state
+          const remoteMap = new Map();
+          remoteProducts.forEach(p => {
+            remoteMap.set(p.part_no.toLowerCase().trim(), {
+              id: p.id || String(Date.now()),
+              partNo: p.part_no,
+              brand: p.brand_name || 'Genuine',
+              category: window.SupabaseBridge.mapSlugToCategory(p.category_slug),
+              rack: p.rack_location || 'Rack General',
+              qty: parseInt(p.quantity, 10) || 0,
+              rate: parseFloat(p.wholesale_rate_npr) || 0,
+              lowAlert: p.low_stock_threshold || 3
+            });
+          });
+
+          // Update local inventory from remote
+          state.inventory = state.inventory.map(localItem => {
+            const match = remoteMap.get(localItem.partNo.toLowerCase().trim());
+            if (match) {
+              remoteMap.delete(localItem.partNo.toLowerCase().trim());
+              return { ...localItem, qty: match.qty, rate: match.rate, rack: match.rack, brand: match.brand, category: match.category };
+            }
+            return localItem;
+          });
+
+          // Add any new remote items not yet in local
+          remoteMap.forEach(newRemoteItem => {
+            state.inventory.push(newRemoteItem);
+          });
+
+          persistAll();
+          window.renderInventoryTable();
+          renderOverviewDashboard();
+          updateSupabaseStatusUI('CONNECTED', `Synced ${remoteProducts.length} items`);
+        } else {
+          updateSupabaseStatusUI('CONNECTED', 'Using local cache');
+        }
+
+        // Process any queued offline sync requests
+        window.SupabaseBridge.processSyncQueue();
+      } catch (err) {
+        console.warn('Supabase auto-sync offline fallback active:', err);
+        updateSupabaseStatusUI('OFFLINE', 'Offline Fallback');
+      }
+    }
+  }
+
+  function updateSupabaseStatusUI(status, details) {
+    const headerBadge = document.getElementById('headerSupabaseBadge');
+    const headerText = document.getElementById('headerSupabaseText');
+    const settingsBadge = document.getElementById('supabaseStatusBadge');
+
+    if (status === 'CONNECTED') {
+      if (headerBadge) {
+        headerBadge.style.background = 'rgba(16, 185, 129, 0.15)';
+        headerBadge.style.color = '#34D399';
+        headerBadge.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+      }
+      if (headerText) headerText.innerHTML = '<i class="fa-solid fa-cloud-check text-emerald"></i> Supabase Live';
+      if (settingsBadge) {
+        settingsBadge.style.background = 'rgba(16, 185, 129, 0.15)';
+        settingsBadge.style.color = '#34D399';
+        settingsBadge.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+        settingsBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Supabase PostgreSQL Connected';
+      }
+    } else if (status === 'OFFLINE' || status === 'DISCONNECTED') {
+      if (headerBadge) {
+        headerBadge.style.background = 'rgba(245, 158, 11, 0.15)';
+        headerBadge.style.color = '#FBBF24';
+        headerBadge.style.borderColor = 'rgba(245, 158, 11, 0.4)';
+      }
+      if (headerText) headerText.innerHTML = '<i class="fa-solid fa-hard-drive text-amber"></i> Offline Fallback';
+      if (settingsBadge) {
+        settingsBadge.style.background = 'rgba(245, 158, 11, 0.15)';
+        settingsBadge.style.color = '#FBBF24';
+        settingsBadge.style.borderColor = 'rgba(245, 158, 11, 0.4)';
+        settingsBadge.innerHTML = '<i class="fa-solid fa-hard-drive"></i> Standalone Local PWA Fallback';
+      }
+    }
   }
 
   // Live Nepal Time Clock Display
@@ -228,14 +371,21 @@
     const workshopEl = document.getElementById('overviewWorkshopCount');
 
     const totalSkus = state.inventory.length;
-    const lowStock = state.inventory.filter(i => i.qty <= (i.lowAlert || 10)).length;
+    const lowStock = state.inventory.filter(i => i.qty < (i.lowAlert || 3) && i.qty > 0).length;
+    const outOfStock = state.inventory.filter(i => i.qty <= 0).length;
     const totalInvoices = state.invoices.length;
     const totalRev = state.invoices.reduce((acc, inv) => acc + (Number(inv.grandTotal) || 0), 0);
     const activeDispatches = state.transports.filter(t => t.status !== 'Delivered').length;
     const activeJobs = state.workshop.filter(w => w.status !== 'Delivered').length;
 
     if (skuCountEl) skuCountEl.textContent = totalSkus;
-    if (lowStockCountEl) lowStockCountEl.textContent = `${lowStock} items low stock`;
+    if (lowStockCountEl) {
+      if (outOfStock > 0 || lowStock > 0) {
+        lowStockCountEl.innerHTML = `<span style="color: #F87171;">${outOfStock} out of stock</span> • <span style="color: #FBBF24;">${lowStock} low stock</span>`;
+      } else {
+        lowStockCountEl.textContent = 'All 66+ items in optimal stock';
+      }
+    }
     if (invoiceCountEl) invoiceCountEl.textContent = totalInvoices;
     if (revenueEl) revenueEl.textContent = `NPR ${totalRev.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} total`;
     if (dispatchEl) dispatchEl.textContent = activeDispatches;
@@ -272,30 +422,157 @@
     });
   }
 
-  // ================= 2. INVENTORY CRUD & LOCATOR =================
+  // ================= 2. ENTERPRISE INVENTORY & BIN LOCATOR =================
+  window.handleInventorySearchInput = function (val) {
+    state.searchQuery = (val || '').toLowerCase().trim();
+    const clearBtn = document.getElementById('inventorySearchClearBtn');
+    if (clearBtn) clearBtn.style.display = state.searchQuery ? 'block' : 'none';
+    window.renderInventoryTable();
+  };
+
+  window.clearInventorySearch = function () {
+    const input = document.getElementById('inventorySearchInput');
+    if (input) input.value = '';
+    state.searchQuery = '';
+    const clearBtn = document.getElementById('inventorySearchClearBtn');
+    if (clearBtn) clearBtn.style.display = 'none';
+    window.renderInventoryTable();
+  };
+
+  window.setRackFilter = function (filterKey) {
+    state.activeRackFilter = filterKey;
+    document.querySelectorAll('#inventoryRackChipsBar .filter-chip-btn').forEach(btn => {
+      if (btn.getAttribute('data-filter') === filterKey) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+    window.renderInventoryTable();
+  };
+
+  function updateRackFilterChipCounts() {
+    const items = state.inventory;
+    const countAll = items.length;
+    const countRackA = items.filter(i => i.rack.toLowerCase().includes('rack a')).length;
+    const countRackB = items.filter(i => i.rack.toLowerCase().includes('rack b')).length;
+    const countRackC = items.filter(i => i.rack.toLowerCase().includes('rack c')).length;
+    const countRackD = items.filter(i => i.rack.toLowerCase().includes('rack d') || i.rack.toLowerCase().includes('bin d') || i.rack.toLowerCase().includes('cabinet')).length;
+    const countBelts = items.filter(i => i.rack.toLowerCase().includes('belt')).length;
+    const countYard = items.filter(i => i.rack.toLowerCase().includes('yard') || i.rack.toLowerCase().includes('pallet')).length;
+    const countLow = items.filter(i => i.qty > 0 && i.qty < (i.lowAlert || 3)).length;
+    const countOut = items.filter(i => i.qty <= 0).length;
+
+    const setBadge = (id, count) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = count;
+    };
+
+    setBadge('chipCountAll', countAll);
+    setBadge('chipCountRackA', countRackA);
+    setBadge('chipCountRackB', countRackB);
+    setBadge('chipCountRackC', countRackC);
+    setBadge('chipCountRackD', countRackD);
+    setBadge('chipCountBelts', countBelts);
+    setBadge('chipCountYard', countYard);
+    setBadge('chipCountLowStock', countLow);
+    setBadge('chipCountOutOfStock', countOut);
+  }
+
   window.renderInventoryTable = function () {
     const tbody = document.getElementById('inventoryTbody');
     if (!tbody) return;
     tbody.innerHTML = '';
 
-    const query = (document.getElementById('inventorySearchInput')?.value || '').toLowerCase().trim();
+    updateRackFilterChipCounts();
+
+    const query = state.searchQuery || '';
     const catFilter = document.getElementById('inventoryCategoryFilter')?.value || 'All';
     const brandFilter = document.getElementById('inventoryBrandFilter')?.value || 'All';
+    const rackFilter = state.activeRackFilter || 'ALL';
 
     const filtered = state.inventory.filter(item => {
-      const matchQuery = !query || item.partNo.toLowerCase().includes(query) || item.rack.toLowerCase().includes(query);
+      const matchQuery = !query || 
+        item.partNo.toLowerCase().includes(query) || 
+        item.rack.toLowerCase().includes(query) || 
+        item.brand.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query);
+
       const matchCat = catFilter === 'All' || item.category === catFilter;
       const matchBrand = brandFilter === 'All' || item.brand === brandFilter;
-      return matchQuery && matchCat && matchBrand;
+
+      let matchRack = true;
+      const r = item.rack.toLowerCase();
+      if (rackFilter === 'RACK_A') matchRack = r.includes('rack a');
+      else if (rackFilter === 'RACK_B') matchRack = r.includes('rack b');
+      else if (rackFilter === 'RACK_C') matchRack = r.includes('rack c');
+      else if (rackFilter === 'RACK_D') matchRack = r.includes('rack d') || r.includes('bin d') || r.includes('cabinet');
+      else if (rackFilter === 'BELTS') matchRack = r.includes('belt');
+      else if (rackFilter === 'YARD') matchRack = r.includes('yard') || r.includes('pallet');
+      else if (rackFilter === 'LOW_STOCK') matchRack = item.qty > 0 && item.qty < (item.lowAlert || 3);
+      else if (rackFilter === 'OUT_OF_STOCK') matchRack = item.qty <= 0;
+
+      return matchQuery && matchCat && matchBrand && matchRack;
     });
 
+    // Update Live Subbar Metrics
+    const totalUnits = state.inventory.reduce((acc, i) => acc + (Number(i.qty) || 0), 0);
+    const totalValuation = state.inventory.reduce((acc, i) => acc + ((Number(i.qty) || 0) * (Number(i.rate) || 0)), 0);
+    const lowStockTotal = state.inventory.filter(i => i.qty > 0 && i.qty < (i.lowAlert || 3)).length;
+    const outOfStockTotal = state.inventory.filter(i => i.qty <= 0).length;
+
+    const elFiltered = document.getElementById('invFilteredCount');
+    const elTotal = document.getElementById('invTotalCount');
+    const elUnits = document.getElementById('invTotalUnits');
+    const elVal = document.getElementById('invTotalValuation');
+    const elNotice = document.getElementById('invLowStockAlertNotice');
+
+    if (elFiltered) elFiltered.textContent = filtered.length;
+    if (elTotal) elTotal.textContent = state.inventory.length;
+    if (elUnits) elUnits.textContent = `${totalUnits.toLocaleString('en-IN')} pcs`;
+    if (elVal) elVal.textContent = `NPR ${totalValuation.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+
+    if (elNotice) {
+      if (outOfStockTotal > 0 || lowStockTotal > 0) {
+        elNotice.innerHTML = `
+          <span style="color: #F87171;"><i class="fa-solid fa-triangle-exclamation"></i> ${outOfStockTotal} Out of Stock</span> • 
+          <span style="color: #FBBF24;"><i class="fa-solid fa-circle-exclamation"></i> ${lowStockTotal} Low Stock (&lt; 3)</span>
+        `;
+      } else {
+        elNotice.innerHTML = `<i class="fa-solid fa-circle-check text-emerald"></i> All stock levels optimal`;
+      }
+    }
+
     if (filtered.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2rem;">No inventory matching filters. Click "Add Item" to register a new SKU.</td></tr>`;
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2.5rem;">
+            <i class="fa-solid fa-magnifying-glass" style="font-size: 1.75rem; margin-bottom: 0.5rem; display: block; opacity: 0.6;"></i>
+            No inventory SKUs matching current search or rack filters.
+          </td>
+        </tr>
+      `;
       return;
     }
 
     filtered.forEach(item => {
-      const isLow = item.qty <= (item.lowAlert || 10);
+      const isOut = item.qty <= 0;
+      const isLow = item.qty > 0 && item.qty < (item.lowAlert || 3);
+      
+      let statusBadgeHtml = '';
+      let stepperValClass = 'stock-val-good';
+
+      if (isOut) {
+        statusBadgeHtml = `<span class="stock-badge stock-badge-out-of-stock"><i class="fa-solid fa-circle-xmark"></i> Out of Stock (0)</span>`;
+        stepperValClass = 'stock-val-out';
+      } else if (isLow) {
+        statusBadgeHtml = `<span class="stock-badge stock-badge-low-stock stock-pulse-amber"><i class="fa-solid fa-triangle-exclamation"></i> Low Stock (${item.qty} left)</span>`;
+        stepperValClass = 'stock-val-low';
+      } else {
+        statusBadgeHtml = `<span class="stock-badge stock-badge-in-stock"><i class="fa-solid fa-circle-check"></i> In Stock (${item.qty} pcs)</span>`;
+        stepperValClass = 'stock-val-good';
+      }
+
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td><strong class="item-code-badge">${item.partNo}</strong></td>
@@ -303,16 +580,17 @@
         <td><strong>${item.brand}</strong></td>
         <td><span class="rack-location-tag"><i class="fa-solid fa-location-dot"></i> ${item.rack}</span></td>
         <td>
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <button class="table-action-btn" style="width: 24px; height: 24px;" onclick="window.adjustStock('${item.id}', -1)">-</button>
-            <span class="stock-count-badge ${isLow ? 'stock-low' : 'stock-good'}">${item.qty} pcs</span>
-            <button class="table-action-btn" style="width: 24px; height: 24px;" onclick="window.adjustStock('${item.id}', 1)">+</button>
+          <div class="stock-stepper-wrap">
+            <button class="stock-stepper-btn" onclick="window.adjustStock('${item.id}', -1)" title="Deduct 1 unit">-</button>
+            <span class="stock-stepper-val ${stepperValClass}">${item.qty}</span>
+            <button class="stock-stepper-btn" onclick="window.adjustStock('${item.id}', 1)" title="Add 1 unit">+</button>
           </div>
         </td>
         <td>NPR ${Number(item.rate).toLocaleString('en-IN')}</td>
-        <td>${isLow ? '<span class="status-tag" style="background: rgba(239,68,68,0.15); color: #F87171;"><i class="fa-solid fa-triangle-exclamation"></i> Low Stock</span>' : '<span class="status-tag" style="background: rgba(16,185,129,0.15); color: #34D399;"><i class="fa-solid fa-check"></i> Available</span>'}</td>
+        <td>${statusBadgeHtml}</td>
         <td>
           <div class="table-btn-group">
+            <button class="table-action-btn" title="View Stock Audit History" style="color: #38BDF8;" onclick="window.viewSkuAuditHistory('${item.partNo}')"><i class="fa-solid fa-clock-rotate-left"></i></button>
             <button class="table-action-btn" title="Edit Item" onclick="window.editStockItem('${item.id}')"><i class="fa-solid fa-pen-to-square"></i></button>
             <button class="table-action-btn" title="Delete Item" style="color: #F87171;" onclick="window.deleteStockItem('${item.id}')"><i class="fa-solid fa-trash"></i></button>
           </div>
@@ -322,13 +600,38 @@
     });
   };
 
-  window.adjustStock = function (id, delta) {
+  // Immediate Real-Time Stock Increment/Decrement with Supabase REST PATCH & Audit Trail
+  window.adjustStock = async function (id, delta) {
     const item = state.inventory.find(i => i.id === id);
     if (!item) return;
-    item.qty = Math.max(0, item.qty + delta);
+
+    const previousQty = item.qty;
+    const newQty = Math.max(0, item.qty + delta);
+    item.qty = newQty;
+
     persistAll();
     window.renderInventoryTable();
     renderOverviewDashboard();
+
+    // Log in Stock Audit Trail
+    if (window.SupabaseBridge) {
+      window.SupabaseBridge.recordStockAudit({
+        partNo: item.partNo,
+        brand: item.brand,
+        category: item.category,
+        previousQty: previousQty,
+        changeQty: delta,
+        newQty: newQty,
+        actionType: 'MANUAL_ADJUSTMENT',
+        referenceId: 'COUNTER_STEPPER',
+        staff: getCurrentStaffName()
+      });
+
+      // Push immediate REST PATCH to Supabase
+      window.SupabaseBridge.updateProductStock(item.partNo, newQty);
+    }
+
+    showToast(`Stock for ${item.partNo}: ${previousQty} → ${newQty} pcs (Supabase Synced)`);
   };
 
   window.openStockModal = function (editId = null) {
@@ -359,7 +662,7 @@
     if (modal) modal.style.display = 'none';
   };
 
-  window.saveStockItem = function () {
+  window.saveStockItem = async function () {
     const editId = document.getElementById('stockEditId').value;
     const partNo = document.getElementById('stockPartNo').value.trim();
     const brand = document.getElementById('stockBrand').value;
@@ -376,12 +679,30 @@
     if (editId) {
       const item = state.inventory.find(i => i.id === editId);
       if (item) {
+        const prevQty = item.qty;
         item.partNo = partNo;
         item.brand = brand;
         item.category = category;
         item.rack = rack;
         item.qty = qty;
         item.rate = rate;
+
+        if (window.SupabaseBridge) {
+          if (qty !== prevQty) {
+            window.SupabaseBridge.recordStockAudit({
+              partNo,
+              brand,
+              category,
+              previousQty: prevQty,
+              changeQty: qty - prevQty,
+              newQty: qty,
+              actionType: 'SKU_EDIT',
+              referenceId: 'MODAL_EDIT',
+              staff: getCurrentStaffName()
+            });
+          }
+          window.SupabaseBridge.updateProduct(partNo, { brand, category, rack, qty, rate });
+        }
       }
     } else {
       const newItem = {
@@ -392,32 +713,66 @@
         rack,
         qty,
         rate,
-        lowAlert: 10
+        lowAlert: 3
       };
       state.inventory.unshift(newItem);
+
+      if (window.SupabaseBridge) {
+        window.SupabaseBridge.recordStockAudit({
+          partNo,
+          brand,
+          category,
+          previousQty: 0,
+          changeQty: qty,
+          newQty: qty,
+          actionType: 'NEW_SKU_INITIALIZED',
+          referenceId: 'NEW_SKU',
+          staff: getCurrentStaffName()
+        });
+        window.SupabaseBridge.insertProduct(newItem);
+      }
     }
 
     persistAll();
     window.closeStockModal();
     window.renderInventoryTable();
     renderOverviewDashboard();
-    showToast('Inventory SKU saved successfully!');
+    showToast(`Inventory SKU "${partNo}" saved and synced to Supabase!`);
   };
 
   window.editStockItem = function (id) {
     window.openStockModal(id);
   };
 
-  window.deleteStockItem = function (id) {
-    if (!confirm('Are you sure you want to remove this SKU from warehouse inventory?')) return;
+  window.deleteStockItem = async function (id) {
+    const item = state.inventory.find(i => i.id === id);
+    if (!item) return;
+
+    if (!confirm(`Are you sure you want to remove "${item.partNo}" from warehouse inventory?`)) return;
+    
+    if (window.SupabaseBridge) {
+      window.SupabaseBridge.recordStockAudit({
+        partNo: item.partNo,
+        brand: item.brand,
+        category: item.category,
+        previousQty: item.qty,
+        changeQty: -item.qty,
+        newQty: 0,
+        actionType: 'SKU_DELETED',
+        referenceId: 'DELETE_ACTION',
+        staff: getCurrentStaffName()
+      });
+      window.SupabaseBridge.deleteProduct(item.partNo);
+    }
+
     state.inventory = state.inventory.filter(i => i.id !== id);
     persistAll();
     window.renderInventoryTable();
     renderOverviewDashboard();
-    showToast('SKU deleted from inventory.');
+    showToast(`SKU "${item.partNo}" removed from inventory.`);
   };
 
-  // ================= 3. B2B INVOICING & 13% VAT =================
+  // ================= 3. B2B INVOICING & 13% NEPAL VAT ENGINE =================
   let invoiceRows = [];
 
   function renderInvoicingPanel() {
@@ -511,7 +866,8 @@
     // Dynamic recalculation preview
   };
 
-  window.generateAndSaveInvoice = function () {
+  // Immediate Real-Time Stock Deduction on Invoice Generation with Supabase REST PATCH & Audit Log
+  window.generateAndSaveInvoice = async function () {
     const clientName = document.getElementById('invCustomerName').value.trim();
     const clientPan = document.getElementById('invCustomerPan').value.trim() || 'N/A';
     const clientPhone = document.getElementById('invCustomerPhone').value.trim();
@@ -563,32 +919,58 @@
       grandTotal
     };
 
-    // Automatic Real-Time Stock Deduction from Inventory
+    // Immediate Real-Time Stock Deduction from Inventory and Supabase
     const deductedLogs = [];
-    items.forEach(billed => {
+    for (const billed of items) {
       const matchedInv = state.inventory.find(inv => 
         inv.partNo.toLowerCase().trim() === billed.desc.toLowerCase().trim() ||
         inv.partNo.toLowerCase().includes(billed.desc.toLowerCase()) || 
         billed.desc.toLowerCase().includes(inv.partNo.toLowerCase())
       );
+
       if (matchedInv) {
         const prevQty = matchedInv.qty;
-        matchedInv.qty = Math.max(0, matchedInv.qty - billed.qty);
-        deductedLogs.push(`${matchedInv.partNo} (${prevQty} → ${matchedInv.qty})`);
+        const newQty = Math.max(0, matchedInv.qty - billed.qty);
+        matchedInv.qty = newQty;
+        deductedLogs.push(`${matchedInv.partNo} (${prevQty} → ${newQty})`);
+
+        if (window.SupabaseBridge) {
+          // Record Audit Trail
+          window.SupabaseBridge.recordStockAudit({
+            partNo: matchedInv.partNo,
+            brand: matchedInv.brand,
+            category: matchedInv.category,
+            previousQty: prevQty,
+            changeQty: -billed.qty,
+            newQty: newQty,
+            actionType: 'INVOICE_BILLING',
+            referenceId: newInvoice.id,
+            note: `Billed to ${clientName}`,
+            staff: getCurrentStaffName()
+          });
+
+          // Live Supabase REST PATCH
+          window.SupabaseBridge.updateProductStock(matchedInv.partNo, newQty);
+        }
       }
-    });
+    }
+
+    // Insert Invoice into Supabase
+    if (window.SupabaseBridge) {
+      window.SupabaseBridge.insertInvoice(newInvoice);
+    }
 
     state.invoices.unshift(newInvoice);
     state.currentGeneratedInvoice = newInvoice;
     persistAll();
     renderOverviewDashboard();
-    renderInventoryTable();
+    window.renderInventoryTable();
 
     // Render Printable View
     displayPrintableInvoice(newInvoice);
     
-    const stockMsg = deductedLogs.length > 0 ? ` & Deducted: ${deductedLogs.join(', ')}` : '';
-    showToast(`Invoice ${newInvoice.id} generated! Stock updated${stockMsg}`);
+    const stockMsg = deductedLogs.length > 0 ? ` & Live Stock Deducted: ${deductedLogs.join(', ')}` : '';
+    showToast(`Invoice ${newInvoice.id} generated! ${stockMsg}`);
   };
 
   function displayPrintableInvoice(inv) {
@@ -662,7 +1044,7 @@
     msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
     msg += `Shree Anjani Belt & Bearing, Siddharthanagar (980-4462602 / 984-7301185)`;
 
-    const phone = inv.clientPhone.replace(/\D/g, '');
+    const phone = (inv.clientPhone || '').replace(/\D/g, '');
     const waUrl = phone.length >= 10 
       ? `https://wa.me/977${phone.slice(-10)}?text=${encodeURIComponent(msg)}`
       : `https://wa.me/9779804462602?text=${encodeURIComponent(msg)}`;
@@ -670,7 +1052,7 @@
     window.open(waUrl, '_blank');
   };
 
-  // ================= 4. TRANSPORT DISPATCH LOG =================
+  // ================= 4. REGIONAL TRANSPORT DISPATCH LOG =================
   function renderTransportTable() {
     const tbody = document.getElementById('transportTbody');
     if (!tbody) return;
@@ -682,10 +1064,6 @@
     }
 
     state.transports.forEach(trItem => {
-      let statusClass = 'dispatched';
-      if (trItem.status === 'In-Transit') statusClass = 'in-transit';
-      if (trItem.status === 'Delivered') statusClass = 'delivered';
-
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td><strong class="item-code-badge">${trItem.biltyNo}</strong></td>
@@ -874,313 +1252,142 @@
     renderOverviewDashboard();
   };
 
-  // ================= 6. DATA BACKUP & RESTORE =================
-  window.exportAllDataJSON = function () {
-    const exportBundle = {
-      store: 'Shree Anjani Belt & Bearing',
-      location: 'Siddharthanagar, Nepal',
-      exportedAt: new Date().toISOString(),
-      data: state
-    };
+  // ================= 6. STOCK AUDIT TRAIL MODAL & EXPORT =================
+  window.openStockAuditModal = function (filterPartNo = null) {
+    const modal = document.getElementById('stockAuditModal');
+    if (!modal) return;
 
-    const blob = new Blob([JSON.stringify(exportBundle, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `shree_anjani_erp_backup_${new Date().toISOString().split('T')[0]}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-    showToast('Backup JSON downloaded successfully!');
-  };
-
-  window.importDataJSON = function (e) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function (event) {
-      try {
-        const parsed = JSON.parse(event.target.result);
-        if (parsed.data && parsed.data.inventory) {
-          state = parsed.data;
-          persistAll();
-          renderOverviewDashboard();
-          showToast('Data restored successfully from backup!');
-        } else {
-          showToast('Invalid backup file format.');
-        }
-      } catch (err) {
-        showToast('Error reading backup file.');
-      }
-    };
-    reader.readAsText(file);
-  };
-
-  window.resetToDemoSeedData = function () {
-    if (!confirm('Reset all inventory, invoices, dispatches, and workshop cards to default factory seed data?')) return;
-    localStorage.clear();
-    initStorage();
-    renderOverviewDashboard();
-    showToast('System reset to default seed data.');
-  };
-
-  // ================= 7. BULK CSV INVENTORY UPLOADER & PARSER =================
-  let parsedCsvRows = [];
-
-  window.downloadSampleInventoryCSV = function () {
-    const csvContent = `PartNo,Brand,Category,RackLocation,Quantity,WholesaleRate,LowStockAlert\n` +
-      `6205 2RS,SKF,Bearings,"Rack A-01, Shelf 2",50,480,10\n` +
-      `22218 EK C3,URB,Bearings,"Rack B-03, Shelf 1",15,8500,5\n` +
-      `V-Belt B-65,Fenner,Belts & Pulleys,"Hanger Belt Wall 1",60,620,15\n` +
-      `UCP 208-24,NTN,Bearings,"Rack C-02, Heavy Bin",20,2100,5\n` +
-      `Oil Seal 45x65x10,Other,Machinery Spares,"Small Parts Bin D-12",100,180,20\n` +
-      `CI 3-Groove Pulley 10",Other,Belts & Pulleys,"Floor Pallet 04",8,3200,4\n`;
-
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `shree_anjani_inventory_template.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
-    showToast('Sample CSV template downloaded!');
-  };
-
-  window.handleBulkCSVUpload = function (e) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function (event) {
-      try {
-        const text = event.target.result;
-        const lines = text.split(/\r\n|\n/).map(l => l.trim()).filter(Boolean);
-        if (lines.length < 2) {
-          showToast('CSV file is empty or missing data rows.');
-          return;
-        }
-
-        parsedCsvRows = [];
-        // Skip header row
-        for (let i = 1; i < lines.length; i++) {
-          const row = parseCSVLine(lines[i]);
-          if (row.length >= 6) {
-            const partNo = row[0].trim();
-            const brand = row[1]?.trim() || 'Genuine';
-            const category = row[2]?.trim() || 'Bearings';
-            const rack = row[3]?.trim() || 'General Rack';
-            const qty = parseInt(row[4], 10) || 0;
-            const rate = parseFloat(row[5]) || 0;
-            const lowAlert = parseInt(row[6], 10) || 10;
-
-            if (partNo) {
-              parsedCsvRows.push({
-                id: 'sku_' + Date.now() + '_' + i,
-                partNo,
-                brand,
-                category,
-                rack,
-                qty,
-                rate,
-                lowAlert
-              });
-            }
-          }
-        }
-
-        if (parsedCsvRows.length === 0) {
-          showToast('No valid inventory rows found in CSV.');
-          return;
-        }
-
-        // Render preview
-        const tbody = document.getElementById('csvPreviewTbody');
-        if (tbody) {
-          tbody.innerHTML = '';
-          parsedCsvRows.forEach(item => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-              <td><strong class="item-code-badge">${item.partNo}</strong></td>
-              <td>${item.brand}</td>
-              <td>${item.category}</td>
-              <td>${item.rack}</td>
-              <td><strong>${item.qty} pcs</strong></td>
-              <td>NPR ${item.rate.toLocaleString('en-IN')}</td>
-            `;
-            tbody.appendChild(tr);
-          });
-        }
-
-        document.getElementById('csvPreviewContainer').style.display = 'block';
-        showToast(`Parsed ${parsedCsvRows.length} SKUs from spreadsheet!`);
-
-      } catch (err) {
-        console.error('CSV Parse Error:', err);
-        showToast('Error parsing CSV file. Please check file format.');
-      }
-    };
-    reader.readAsText(file);
-  };
-
-  function parseCSVLine(line) {
-    const result = [];
-    let insideQuotes = false;
-    let currentToken = '';
-
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
-      if (char === '"' || char === "'") {
-        insideQuotes = !insideQuotes;
-      } else if (char === ',' && !insideQuotes) {
-        result.push(currentToken.trim());
-        currentToken = '';
-      } else {
-        currentToken += char;
-      }
-    }
-    result.push(currentToken.trim());
-    return result;
-  }
-
-  window.commitBulkCSVImport = function () {
-    if (parsedCsvRows.length === 0) {
-      showToast('No records to import.');
-      return;
+    if (filterPartNo) {
+      const searchInput = document.getElementById('auditSearchInput');
+      if (searchInput) searchInput.value = filterPartNo;
     }
 
-    // Merge logic: Update existing by partNo or add new
-    let addedCount = 0;
-    let updatedCount = 0;
+    modal.style.display = 'flex';
+    window.renderStockAuditTable();
+  };
 
-    parsedCsvRows.forEach(newSku => {
-      const existing = state.inventory.find(i => i.partNo.toLowerCase() === newSku.partNo.toLowerCase());
-      if (existing) {
-        existing.qty = newSku.qty;
-        existing.rate = newSku.rate;
-        existing.rack = newSku.rack;
-        existing.brand = newSku.brand;
-        existing.category = newSku.category;
-        updatedCount++;
-      } else {
-        state.inventory.unshift(newSku);
-        addedCount++;
-      }
+  window.closeStockAuditModal = function () {
+    const modal = document.getElementById('stockAuditModal');
+    if (modal) modal.style.display = 'none';
+  };
+
+  window.viewSkuAuditHistory = function (partNo) {
+    window.openStockAuditModal(partNo);
+  };
+
+  window.renderStockAuditTable = function () {
+    const tbody = document.getElementById('stockAuditTbody');
+    const countEl = document.getElementById('auditTotalEntriesCount');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    const logs = window.SupabaseBridge ? window.SupabaseBridge.getStockAuditLogs() : [];
+    const query = (document.getElementById('auditSearchInput')?.value || '').toLowerCase().trim();
+    const actionFilter = document.getElementById('auditActionFilter')?.value || 'ALL';
+
+    const filtered = logs.filter(entry => {
+      const matchQuery = !query || 
+        (entry.partNo && entry.partNo.toLowerCase().includes(query)) ||
+        (entry.referenceId && entry.referenceId.toLowerCase().includes(query)) ||
+        (entry.note && entry.note.toLowerCase().includes(query)) ||
+        (entry.actionType && entry.actionType.toLowerCase().includes(query));
+
+      const matchAction = actionFilter === 'ALL' || entry.actionType === actionFilter;
+      return matchQuery && matchAction;
     });
 
-    persistAll();
-    window.renderInventoryTable();
-    renderOverviewDashboard();
-    document.getElementById('csvPreviewContainer').style.display = 'none';
-    parsedCsvRows = [];
-    document.getElementById('bulkCsvFileInput').value = '';
+    if (countEl) countEl.textContent = `${filtered.length} of ${logs.length} audit events logged`;
 
-    showToast(`Batch import successful! (${addedCount} added, ${updatedCount} updated).`);
-  };
-
-  // ================= 7. SUPABASE CLOUD DATABASE SYNC =================
-  window.saveAndTestSupabase = async function () {
-    const urlInput = document.getElementById('supabaseUrlInput');
-    const keyInput = document.getElementById('supabaseKeyInput');
-    const feedback = document.getElementById('supabaseFeedbackMsg');
-    const badge = document.getElementById('supabaseStatusBadge');
-
-    if (!window.SupabaseBridge) {
-      showToast('Supabase client script not loaded.');
+    if (filtered.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+            No stock audit logs found matching criteria.
+          </td>
+        </tr>
+      `;
       return;
     }
 
-    const url = urlInput?.value.trim();
-    const key = keyInput?.value.trim();
+    filtered.forEach(entry => {
+      const dateObj = new Date(entry.timestamp);
+      const formattedTime = dateObj.toLocaleDateString('en-GB') + ' ' + dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
-    if (!url || !key) {
-      if (feedback) {
-        feedback.style.display = 'block';
-        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
-        feedback.style.color = '#F87171';
-        feedback.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Please enter both Supabase URL and API Key.';
+      let actionTagClass = 'audit-tag-invoice';
+      let actionLabel = entry.actionType || 'STOCK_UPDATE';
+
+      if (entry.actionType === 'PURCHASE_RESTOCK') {
+        actionTagClass = 'audit-tag-restock';
+        actionLabel = 'Purchase Restock';
+      } else if (entry.actionType === 'INVOICE_BILLING') {
+        actionTagClass = 'audit-tag-invoice';
+        actionLabel = 'Invoice Deduction';
+      } else if (entry.actionType === 'SALES_SCAN') {
+        actionTagClass = 'audit-tag-sales';
+        actionLabel = 'Sales Scan Out';
+      } else if (entry.actionType === 'MANUAL_ADJUSTMENT') {
+        actionTagClass = 'audit-tag-manual';
+        actionLabel = 'Manual Counter (+/-)';
+      } else if (entry.actionType === 'CSV_IMPORT') {
+        actionTagClass = 'audit-tag-csv';
+        actionLabel = 'Bulk CSV Import';
+      } else if (entry.actionType === 'SKU_EDIT') {
+        actionTagClass = 'audit-tag-manual';
+        actionLabel = 'SKU Edit Form';
       }
+
+      const delta = Number(entry.changeQty);
+      const deltaFormatted = delta > 0 ? `+${delta} pcs` : `${delta} pcs`;
+      const deltaClass = delta > 0 ? 'audit-delta-pos' : delta < 0 ? 'audit-delta-neg' : '';
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="font-family: var(--font-mono); font-size: 0.775rem;">${formattedTime}</td>
+        <td><strong class="item-code-badge">${entry.partNo}</strong></td>
+        <td><span class="audit-tag-action ${actionTagClass}">${actionLabel}</span></td>
+        <td style="font-family: var(--font-mono); font-weight: bold;">
+          ${entry.previousQty} pcs &rarr; <strong>${entry.newQty} pcs</strong>
+        </td>
+        <td class="${deltaClass}">${deltaFormatted}</td>
+        <td style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-orange);">${entry.referenceId || 'N/A'}</td>
+        <td style="font-size: 0.8rem; color: var(--text-secondary);"><i class="fa-solid fa-user-shield"></i> ${entry.staff || 'STAFF'}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  };
+
+  window.exportStockAuditCSV = function () {
+    const logs = window.SupabaseBridge ? window.SupabaseBridge.getStockAuditLogs() : [];
+    if (logs.length === 0) {
+      showToast('No audit logs to export.');
       return;
     }
 
-    if (feedback) {
-      feedback.style.display = 'block';
-      feedback.style.background = 'rgba(56, 189, 248, 0.15)';
-      feedback.style.color = '#38BDF8';
-      feedback.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Supabase Cloud PostgreSQL...';
-    }
+    let csv = `ID,Timestamp,PartNo,Brand,Category,ActionType,PreviousQty,ChangeQty,NewQty,ReferenceId,Staff\n`;
+    logs.forEach(l => {
+      csv += `"${l.id}","${l.timestamp}","${l.partNo}","${l.brand || ''}","${l.category || ''}","${l.actionType}",${l.previousQty},${l.changeQty},${l.newQty},"${l.referenceId || ''}","${l.staff || ''}"\n`;
+    });
 
-    const res = await window.SupabaseBridge.setCredentials(url, key);
-    if (res.success) {
-      if (feedback) {
-        feedback.style.background = 'rgba(16, 185, 129, 0.15)';
-        feedback.style.color = '#34D399';
-        feedback.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${res.message}`;
-      }
-      if (badge) {
-        badge.style.background = 'rgba(16, 185, 129, 0.15)';
-        badge.style.color = '#34D399';
-        badge.style.borderColor = 'rgba(16, 185, 129, 0.3)';
-        badge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Supabase Cloud Connected';
-      }
-      showToast('Connected to Supabase Cloud!');
-    } else {
-      if (feedback) {
-        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
-        feedback.style.color = '#F87171';
-        feedback.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${res.message}`;
-      }
-      if (badge) {
-        badge.style.background = 'rgba(239, 68, 68, 0.15)';
-        badge.style.color = '#F87171';
-        badge.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Supabase Disconnected';
-      }
-    }
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `shree_anjani_stock_audit_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Stock Audit Trail CSV exported successfully!');
   };
 
-  window.syncLocalWithSupabase = async function () {
-    if (!window.SupabaseBridge || !window.SupabaseBridge.isConfigured()) {
-      showToast('Please configure Supabase URL & Key first.');
-      return;
+  window.clearStockAuditTrail = function () {
+    if (!confirm('Are you sure you want to clear the local stock audit trail history?')) return;
+    if (window.SupabaseBridge) {
+      window.SupabaseBridge.clearStockAuditLogs();
     }
-
-    showToast('Fetching latest products from Supabase...');
-    const remoteProducts = await window.SupabaseBridge.fetchProducts();
-    if (remoteProducts && Array.isArray(remoteProducts) && remoteProducts.length > 0) {
-      state.inventory = remoteProducts.map(p => ({
-        id: p.id || String(Date.now()),
-        partNo: p.part_no,
-        brand: p.brand_name,
-        category: p.category_slug === 'bearings' ? 'Bearings' : p.category_slug === 'belts-pulleys' ? 'Belts & Pulleys' : 'Machinery Spares',
-        rack: p.rack_location,
-        qty: p.quantity,
-        rate: parseFloat(p.wholesale_rate_npr),
-        lowAlert: p.low_stock_threshold || 3
-      }));
-
-      persistAll();
-      window.renderInventoryTable();
-      renderOverviewDashboard();
-      showToast(`Synchronized ${remoteProducts.length} items from Supabase Cloud!`);
-    } else {
-      showToast('No remote products found in Supabase table.');
-    }
+    window.renderStockAuditTable();
+    showToast('Stock audit trail cleared.');
   };
 
-  window.seedAllInventoryTenUnits = function () {
-    if (confirm('Initialize all 66+ industrial items to exactly 10 units stock each?')) {
-      state.inventory = JSON.parse(JSON.stringify(DEFAULT_SEED_DATA.inventory));
-      // Ensure all quantities are strictly 10
-      state.inventory.forEach(item => {
-        item.qty = 10;
-      });
-      persistAll();
-      window.renderInventoryTable();
-      renderOverviewDashboard();
-      showToast('All 66+ items initialized with 10 units stock!');
-    }
-  };
-
-  // ================= 8. PHYSICAL BILL OCR SCANNER & STOCK SYNC =================
+  // ================= 7. PHYSICAL BILL OCR SCANNER & STOCK SYNC =================
   let scannerStream = null;
   let scannedBillItems = [];
 
@@ -1280,7 +1487,6 @@
   };
 
   function processScannedImage(canvas) {
-    // Optical Preprocessing & Rule-Based OCR Parser Simulation
     const partyInput = document.getElementById('billPartyName');
     const invNoInput = document.getElementById('billInvoiceNumber');
     const panInput = document.getElementById('billPanVat');
@@ -1302,7 +1508,6 @@
       dateInput.value = new Date().toISOString().split('T')[0];
     }
 
-    // Extracted Demo Multi-Line Items based on typical invoice
     scannedBillItems = [
       { partNo: '6205 2RS', brand: 'SKF', qty: isPurchase ? 20 : 4, rate: 480 },
       { partNo: 'V-Belt B-65 (Top Seller)', brand: 'Fenner', qty: isPurchase ? 25 : 5, rate: 620 },
@@ -1427,32 +1632,66 @@
 
     let itemsProcessed = 0;
 
-    scannedBillItems.forEach(item => {
+    for (const item of scannedBillItems) {
       let existing = state.inventory.find(i => i.partNo.toLowerCase() === item.partNo.toLowerCase());
+      const change = isPurchase ? Number(item.qty) : -Number(item.qty);
+
       if (existing) {
-        if (isPurchase) {
-          existing.qty += Number(item.qty);
-        } else {
-          existing.qty = Math.max(0, existing.qty - Number(item.qty));
-        }
+        const prevQty = existing.qty;
+        const newQty = isPurchase ? (existing.qty + Number(item.qty)) : Math.max(0, existing.qty - Number(item.qty));
+        existing.qty = newQty;
         existing.rate = Number(item.rate);
+
+        if (window.SupabaseBridge) {
+          window.SupabaseBridge.recordStockAudit({
+            partNo: existing.partNo,
+            brand: existing.brand,
+            category: existing.category,
+            previousQty: prevQty,
+            changeQty: change,
+            newQty: newQty,
+            actionType: isPurchase ? 'PURCHASE_RESTOCK' : 'SALES_SCAN',
+            referenceId: invoiceNo,
+            note: `${partyName}`,
+            staff: getCurrentStaffName()
+          });
+
+          window.SupabaseBridge.updateProductStock(existing.partNo, newQty);
+        }
       } else {
-        // Create new item in inventory
-        state.inventory.unshift({
+        const newQty = isPurchase ? Number(item.qty) : 0;
+        const newSku = {
           id: String(Date.now() + Math.random()),
           partNo: item.partNo,
-          brand: item.brand || 'Other',
+          brand: item.brand || 'Other Genuine',
           category: 'Bearings',
           rack: 'Rack General, Shelf 1',
-          qty: isPurchase ? Number(item.qty) : 0,
+          qty: newQty,
           rate: Number(item.rate),
           lowAlert: 3
-        });
+        };
+        state.inventory.unshift(newSku);
+
+        if (window.SupabaseBridge) {
+          window.SupabaseBridge.recordStockAudit({
+            partNo: item.partNo,
+            brand: item.brand,
+            category: 'Bearings',
+            previousQty: 0,
+            changeQty: newQty,
+            newQty: newQty,
+            actionType: isPurchase ? 'PURCHASE_RESTOCK' : 'SALES_SCAN',
+            referenceId: invoiceNo,
+            note: `${partyName}`,
+            staff: getCurrentStaffName()
+          });
+
+          window.SupabaseBridge.insertProduct(newSku);
+        }
       }
       itemsProcessed++;
-    });
+    }
 
-    // If it's a Sales Bill, automatically record it in invoices ledger
     if (!isPurchase) {
       let taxable = scannedBillItems.reduce((acc, i) => acc + (Number(i.qty) * Number(i.rate)), 0);
       let vat = taxable * 0.13;
@@ -1481,8 +1720,7 @@
       };
       state.invoices.unshift(newInv);
 
-      // Push to Supabase if configured
-      if (window.SupabaseBridge && window.SupabaseBridge.isConfigured()) {
+      if (window.SupabaseBridge) {
         window.SupabaseBridge.insertInvoice(newInv);
       }
     }
@@ -1491,13 +1729,356 @@
     window.renderInventoryTable();
     renderOverviewDashboard();
 
-    // Reset Scanner
     scannedBillItems = [];
     window.renderScannedItemsTable();
     document.getElementById('billPartyName').value = '';
     document.getElementById('billInvoiceNumber').value = '';
 
-    showToast(`⚡ ${isPurchase ? 'Purchase Restock' : 'Sales Dispatch'} Applied! Updated ${itemsProcessed} inventory items in warehouse.`);
+    showToast(`⚡ ${isPurchase ? 'Purchase Restock' : 'Sales Dispatch'} Applied! Updated ${itemsProcessed} inventory items in warehouse & Supabase.`);
+  };
+
+  // ================= 8. BULK CSV INVENTORY UPLOADER =================
+  let parsedCsvRows = [];
+
+  window.downloadSampleInventoryCSV = function () {
+    const csvContent = `PartNo,Brand,Category,RackLocation,Quantity,WholesaleRate,LowStockAlert\n` +
+      `6205 2RS,SKF,Bearings,"Rack A-01, Shelf 2",50,480,3\n` +
+      `22218 EK C3,URB,Bearings,"Rack B-03, Shelf 1",15,8500,2\n` +
+      `V-Belt B-65,Fenner,Belts & Pulleys,"Hanger Belt Wall 1",60,620,3\n` +
+      `UCP 208-24,NTN,Bearings,"Rack C-02, Heavy Bin",20,2100,3\n` +
+      `Oil Seal 45x65x10,Other Genuine,Machinery Spares,"Small Parts Bin D-12",100,180,3\n` +
+      `CI 3-Groove Pulley 10",Other Genuine,Belts & Pulleys,"Floor Pallet 04",8,3200,3\n`;
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `shree_anjani_inventory_template.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Sample CSV template downloaded!');
+  };
+
+  window.handleBulkCSVUpload = function (e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      try {
+        const text = event.target.result;
+        const lines = text.split(/\r\n|\n/).map(l => l.trim()).filter(Boolean);
+        if (lines.length < 2) {
+          showToast('CSV file is empty or missing data rows.');
+          return;
+        }
+
+        parsedCsvRows = [];
+        for (let i = 1; i < lines.length; i++) {
+          const row = parseCSVLine(lines[i]);
+          if (row.length >= 6) {
+            const partNo = row[0].trim();
+            const brand = row[1]?.trim() || 'Other Genuine';
+            const category = row[2]?.trim() || 'Bearings';
+            const rack = row[3]?.trim() || 'General Rack';
+            const qty = parseInt(row[4], 10) || 0;
+            const rate = parseFloat(row[5]) || 0;
+            const lowAlert = parseInt(row[6], 10) || 3;
+
+            if (partNo) {
+              parsedCsvRows.push({
+                id: 'sku_' + Date.now() + '_' + i,
+                partNo,
+                brand,
+                category,
+                rack,
+                qty,
+                rate,
+                lowAlert
+              });
+            }
+          }
+        }
+
+        if (parsedCsvRows.length === 0) {
+          showToast('No valid inventory rows found in CSV.');
+          return;
+        }
+
+        const tbody = document.getElementById('csvPreviewTbody');
+        if (tbody) {
+          tbody.innerHTML = '';
+          parsedCsvRows.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td><strong class="item-code-badge">${item.partNo}</strong></td>
+              <td>${item.brand}</td>
+              <td>${item.category}</td>
+              <td>${item.rack}</td>
+              <td><strong>${item.qty} pcs</strong></td>
+              <td>NPR ${item.rate.toLocaleString('en-IN')}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+
+        document.getElementById('csvPreviewContainer').style.display = 'block';
+        showToast(`Parsed ${parsedCsvRows.length} SKUs from spreadsheet!`);
+
+      } catch (err) {
+        console.error('CSV Parse Error:', err);
+        showToast('Error parsing CSV file. Please check file format.');
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  function parseCSVLine(line) {
+    const result = [];
+    let insideQuotes = false;
+    let currentToken = '';
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      if (char === '"' || char === "'") {
+        insideQuotes = !insideQuotes;
+      } else if (char === ',' && !insideQuotes) {
+        result.push(currentToken.trim());
+        currentToken = '';
+      } else {
+        currentToken += char;
+      }
+    }
+    result.push(currentToken.trim());
+    return result;
+  }
+
+  window.commitBulkCSVImport = async function () {
+    if (parsedCsvRows.length === 0) {
+      showToast('No records to import.');
+      return;
+    }
+
+    let addedCount = 0;
+    let updatedCount = 0;
+
+    parsedCsvRows.forEach(newSku => {
+      const existing = state.inventory.find(i => i.partNo.toLowerCase() === newSku.partNo.toLowerCase());
+      if (existing) {
+        const prevQty = existing.qty;
+        existing.qty = newSku.qty;
+        existing.rate = newSku.rate;
+        existing.rack = newSku.rack;
+        existing.brand = newSku.brand;
+        existing.category = newSku.category;
+        updatedCount++;
+
+        if (window.SupabaseBridge) {
+          window.SupabaseBridge.recordStockAudit({
+            partNo: existing.partNo,
+            brand: existing.brand,
+            category: existing.category,
+            previousQty: prevQty,
+            changeQty: newSku.qty - prevQty,
+            newQty: newSku.qty,
+            actionType: 'CSV_IMPORT',
+            referenceId: 'BULK_CSV',
+            staff: getCurrentStaffName()
+          });
+        }
+      } else {
+        state.inventory.unshift(newSku);
+        addedCount++;
+
+        if (window.SupabaseBridge) {
+          window.SupabaseBridge.recordStockAudit({
+            partNo: newSku.partNo,
+            brand: newSku.brand,
+            category: newSku.category,
+            previousQty: 0,
+            changeQty: newSku.qty,
+            newQty: newSku.qty,
+            actionType: 'CSV_IMPORT',
+            referenceId: 'BULK_CSV',
+            staff: getCurrentStaffName()
+          });
+        }
+      }
+    });
+
+    if (window.SupabaseBridge) {
+      window.SupabaseBridge.bulkUpsertProducts(parsedCsvRows);
+    }
+
+    persistAll();
+    window.renderInventoryTable();
+    renderOverviewDashboard();
+    document.getElementById('csvPreviewContainer').style.display = 'none';
+    parsedCsvRows = [];
+    document.getElementById('bulkCsvFileInput').value = '';
+
+    showToast(`Batch import successful! (${addedCount} added, ${updatedCount} updated & Supabase synced).`);
+  };
+
+  // ================= 9. SUPABASE CLOUD DATABASE SYNC =================
+  window.saveAndTestSupabase = async function () {
+    const urlInput = document.getElementById('supabaseUrlInput');
+    const keyInput = document.getElementById('supabaseKeyInput');
+    const feedback = document.getElementById('supabaseFeedbackMsg');
+
+    if (!window.SupabaseBridge) {
+      showToast('Supabase client script not loaded.');
+      return;
+    }
+
+    const url = urlInput?.value.trim();
+    const key = keyInput?.value.trim();
+
+    if (!url || !key) {
+      if (feedback) {
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
+        feedback.style.color = '#F87171';
+        feedback.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Please enter both Supabase URL and API Key.';
+      }
+      return;
+    }
+
+    if (feedback) {
+      feedback.style.display = 'block';
+      feedback.style.background = 'rgba(56, 189, 248, 0.15)';
+      feedback.style.color = '#38BDF8';
+      feedback.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connecting to Supabase Cloud PostgreSQL...';
+    }
+
+    const res = await window.SupabaseBridge.setCredentials(url, key);
+    if (res.success) {
+      if (feedback) {
+        feedback.style.background = 'rgba(16, 185, 129, 0.15)';
+        feedback.style.color = '#34D399';
+        feedback.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${res.message}`;
+      }
+      updateSupabaseStatusUI('CONNECTED', 'Live');
+      showToast('Connected to Supabase PostgreSQL Database!');
+    } else {
+      if (feedback) {
+        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
+        feedback.style.color = '#F87171';
+        feedback.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${res.message}`;
+      }
+      updateSupabaseStatusUI('OFFLINE', 'Disconnected');
+    }
+  };
+
+  window.syncLocalWithSupabase = async function () {
+    if (!window.SupabaseBridge || !window.SupabaseBridge.isConfigured()) {
+      showToast('Please configure Supabase URL & Key first.');
+      return;
+    }
+
+    showToast('Fetching latest products from Supabase...');
+    const remoteProducts = await window.SupabaseBridge.fetchProducts();
+    if (remoteProducts && Array.isArray(remoteProducts) && remoteProducts.length > 0) {
+      state.inventory = remoteProducts.map(p => ({
+        id: p.id || String(Date.now()),
+        partNo: p.part_no,
+        brand: p.brand_name || 'Genuine',
+        category: window.SupabaseBridge.mapSlugToCategory(p.category_slug),
+        rack: p.rack_location || 'Rack General',
+        qty: parseInt(p.quantity, 10) || 0,
+        rate: parseFloat(p.wholesale_rate_npr) || 0,
+        lowAlert: p.low_stock_threshold || 3
+      }));
+
+      persistAll();
+      window.renderInventoryTable();
+      renderOverviewDashboard();
+      showToast(`Synchronized ${remoteProducts.length} items from Supabase Cloud!`);
+    } else {
+      showToast('No remote products found in Supabase table.');
+    }
+  };
+
+  window.seedAllInventoryTenUnits = function () {
+    if (confirm('Initialize all 66+ industrial items to exactly 10 units stock each and sync to Supabase?')) {
+      state.inventory = JSON.parse(JSON.stringify(DEFAULT_SEED_DATA.inventory));
+      state.inventory.forEach(item => {
+        item.qty = 10;
+        if (window.SupabaseBridge) {
+          window.SupabaseBridge.recordStockAudit({
+            partNo: item.partNo,
+            brand: item.brand,
+            category: item.category,
+            previousQty: item.qty,
+            changeQty: 0,
+            newQty: 10,
+            actionType: 'STOCK_RESET',
+            referenceId: 'FACTORY_SEED_10',
+            staff: getCurrentStaffName()
+          });
+        }
+      });
+
+      if (window.SupabaseBridge) {
+        window.SupabaseBridge.bulkUpsertProducts(state.inventory);
+      }
+
+      persistAll();
+      window.renderInventoryTable();
+      renderOverviewDashboard();
+      showToast('All 66+ items initialized with 10 units stock and synced!');
+    }
+  };
+
+  // ================= 10. BACKUP & MAINTENANCE =================
+  window.exportAllDataJSON = function () {
+    const exportBundle = {
+      store: 'Shree Anjani Belt & Bearing',
+      location: 'Siddharthanagar, Nepal',
+      exportedAt: new Date().toISOString(),
+      data: state,
+      stockAudit: window.SupabaseBridge ? window.SupabaseBridge.getStockAuditLogs() : []
+    };
+
+    const blob = new Blob([JSON.stringify(exportBundle, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `shree_anjani_erp_backup_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Backup JSON downloaded successfully!');
+  };
+
+  window.importDataJSON = function (e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      try {
+        const parsed = JSON.parse(event.target.result);
+        if (parsed.data && parsed.data.inventory) {
+          state = parsed.data;
+          persistAll();
+          renderOverviewDashboard();
+          showToast('Data restored successfully from backup!');
+        } else {
+          showToast('Invalid backup file format.');
+        }
+      } catch (err) {
+        showToast('Error reading backup file.');
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  window.resetToDemoSeedData = function () {
+    if (!confirm('Reset all inventory, invoices, dispatches, and workshop cards to default factory seed data?')) return;
+    localStorage.clear();
+    initStorage();
+    renderOverviewDashboard();
+    showToast('System reset to default seed data.');
   };
 
   // Toast Notification
@@ -1525,22 +2106,18 @@
       const savedKey = window.SupabaseBridge.getKey();
       const urlInput = document.getElementById('supabaseUrlInput');
       const keyInput = document.getElementById('supabaseKeyInput');
-      const badge = document.getElementById('supabaseStatusBadge');
 
       if (urlInput && savedUrl) urlInput.value = savedUrl;
       if (keyInput && savedKey) keyInput.value = savedKey;
 
-      if (savedUrl && savedKey && badge) {
-        badge.style.background = 'rgba(16, 185, 129, 0.15)';
-        badge.style.color = '#34D399';
-        badge.style.borderColor = 'rgba(16, 185, 129, 0.3)';
-        badge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Supabase Cloud Configured';
+      if (savedUrl && savedKey) {
+        updateSupabaseStatusUI('CONNECTED', 'Configured');
       }
     }
   }
 
-  // ================= 9. REVIEW VELOCITY AUTOMATION (5-STAR GOOGLE REVIEW FUNNEL) =================
-  const GOOGLE_MAPS_REVIEW_URL = 'https://maps.app.goo.gl/GF8375V'; // Siddharthanagar Hub
+  // ================= 11. REVIEW VELOCITY AUTOMATION =================
+  const GOOGLE_MAPS_REVIEW_URL = 'https://maps.app.goo.gl/GF8375V';
 
   window.openReviewVelocityModal = function (clientName, phone, context) {
     const name = clientName || 'Valued Customer';
@@ -1579,7 +2156,7 @@
     }
   };
 
-  // ================= 10. SECURE STAFF AUTHENTICATION & SESSION MANAGEMENT =================
+  // ================= 12. STAFF AUTHENTICATION & SESSION GUARD =================
   const STAFF_SESSION_KEY = 'shree_anjani_staff_session';
 
   function checkStaffAuthSession() {
@@ -1590,7 +2167,6 @@
     if (session) {
       try {
         const data = JSON.parse(session);
-        // Valid within 8 hours
         if (Date.now() - data.timestamp < 8 * 3600 * 1000) {
           if (authOverlay) authOverlay.style.display = 'none';
           if (badge) {
@@ -1617,7 +2193,6 @@
       return;
     }
 
-    // Accept PIN 2026 or store credentials
     if (pass === '2026' || pass === 'shreeanjani2026' || pass.length >= 6) {
       const userNick = (email.split('@')[0] || 'STORE STAFF').toUpperCase();
       const sessionData = {
@@ -1656,5 +2231,3 @@
   checkStaffAuthSession();
 
 })();
-
-

@@ -747,7 +747,335 @@ body {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   width: 100%;
-  max-width: 600px;
+/* Format Toggle Buttons & QR Gateways */
+.invoice-format-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: #0A1424;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.format-btn-group {
+  display: flex;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 3px;
+}
+
+.format-toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 0.825rem;
+  font-weight: 700;
+  padding: 0.45rem 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+}
+
+.format-toggle-btn.active {
+  background: var(--accent-orange);
+  color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(255, 85, 0, 0.4);
+}
+
+.qr-selector-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.qr-selector-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.775rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.qr-selector-btn.active {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: var(--accent-emerald);
+  color: #34D399;
+  font-weight: 700;
+}
+
+/* Payment QR Display Box on Printable Invoice */
+.invoice-qr-paybox {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: #F8FAFC;
+  border: 1.5px dashed #CBD5E1;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.qr-image-wrapper {
+  background: #FFFFFF;
+  padding: 8px;
+  border: 1px solid #E2E8F0;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.qr-image-wrapper img {
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+  display: block;
+}
+
+.qr-pay-info {
+  font-size: 0.825rem;
+  color: #334155;
+  line-height: 1.45;
+}
+
+.qr-pay-info .qr-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.qr-badge-gateway {
+  background: #0284C7;
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* 80mm POS Thermal Receipt Styles */
+.pos-thermal-container {
+  background: #FFFFFF;
+  color: #000000;
+  width: 340px;
+  max-width: 100%;
+  margin: 1.5rem auto;
+  padding: 1.5rem 1.25rem;
+  box-shadow: var(--shadow-panel);
+  border-radius: var(--radius-md);
+  font-family: 'Courier Prime', 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.pos-thermal-header {
+  text-align: center;
+  margin-bottom: 0.85rem;
+}
+
+.pos-thermal-header h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.15rem;
+  color: #000000;
+}
+
+.pos-thermal-header p {
+  font-size: 0.725rem;
+  margin: 0.1rem 0;
+  color: #222222;
+}
+
+.pos-dashed-separator {
+  border-top: 1px dashed #000000;
+  margin: 0.65rem 0;
+}
+
+.pos-double-separator {
+  border-top: 2px solid #000000;
+  margin: 0.65rem 0;
+}
+
+.pos-meta-grid {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.725rem;
+  margin: 0.15rem 0;
+}
+
+.pos-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.pos-items-table th {
+  border-bottom: 1px dashed #000000;
+  padding: 0.3rem 0;
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.pos-items-table td {
+  padding: 0.25rem 0;
+  vertical-align: top;
+}
+
+.pos-totals-block {
+  margin-top: 0.5rem;
+  font-size: 0.775rem;
+}
+
+.pos-totals-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.15rem 0;
+}
+
+.pos-grand-total {
+  font-size: 0.95rem;
+  font-weight: 800;
+  border-top: 1px dashed #000000;
+  border-bottom: 1px dashed #000000;
+  padding: 0.35rem 0;
+  margin: 0.4rem 0;
+}
+
+.pos-qr-center {
+  text-align: center;
+  margin: 0.85rem 0 0.5rem;
+}
+
+.pos-qr-center img {
+  width: 110px;
+  height: 110px;
+  display: inline-block;
+}
+
+.pos-thermal-footer {
+  text-align: center;
+  font-size: 0.675rem;
+  margin-top: 0.75rem;
+  color: #333333;
+}
+
+/* Customer Ledger & Directory Badges & Cards */
+.credit-badge-danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: #F87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.credit-badge-warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.credit-badge-safe {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.ledger-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ledger-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-align: center;
+}
+
+.ledger-stat-card .l-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.ledger-stat-card .l-value {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* Modal Windows */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-content-box {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 650px;
   padding: 1.75rem;
   position: relative;
   box-shadow: var(--shadow-panel);
@@ -785,13 +1113,19 @@ body {
 }
 
 /* ==========================================================================
-   PRINT INVOICE MEDIA STYLES (A4)
+   PRINT INVOICE MEDIA STYLES (A4 & 80mm POS Thermal)
    ========================================================================== */
 @media print {
-  body {
-    background: #FFFFFF;
-    color: #000000;
+  @page {
+    margin: 10mm;
+    size: auto;
   }
+  
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+
   .internal-header,
   .internal-nav-bar,
   .panel-header-flex,
@@ -801,23 +1135,290 @@ body {
   .stats-cards-grid,
   .modal-overlay,
   .internal-toast,
+  .invoice-format-toolbar,
   .hide-on-print {
     display: none !important;
   }
+
   .internal-main-content {
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
   }
+
   .section-panel-card {
-    border: none;
-    padding: 0;
-    background: transparent;
-    box-shadow: none;
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
   }
+
   .invoice-bill-container {
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+
+  /* When printing 80mm POS Receipt specifically */
+  body.print-pos-receipt-active .invoice-bill-container#invoicePrintableA4 {
+    display: none !important;
+  }
+
+  body.print-pos-receipt-active .pos-thermal-container {
+    display: block !important;
+    width: 100% !important;
+    max-width: 80mm !important;
+    margin: 0 auto !important;
+    box-shadow: none !important;
+    padding: 2mm !important;
+  }
+
+  /* When printing A4 Invoice specifically */
+  body.print-a4-invoice-active .pos-thermal-container {
+    display: none !important;
+  }
+
+  body.print-a4-invoice-active .invoice-bill-container#invoicePrintableA4 {
+    display: block !important;
   }
 }
+
+/* ==========================================================================
+   REAL-TIME STOCK BADGES, RACK FILTER CHIPS & STOCK AUDIT LOG STYLES
+   ========================================================================== */
+
+/* Enhanced Stock Status Badges */
+.stock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.stock-badge-in-stock {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.stock-badge-low-stock {
+  background: rgba(245, 158, 11, 0.18);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.6);
+}
+
+.stock-badge-out-of-stock {
+  background: rgba(239, 68, 68, 0.18);
+  color: #F87171;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+}
+
+/* Glowing Amber Pulse Animation for Low Stock < 3 units */
+@keyframes stockAmberPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+    border-color: rgba(245, 158, 11, 0.9);
+  }
+  65% {
+    box-shadow: 0 0 0 7px rgba(245, 158, 11, 0);
+    border-color: rgba(245, 158, 11, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+    border-color: rgba(245, 158, 11, 0.9);
+  }
+}
+
+.stock-pulse-amber {
+  animation: stockAmberPulse 2s infinite ease-in-out;
+}
+
+/* Quick Stock Quantity Stepper in Inventory Table */
+.stock-stepper-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 2px 4px;
+}
+
+.stock-stepper-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.stock-stepper-btn:hover {
+  background: var(--accent-orange);
+  color: #FFFFFF;
+  border-color: var(--accent-orange);
+}
+
+.stock-stepper-val {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0 0.35rem;
+  min-width: 32px;
+  text-align: center;
+}
+
+.stock-val-good { color: #34D399; }
+.stock-val-low { color: #FBBF24; }
+.stock-val-out { color: #F87171; }
+
+/* Warehouse Rack & Shelf Filter Chips Bar */
+.filter-chips-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 0.65rem 0.85rem;
+  background: rgba(10, 20, 34, 0.65);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.filter-chips-title {
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.filter-chip-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.775rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.filter-chip-btn:hover {
+  background: rgba(255, 85, 0, 0.15);
+  color: #FFFFFF;
+  border-color: rgba(255, 85, 0, 0.4);
+}
+
+.filter-chip-btn.active {
+  background: linear-gradient(135deg, rgba(255, 85, 0, 0.3), rgba(212, 68, 0, 0.2));
+  border-color: var(--accent-orange);
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(255, 85, 0, 0.3);
+}
+
+.filter-chip-badge {
+  font-family: var(--font-mono);
+  font-size: 0.675rem;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 0.05rem 0.4rem;
+  border-radius: var(--radius-pill);
+  color: #E2E8F0;
+}
+
+.inventory-summary-subbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  padding: 0 0.25rem;
+}
+
+.search-wrap-relative {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: none;
+  padding: 2px;
+}
+
+.search-clear-btn:hover {
+  color: #FFFFFF;
+}
+
+/* Stock Audit Modal & Table */
+.audit-modal-content {
+  max-width: 980px !important;
+  width: 95% !important;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.audit-table-scroll {
+  overflow-y: auto;
+  max-height: 52vh;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin: 1rem 0;
+}
+
+.audit-tag-action {
+  font-family: var(--font-mono);
+  font-size: 0.685rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.audit-tag-invoice { background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.35); }
+.audit-tag-restock { background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.35); }
+.audit-tag-sales { background: rgba(245, 158, 11, 0.15); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.35); }
+.audit-tag-manual { background: rgba(168, 85, 247, 0.15); color: #C084FC; border: 1px solid rgba(168, 85, 247, 0.35); }
+.audit-tag-csv { background: rgba(236, 72, 153, 0.15); color: #F472B6; border: 1px solid rgba(236, 72, 153, 0.35); }
+
+.audit-delta-neg { color: #F87171; font-weight: 700; font-family: var(--font-mono); }
+.audit-delta-pos { color: #34D399; font-weight: 700; font-family: var(--font-mono); }
+
+
