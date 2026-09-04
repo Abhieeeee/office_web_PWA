@@ -39,6 +39,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Shree Anjani" />
 
+  <!-- Three.js 3D WebGL Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <!-- Supabase REST Client & Dynamic SEO Schema Injector -->
   <script src="supabase_client.js"></script>
   <script src="seo-schema.js" defer></script>
@@ -378,111 +381,62 @@
 
       </div>
 
-      <!-- Hero Visual Art Composition: Moving Precision Bearing Blueprint -->
+      <!-- Hero Visual Art Composition: Interactive 3D Precision Bearing Visualizer -->
       <div class="hero-visual-block">
-        <div class="hero-showcase-container">
+        <div class="hero-showcase-container hero-3d-showcase-box">
           <div class="floating-warehouse-tag">
-            <i class="fa-solid fa-arrows-spin"></i> Live Bearing CAD Blueprint
+            <i class="fa-solid fa-cube text-orange"></i> 3D Interactive Precision Bearing CAD
           </div>
           
-          <svg viewBox="0 0 560 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-vector-illustration" role="img" aria-label="Interactive Precision Bearing Blueprint">
-            <!-- Blueprint Background -->
-            <rect width="560" height="380" rx="16" fill="#081422"/>
-            
-            <!-- Grid Lines -->
-            <path d="M30 40 H530 M30 120 H530 M30 200 H530 M30 280 H530 M30 350 H530" class="blueprint-grid-line"/>
-            <path d="M50 30 V360 M150 30 V360 M250 30 V360 M350 30 V360 M450 30 V360" class="blueprint-grid-line"/>
-            <circle cx="155" cy="190" r="130" stroke="rgba(56, 189, 248, 0.08)" stroke-width="1"/>
-            
-            <!-- Outer Ring Tolerance Marks -->
-            <circle cx="155" cy="190" r="105" stroke="#38BDF8" stroke-width="4" stroke-dasharray="12 4" opacity="0.8"/>
-            <circle cx="155" cy="190" r="96" fill="#0D2238" stroke="#1E3A5F" stroke-width="2"/>
-            
-            <!-- Rotating Bearing Cage Assembly -->
-            <g class="spinning-bearing-assembly">
-              <!-- Brass/Steel Retainer Ring -->
-              <circle cx="155" cy="190" r="68" fill="none" stroke="#FF5500" stroke-width="6" opacity="0.9"/>
-              <circle cx="155" cy="190" r="68" fill="none" stroke="#FFAE73" stroke-width="1.5" stroke-dasharray="8 6"/>
+          <!-- 3D WebGL Canvas Container -->
+          <div id="bearing3DCanvasContainer" class="hero-3d-canvas-wrapper" style="width: 100%; height: 310px; position: relative; cursor: grab;">
+            <!-- Three.js Canvas injected dynamically -->
+          </div>
 
-              <!-- 8 Precision Chrome Steel Spheres with Specular Light Reflex -->
-              <circle cx="155" cy="122" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
-              <circle cx="151" cy="118" r="3" fill="#FFFFFF" opacity="0.8"/>
-              
-              <circle cx="203" cy="142" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
-              <circle cx="199" cy="138" r="3" fill="#FFFFFF" opacity="0.8"/>
-              
-              <circle cx="223" cy="190" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
-              <circle cx="219" cy="186" r="3" fill="#FFFFFF" opacity="0.8"/>
-              
-              <circle cx="203" cy="238" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
-              <circle cx="199" cy="234" r="3" fill="#FFFFFF" opacity="0.8"/>
-              
-              <circle cx="155" cy="258" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
-              <circle cx="151" cy="254" r="3" fill="#FFFFFF" opacity="0.8"/>
-              
-              <circle cx="107" cy="238" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
-              <circle cx="103" cy="234" r="3" fill="#FFFFFF" opacity="0.8"/>
-              
-              <circle cx="87" cy="190" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
-              <circle cx="83" cy="186" r="3" fill="#FFFFFF" opacity="0.8"/>
-              
-              <circle cx="107" cy="142" r="14" fill="url(#steelBallGrad)" stroke="#CBD5E1" stroke-width="1.5"/>
-              <circle cx="103" cy="138" r="3" fill="#FFFFFF" opacity="0.8"/>
-            </g>
+          <!-- 3D Interactive Control Toolbar -->
+          <div class="hero-3d-control-bar">
+            <button type="button" class="btn-3d-control" id="btnToggleExplode" onclick="window.toggle3DExplodedView()">
+              <i class="fa-solid fa-arrows-split-up-and-left text-orange"></i> 3D Exploded View
+            </button>
+            <button type="button" class="btn-3d-control" id="btnToggleWireframe" onclick="window.toggle3DWireframe()">
+              <i class="fa-solid fa-border-none text-cyan"></i> CAD Wireframe
+            </button>
+            <button type="button" class="btn-3d-control active" id="btnToggleAutoRotate" onclick="window.toggle3DAutoRotate()">
+              <i class="fa-solid fa-pause text-emerald"></i> Pause Spin
+            </button>
+          </div>
 
-            <!-- Inner Ring & Bore (Stationary with Shaft Ticks) -->
-            <circle cx="155" cy="190" r="42" fill="#06111C" stroke="#38BDF8" stroke-width="4"/>
-            <circle cx="155" cy="190" r="28" fill="#040A12" stroke="#64748B" stroke-width="2" stroke-dasharray="4 2"/>
-            <text x="155" y="194" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">25mm BORE</text>
+          <!-- Component Inspector Tabs -->
+          <div class="hero-3d-parts-picker">
+            <button type="button" class="part-pill-btn" onclick="window.highlight3DPart('outer')">
+              <span class="part-dot bg-cyan"></span> Outer Raceway
+            </button>
+            <button type="button" class="part-pill-btn" onclick="window.highlight3DPart('balls')">
+              <span class="part-dot bg-amber"></span> Steel Balls (8x)
+            </button>
+            <button type="button" class="part-pill-btn" onclick="window.highlight3DPart('cage')">
+              <span class="part-dot bg-orange"></span> Brass Cage
+            </button>
+            <button type="button" class="part-pill-btn" onclick="window.highlight3DPart('seals')">
+              <span class="part-dot bg-emerald"></span> 2RS Dust Seals
+            </button>
+          </div>
 
-            <!-- Gradient Definition for 3D Chrome Spheres -->
-            <defs>
-              <radialGradient id="steelBallGrad" cx="30%" cy="30%" r="70%">
-                <stop offset="0%" stop-color="#FFFFFF"/>
-                <stop offset="35%" stop-color="#E2E8F0"/>
-                <stop offset="70%" stop-color="#94A3B8"/>
-                <stop offset="100%" stop-color="#334155"/>
-              </radialGradient>
-            </defs>
-
-            <!-- Technical Leader Callout 1: Outer Ring -->
-            <line x1="155" y1="86" x2="280" y2="40" class="blueprint-pointer-line"/>
-            <line x1="280" y1="40" x2="520" y2="40" stroke="#38BDF8" stroke-width="1.5"/>
-            <circle cx="155" cy="86" r="4" fill="#38BDF8" class="pulse-pointer-dot"/>
-            <rect x="290" y="18" width="240" height="38" rx="6" class="blueprint-callout-card"/>
-            <text x="302" y="33" class="blueprint-callout-title">OUTER RACEWAY (GCr15 STEEL)</text>
-            <text x="302" y="48" class="blueprint-callout-desc">Laser-Etched Traceable Code • HRC 60-64</text>
-
-            <!-- Technical Leader Callout 2: Precision Balls -->
-            <line x1="215" y1="160" x2="310" y2="95" class="blueprint-pointer-line"/>
-            <line x1="310" y1="95" x2="520" y2="95" stroke="#38BDF8" stroke-width="1.5"/>
-            <circle cx="215" cy="160" r="4" fill="#FFAE73" class="pulse-pointer-dot"/>
-            <rect x="310" y="74" width="220" height="38" rx="6" class="blueprint-callout-card orange-theme"/>
-            <text x="322" y="89" class="blueprint-callout-title orange-text">GRADE 10 STEEL BALLS</text>
-            <text x="322" y="104" class="blueprint-callout-desc">ISO 3290 Sphericity (&le;0.05&mu;m smooth run)</text>
-
-            <!-- Technical Leader Callout 3: Internal Retainer Cage -->
-            <line x1="195" y1="225" x2="290" y2="150" class="blueprint-pointer-line"/>
-            <line x1="290" y1="150" x2="520" y2="150" stroke="#38BDF8" stroke-width="1.5"/>
-            <circle cx="195" cy="225" r="4" fill="#FF5500" class="pulse-pointer-dot"/>
-            <rect x="300" y="128" width="230" height="38" rx="6" class="blueprint-callout-card"/>
-            <text x="312" y="143" class="blueprint-callout-title">RIVETED STEEL / BRASS CAGE</text>
-            <text x="312" y="158" class="blueprint-callout-desc">Anti-Friction High RPM Vibration Guard</text>
-
-            <!-- Technical Leader Callout 4: 2RS Dust Seals -->
-            <line x1="155" y1="280" x2="260" y2="330" class="blueprint-pointer-line"/>
-            <line x1="260" y1="330" x2="520" y2="330" stroke="#38BDF8" stroke-width="1.5"/>
-            <circle cx="155" cy="280" r="4" fill="#34D399" class="pulse-pointer-dot"/>
-            <rect x="270" y="308" width="260" height="38" rx="6" class="blueprint-callout-card"/>
-            <text x="282" y="323" class="blueprint-callout-title" style="fill: #34D399;">2RS DUAL NITRILE RUBBER SEALS</text>
-            <text x="282" y="338" class="blueprint-callout-desc">Factory Pre-Greased • Dust &amp; Slurry Barrier</text>
-          </svg>
+          <!-- Real-Time 3D Part Specs HUD Box -->
+          <div id="active3DPartInfo" class="hero-3d-spec-card">
+            <div style="color: var(--cyan-accent); font-weight: 700; font-size: 0.85rem; font-family: var(--font-display);">
+              <i class="fa-solid fa-circle-info"></i> OUTER RACEWAY (GCr15 ALLOY STEEL)
+            </div>
+            <div style="color: #E2E8F0; font-size: 0.775rem; margin-top: 0.2rem;">
+              OD: 52mm • Hardness: HRC 60-64 • Superfinished raceway curvature (<0.02μm roughness)
+            </div>
+          </div>
 
           <!-- Specifications Strip -->
           <div class="showcase-features-strip">
-            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> Original Factory Packaging</div>
-            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> Manufacturer Test Codes</div>
-            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> 13% Official VAT Invoices</div>
+            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> 100% Genuine ISO SKF/NBC</div>
+            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> 360° Drag &amp; Orbit View</div>
+            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> Nepal 13% VAT Bill</div>
           </div>
         </div>
       </div>
@@ -1668,7 +1622,8 @@
   <!-- Toast Notification Viewport -->
   <div id="toastNotification" class="toast-viewport" role="alert" aria-live="polite"></div>
 
-  <!-- Application Logic -->
+  <!-- Application Logic & 3D WebGL Engine -->
   <script src="app.js"></script>
+  <script src="bearing-3d.js"></script>
 </body>
 </html>

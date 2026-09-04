@@ -2984,88 +2984,110 @@ button, input, textarea, select {
 }
 
 /* ==========================================================================
-   20. HERO MOVING BEARING & TECHNICAL BLUEPRINT CALLOUTS
+   20. HERO INTERACTIVE 3D BEARING SHOWCASE & WEBGL CONTROLS
    ========================================================================== */
-.hero-bearing-blueprint-wrap {
+.hero-3d-showcase-box {
+  background: radial-gradient(circle at 50% 30%, #0D2238 0%, #071322 65%, #030A14 100%);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem 1.25rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 40px rgba(56, 189, 248, 0.08);
   position: relative;
-  width: 100%;
-  border-radius: var(--radius-md);
   overflow: hidden;
-  background: radial-gradient(circle at 35% 50%, #0F253C 0%, #06111C 100%);
-  border: 1px solid var(--slate-border);
-  padding: 1.25rem;
-  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
 }
 
-.spinning-bearing-assembly {
-  transform-origin: 155px 190px;
-  animation: spinBearingAssembly 20s linear infinite;
+.hero-3d-canvas-wrapper {
+  border-radius: var(--radius-md);
+  background: radial-gradient(circle at 50% 50%, rgba(15, 35, 60, 0.4) 0%, rgba(5, 12, 22, 0.8) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  touch-action: none;
 }
 
-.hero-bearing-blueprint-wrap:hover .spinning-bearing-assembly {
-  animation-duration: 8s;
+.hero-3d-control-bar {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
 }
 
-@keyframes spinBearingAssembly {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.blueprint-grid-line {
-  stroke: rgba(56, 189, 248, 0.12);
-  stroke-width: 1.5;
-  stroke-dasharray: 4 4;
-}
-
-.blueprint-pointer-line {
-  stroke: var(--cyan-accent);
-  stroke-width: 2;
-  stroke-dasharray: 6 3;
-  animation: dashPointer 2s linear infinite;
-}
-
-@keyframes dashPointer {
-  from { stroke-dashoffset: 18; }
-  to { stroke-dashoffset: 0; }
-}
-
-.pulse-pointer-dot {
-  transform-origin: center;
-  animation: pulseLeaderDot 2s infinite ease-in-out;
-}
-
-@keyframes pulseLeaderDot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.6); opacity: 0.5; }
-}
-
-.blueprint-callout-card {
-  fill: rgba(10, 22, 38, 0.92);
-  stroke: rgba(56, 189, 248, 0.4);
-  stroke-width: 1.5;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
-}
-
-.blueprint-callout-card.orange-theme {
-  stroke: rgba(255, 85, 0, 0.5);
-}
-
-.blueprint-callout-title {
-  fill: #38BDF8;
+.btn-3d-control {
+  background: rgba(15, 35, 60, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #FFFFFF;
   font-family: var(--font-display);
-  font-size: 11px;
+  font-size: 0.775rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-.blueprint-callout-title.orange-text {
-  fill: #FFAE73;
+.btn-3d-control:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: var(--cyan-accent);
+  transform: translateY(-1px);
 }
 
-.blueprint-callout-desc {
-  fill: #E2E8F0;
-  font-family: var(--font-sans);
-  font-size: 10px;
+.btn-3d-control.active {
+  background: linear-gradient(135deg, rgba(255, 85, 0, 0.25) 0%, rgba(56, 189, 248, 0.25) 100%);
+  border-color: var(--orange-electric);
+  box-shadow: 0 0 12px rgba(255, 85, 0, 0.35);
+}
+
+.hero-3d-parts-picker {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
+.part-pill-btn {
+  background: rgba(10, 20, 35, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94A3B8;
+  font-size: 0.725rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all var(--transition-fast);
+}
+
+.part-pill-btn:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--cyan-accent);
+  color: #FFFFFF;
+}
+
+.part-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.hero-3d-spec-card {
+  background: rgba(8, 18, 30, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.85rem;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 /* ==========================================================================
