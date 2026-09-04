@@ -381,27 +381,48 @@
 
       </div>
 
-      <!-- Hero Visual Art Composition: Interactive 3D Precision Bearing Visualizer -->
+      <!-- Hero Visual Art Composition: Ultra-Premium Multi-Type 3D Bearing Studio -->
       <div class="hero-visual-block">
         <div class="hero-showcase-container hero-3d-showcase-box">
-          <div class="floating-warehouse-tag">
-            <i class="fa-solid fa-cube text-orange"></i> 3D Interactive Precision Bearing CAD
+          
+          <!-- Top 3D Header Bar -->
+          <div class="hero-3d-header-row">
+            <div class="floating-warehouse-tag">
+              <i class="fa-solid fa-cube text-orange"></i> 3D Precision Bearing Studio
+            </div>
+            <span class="hero-3d-model-badge" id="active3DBearingBadge">ISO 6205-2RS Deep Groove</span>
+          </div>
+
+          <!-- 4-Bearing Type Switcher Bar -->
+          <div class="bearing-type-nav" role="tablist" aria-label="Select Bearing 3D Type">
+            <button type="button" class="bearing-type-tab active" data-type="deep_groove" onclick="window.switch3DBearingType('deep_groove')">
+              <i class="fa-solid fa-circle-dot text-orange"></i> 1. Deep Groove
+            </button>
+            <button type="button" class="bearing-type-tab" data-type="spherical_roller" onclick="window.switch3DBearingType('spherical_roller')">
+              <i class="fa-solid fa-dharmachakra text-cyan"></i> 2. Spherical Roller
+            </button>
+            <button type="button" class="bearing-type-tab" data-type="taper_roller" onclick="window.switch3DBearingType('taper_roller')">
+              <i class="fa-solid fa-arrows-to-dot text-amber"></i> 3. Taper Roller
+            </button>
+            <button type="button" class="bearing-type-tab" data-type="pillow_block" onclick="window.switch3DBearingType('pillow_block')">
+              <i class="fa-solid fa-box-archive text-emerald"></i> 4. Pillow Block
+            </button>
           </div>
           
-          <!-- 3D WebGL Canvas Container -->
-          <div id="bearing3DCanvasContainer" class="hero-3d-canvas-wrapper" style="width: 100%; height: 310px; position: relative; cursor: grab;">
+          <!-- 3D WebGL Canvas Container with Subtle Grid & Center Crosshairs -->
+          <div id="bearing3DCanvasContainer" class="hero-3d-canvas-wrapper" title="Click & Drag to Rotate in 3D">
             <!-- Three.js Canvas injected dynamically -->
           </div>
 
           <!-- 3D Interactive Control Toolbar -->
           <div class="hero-3d-control-bar">
-            <button type="button" class="btn-3d-control" id="btnToggleExplode" onclick="window.toggle3DExplodedView()">
+            <button type="button" class="btn-3d-control btn-3d-explode" id="btnToggleExplode" onclick="window.toggle3DExplodedView()">
               <i class="fa-solid fa-arrows-split-up-and-left text-orange"></i> 3D Exploded View
             </button>
-            <button type="button" class="btn-3d-control" id="btnToggleWireframe" onclick="window.toggle3DWireframe()">
+            <button type="button" class="btn-3d-control btn-3d-cad" id="btnToggleWireframe" onclick="window.toggle3DWireframe()">
               <i class="fa-solid fa-border-none text-cyan"></i> CAD Wireframe
             </button>
-            <button type="button" class="btn-3d-control active" id="btnToggleAutoRotate" onclick="window.toggle3DAutoRotate()">
+            <button type="button" class="btn-3d-control btn-3d-spin active" id="btnToggleAutoRotate" onclick="window.toggle3DAutoRotate()">
               <i class="fa-solid fa-pause text-emerald"></i> Pause Spin
             </button>
           </div>
@@ -412,10 +433,10 @@
               <span class="part-dot bg-cyan"></span> Outer Raceway
             </button>
             <button type="button" class="part-pill-btn" onclick="window.highlight3DPart('balls')">
-              <span class="part-dot bg-amber"></span> Steel Balls (8x)
+              <span class="part-dot bg-amber"></span> Rolling Elements
             </button>
             <button type="button" class="part-pill-btn" onclick="window.highlight3DPart('cage')">
-              <span class="part-dot bg-orange"></span> Brass Cage
+              <span class="part-dot bg-orange"></span> Brass/Steel Cage
             </button>
             <button type="button" class="part-pill-btn" onclick="window.highlight3DPart('seals')">
               <span class="part-dot bg-emerald"></span> 2RS Dust Seals
@@ -425,18 +446,18 @@
           <!-- Real-Time 3D Part Specs HUD Box -->
           <div id="active3DPartInfo" class="hero-3d-spec-card">
             <div style="color: var(--cyan-accent); font-weight: 700; font-size: 0.85rem; font-family: var(--font-display);">
-              <i class="fa-solid fa-circle-info"></i> OUTER RACEWAY (GCr15 ALLOY STEEL)
+              <i class="fa-solid fa-circle-info"></i> DEEP GROOVE BALL BEARING (6200 / 6300 SERIES)
             </div>
-            <div style="color: #E2E8F0; font-size: 0.775rem; margin-top: 0.2rem;">
-              OD: 52mm • Hardness: HRC 60-64 • Superfinished raceway curvature (<0.02μm roughness)
+            <div style="color: #E2E8F0; font-size: 0.775rem; margin-top: 0.2rem; line-height: 1.4;">
+              Bore: 25mm • OD: 52mm • Width: 15mm • Dynamic Load: 14.8 kN • Speed: 14,000 RPM • Dual 2RS Nitrile Rubber Seals
             </div>
           </div>
 
           <!-- Specifications Strip -->
           <div class="showcase-features-strip">
-            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> 100% Genuine ISO SKF/NBC</div>
-            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> 360° Drag &amp; Orbit View</div>
-            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> Nepal 13% VAT Bill</div>
+            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> 100% Genuine SKF/NBC/URB/NTN</div>
+            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> 360° Touch &amp; Drag Orbit</div>
+            <div class="showcase-tag-item"><i class="fa-solid fa-check-double text-orange"></i> 13% Nepal VAT Tax Bill</div>
           </div>
         </div>
       </div>
